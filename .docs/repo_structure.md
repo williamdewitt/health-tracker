@@ -17,11 +17,32 @@ This document describes the desired repository structure. This may be used for v
   - /.vscode (VS Code workspace settings & recommended extensions)
     - settings.json
     - extensions.json
-  - /src (base directory for the project)
+  - /src
     - / backend (where services go)
-      - / ProjectX
-      - / ProjectY
-      - Project.sln
+      - / <PROJECT_NAME>.Api
+      - / <PROJECT_NAME>.Core
+        - / Services
+          - / Managers
+            ...
+          - / Engines
+            ...
+          - / Data
+            ...
+      - / <PROJECT_NAME>.Shared
+        - / Interfaces
+          - / Managers
+          - / Engines
+          - / Data
+            - IDatabaseContext.cs
+            - ...
+          - ...
+        - / Const
+          ...
+        - / Enums
+          ...
+        - / Models
+          ...
+      - <PROJECT_NAME>.sln
     - / frontend (where frontend apps go)
   - .gitignore
   - docker-compose.yml (Wire up the entire stack with all the dockerfiles)
