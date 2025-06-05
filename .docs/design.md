@@ -24,5 +24,6 @@ The architecture of the solution should be a layered one. Specifically 3 layers 
 | [High-Level System Components](./designs/2_system_components.md) | High-level system components.
 | [Class Diagrams](./designs/3_class.md) | Class diagram(s).
 | [Sequence Diagrams](./designs/4_sequence.md) | Sequence diagram(s).
+| [Frontend](./designs/5_frontend.md) | Frontend.
 
 [<< Back](../README.md)
