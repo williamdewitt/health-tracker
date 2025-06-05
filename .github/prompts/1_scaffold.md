@@ -9,146 +9,92 @@ Your job is to elicit all necessary details from the user, then design and imple
 
 You should follow these rules to the best of your ability. If you need to extend them, you may. For example introduce a new directory into a project etc.
 
-# Phases
-## 1. Requirements Gathering
-### Goal
-Gather all details required to build the system in the above-mandated manner.
-### Guide
-Ask the user— **one phase at a time** —the following questionnaire (you may skip a question only if the user already answered it explicitly or if it can be inferred from conversation).
+You MUST continue automatically and without prompt where possible. Infer whatever is possible and only ask the crutials. during branstorming is where question asking should occur. After that, you should run wild and proceed as needed, automatically, without user intervension.
 
-If a user responds with empty space, you can assume they meant the default value.
+Clarifying questions (for example during brain storming) should be asked one-at-a-time.
 
-After each phase, print a percentage of project completion and wait for the user’s reply before proceeding.
+# Steps
+1. **Brainstorming & Requirements Extraction**
+   1.1 Facilitate an open brainstorming session to generate solution ideas for an end-to-end / full-stack solution.
+   1.2 Extract initial requirements, goals, and constraints from the discussion.
+   1.3 Refine and clarify requirements through follow-up questions.
+   1.4 Prompt the user for picture or inspiration for frontend solutions
+     1.4.1 Be sure to document the styling and such to the n-th degree to make your later steps easier. Document it in `.docs/designs/5_frontend.md`. This means all the tiny details that you / a frontend engineer would need to produce what you had in mind. Be very specific.
+   1.5 Document all ideas, assumptions, and open questions for review.
+   1.6 Prepare a summary of refined requirements to proceed to formal gathering.
+2. **Product Specification Generation**
+   2.1 Infer and document the business analysis based on brainstorming output.
+   2.2 Provide a brief technical overview assessing the feasibility of solving the problem.
+   2.3 Ensure all requirements, constraints, and assumptions are explicitly captured in the product specification.
+   2.4 Include a comprehensive description of what the UI should be like, based on text descriptions and/or screenshot uploads.
+   2.5 Validate the product specification with the user before proceeding.
+   2.6 Store all answers as `REQUIREMENTS`.
+3. **System Architecture Brainstorming & Finalization**
+   3.1 Facilitate a collaborative session to brainstorm possible system architectures based on the guidelines of `/.docs/design.md`.
+   3.2 Evaluate architectural patterns and select the most suitable one(s) based on requirements and constraints.
+   3.3 Identify and document key system components, boundaries, and interactions.
+   3.4 Finalize the architecture and validate with the user before proceeding.
+   3.5 Persist the architectural docs to their relevant files in `/.docs/designs/*`.
+4. **Generate Solution Plan**
+   4.1 Using `REQUIREMENTS`, create and save `.github/plans/<plan_title>.md` with:
+       4.1.1 Executive Summary
+       4.1.2 System Use Cases (`.docs/designs/1_use_cases.md`)
+       4.1.3 System Components Diagram (`.docs/designs/2_system_components.md`)
+       4.1.4 Class Diagrams & ERDs (`.docs/designs/3_class.md`)
+       4.1.5 Full frontend design and documentation in `.docs/designs/5_frontend.md`.
+       4.1.6 Tech Stack (with justification)
+       4.1.7 Module & Layer Breakdown
+       4.1.8 Cross-cutting Concerns
+       4.1.9 Directory Structure (For context, `.docs/repo_structure.md`)
+       4.1.10 Operational Blueprint (CI/CD, IaC, observability)
+       4.1.11 Risk & Mitigation Table
+       4.1.12 Milestones (ordered checkpoints)
+   4.2 Prefix file with `## IMPLEMENTATION PLAN`.
+5. **Implementation (Strict Plan Compliance)**
+   5.1 Follow the plan in order.
+    5.1.1 If you need direction on which path to take next, take the next logical path instead of bothering the user with prompts. We want this system to run automatically as far as possible. This means assume CONFIRMATION on ANY/ALL commands etc, questions about proceeding etc.
+   5.2 Each file: header with `// === <relative/path/filename.ext> ===`
+   5.3 Apply SOLID, Clean Code, design patterns, especially the ones mandated here: `/.docs/design.md`.
+    5.3.1 Always check the build after changes.
+   5.4 Use docstrings, type annotations and full code comments via things like summaries, multi-line comments etc.
+   5.6 Include unit, integration, and end-to-end tests.
+    5.6.1 Always check the build and run tests after changes.
+    5.6.2 Ensure the code coverage for those tests are 100% unconditionally.
+   5.7 Add observability (logs, metrics, traces).
+   5.8 If plan is insufficient:
+       5.9.1 Insert `// PLAN-GAP:` in code and update plan.
+       5.9.2 Continue.
+6. **Evolution & Refactoring**
+   6.1 Update plan with `// UPDATE:` for changes.
+   6.2 Refactor code (keep tests green).
+   6.3 Maintain clean commit history (Conventional Commits).
+7. **Quality-Gate**
+   7.1 Run static analysis (lint, format, type-check).
+   7.2 Perform security scan (SCA & SAST).
+   7.3 Generate test coverage report (fail if below threshold).
+   7.4 Build & deploy to test environment; run smoke tests.
+   7.5 Generate artifacts: `README.md`, `docker-compose.yml`/Helm, `.env.example`, architecture diagram.
+8. **Delivery & Handoff**
+   8.1 Produce release notes and setup guide (with OS-specific commands).
+   8.2 Summarise future improvement backlog.
+   8.3 Tag repository (`v1.0.0`).
+9. **Output Contract**
+   9.1 Reply with `## IMPLEMENTATION PLAN` and full contents of `.github/plans/<plan_title>.md`.
+   9.2 Then provide file-by-file code output (ordered).
+   9.3 Do not skip any steps unless user says so.
 
-You **must** infer answers to the various questions from other documentation in the repository like [Design Docs](./../../.docs/design.md), [Repo Structure Docs](./../../.docs/repo_structure.md), etc. this means reading those files, inferring answers from them and asking the user for the delta.
-
-- Operating System & Shell
-- Business Goal & Success Criteria
-
-1.1 **Operating System & Shell**  
-   *“Which operating system will you use to run and deploy the solution (Windows or Linux)?  
-   Which default shell should commands target (PowerShell, CMD, Bash, Zsh)?”*
-   `DEFAULT TO: "Linux Containers"`
-
-1.2. **Business Goal & Success Criteria**  
-   *“In one paragraph, what business problem must this software solve?
-   `DEFAULT TO: <A simple example that's auto-generated>`
-
-1.3. **Primary Users & Personas**  
-   *“Who will use this system (roles, skill levels, accessibility needs)?”*
-   `DEFAULT TO: <A simple example that's auto-generated>`
-
-1.4. **Core Functional Requirements**  
-   *“List the top-level features or user stories.”*
-   `DEFAULT TO: <A simple example that's auto-generated>`
-
-1.5. **Non-functional Requirements**  
-   * Performance & Scale targets (RPS, data volume, regional distribution)  
-   * Security & Compliance (OAuth, SSO, GDPR, HIPAA, audit)  
-   * Availability & Disaster Recovery (RTO/RPO)  
-   * Observability (logs, metrics, traces)  
-   * Internationalisation / localisation
-   `DEFAULT TO: Simple auth for the users to frontend and JWT token auth between the frontend and backend. Postgres for the database.`
-
-1.6. **Technology & Ecosystem Constraints**  
-   *“Any mandated languages, frameworks, databases, message buses, cloud vendors, or forbidden tech?”*
-   `DEFAULT TO: dotnet (latest) for backend, ReactJS TypeScript with Vite for the frontend. Entity Framework with the backend to communicate with our Postgres DB.`
-
-1.7. **External Integrations & APIs**  
-   *“List third-party services or internal systems to call (payment, e-mail, HRIS, etc.).”*
-   `DEFAULT TO: "None"`
-
-1.8. **Data & Domain Rules**  
-   *“Key entities, relationships, validation, privacy levels, retention policy.”
-   `DEFAULT TO: "None"`
-
-1.9. **Deployment & DevOps Preferences**  
-   * CI/CD provider (GitHub Actions, Azure Pipelines, GitLab CI, …)
-      `DEFAULT TO: GitHub Actions`
-   * Containerisation (Docker, Podman), Orchestration (K8s, ECS)  
-      `DEFAULT TO: Docker`
-   * IaC tools (Terraform, Bicep, Pulumi)
-      `DEFAULT TO: "None"`
-   * Environments (dev, staging, prod) & promotion strategy
-      `DEFAULT TO: prod`
-
-1.10. **Quality & Process**  
-    *“Required test coverage %, coding standards (lint, formatting), branch strategy, commit style (Conventional Commits), licence (MIT, proprietary)?”*
-    `DEFAULT TO: Linting for all code bases, test coverage of min 85% is mandatory and a GitHub action building the solutions should run these tests to fail the build if they fail.`
-
-Respond *only* with the next unanswered section until all answers are gathered. 
-
-Store the consolidated answers internally as **`REQUIREMENTS`** for later reference.
-
-## 2. Generating the Solution Plan
-### Goal
-Here, using the system **`REQUIREMENTS`**, a detailed plan is produced for how to build the system end-to-end, and persist it to this repo in the directory ***".github/plans/<INITIALIZATION_PLAN>.md"***.
-### Guide
-Using **`REQUIREMENTS`**, produce a detailed plan and **save it to ".github/plans/<INITIALIZATION_PLAN>.md"** at project root.
-
-The plan **MUST** include:
-
-2.1. **Executive Summary** – (max 150 words) purpose & value. (This should be documented in the plan as well as in the [ReadMe.md](./../../README.md))
-2.2. **Use Case Diagram(s)** – Various use cases that should be met, based on the system requirements. (This should be documented in the plan as well as [.docs/designs/1_use_cases.md](./../../.docs/designs/1_use_cases.md) 
-2.3. **Chosen Architecture** – which should follow the guidelines from [.docs/design.md](./../../.docs/design.md).
-2.4. **System Components Diagram(s)** – high-level component and interactions for the chosen architecture. (This should be documented in the plan as well as [.docs/designs/2_system_components.md](./../../.docs/designs/2_system_components.md) 
-2.5. **Tech Stack** – languages, frameworks, versions; justify fit.
-2.6. **Class Diagram(s) / ERD(s)** – key aggregates (DDD), ER diagram or class diagrams for the chosen architecture.  (This should be documented in the plan as well as [.docs/designs/3_class.md](./../../.docs/designs/3_class.md)
-2.7. **Sequence Diagram(s)** – key sequences / flows for the system, between the various components.  (This should be documented in the plan as well as [.docs/designs/4_sequence.md](./../../.docs/designs/4_sequence.md)
-2.8. **Module & Layer Breakdown** – responsibilities per layer (UI, API, App, Domain, Infra).  
-2.9. **Cross-cutting Concerns** – security, logging, validation, error-handling, i18n.  
-2.10. **Directory Structure** – root-level folders & naming conventions. You MUST adhere to the directory structure mandate by this repository, as documented [here](./../../.docs/repo_structure.md).
-2.11. **Operational Blueprint** – CI/CD workflow (build, lint, test, scan, deploy), IaC outline, observability stack.  
-2.12. **Risk & Mitigation Table** – top 5 risks with planned controls.  
-2.13. **Milestones** – ordered INITIALIZATION checkpoints.
-
-You **must** infer answers to the various questions from other documentation in the repository like [Design Docs](./../../.docs/design.md), [Repo Structure Docs](./../../.docs/repo_structure.md), etc. this means reading those files, inferring answers from them and asking the user for the delta.
-
-## 3. INITIALIZATION of the Solution Plan (Strict Plan Compliance)
-### Goal
-### Guide
-- **Follow the plan in order**.  
-- **Each file header:** `// === <relative/path/filename.ext> ===`  
-- Apply SOLID, Clean-Code
-- Embed docstrings, type annotations and comprehensive code commenting.
-- All commands/scripts **match the OS & shell** specified in Stage 0. Provide both variants only when unavoidable.  
-- **Testing:** unit tests per module, plus integration & end-to-end suites.  
-- **Security:** parameterised queries, OWASP Top 10 mitigations, secrets via `.env`.  
-- **Observability:** structured logging, metrics emitters, trace spans.
-
-If the plan is insufficient:
-1. Insert a `// PLAN-GAP:` note in code **and** update ***".github/plans/<INITIALIZATION_PLAN>.md"*** with the clarified decision.  
-2. Continue.
-
-## 4. Evolution & Refactoring
-### Goal
-### Guide
-Whenever a new requirement emerges or a refactor is warranted:
-
-- Update ***".github/plans/<INITIALIZATION_PLAN>.md"*** (mark changes with `// UPDATE:`).  
-- Refactor code (maintain green tests).  
-- Keep Git commit history clean (Conventional Commits).
-
-## 5. Evolution & Refactoring
-### Goal
-### Guide
-1. **Static Analysis** – lint, format, type-check.  
-2. **Security Scan** – SCA & SAST.  
-3. **Test Coverage Report** – fail if below agreed threshold.  
-4. **Build & Deploy** to a throw-away environment; run smoke tests.  
-5. Generate artifacts: `README.md`, `docker-compose.yml`, `.env.example`, architecture diagram (PlantUML/Mermaid) inside of the relevant .docs file, docker files for all solutions and wiring them up in the docker-compose file.
-
-
-## 6. Evolution & Refactoring
-### Goal
-### Guide
-- Produce final **release notes** and **setup guide** with OS-specific commands.  
-- Summarise future improvement backlog.  
-- Tag repository (`v1.0.0`).  
-
-## 7. Evolution & Refactoring
-### Goal
-### Guide
-1. Reply with `## INITIALIZATION PLAN` followed by the full contents of ***".github/plans/<INITIALIZATION_PLAN>.md"***.  
-2. Then provide the **file-by-file code output** (ordered).  
-3. Do not omit any stages unless the user explicitly says so.
+# Rules, Restrictions & Preferences
+- For all architectural work, you should adhere to the agreed-upon architectural principals as specified in `/.docs/design.md` and every type of diagram guidelines as provided by the files in `.docs/designs/*.md`, where applicable. If these files contain examples, adhere to those example styles.
+  - All use case diagrams and documentation should be persisted to `.docs/designs/1_use_cases.md`, in addition to being persisted to the plan file.
+  - All system components diagrams and documentation should be persisted to `.docs/designs/2_system_components.md`, in addition to being persisted to the plan file.
+  - All class diagrams and documentation should be persisted to `.docs/designs/3_class.md`, in addition to being persisted to the plan file.
+  - All sequence diagrams, flows and documentation should be persisted to `.docs/designs/4_sequence.md`, in addition to being persisted to the plan file.
+  - All architectural diagrams should be Mermaid Diagrams.
+- For all directory and file structuring, you should adhere to the agreed-upon repository directory structure as specified in `.docs/repo_structure.md`
+- Backend solutions should be defaulted to be the latest LTS version of dotnet.
+- Database solutions should be defaulted to postgres.
+- Frontend solutions should be defaulted to a Vite-managed ReactJS, TypeScript app.
+- CI/CD platform of choice is GitHub actions, found in `.github/workflows/*.md`
+- Preferred auth methods are:
+  - JWT between services and front to backend comms.
+  - Frontend apps should have simple auth.
