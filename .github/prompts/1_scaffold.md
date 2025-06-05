@@ -11,12 +11,15 @@ You should follow these rules to the best of your ability. If you need to extend
 
 You MUST continue automatically and without prompt where possible. Infer whatever is possible and only ask the crutials. during branstorming is where question asking should occur. After that, you should run wild and proceed as needed, automatically, without user intervension.
 
+Clarifying questions (for example during brain storming) should be asked one-at-a-time.
+
 # Steps
 1. **Brainstorming & Requirements Extraction**
    1.1 Facilitate an open brainstorming session to generate solution ideas for an end-to-end / full-stack solution.
    1.2 Extract initial requirements, goals, and constraints from the discussion.
    1.3 Refine and clarify requirements through follow-up questions.
-   1.4 Allow for picture uploading and analyzing so that the frontend part of the solution's look and feel can be well-described and captured.
+   1.4 Prompt the user for picture or inspiration for frontend solutions
+     1.4.1 Be sure to document the styling and such to the n-th degree to make your later steps easier. Document it in `.docs/designs/5_frontend.md`. This means all the tiny details that you / a frontend engineer would need to produce what you had in mind. Be very specific.
    1.5 Document all ideas, assumptions, and open questions for review.
    1.6 Prepare a summary of refined requirements to proceed to formal gathering.
 2. **Product Specification Generation**
@@ -35,14 +38,14 @@ You MUST continue automatically and without prompt where possible. Infer whateve
 4. **Generate Solution Plan**
    4.1 Using `REQUIREMENTS`, create and save `.github/plans/<plan_title>.md` with:
        4.1.1 Executive Summary
-       4.1.2 System Use Cases (`./docs/designs/1_use_cases.md`)
-       4.1.3 System Components Diagram (`./docs/designs/2_system_components.md`)
-       4.1.4 Class Diagrams & ERDs (`./docs/designs/3_class.md`)
-       4.1.5 Full frontend design and documentation in `./docs/designs/5_frontend.md`.
+       4.1.2 System Use Cases (`.docs/designs/1_use_cases.md`)
+       4.1.3 System Components Diagram (`.docs/designs/2_system_components.md`)
+       4.1.4 Class Diagrams & ERDs (`.docs/designs/3_class.md`)
+       4.1.5 Full frontend design and documentation in `.docs/designs/5_frontend.md`.
        4.1.6 Tech Stack (with justification)
        4.1.7 Module & Layer Breakdown
        4.1.8 Cross-cutting Concerns
-       4.1.9 Directory Structure (For context, `./docs/repo_structure.md`)
+       4.1.9 Directory Structure (For context, `.docs/repo_structure.md`)
        4.1.10 Operational Blueprint (CI/CD, IaC, observability)
        4.1.11 Risk & Mitigation Table
        4.1.12 Milestones (ordered checkpoints)
@@ -81,14 +84,17 @@ You MUST continue automatically and without prompt where possible. Infer whateve
    9.3 Do not skip any steps unless user says so.
 
 # Rules, Restrictions & Preferences
-- For all architectural work, you should adhere to the agreed-upon architectural principals as specified in `/.docs/design.md` and every type of diagram guidelines as provided by the files in `./docs/designs/*.md`, where applicable. If these files contain examples, adhere to those example styles.
-  - All use case diagrams and documentation should be persisted to `./docs/designs/1_use_cases.md`, in addition to being persisted to the plan file.
-  - All system components diagrams and documentation should be persisted to `./docs/designs/2_system_components.md`, in addition to being persisted to the plan file.
-  - All class diagrams and documentation should be persisted to `./docs/designs/3_class.md`, in addition to being persisted to the plan file.
-  - All sequence diagrams, flows and documentation should be persisted to `./docs/designs/4_sequence.md`, in addition to being persisted to the plan file.
+- For all architectural work, you should adhere to the agreed-upon architectural principals as specified in `/.docs/design.md` and every type of diagram guidelines as provided by the files in `.docs/designs/*.md`, where applicable. If these files contain examples, adhere to those example styles.
+  - All use case diagrams and documentation should be persisted to `.docs/designs/1_use_cases.md`, in addition to being persisted to the plan file.
+  - All system components diagrams and documentation should be persisted to `.docs/designs/2_system_components.md`, in addition to being persisted to the plan file.
+  - All class diagrams and documentation should be persisted to `.docs/designs/3_class.md`, in addition to being persisted to the plan file.
+  - All sequence diagrams, flows and documentation should be persisted to `.docs/designs/4_sequence.md`, in addition to being persisted to the plan file.
   - All architectural diagrams should be Mermaid Diagrams.
-- For all directory and file structuring, you should adhere to the agreed-upon repository directory structure as specified in `./docs/repo_structure.md`
+- For all directory and file structuring, you should adhere to the agreed-upon repository directory structure as specified in `.docs/repo_structure.md`
 - Backend solutions should be defaulted to be the latest LTS version of dotnet.
 - Database solutions should be defaulted to postgres.
 - Frontend solutions should be defaulted to a Vite-managed ReactJS, TypeScript app.
 - CI/CD platform of choice is GitHub actions, found in `.github/workflows/*.md`
+- Preferred auth methods are:
+  - JWT between services and front to backend comms.
+  - Frontend apps should have simple auth.
