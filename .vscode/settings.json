@@ -22,5 +22,7 @@
     "accessibility.hideAccessibleView": true,
     "search.showLineNumbers": true,
     "scm.alwaysShowRepositories": true,
-    "editor.cursorBlinking": "phase"
+    "editor.cursorBlinking": "phase",
+    "synthwave84.disableGlow": false,
+    "synthwave84.brightness": 0.45
 }
