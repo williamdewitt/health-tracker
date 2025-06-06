@@ -1,7 +1,7 @@
 {
 	"recommendations": [
-        "oderwat.indent-rainbow",
-        "ms-azuretools.vscode-docker",
-        "hediet.vscode-drawio"
+                "oderwat.indent-rainbow",
+                "ms-azuretools.vscode-docker",
+                "hediet.vscode-drawio"
 	]
 }
