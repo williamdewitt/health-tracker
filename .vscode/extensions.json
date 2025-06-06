@@ -1,7 +1,17 @@
 {
-	"recommendations": [
-                "oderwat.indent-rainbow",
-                "ms-azuretools.vscode-docker",
-                "hediet.vscode-drawio"
-	]
+    "recommendations": [
+        "ckolkman.vscode-postgres",
+        "enkia.tokyo-night",
+        "github.copilot",
+        "github.copilot-chat",
+        "gruntfuggly.todo-tree",
+        "illixion.vscode-vibrancy-continued",
+        "mcagampan.dark-horizon",
+        "ms-azuretools.vscode-docker",
+        "ms-dotnettools.csdevkit",
+        "oderwat.indent-rainbow",
+        "ritwickdey.liveserver",
+        "robbowen.synthwave-vscode",
+        "tal7aouy.icons"
+    ]
 }
