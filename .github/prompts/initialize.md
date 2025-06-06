@@ -53,6 +53,24 @@ Clarifying questions (for example during brain storming) should be asked one-at-
 5. **Implementation (Strict Plan Compliance)**
    5.1 Follow the plan in order.
     5.1.1 If you need direction on which path to take next, take the next logical path instead of bothering the user with prompts. We want this system to run automatically as far as possible. This means assume CONFIRMATION on ANY/ALL commands etc, questions about proceeding etc.
+    5.1.2 Use the following decision tree for automatic progression:
+      - If current task is completed successfully → Move to next task
+      - If build fails → Fix errors and re-run build
+      - If tests fail → Fix failing tests and re-run
+      - If implementation is technically challenging → Break it down into smaller tasks
+      - If requirements are ambiguous → Make reasonable assumptions based on industry standards and document them
+    5.1.3 Apply these automatic progression rules:
+      - Progress to next milestone when all tasks in current milestone are completed AND tests pass AND build succeeds
+      - Automatically choose implementation patterns based on project scale:
+        - Small projects (1-5 use cases): Monolithic architecture
+        - Medium projects (6-15 use cases): Modular monolith
+        - Large projects (16+ use cases): Microservices
+      - Automatically add caching when:
+        - Data retrieval operations are expensive OR
+        - Same data is accessed frequently OR
+        - Performance is a key non-functional requirement
+      - Automatically implement pagination when data collections may exceed 100 items
+      - Automatically add logging for all exceptions and key business operations
    5.2 Each file: header with `// === <relative/path/filename.ext> ===`
    5.3 Apply SOLID, Clean Code, design patterns, especially the ones mandated here: `/.docs/design.md`.
     5.3.1 Always check the build after changes.
@@ -62,8 +80,39 @@ Clarifying questions (for example during brain storming) should be asked one-at-
     5.6.2 Ensure the code coverage for those tests are 100% unconditionally.
    5.7 Add observability (logs, metrics, traces).
    5.8 If plan is insufficient:
-       5.9.1 Insert `// PLAN-GAP:` in code and update plan.
-       5.9.2 Continue.
+       5.8.1 Insert `// PLAN-GAP:` in code and update plan.
+       5.8.2 Continue.
+   5.9 Error Recovery Patterns:
+       5.9.1 If build fails:
+          - Analyze error message to determine root cause
+          - Apply appropriate fix based on error type:
+            - Type Errors: Add proper type definitions or correct type usage
+            - Missing Dependencies: Add required packages
+            - Compilation Errors: Fix syntax or code structure issues
+          - Re-run build and verify success
+          - If build fails again with different error, repeat process
+          - If build fails 3 times with same error, try alternative implementation approach
+       5.9.2 If test fails:
+          - Analyze test failure to identify specific issue
+          - Update implementation to address failing test case
+          - Verify test passes without breaking other tests
+          - If test keeps failing after 3 attempts, reassess test expectations
+       5.9.3 If deployment fails:
+          - Check environment configuration
+          - Verify all dependencies are properly installed
+          - Ensure proper access permissions
+          - Try alternative deployment method if first attempt fails
+   5.10 Context-Aware Suggestions:
+       5.10.1 Detect project patterns and apply best practices:
+          - For data-heavy applications: Implement robust validation, ORM patterns, and indexing
+          - For user-facing applications: Prioritize UI responsiveness and error handling
+          - For APIs: Implement proper versioning, documentation, and rate limiting
+          - For distributed systems: Implement health checks, circuit breakers, and retry logic
+       5.10.2 Technology selection adaptation:
+          - If performance is critical: Consider in-memory caching, compiled languages
+          - If time-to-market is critical: Utilize more high-level frameworks and libraries
+          - If maintainability is critical: Prioritize clean code, tests, and documentation
+          - If scalability is critical: Design for horizontal scaling and statelessness
 6. **Evolution & Refactoring**
    6.1 Update plan with `// UPDATE:` for changes.
    6.2 Refactor code (keep tests green).
@@ -90,6 +139,45 @@ Clarifying questions (for example during brain storming) should be asked one-at-
   - All class diagrams and documentation should be persisted to `.docs/designs/3_class.md`, in addition to being persisted to the plan file.
   - All sequence diagrams, flows and documentation should be persisted to `.docs/designs/4_sequence.md`, in addition to being persisted to the plan file.
   - All architectural diagrams should be Mermaid Diagrams.
+
+## Project Type Smart Defaults
+Apply these defaults based on the identified project type, without prompting the user:
+
+### Web Applications
+- **Architecture**: Layered monolith with clear separation
+- **Frontend**: React with TypeScript, Vite, and CSS-in-JS (styled-components)
+- **Backend**: ASP.NET Core Web API with minimal API style where appropriate
+- **Database**: PostgreSQL with Entity Framework Core
+- **Authentication**: JWT with refresh tokens
+- **Deployment**: Docker containers with docker-compose for local, Kubernetes for production
+- **Testing**: Jest for frontend, xUnit for backend
+
+### Microservices
+- **Architecture**: Event-driven microservices with API Gateway
+- **Communication**: HTTP/REST for synchronous, Message Queue for asynchronous
+- **Service Discovery**: Kubernetes native or Consul
+- **Data**: Database-per-service with PostgreSQL
+- **Resilience**: Circuit breaker, retry patterns, health checks
+- **Deployment**: Kubernetes with Helm charts
+- **Observability**: OpenTelemetry, Prometheus, and Grafana
+
+### Data-Intensive Applications
+- **Architecture**: CQRS with separate read/write models
+- **Data Storage**: PostgreSQL with read replicas
+- **Caching**: Redis for frequent queries
+- **Batch Processing**: Background workers with task queues
+- **Performance**: Indexed queries, materialized views
+- **Analytics**: Time-series database for metrics
+- **Data Protection**: Encryption at rest and in transit
+
+### Mobile-Backend Applications
+- **Architecture**: API-first design with versioning
+- **Authentication**: OAuth 2.0 with mobile-friendly flows
+- **API Design**: RESTful with consistent resource naming
+- **Push Notifications**: Integration with FCM/APNS
+- **Offline Support**: Sync protocols and conflict resolution
+- **File Storage**: Secure cloud storage with presigned URLs
+- **Performance**: Optimized payloads for mobile networks
 - For all directory and file structuring, you should adhere to the agreed-upon repository directory structure as specified in `.docs/repo_structure.md`
 - Backend solutions should be defaulted to be the latest LTS version of dotnet.
 - Database solutions should be defaulted to postgres.
