@@ -273,6 +273,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
+**Special thanks to Conway Osler**, colleague and friend, for the project inspiration that made this framework possible.
+
 Built with modern software engineering principles:
 - **iDesign Architecture** by Juval Löwy
 - **Clean Architecture** by Robert C. Martin  
