@@ -171,12 +171,12 @@ The AI agent follows this structured approach:
 ## 📚 Next Steps
 
 ### Learn More
-- Explore the [Examples](.docs/examples/) directory for detailed use cases
-- Review [Architecture Guidelines](.docs/design.md) for deeper understanding
-- Check out [Security Framework](.docs/security_framework.md) for security patterns
+- Explore the [Examples](examples/) directory for detailed use cases
+- Review [Architecture Guidelines](design.md) for deeper understanding
+- Check out [Security Framework](security_framework.md) for security patterns
 
 ### Get Support
-- Review [Support & Contribute](.docs/support_contribute.md) for community resources
+- Review [Support & Contribute](support_contribute.md) for community resources
 - Check existing issues and documentation
 - Share your success stories and improvements!
 

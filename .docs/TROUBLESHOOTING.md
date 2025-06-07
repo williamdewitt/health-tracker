@@ -301,10 +301,10 @@ Common issues and solutions when using the Vibe Coding AI agent framework.
 ## 🆘 Getting Help
 
 ### Documentation Resources
-- [Quick Start Guide](.docs/QUICKSTART.md) - Getting started quickly
-- [Design Guidelines](.docs/design.md) - Architecture principles
-- [Examples Directory](.docs/examples/) - Detailed use cases
-- [Security Framework](.docs/security_framework.md) - Security patterns
+- [Quick Start Guide](QUICKSTART.md) - Getting started quickly
+- [Design Guidelines](design.md) - Architecture principles
+- [Examples Directory](examples/) - Detailed use cases
+- [Security Framework](security_framework.md) - Security patterns
 
 ### Community Support
 - Check existing issues in the repository
