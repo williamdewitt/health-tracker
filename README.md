@@ -16,6 +16,8 @@ Vibe Coding is a comprehensive AI agent framework that transforms high-level req
 - **⚡ Production-Ready Output** - Complete CI/CD, testing, monitoring, and deployment
 - **📚 Comprehensive Documentation** - Auto-generated technical docs and architectural diagrams
 
+**Built for Claude Sonnet 4 with GitHub Copilot in agent-mode** - Optimized prompts and workflows designed specifically for advanced AI reasoning and code generation capabilities.
+
 ## ✨ Key Features
 
 ### 🤖 Autonomous AI Agent
@@ -45,14 +47,19 @@ Vibe Coding is a comprehensive AI agent framework that transforms high-level req
 
 ## 🚦 Quick Start
 
-### 1. Set Up Your AI Assistant
-Use the enhanced super-prompt located in `.github/prompts/initialize.md` with any AI assistant (Claude, GPT-4, etc.):
+### 1. Set Up Your Development Environment
+1. **Fork this repository** to your GitHub account
+2. **Sign up for GitHub Copilot** (highly recommended investment for AI-powered development)
+3. **Install VS Code** with the **GitHub Copilot extension**
+4. **Clone your forked repository** and open it in VS Code
 
-```markdown
-Paste the contents of .github/prompts/initialize.md into your AI conversation
-```
+### 2. Initialize the AI Agent Framework
+1. **Open GitHub Copilot Chat** in VS Code (Ctrl+Shift+I / Cmd+Shift+I)
+2. **Enable Agent Mode** (this is crucial for autonomous operation)
+3. **Paste the super-prompt** from `.github/prompts/initialize.md` into Copilot Chat
+4. **Specify Claude Sonnet 4** as your preferred model for optimal results
 
-### 2. Start a New Project
+### 3. Start a New Project
 Simply describe what you want to build:
 
 ```
@@ -60,7 +67,7 @@ Simply describe what you want to build:
 real-time updates, and mobile API support"
 ```
 
-### 3. Let the AI Agent Work
+### 4. Let the AI Agent Work
 The framework will automatically:
 - Extract and refine requirements
 - Design system architecture
@@ -131,6 +138,8 @@ The framework automatically detects and applies optimal patterns for:
 ## 🎯 Usage Examples
 
 ### Example 1: E-commerce Platform
+**Setup:** Fork this repo → Open in VS Code → Enable Copilot Agent Mode → Use super-prompt
+
 ```
 Input: "Build an e-commerce platform with user accounts, product catalog, 
 shopping cart, payment integration, and admin dashboard"
@@ -146,6 +155,8 @@ Output: Complete solution with:
 ```
 
 ### Example 2: Real-time Chat Application
+**Setup:** Fork this repo → Open in VS Code → Enable Copilot Agent Mode → Use super-prompt
+
 ```
 Input: "Create a real-time chat application with multiple rooms, 
 user presence, message history, and mobile support"
