@@ -789,4 +789,43 @@ The AI agent should automatically:
    - Rolling updates for standard applications
    - Canary for high-risk deployments
 
+## 🐳 **Production Containerization Requirements**
+
+### **Critical CI/CD Pipeline Deliverables**
+The AI agent MUST generate complete containerization workflows:
+
+#### **✅ Required Deliverables**
+- **Production Dockerfiles**: Multi-stage, optimized builds for all services
+- **GitHub Actions Workflows**: Complete CI/CD with container builds and pushes  
+- **Registry Integration**: Automated pushes to Docker Hub/ACR/ECR
+- **Environment Configuration**: Production-ready docker-compose and Kubernetes manifests
+- **Image Tagging Strategy**: Semantic versioning and branch-based tagging
+
+#### **❌ Template Cleanup**
+- **Delete Example Workflow**: Remove `/.github/workflows/containerization_workflow.yml`
+- **Replace with Production Pipeline**: Create project-specific CI/CD workflows
+- **Update Documentation**: Replace template references with actual project details
+
+#### **🔄 Container Build Pipeline Pattern**
+```yaml
+# Final pipeline step - build and push containers
+container-build:
+  needs: [tests, security-scan, quality-gates]
+  runs-on: ubuntu-latest
+  if: github.ref == 'refs/heads/main'
+  
+  strategy:
+    matrix:
+      service: [frontend, backend, api, worker] # Project-specific services
+  
+  steps:
+  - name: Build and Push Docker Image
+    run: |
+      docker build -t ${{ env.REGISTRY }}/${{ matrix.service }}:${{ github.sha }} \
+        -f src/${{ matrix.service }}/Dockerfile .
+      docker push ${{ env.REGISTRY }}/${{ matrix.service }}:${{ github.sha }}
+```
+
+**This ensures every generated project has production-ready containerization with proper CI/CD integration.**
+
 [<< Back](../README.md)

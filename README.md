@@ -110,6 +110,8 @@ The framework will automatically:
 - Ensure **100% linting compliance** across all stacks
 - Set up CI/CD and deployment
 - Create tests and monitoring
+- **Build and push Docker images for all services**
+- **Remove template workflows and replace with production-ready CI/CD**
 
 ## 🎯 **Code Quality Standards**
 
@@ -126,6 +128,29 @@ The framework will automatically:
 - **Build Pipeline**: Zero tolerance for warnings or violations
 - **Code Coverage**: 100% test coverage requirement
 - **Security Scanning**: Automated vulnerability detection
+- **Container Builds**: Automated Docker builds and registry pushes
+- **Template Cleanup**: Removes example workflows and replaces with production CI/CD
+
+## 🐳 **Containerization & Deployment**
+
+### **Automated Container Workflow**
+The framework automatically generates production-ready GitHub Actions workflows that:
+
+- **🔨 Build Docker Images**: Creates optimized multi-stage Dockerfiles for each service
+- **📤 Push to Registry**: Automatically pushes to Docker Hub/ACR/ECR with proper tagging
+- **🧹 Clean Up Templates**: Removes the example `containerization_workflow.yml` template
+- **⚡ Production Pipeline**: Replaces templates with complete CI/CD including:
+  - Quality gates and security scanning
+  - Multi-environment deployment (dev/staging/prod)
+  - Health checks and rollback procedures
+  - Container registry integration
+
+### **Final Delivery Includes**
+- ✅ **Production Dockerfiles** for all services/components
+- ✅ **GitHub Actions workflows** with complete CI/CD pipeline
+- ✅ **Container orchestration** files (docker-compose.yml, Kubernetes manifests)
+- ✅ **Registry integration** with automated builds and pushes
+- ❌ **Template workflows removed** (containerization_workflow.yml deleted)
 
 ## 📋 Supported Project Types
 
@@ -190,7 +215,7 @@ The framework automatically detects and applies optimal patterns for:
 ## 🎯 Usage Examples
 
 ### Example 1: E-commerce Platform
-**Setup:** Fork this repo → Open in VS Code → Enable Copilot Agent Mode → Use super-prompt
+**Setup:** Fork this repo → Open in your AI platform → Use super-prompt
 
 ```
 Input: "Build an e-commerce platform with user accounts, product catalog, 
@@ -202,12 +227,13 @@ Output: Complete solution with:
 - PostgreSQL with optimized schemas
 - Stripe payment integration
 - Admin dashboard with analytics
-- Docker containerization
-- CI/CD pipeline with automated testing
+- Docker containerization with multi-service builds
+- CI/CD pipeline with automated Docker pushes
+- Production deployment manifests
 ```
 
 ### Example 2: Real-time Chat Application
-**Setup:** Fork this repo → Open in VS Code → Enable Copilot Agent Mode → Use super-prompt
+**Setup:** Fork this repo → Open in your AI platform → Use super-prompt
 
 ```
 Input: "Create a real-time chat application with multiple rooms, 
@@ -220,6 +246,8 @@ Output: Complete solution with:
 - Redis for presence and caching
 - Mobile-optimized API endpoints
 - Kubernetes deployment manifests
+- GitHub Actions pipeline with container registry integration
+- Template workflows cleaned up and replaced
 ```
 
 ## 🔄 Development Workflow

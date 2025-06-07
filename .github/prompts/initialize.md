@@ -489,10 +489,15 @@ Clarifying questions (for example during brain storming) should be asked one-at-
       7.9.5 API documentation (OpenAPI/Swagger)
       7.9.6 Security documentation and threat model
       7.9.7 Monitoring and alerting configurations
+      7.9.8 **Production Dockerfiles** for all services/components with multi-stage builds
+      7.9.9 **GitHub Actions CI/CD workflows** that build and push Docker images
+      7.9.10 **Container registry setup** with automated builds and semantic versioning
 8. **Delivery & Handoff**
    8.1 Produce release notes and setup guide (with OS-specific commands).
    8.2 Summarise future improvement backlog.
    8.3 Tag repository (`v1.0.0`).
+   8.4 **Clean up template files**: Delete `/.github/workflows/containerization_workflow.yml` example
+   8.5 **Final verification**: Ensure all Docker builds work and CI/CD pipeline executes successfully
 9. **Output Contract**
    9.1 Reply with `## IMPLEMENTATION PLAN` and full contents of `.github/plans/<plan_title>.md`.
    9.2 Then provide file-by-file code output (ordered).
@@ -533,6 +538,15 @@ You MUST follow the comprehensive framework documentation throughout the entire 
 - **API Design**: Follow RESTful patterns from `/.docs/api_design_standards.md`
 - **Database Design**: Apply patterns from `/.docs/database_design_patterns.md`
 - **DevOps Integration**: Implement CI/CD patterns from `/.docs/devops_cicd.md`
+
+### **Containerization & CI/CD Requirements (CRITICAL)**
+- **Production Docker Builds**: Generate optimized multi-stage Dockerfiles for all services/components
+- **GitHub Actions Pipeline**: Create complete CI/CD workflows that build and push Docker images to registries
+- **Container Registry Integration**: Set up automated pushes to Docker Hub/ACR/ECR with proper tagging strategies
+- **Template Cleanup**: MUST delete the example `/.github/workflows/containerization_workflow.yml` template file
+- **Multi-Service Support**: For microservices, create matrix builds that detect changes and build only affected services
+- **Production-Ready Deployment**: Include health checks, rollback procedures, and environment-specific configurations
+- **Registry Secrets**: Configure workflows to use Docker registry credentials and project-specific naming
 
 ### Documentation Requirements
 - **All use case diagrams** → Persist to `.docs/designs/1_use_cases.md` (read existing template for format and examples)
