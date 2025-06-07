@@ -20,24 +20,17 @@ Vibe Coding is a comprehensive AI agent framework that transforms high-level req
 
 ## 🤖 AI Platform Compatibility
 
-While originally designed for **Claude Sonnet 4 with GitHub Copilot in agent-mode**, the Vibe Coding framework is compatible with various AI platforms:
+The Vibe Coding framework is designed specifically for integrated development environments with native AI capabilities:
 
-### 🎯 **Primary Support**
-- **Claude Sonnet 4 + GitHub Copilot** - Full agent-mode support with autonomous workflows
-- **Cursor AI** - Native AI-powered development environment with excellent framework compatibility
-- **VS Code + Copilot Chat** - Agent-mode enabled development workflow
-
-### 🔄 **Compatible Platforms**
-- **Claude 3.5 Sonnet** (via API or web interface) - Full framework functionality
-- **Cursor Composer** - Multi-file editing with framework awareness
-- **Other AI Coding Assistants** - Framework prompts work with most advanced AI models
+### 🎯 **Supported Platforms**
+- **GitHub Copilot in VS Code** - Full agent-mode support with autonomous workflows using Copilot Chat
+- **Cursor AI IDE** - Native AI-powered development environment with excellent framework compatibility
 
 ### 💡 **Platform-Specific Benefits**
-- **Cursor**: Built-in codebase awareness, seamless multi-file editing, integrated terminal
-- **GitHub Copilot**: Deep VS Code integration, repository context, collaborative features
-- **Claude Direct**: Excellent reasoning for architecture decisions and complex problem-solving
+- **Cursor AI**: Built-in codebase awareness, seamless multi-file editing with Cursor Composer, integrated terminal
+- **GitHub Copilot**: Deep VS Code integration, repository context, collaborative features through Copilot Chat
 
-The framework's super-prompt is designed to work across these platforms, automatically adapting to each platform's capabilities and interface patterns.
+The framework's super-prompt is designed to work within these integrated development environments, leveraging their native AI capabilities and codebase context awareness.
 
 ## ✨ Key Features
 
@@ -70,15 +63,13 @@ The framework's super-prompt is designed to work across these platforms, automat
 
 ### 1. Set Up Your Development Environment
 1. **Fork this repository** to your GitHub account
-2. **Choose your AI platform** (see compatibility section above)
-3. **Install your preferred development environment**:
-   - **Cursor**: Download from cursor.sh (recommended for seamless AI integration)
-   - **VS Code + GitHub Copilot**: Install VS Code with GitHub Copilot extension
-   - **VS Code + Claude**: Use Claude via web interface or API integration
-4. **Clone your forked repository** and open it in your chosen environment
+2. **Choose your AI development environment**:
+   - **Cursor AI**: Download from cursor.sh (recommended for seamless AI integration)
+   - **VS Code + GitHub Copilot**: Install VS Code with the GitHub Copilot extension
+3. **Clone your forked repository** and open it in your chosen environment
 
 ### 2. Initialize the AI Agent Framework
-**For Cursor Users:**
+**For Cursor AI Users:**
 1. **Open the super-prompt** from `.github/prompts/initialize.md`
 2. **Use Cursor's Composer** or Chat feature to load the framework
 3. **Enable codebase indexing** for full context awareness
@@ -87,11 +78,6 @@ The framework's super-prompt is designed to work across these platforms, automat
 1. **Open GitHub Copilot Chat** in VS Code (Ctrl+Shift+I / Cmd+Shift+I)
 2. **Enable Agent Mode** (crucial for autonomous operation)
 3. **Paste the super-prompt** from `.github/prompts/initialize.md` into Copilot Chat
-
-**For Claude Users:**
-1. **Copy the super-prompt** from `.github/prompts/initialize.md`
-2. **Open Claude** (web interface or API client)
-3. **Paste the framework prompt** to initialize the AI agent
 
 ### 3. Start a New Project
 Simply describe what you want to build:
