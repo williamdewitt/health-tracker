@@ -199,12 +199,38 @@ Clarifying questions (for example during brain storming) should be asked one-at-
        - "Popular design systems for inspiration: Material Design (Google), Fluent (Microsoft), Ant Design, or Chakra UI"
        - "Modern successful app examples: Linear (minimal productivity), Stripe (professional fintech), Discord (gaming/social), Notion (flexible productivity), Vercel (developer tools)"
        - "Industry-specific inspiration: Shopify (e-commerce), Figma (creative tools), DataDog (enterprise dashboards), Instagram (social media)"
-     1.4.5 **Comprehensive Design Documentation**: Once vision is clear, create detailed visual specification in `.docs/designs/5_frontend.md` including:
-       - Exact color codes, typography scales, spacing systems
+     1.4.5 **SCREENSHOT ANALYSIS & UX PATTERN EXTRACTION** - When user provides screenshots or images:
+       - **Act as UX Specialist**: Analyze visual design with expert-level detail and precision
+       - **Comprehensive Visual Analysis**: Extract complete UX patterns, layout systems, and design principles from provided screenshots
+       - **Design System Derivation**: Derive comprehensive design system specifications including:
+         * **Color Analysis**: Extract primary, secondary, neutral palettes with exact hex values (estimate based on visual analysis)
+         * **Typography Extraction**: Identify font families, weights, sizes, line heights, hierarchy patterns
+         * **Spacing Analysis**: Determine grid systems, padding patterns, margin relationships, component spacing
+         * **Component Patterns**: Analyze button styles, form designs, card layouts, navigation patterns, modal designs
+         * **Layout Systems**: Extract grid structures, responsive breakpoints, container patterns, content organization
+         * **Visual Hierarchy**: Identify information architecture, content prioritization, visual flow patterns
+         * **Interaction Patterns**: Detect hover states, focus styles, animation opportunities, micro-interactions
+         * **Accessibility Features**: Identify contrast levels, focus indicators, sizing patterns, readable typography
+       - **UX Pattern Recognition**: Identify and document specific UX patterns such as:
+         * Navigation paradigms (top nav, sidebar, tab systems, breadcrumbs)
+         * Content organization (card grids, lists, tables, dashboards)
+         * User flow patterns (onboarding, authentication, progressive disclosure)
+         * Feedback systems (notifications, alerts, success states, error handling)
+         * Data visualization approaches (charts, graphs, metrics display)
+         * Mobile responsiveness indicators and adaptation patterns
+       - **Technical Implementation Guidance**: Translate visual analysis into actionable technical specifications:
+         * Exact CSS properties and values for recreating the design
+         * Component architecture recommendations
+         * Responsive behavior specifications
+         * Animation and transition specifications
+         * Accessibility implementation requirements
+       - **Design Documentation**: Create comprehensive design specification that captures all extracted patterns for implementation
+     1.4.6 **Comprehensive Design Documentation**: Once vision is clear (from screenshots or other sources), create detailed visual specification in `.docs/designs/5_frontend.md` including:
+       - Exact color codes, typography scales, spacing systems (derived from analysis or inspiration)
        - Component styling details (buttons, forms, cards, navigation)
        - Layout patterns and responsive behavior  
        - Animation specifications and micro-interactions
-       - Design system specifications that match the inspiration
+       - Design system specifications that match the inspiration/analysis
        - Accessibility standards and contrast requirements
    1.5 Document all ideas, assumptions, and open questions for review.
    1.6 Prepare a summary of refined requirements to proceed to formal gathering.
