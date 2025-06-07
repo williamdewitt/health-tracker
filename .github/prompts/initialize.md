@@ -71,6 +71,12 @@ Clarifying questions (for example during brain storming) should be asked one-at-
         - Performance is a key non-functional requirement
       - Automatically implement pagination when data collections may exceed 100 items
       - Automatically add logging for all exceptions and key business operations
+   5.1.4 Error Prevention Strategy:
+      - Apply appropriate input validation at all boundaries
+      - Use strongly typed parameters and return values
+      - Implement proper exception handling with specific exception types
+      - Add pre-condition and post-condition checks for critical operations
+      - Use defensive programming techniques for external inputs
    5.2 Each file: header with `// === <relative/path/filename.ext> ===`
    5.3 Apply SOLID, Clean Code, design patterns, especially the ones mandated here: `/.docs/design.md`.
     5.3.1 Always check the build after changes.
@@ -82,8 +88,9 @@ Clarifying questions (for example during brain storming) should be asked one-at-
    5.8 If plan is insufficient:
        5.8.1 Insert `// PLAN-GAP:` in code and update plan.
        5.8.2 Continue.
-   5.9 Error Recovery Patterns:
-       5.9.1 If build fails:
+   5.9 Error Handling & Recovery:
+       5.9.1 Reference the comprehensive error handling guidelines in `.docs/error_handling.md`
+       5.9.2 If build fails:
           - Analyze error message to determine root cause
           - Apply appropriate fix based on error type:
             - Type Errors: Add proper type definitions or correct type usage
@@ -92,16 +99,22 @@ Clarifying questions (for example during brain storming) should be asked one-at-
           - Re-run build and verify success
           - If build fails again with different error, repeat process
           - If build fails 3 times with same error, try alternative implementation approach
-       5.9.2 If test fails:
+       5.9.3 If test fails:
           - Analyze test failure to identify specific issue
           - Update implementation to address failing test case
           - Verify test passes without breaking other tests
           - If test keeps failing after 3 attempts, reassess test expectations
-       5.9.3 If deployment fails:
+       5.9.4 If deployment fails:
           - Check environment configuration
           - Verify all dependencies are properly installed
           - Ensure proper access permissions
           - Try alternative deployment method if first attempt fails
+       5.9.5 Implement structured resilience patterns:
+          - **Timeout Pattern**: Add timeouts to all external calls
+          - **Retry Pattern**: Implement exponential backoff for transient failures
+          - **Circuit Breaker**: Automatically disable failing dependencies temporarily
+          - **Fallback Pattern**: Provide alternative behavior when primary operations fail
+          - **Bulkhead Pattern**: Isolate failures to prevent system-wide cascading failures
    5.10 Context-Aware Suggestions:
        5.10.1 Detect project patterns and apply best practices:
           - For data-heavy applications: Implement robust validation, ORM patterns, and indexing
@@ -121,8 +134,19 @@ Clarifying questions (for example during brain storming) should be asked one-at-
    7.1 Run static analysis (lint, format, type-check).
    7.2 Perform security scan (SCA & SAST).
    7.3 Generate test coverage report (fail if below threshold).
-   7.4 Build & deploy to test environment; run smoke tests.
-   7.5 Generate artifacts: `README.md`, `docker-compose.yml`/Helm, `.env.example`, architecture diagram.
+   7.4 Error Handling Verification:
+      7.4.1 Verify exception handling for each error scenario in the code
+      7.4.2 Validate error recovery mechanisms (retries, circuit breakers)
+      7.4.3 Test boundary conditions and edge cases
+      7.4.4 Confirm proper logging of all error conditions
+      7.4.5 Verify graceful degradation of functionality
+   7.5 Build & deploy to test environment; run smoke tests.
+   7.6 Chaos Testing:
+      7.6.1 Simulate dependency failures
+      7.6.2 Test system under network latency and partitioning
+      7.6.3 Verify recovery from resource exhaustion
+      7.6.4 Test proper fallback mechanisms
+   7.7 Generate artifacts: `README.md`, `docker-compose.yml`/Helm, `.env.example`, architecture diagram.
 8. **Delivery & Handoff**
    8.1 Produce release notes and setup guide (with OS-specific commands).
    8.2 Summarise future improvement backlog.

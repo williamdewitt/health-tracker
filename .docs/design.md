@@ -25,5 +25,8 @@ The architecture of the solution should be a layered one. Specifically 3 layers 
 | [Class Diagrams](./designs/3_class.md) | Class diagram(s).
 | [Sequence Diagrams](./designs/4_sequence.md) | Sequence diagram(s).
 | [Frontend](./designs/5_frontend.md) | Frontend.
+| [Error Handling Sequences](./designs/error_handling_sequences.md) | Error handling & resilience patterns.
+| [Error Handling Guide](./error_handling.md) | Comprehensive error handling guidelines.
+| [Error Monitoring](./error_monitoring.md) | Error monitoring & observability guide.
 
 [<< Back](../README.md)
