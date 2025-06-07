@@ -25,6 +25,7 @@ Your job is to elicit all necessary details from the user, then design and imple
 - **Testing Strategy**: `/.docs/testing_strategy.md` - Complete testing methodology and patterns **[READ THIS FILE]**
 
 ## Implementation Standards **[READABLE FILES]**
+- **Code Quality Standards**: `/.docs/code_quality_standards.md` - 100% linting compliance, zero warnings policy, comprehensive quality gates **[READ THIS FILE]**
 - **API Design Standards**: `/.docs/api_design_standards.md` - RESTful API patterns, versioning, documentation **[READ THIS FILE]**
 - **Database Design Patterns**: `/.docs/database_design_patterns.md` - Data modeling, repository patterns, caching **[READ THIS FILE]**
 - **DevOps & CI/CD**: `/.docs/devops_cicd.md` - Deployment pipelines, infrastructure as code, monitoring **[READ THIS FILE]**
@@ -283,10 +284,14 @@ Clarifying questions (for example during brain storming) should be asked one-at-
       - If current task is completed successfully → Move to next task
       - If build fails → Fix errors and re-run build
       - If tests fail → Fix failing tests and re-run
+      - **If linting violations exist → Fix ALL violations immediately**
+      - **If build warnings exist → Resolve ALL warnings before proceeding**
+      - **If code quality standards not met → Refactor to meet 100% compliance**
       - If implementation is technically challenging → Break it down into smaller tasks
       - If requirements are ambiguous → Make reasonable assumptions based on industry standards and document them
     5.1.3 Apply these automatic progression rules based on framework examples:
-      - Progress to next milestone when all tasks in current milestone are completed AND tests pass AND build succeeds
+      - Progress to next milestone when all tasks in current milestone are completed AND tests pass AND build succeeds AND linting passes AND zero warnings
+      - **Quality Gates**: Each file must pass linting, formatting, and type-checking before committing
       - **Example-Based Architecture Selection**:
         - **Task Management Apps (1-5 use cases)**: Monolithic architecture (task-manager example)
         - **Business Apps (6-10 use cases)**: Modular monolith (e-commerce example)
@@ -355,8 +360,16 @@ Clarifying questions (for example during brain storming) should be asked one-at-
     5.5.2 Implement security patterns from `/.docs/security_framework.md`
     5.5.3 Apply API design standards from `/.docs/api_design_standards.md`
     5.5.4 Use database patterns from `/.docs/database_design_patterns.md`
-    5.5.5 Always check the build after changes.
-   5.6 Use docstrings, type annotations and full code comments via things like summaries, multi-line comments etc.
+    5.5.5 **Zero-Warning Policy**: Fix ALL compiler warnings immediately after each code change
+    5.5.6 **Perfect Linting**: Address ALL linting violations before proceeding
+    5.5.7 Always check the build after changes and ensure clean compilation
+   5.6 **Code Quality Standards (100% Compliance Required)**:
+    5.6.1 Complete docstrings, type annotations and comprehensive code comments
+    5.6.2 Consistent naming conventions across all files and components
+    5.6.3 Perfect code formatting (Prettier, EditorConfig compliance)
+    5.6.4 Full TypeScript strict mode compliance (no 'any' types)
+    5.6.5 Complete C# nullable reference types and XML documentation
+    5.6.6 Zero code smells and technical debt
    5.7 Implement comprehensive security measures:
     5.7.1 Apply Zero Trust architecture principles
     5.7.2 Implement proper authentication and authorization
@@ -426,30 +439,43 @@ Clarifying questions (for example during brain storming) should be asked one-at-
    6.2 Refactor code (keep tests green).
    6.3 Maintain clean commit history (Conventional Commits).
 7. **Quality-Gate (Framework-Driven)**
-   7.1 Run static analysis (lint, format, type-check).
+   7.1 **Achieve 100% Code Quality Standards**:
+      7.1.1 **Linting**: 100% linting score with zero violations across all stacks
+      7.1.2 **Formatting**: Perfect code formatting compliance (Prettier, EditorConfig)
+      7.1.3 **Type Safety**: Zero TypeScript/C# type errors and warnings
+      7.1.4 **Build Warnings**: Zero build warnings across all projects
+      7.1.5 **Code Style**: Consistent naming conventions and architectural patterns
+      7.1.6 **Documentation**: Complete XML docs, JSDoc, and inline comments
    7.2 Perform comprehensive security scan following `/.docs/security_framework.md`:
       7.2.1 Static Application Security Testing (SAST)
       7.2.2 Dynamic Application Security Testing (DAST)
       7.2.3 Software Composition Analysis (SCA)
       7.2.4 Infrastructure security scanning
    7.3 Generate test coverage report (fail if below threshold).
-   7.4 Error Handling Verification following `/.docs/error_handling.md`:
-      7.4.1 Verify exception handling for each error scenario in the code
-      7.4.2 Validate error recovery mechanisms (retries, circuit breakers)
-      7.4.3 Test boundary conditions and edge cases
-      7.4.4 Confirm proper logging of all error conditions
-      7.4.5 Verify graceful degradation of functionality
-   7.5 API Quality Validation following `/.docs/api_design_standards.md`:
-      7.5.1 Verify OpenAPI documentation completeness
-      7.5.2 Test API versioning and backward compatibility
-      7.5.3 Validate rate limiting and security headers
-      7.5.4 Test API performance and response times
-   7.6 Database Quality Validation following `/.docs/database_design_patterns.md`:
-      7.6.1 Verify migration scripts and rollback procedures
-      7.6.2 Test database performance under load
-      7.6.3 Validate data integrity and constraints
-      7.6.4 Test backup and recovery procedures
-   7.7 Build & deploy to test environment; run smoke tests.
+   7.4 **Final Code Quality Validation** following `/.docs/code_quality_standards.md`:
+      7.4.1 **Linting Verification**: Run full linting suite and ensure 100% compliance
+      7.4.2 **Build Warning Check**: Verify zero build warnings across all projects
+      7.4.3 **Documentation Completeness**: Validate all public APIs have complete documentation
+      7.4.4 **Type Safety Verification**: Confirm strict TypeScript and nullable C# compliance
+      7.4.5 **Formatting Consistency**: Verify Prettier and EditorConfig compliance
+      7.4.6 **Performance Standards**: Ensure build and lint times meet thresholds
+   7.5 Error Handling Verification following `/.docs/error_handling.md`:
+      7.5.1 Verify exception handling for each error scenario in the code
+      7.5.2 Validate error recovery mechanisms (retries, circuit breakers)
+      7.5.3 Test boundary conditions and edge cases
+      7.5.4 Confirm proper logging of all error conditions
+      7.5.5 Verify graceful degradation of functionality
+   7.6 API Quality Validation following `/.docs/api_design_standards.md`:
+      7.6.1 Verify OpenAPI documentation completeness
+      7.6.2 Test API versioning and backward compatibility
+      7.6.3 Validate rate limiting and security headers
+      7.6.4 Test API performance and response times
+   7.7 Database Quality Validation following `/.docs/database_design_patterns.md`:
+      7.7.1 Verify migration scripts and rollback procedures
+      7.7.2 Test database performance under load
+      7.7.3 Validate data integrity and constraints
+      7.7.4 Test backup and recovery procedures
+   7.8 Build & deploy to test environment; run smoke tests.
    7.8 Chaos Testing following framework resilience patterns:
       7.8.1 Simulate dependency failures
       7.8.2 Test system under network latency and partitioning
