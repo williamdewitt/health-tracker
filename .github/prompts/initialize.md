@@ -92,6 +92,23 @@ You MUST actively leverage the comprehensive framework documentation throughout 
 3. **After implementation**: Verify the component matches the design exactly
 4. **If misalignment**: Update implementation to match design (not the other way around)
 
+**🔧 DESIGN DOCUMENT ADAPTATION PROTOCOL**:
+When unforeseen changes occur during implementation that require design modifications:
+1. **Document the Change Trigger**: Record why the design needs to change (technical constraint, new requirement, integration issue, etc.)
+2. **Update Design Documents FIRST**: Before implementing the change, update the relevant design document(s) to reflect the new approach
+3. **Cross-Reference Impact**: Check ALL design documents to ensure the change doesn't create inconsistencies elsewhere
+4. **Validate Updated Design**: Ensure the modified design still meets all original requirements and maintains architectural integrity
+5. **Implement from Updated Design**: Only then implement the component following the updated design specification
+6. **Document Design Evolution**: Add a "Design Changes" section to track evolution and reasoning
+
+**📋 DESIGN UPDATE TRIGGERS**:
+- **Technical Constraints**: When third-party APIs, libraries, or platforms impose different patterns than originally designed
+- **Performance Requirements**: When initial design doesn't meet performance benchmarks and architectural changes are needed
+- **Security Discoveries**: When security analysis reveals design modifications needed for compliance
+- **Integration Challenges**: When connecting components reveals design assumptions that don't work in practice
+- **Scalability Insights**: When load testing or growth projections require architectural modifications
+- **User Feedback**: When user testing reveals UX patterns that require backend architectural changes
+
 ## Documentation-Driven Decision Making **[USE read_file TOOL]**
 - **Before making any architectural decision**: READ `/.docs/design.md` and related design documents using `read_file` tool
 - **Before implementing security features**: READ `/.docs/security_framework.md` for Zero Trust patterns using `read_file` tool
@@ -385,6 +402,49 @@ Clarifying questions (for example during brain storming) should be asked one-at-
       - Implement proper exception handling with specific exception types
       - Add pre-condition and post-condition checks for critical operations
       - Use defensive programming techniques for external inputs
+   5.1.5 **DESIGN DOCUMENT UPDATE PROCEDURES** (MANDATORY when changes occur):
+      5.1.5.1 **Change Detection Triggers**:
+         - **API Contract Changes**: When endpoint signatures, request/response models, or HTTP status codes differ from sequence diagrams
+         - **Database Schema Modifications**: When entity relationships, constraints, or table structures deviate from class diagrams
+         - **UI Component Restructuring**: When component hierarchy, props, or state management differs from frontend specifications
+         - **Architecture Pattern Changes**: When component responsibilities or interaction patterns change from system design
+         - **Security Implementation Variance**: When authentication flows or authorization rules differ from security specifications
+         - **Performance Optimization Impact**: When caching strategies or data access patterns affect original design assumptions
+         - **Third-Party Integration Constraints**: When external API limitations require different integration approaches than designed
+         - **Scalability Requirement Changes**: When load testing reveals different scaling patterns than originally designed
+      5.1.5.2 **Immediate Design Update Protocol**:
+         - **STOP Implementation**: Immediately halt coding when design variance is detected
+         - **Assess Impact Scope**: Determine which design documents are affected by the change
+         - **Document Change Reasoning**: Record the specific technical, business, or constraint-driven reason for the design modification
+         - **Update Design Documents FIRST**: Before implementing the change, update ALL affected design documents in `/.docs/designs/`
+         - **Cross-Reference Validation**: Check that design changes don't create inconsistencies across other design documents
+         - **Architecture Integrity Check**: Ensure modified design still meets original business requirements and architectural principles
+         - **Resume Implementation**: Only proceed with coding after design documents are updated and validated
+      5.1.5.3 **Design Document Synchronization Process**:
+         - **Primary Document Update**: Update the design document most directly affected by the change
+         - **Dependency Analysis**: Identify which other design documents reference or depend on the changed elements
+         - **Cascading Updates**: Update all dependent design documents to maintain consistency
+         - **Integration Point Verification**: Ensure API contracts, data models, and component interfaces align across all documents
+         - **Sequence Flow Validation**: Verify business process flows remain consistent across system component and sequence diagrams
+         - **Frontend-Backend Alignment**: Ensure UI specifications match API capabilities and data models
+      5.1.5.4 **Design Evolution Documentation**:
+         - **Change Log Section**: Add "## Design Evolution" section to affected design documents
+         - **Change Entry Format**: `### Change #{number} - {Date} - {Change Type}`
+         - **Detailed Change Record**: Include original design, new design, reasoning, and impact assessment
+         - **Traceability Links**: Reference related changes in other design documents
+         - **Decision Rationale**: Document why this change was the best solution among alternatives considered
+         - **Future Implications**: Note any long-term architectural implications of the design change
+         - **Example Entry**:
+           ```markdown
+           ### Change #3 - 2025-06-08 - API Contract Modification
+           **Original Design**: User authentication via custom JWT implementation
+           **New Design**: OAuth 2.0 + OpenID Connect with third-party provider
+           **Reasoning**: Security audit revealed custom JWT implementation lacks industry standard security features
+           **Impact**: Updated sequence diagrams, frontend auth components, and security documentation
+           **Related Changes**: See System Components Change #2, Frontend Design Change #1
+           **Decision Rationale**: OAuth 2.0 provides better security, easier integration, and reduces maintenance burden
+           **Future Implications**: Enables single sign-on capabilities for future integrations
+           ```
    5.2 **STRICT REPOSITORY STRUCTURE COMPLIANCE**: Before creating any files, establish the exact structure from `/.docs/repo_structure.md`:
     5.2.1 Create root-level directories: `/.docs`, `/.github`, `/.vscode`, `/src`
     5.2.2 Create backend structure: `/src/backend/<PROJECT_NAME>.Api`, `/src/backend/<PROJECT_NAME>.Core`, `/src/backend/<PROJECT_NAME>.Shared`
@@ -463,6 +523,8 @@ Clarifying questions (for example during brain storming) should be asked one-at-
       - **Design Document Verification**: When cross-referencing implementation against design documents
       - **Architecture Alignment**: When validating component structure matches system design
       - **API Implementation**: When implementing endpoints defined in sequence diagrams
+      - **Design Document Updates**: When modifying design documents due to implementation discoveries
+      - **Evolution Tracking**: When documenting design changes and their impact across the system
     5.3.4 **Percentage Calculation Method**: Calculate progress percentage based on milestone completion:
       - **Equal Weight per Milestone**: Each major milestone receives equal percentage weight (e.g., 6 milestones = ~16.7% each)
       - **Sub-Task Proportional**: Within each milestone, tasks contribute proportionally to that milestone's total percentage
@@ -479,9 +541,15 @@ Clarifying questions (for example during brain storming) should be asked one-at-
       - **Architecture Context**: How current work fits into overall system design
       - **Design Document Reference**: Which design document section is being implemented
       - **Consistency Check**: Confirmation that implementation aligns with design specifications
-      - **Example Format**: `📍 [MILESTONE: Backend API] (35%) Just completed User entity model per class diagram specs. Next: Creating UserController following sequence diagrams. Dependencies: Database connection established. Design Reference: /.docs/designs/3_class.md - User entity section.`
+      - **Design Evolution Status**: Any design changes made during implementation and their reasoning
+      - **Cross-Document Impact**: How current implementation affects other design documents
+      - **Example Format**: `📍 [MILESTONE: Backend API] (35%) Just completed User entity model per class diagram specs. Next: Creating UserController following sequence diagrams. Dependencies: Database connection established. Design Reference: /.docs/designs/3_class.md - User entity section. Design Evolution: No changes required - implementation matches design exactly.`
     5.3.6 **Progress Persistence Mechanism**: For long-running projects, include periodic progress summaries:
       - **Every 20% Complete**: Full status summary with completed milestones
+      - **Design Evolution Summary**: Track design changes made during implementation phases
+      - **Cross-Milestone Consistency**: Ensure design modifications are reflected across all future implementation
+      - **Architecture Drift Prevention**: Monitor and correct any divergence from original architectural vision
+      - **Cumulative Impact Assessment**: Document how multiple design changes affect overall system complexity
       - **Before Major Decisions**: Context of why certain architectural choices were made
       - **Error Recovery Points**: What was attempted and what solution was chosen
       - **Integration Checkpoints**: Status of component connections and data flow
@@ -639,6 +707,25 @@ Clarifying questions (for example during brain storming) should be asked one-at-
       7.2.4 **Sequence Flow Compliance**: Ensure API interactions match `/.docs/designs/4_sequence.md` patterns
       7.2.5 **Frontend Specification Adherence**: Confirm UI matches `/.docs/designs/5_frontend.md` requirements
       7.2.6 **Cross-Document Consistency**: Verify all design documents align with each other and implementation
+      7.2.7 **Design Evolution Validation**: 
+         - **Change Documentation Review**: Verify all design changes are properly documented in "Design Evolution" sections
+         - **Evolution Traceability**: Confirm design changes reference related modifications in other documents
+         - **Change Justification Audit**: Review that all design modifications include proper business/technical reasoning
+         - **Impact Assessment Verification**: Validate that documented change impacts match actual implementation differences
+         - **Decision Rationale Review**: Ensure alternative solutions were considered and documented
+         - **Future Implication Analysis**: Verify long-term architectural consequences are identified and documented
+      7.2.8 **Design-Implementation Gap Analysis**:
+         - **Automated Comparison**: Use tools to compare design specifications against actual implementation
+         - **Manual Verification**: Human review of critical design elements not covered by automation
+         - **Gap Identification**: Document any remaining discrepancies between design and implementation
+         - **Gap Resolution**: Either update implementation to match design or update design with proper change documentation
+         - **Approval Process**: Ensure significant design changes have appropriate stakeholder review
+      7.2.9 **Design Document Update Protocol Compliance**:
+         - **Process Adherence**: Verify design update procedures were followed for all changes
+         - **Documentation Completeness**: Ensure all required sections and change logs are present
+         - **Cross-Reference Integrity**: Validate that design document references between files are accurate
+         - **Template Compliance**: Confirm design documents follow framework template structures
+         - **Version Control**: Verify design document changes are properly tracked in git history
    7.3 Perform comprehensive security scan following `/.docs/security_framework.md`:
    7.3 Perform comprehensive security scan following `/.docs/security_framework.md`:
       7.3.1 Static Application Security Testing (SAST)
