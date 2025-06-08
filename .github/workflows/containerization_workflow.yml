@@ -1,10 +1,11 @@
 # This is a simple example GitHub workflow that builds and publishes a Dockerfile.
 
 name: Containerization Workflow Example
-on:
-  push:
-    branches:
-    - main
+# Workflow disabled - uncomment the 'on:' section below to re-enable
+# on:
+#   push:
+#     branches:
+#     - main
 
 jobs:
   docker:
