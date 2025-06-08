@@ -348,7 +348,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-**Special thanks to Conway Osler**, colleague and friend, for the project inspiration that made this framework possible.
+**Special thanks to [Conway Osler](https://www.linkedin.com/in/conway-osler?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)**, colleague and friend, for the project inspiration that made this framework possible.
 
 Built with modern software engineering principles:
 - **iDesign Architecture** by Juval Löwy
