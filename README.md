@@ -249,6 +249,46 @@ Your IDE's auto-formatting features might interfere with the AI's code generatio
 
 Don't worry - the final code will be perfectly formatted according to the framework's quality standards! 🎯
 
+### 🔄 AI Agent Timeout Recovery
+
+**🚨 IMPORTANT - AGENT TIMEOUT HANDLING**: 
+If your AI agent times out, cuts out, or stops responding during the development process:
+
+#### 🛠️ **Immediate Recovery Steps**
+1. **Wait 1-2 minutes** - Allow any background processes to complete and quotas to reset
+2. **Hit the regenerate button** - This will resume the agent from where it left off
+3. **Check the last progress message** - Look for the most recent `📍 [MILESTONE: name] (percentage%)` marker
+4. **Continue from the last milestone** - The agent will automatically pick up context from progress markers
+
+#### 🔄 **Model Switching Strategy**
+When hitting quota limits, you can seamlessly switch between AI models:
+- **Sonnet 3.7** ↔ **Sonnet 4**: Both models understand the framework's progress tracking system
+- **GPT-4** ↔ **Claude**: The progress markers work across different AI platforms
+- **Copilot** ↔ **Cursor**: Framework is compatible with multiple development environments
+
+#### 📊 **Why Timeouts Happen**
+- **Model Quota Limits**: Advanced AI models have usage quotas that reset over time
+- **Large Project Complexity**: Complex projects require extensive context processing
+- **Long-Running Operations**: Build processes, package installations, and code generation
+- **Multi-Model Usage**: Switching between model versions (e.g., Sonnet 3.7 → Sonnet 4)
+- **Session Duration**: Extended development sessions may hit platform time limits
+
+#### 🎯 **Recovery Best Practices**
+- **Progress Anchoring**: The framework's progress system creates automatic recovery checkpoints
+- **Context Preservation**: Each milestone contains enough context for seamless continuation
+- **Incremental Commits**: Regular git commits ensure work is never lost
+- **Modular Structure**: One-definition-per-file organization makes partial recovery easier
+- **State Documentation**: Architecture decisions and patterns are documented throughout
+
+#### 🚀 **Framework Advantage**
+The AI Coding Framework is specifically designed for timeout resilience:
+- **📍 Progress Markers**: Every 3-5 actions include contextual anchors
+- **🏗️ Milestone Structure**: Clear phases that can be resumed independently  
+- **📚 Documentation**: Self-documenting code that AI agents can read and understand
+- **🔄 Idempotent Operations**: Safe to re-run commands without causing conflicts
+
+**Pro Tip**: The framework's enhanced progress tracking system (updated based on user feedback) provides even more frequent checkpoints and detailed context anchoring for better recovery! 📍
+
 ### Example 1: E-commerce Platform
 **Setup:** Fork this repo → Open in your AI platform → Use super-prompt
 
