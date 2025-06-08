@@ -161,14 +161,14 @@ When unforeseen changes occur during implementation that require design modifica
 - **Scalability Insights**: When load testing or growth projections require architectural modifications
 - **User Feedback**: When user testing reveals UX patterns that require backend architectural changes
 
-## Documentation-Driven Decision Making **[USE read_file TOOL]**
-- **Before making any architectural decision**: READ `/.docs/design.md` and related design documents using `read_file` tool
-- **Before implementing security features**: READ `/.docs/security_framework.md` for Zero Trust patterns using `read_file` tool
-- **Before designing APIs**: READ and apply patterns from `/.docs/api_design_standards.md` using `read_file` tool
-- **Before database design**: READ and use patterns from `/.docs/database_design_patterns.md` using `read_file` tool
-- **Before implementing error handling**: READ and follow `/.docs/error_handling.md` guidelines using `read_file` tool
-- **Before setting up CI/CD**: READ and reference `/.docs/devops_cicd.md` for pipeline patterns using `read_file` tool
-- **When uncertain about any implementation**: READ the relevant framework documentation file to get specific guidance
+## Documentation-Driven Decision Making
+- **Before making any architectural decision**: READ `/.docs/design.md` and related design documents
+- **Before implementing security features**: READ `/.docs/security_framework.md` for Zero Trust patterns
+- **Before designing APIs**: READ and apply patterns from `/.docs/api_design_standards.md`
+- **Before database design**: READ and use patterns from `/.docs/database_design_patterns.md`
+- **Before implementing error handling**: READ and follow `/.docs/error_handling.md` guidelines
+- **Before setting up CI/CD**: READ and reference `/.docs/devops_cicd.md` for pipeline patterns
+- **When uncertain about any implementation**: READ the relevant framework documentation file
 - **For template structures**: READ the appropriate template file in `/.docs/designs/` before creating any design document
 
 ## Pattern Matching & Examples
@@ -486,7 +486,7 @@ Clarifying questions (for example during brain storming) should be asked one-at-
       ```
     
     5.0.2 **Enhanced Progress State Updates** (For conversation summarization resilience):
-      - **Every 10% Progress**: Update session state with full context
+      - **Every 15% Progress**: Update session state with full context (consistent with progress tracking)
       - **Before Major Decisions**: Document decision context and rationale
       - **After Architectural Changes**: Update all relevant context anchors
       - **During Error Resolution**: Document issue and solution approach
@@ -699,7 +699,7 @@ Clarifying questions (for example during brain storming) should be asked one-at-
       - **Before Major Milestones**: Complete session state backup with design evolution summary
       - **Context Breadcrumbs**: Leave clear navigation markers in progress messages
       - **Recovery Instructions**: Include explicit instructions for context recovery in session state
-    5.3.3 **Enhanced Progress Tracking Triggers**:
+    5.3.6 **Enhanced Progress Tracking Triggers**:
       - **File System Operations**: Before creating directories, files, or moving files
       - **Command Execution**: Before and after terminal commands, especially long-running ones
       - **Code Generation**: When generating classes, components, or configuration files
@@ -720,55 +720,24 @@ Clarifying questions (for example during brain storming) should be asked one-at-
       - **Calculation Formula**: `Current % = (Completed Milestones × Milestone Weight) + (Current Milestone Progress × Milestone Weight)`
       - **Round to Whole Numbers**: Always round percentages to whole numbers for clarity
       - **Boundary Rules**: Use 0% for starting tasks, 100% only when project is fully complete
-    5.3.5 **Context Anchoring System**: Each progress update MUST include contextual anchors:
-      - **Where We Are**: Current milestone and task within that milestone
-      - **What We Just Did**: Brief summary of the last completed action
-      - **What's Next**: Clear statement of the next 1-2 actions to be taken
-      - **Dependencies**: Any blockers or prerequisites for upcoming work
-      - **Architecture Context**: How current work fits into overall system design
-      - **Design Document Reference**: Which design document section is being implemented
-      - **Consistency Check**: Confirmation that implementation aligns with design specifications
-      - **Design Evolution Status**: Any design changes made during implementation and their reasoning
-      - **Cross-Document Impact**: How current implementation affects other design documents
-      - **Example Format**: `📍 [MILESTONE: Backend API] (35%) Just completed User entity model per class diagram specs. Next: Creating UserController following sequence diagrams. Dependencies: Database connection established. Design Reference: /.docs/designs/3_class.md - User entity section. Design Evolution: No changes required - implementation matches design exactly.`
-    5.3.6 **Progress Persistence Mechanism**: For long-running projects, include periodic progress summaries:
-      - **Every 20% Complete**: Full status summary with completed milestones
-      - **Design Evolution Summary**: Track design changes made during implementation phases
-      - **Cross-Milestone Consistency**: Ensure design modifications are reflected across all future implementation
-      - **Architecture Drift Prevention**: Monitor and correct any divergence from original architectural vision
-      - **Cumulative Impact Assessment**: Document how multiple design changes affect overall system complexity
-      - **Before Major Decisions**: Context of why certain architectural choices were made
-      - **Error Recovery Points**: What was attempted and what solution was chosen
-      - **Integration Checkpoints**: Status of component connections and data flow
-      - **Design Alignment Checkpoints**: Verification that implementation matches design documents
-      - **Architecture Consistency**: Confirmation that all components follow the established patterns
-    5.3.4 **Milestone Cross-Reference**: Each progress message must reference the specific milestone from the generated plan with precise percentage
-    5.3.5 **Navigation Anchor**: Use progress messages as context anchors - if ever uncertain about current position, cross-reference the latest progress message with the plan milestones
-    5.3.6 **Progress Update Triggers** (EXPANDED for better context retention):
-      - At the start of each major milestone from the plan
-      - When switching between implementation phases (backend → frontend → testing)
-      - **Before creating each new file or component**
-      - **After completing each individual task (not just major tasks)**
-      - When encountering and resolving issues (🔧 issue resolution markers)
-      - Before running builds or tests (⚡ action markers)
-      - **During complex operations that take multiple steps**
-      - **When making architectural or technical decisions**
-      - **After each quality gate check (linting, testing, building)**
-    5.3.7 **Self-Navigation Protocol**: When uncertain about next steps:
+    5.3.7 **Progress Message Example Format**: 
+      `📍 [MILESTONE: Backend API] (35%) Just completed User entity model per class diagram specs. Next: Creating UserController following sequence diagrams. Dependencies: Database connection established. Design Reference: /.docs/designs/3_class.md - User entity section. Design Evolution: No changes required - implementation matches design exactly.`
+    5.3.8 **Self-Navigation Protocol**: When uncertain about next steps:
       - Review the latest progress message milestone and percentage
       - Cross-reference with the plan's milestone checklist
       - Calculate current position within milestone percentage range
       - Identify the next logical task within that milestone
       - Print progress message for the chosen action with updated percentage
-    5.3.8 **Enhanced Message Examples with Context**:
+      - When encountering and resolving issues (🔧 issue resolution markers)
+      - Before running builds or tests (⚡ action markers)
+      - **During complex operations that take multiple steps**
+      - **When making architectural or technical decisions**
+      - **After each quality gate check (linting, testing, building)**
+    5.3.9 **Enhanced Progress Message Examples**:
       - `📍 [MILESTONE: Repository Setup] (5%) Creating project directory structure...`
-      - `📍 [MILESTONE: Repository Setup] (8%) Creating .docs/designs folder for system documentation...`
       - `📍 [MILESTONE: Backend Core] (25%) Implementing user authentication service...`
-      - `📍 [MILESTONE: Backend Core] (28%) Creating User.cs entity model with validation...`
       - `✅ [MILESTONE: Backend Core] (33%) User authentication completed, moving to data layer...`
       - `🔧 [MILESTONE: Testing] (75%) Fixing failing integration tests...`
-      - `⚡ [MILESTONE: Quality Gate] (85%) Running security scans...`
-      - `📍 [MILESTONE: Quality Gate] (88%) Fixing linting violations in frontend components...`
       - `🎉 [PROJECT COMPLETE] (100%) All milestones completed successfully!`
    5.4 Each file: header with `// === <relative/path/filename.ext> ===`
    5.5 Apply SOLID, Clean Code, design patterns, and security-first principles from the framework documentation:
@@ -974,7 +943,6 @@ Clarifying questions (for example during brain storming) should be asked one-at-
 # Rules, Restrictions & Framework Compliance
 
 ## Mandatory Framework Adherence
-You MUST follow the comprehensive framework documentation throughout the entire development process:
 
 ### Architecture & Design Compliance
 - **Design Principles**: Strictly adhere to architectural guidelines in `/.docs/design.md`
