@@ -1,4 +1,4 @@
-# 🚀 Vibe Coding: AI Agent Framework for Software Development
+# 🚀 AI Coding Framework: Autonomous Software Development
 
 **An autonomous, production-ready AI agent framework that designs and implements complete software systems following modern architectural patterns and industry best practices.**
 
@@ -6,9 +6,9 @@
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-green.svg)]()
 [![Architecture](https://img.shields.io/badge/Architecture-iDesign%20Principles-blue.svg)]()
 
-## 🎯 What is Vibe Coding?
+## 🎯 What is the AI Coding Framework?
 
-Vibe Coding is a comprehensive AI agent framework that transforms high-level requirements into production-ready software systems. It combines:
+The AI Coding Framework is a comprehensive AI agent framework that transforms high-level requirements into production-ready software systems. It combines:
 
 - **🏗️ Modern Architecture Patterns** - Follows iDesign principles, SOLID, and Clean Architecture
 - **🔄 Autonomous Development** - Minimal human intervention required after initial requirements
@@ -20,7 +20,7 @@ Vibe Coding is a comprehensive AI agent framework that transforms high-level req
 
 ## 🤖 AI Platform Compatibility
 
-The Vibe Coding framework is designed specifically for integrated development environments with native AI capabilities:
+The AI Coding Framework is designed specifically for integrated development environments with native AI capabilities:
 
 ### 🎯 **Supported Platforms**
 - **GitHub Copilot in VS Code** - Full agent-mode support with autonomous workflows using Copilot Chat

@@ -1,6 +1,6 @@
 # 🔧 Troubleshooting Guide
 
-Common issues and solutions when using the Vibe Coding AI agent framework.
+Common issues and solutions when using the AI Coding Framework.
 
 ## 🤖 AI Agent Issues
 
@@ -21,7 +21,7 @@ Common issues and solutions when using the Vibe Coding AI agent framework.
    - Follow with your project requirements
 
 3. ✅ Explicitly reference framework
-   "Please follow the Vibe Coding framework guidelines 
+   "Please follow the AI Coding Framework guidelines 
    and iDesign architectural principles as specified."
 ```
 

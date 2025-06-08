@@ -1,6 +1,6 @@
 # 📚 Documentation Index
 
-Complete guide to the Vibe Coding AI agent framework documentation.
+Complete guide to the AI Coding Framework documentation.
 
 ## 🎯 Getting Started
 

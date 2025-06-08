@@ -1,7 +1,7 @@
 [<< Back](../README.md)
 
 ## Repo Structure
-This document describes the desired repository structure. This may be used for vibe coding when scaffolding the solution from scratch, for example.
+This document describes the desired repository structure. This may be used for AI coding when scaffolding the solution from scratch, for example.
 
 ### Structure
 - ROOT (The repository root)

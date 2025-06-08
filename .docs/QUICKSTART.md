@@ -1,6 +1,6 @@
 # 🚀 Quick Start Guide
 
-Get up and running with the Vibe Coding AI agent framework in minutes!
+Get up and running with the AI Coding Framework in minutes!
 
 ## 📋 Prerequisites
 

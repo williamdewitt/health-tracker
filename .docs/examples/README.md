@@ -1,6 +1,6 @@
 # 🎯 Examples Library
 
-This directory contains comprehensive project examples that demonstrate how to use the Vibe Coding framework across different complexity levels and project types. Each example includes complete implementation guidance, conversation starters, and proven architectural patterns.
+This directory contains comprehensive project examples that demonstrate how to use the AI Coding Framework across different complexity levels and project types. Each example includes complete implementation guidance, conversation starters, and proven architectural patterns.
 
 ## 📊 Example Categories
 
@@ -78,4 +78,4 @@ Examples show how to implement common features:
 
 ---
 
-**These examples represent production-proven patterns developed and refined through real-world projects. Use them as your foundation for building robust, scalable applications with the Vibe Coding framework!** 🎯
+**These examples represent production-proven patterns developed and refined through real-world projects. Use them as your foundation for building robust, scalable applications with the AI Coding Framework!** 🎯
