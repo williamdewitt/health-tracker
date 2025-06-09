@@ -1,13 +1,15 @@
-[<< Back](../README.md)
+[<< Back](../../../README.md)
 
 # API Design & Documentation Standards
 
 ## Overview
+
 This guide provides comprehensive API design patterns, documentation standards, and implementation best practices for building robust, scalable, and developer-friendly APIs. It covers RESTful design, OpenAPI specifications, versioning strategies, and testing patterns.
 
 ## API Design Principles
 
 ### 1. RESTful Design Patterns
+
 ```mermaid
 graph TB
     subgraph "REST API Architecture"
@@ -18,15 +20,15 @@ graph TB
         E --> F[Data Access Layer]
         F --> G[Database]
     end
-    
+
     subgraph "HTTP Methods"
-        H[GET - Retrieve] 
+        H[GET - Retrieve]
         I[POST - Create]
         J[PUT - Update/Replace]
         K[PATCH - Partial Update]
         L[DELETE - Remove]
     end
-    
+
     subgraph "Status Codes"
         M[2xx - Success]
         N[3xx - Redirection]
@@ -43,15 +45,15 @@ graph LR
         A[/api/v1] --> B[/users]
         A --> C[/orders]
         A --> D[/products]
-        
+
         B --> E[/users/{id}]
         B --> F[/users/{id}/orders]
         B --> G[/users/{id}/preferences]
-        
+
         C --> H[/orders/{id}]
         C --> I[/orders/{id}/items]
         C --> J[/orders/{id}/payments]
-        
+
         D --> K[/products/{id}]
         D --> L[/products/{id}/reviews]
         D --> M[/products/{id}/variants]
@@ -160,7 +162,7 @@ public class PagedResult<T>
     public int TotalPages => (int)Math.Ceiling((double)TotalCount / PageSize);
     public bool HasNextPage => PageNumber < TotalPages;
     public bool HasPreviousPage => PageNumber > 1;
-    
+
     public PaginationLinks Links { get; set; } = new();
 }
 
@@ -180,7 +182,7 @@ public class QueryParameters
     private const int DefaultPageSize = 20;
 
     public int PageNumber { get; set; } = 1;
-    
+
     private int _pageSize = DefaultPageSize;
     public int PageSize
     {
@@ -238,7 +240,7 @@ public class CreateUserRequest
     public string? PhoneNumber { get; set; }
 
     public List<string> Roles { get; set; } = new();
-    
+
     public Dictionary<string, object> Preferences { get; set; } = new();
 }
 
@@ -277,7 +279,7 @@ public class UserDto
     public DateTime? UpdatedAt { get; set; }
     public DateTime? LastLoginAt { get; set; }
     public List<string> Roles { get; set; } = new();
-    
+
     // Links for HATEOAS
     public Dictionary<string, Link> Links { get; set; } = new();
 }
@@ -619,7 +621,7 @@ public static void ConfigureSwagger(this IServiceCollection services, IConfigura
         // Custom Schema Filters
         options.SchemaFilter<EnumSchemaFilter>();
         options.SchemaFilter<ExampleSchemaFilter>();
-        
+
         // Operation Filters
         options.OperationFilter<AuthorizeOperationFilter>();
         options.OperationFilter<SwaggerDefaultValues>();
@@ -801,7 +803,7 @@ public class ApiIntegrationTestBase : IDisposable
 
         Client = Factory.CreateClient();
         Scope = Factory.Services.CreateScope();
-        
+
         SeedTestData();
     }
 
@@ -809,7 +811,7 @@ public class ApiIntegrationTestBase : IDisposable
     {
         using var context = Scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
         context.Database.EnsureCreated();
-        
+
         // Seed test data
         var testUsers = new[]
         {
@@ -852,7 +854,7 @@ public class UsersControllerTests : ApiIntegrationTestBase
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
-        
+
         var pagedResult = await GetResponseContent<PagedResult<UserDto>>(response);
         pagedResult.Should().NotBeNull();
         pagedResult!.Items.Should().NotBeEmpty();
@@ -872,7 +874,7 @@ public class UsersControllerTests : ApiIntegrationTestBase
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
-        
+
         var user = await GetResponseContent<UserDetailDto>(response);
         user.Should().NotBeNull();
         user!.Id.Should().Be(userId);
@@ -890,7 +892,7 @@ public class UsersControllerTests : ApiIntegrationTestBase
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.NotFound);
-        
+
         var errorResponse = await GetResponseContent<ErrorResponse>(response);
         errorResponse.Should().NotBeNull();
         errorResponse!.Status.Should().Be(404);
@@ -915,13 +917,13 @@ public class UsersControllerTests : ApiIntegrationTestBase
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.Created);
-        
+
         var createdUser = await GetResponseContent<UserDetailDto>(response);
         createdUser.Should().NotBeNull();
         createdUser!.Email.Should().Be(createRequest.Email);
         createdUser.FirstName.Should().Be(createRequest.FirstName);
         createdUser.LastName.Should().Be(createRequest.LastName);
-        
+
         // Verify Location header
         response.Headers.Location.Should().NotBeNull();
         response.Headers.Location.ToString().Should().Contain($"/api/v1/users/{createdUser.Id}");
@@ -944,7 +946,7 @@ public class UsersControllerTests : ApiIntegrationTestBase
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-        
+
         var errorResponse = await GetResponseContent<ErrorResponse>(response);
         errorResponse.Should().NotBeNull();
         errorResponse!.Status.Should().Be(400);
@@ -996,7 +998,7 @@ public class UserApiConsumerTests : IClassFixture<PactFixture>
         await _pactBuilder.VerifyAsync(async ctx =>
         {
             var client = new HttpClient { BaseAddress = ctx.MockServerUri };
-            client.DefaultRequestHeaders.Authorization = 
+            client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", "valid-token");
 
             var response = await client.GetAsync($"/api/v1/users/{userId}");
@@ -1037,7 +1039,7 @@ public async Task<ActionResult<UserDetailDto>> GetUser(int id)
     }
 
     var etag = GenerateETag(user);
-    
+
     // Check If-None-Match header
     if (Request.Headers.IfNoneMatch.Any(tag => tag.Tag == etag))
     {
@@ -1122,12 +1124,14 @@ public class UsersController : ControllerBase
 The AI agent should automatically implement API standards based on:
 
 ### 1. **Project Analysis:**
+
 - **Domain complexity** → Choose appropriate API patterns (CQRS, event sourcing, etc.)
 - **Expected load** → Implement caching, rate limiting, pagination
 - **Security requirements** → Add authentication, authorization, input validation
 - **Integration needs** → Design for API composition, webhooks, events
 
 ### 2. **Automatic API Generation:**
+
 - **Generate OpenAPI specs** from domain models and use cases
 - **Create standardized controllers** following REST principles
 - **Implement proper error handling** with consistent error responses
@@ -1135,12 +1139,14 @@ The AI agent should automatically implement API standards based on:
 - **Set up API versioning** strategy based on expected evolution
 
 ### 3. **Testing Strategy:**
+
 - **Generate integration tests** for all endpoints
 - **Create contract tests** for external API dependencies
 - **Implement performance tests** for critical endpoints
 - **Add security tests** for authentication and authorization
 
 ### 4. **Documentation & Monitoring:**
+
 - **Auto-generate API documentation** with examples and schemas
 - **Set up API monitoring** with health checks and metrics
 - **Implement logging** for request/response tracking
@@ -1148,4 +1154,4 @@ The AI agent should automatically implement API standards based on:
 
 This comprehensive API framework ensures that every API built with the AI agent follows industry best practices, provides excellent developer experience, and maintains high standards for security, performance, and reliability.
 
-[<< Back](../README.md)
+[<< Back](../../../README.md)

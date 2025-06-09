@@ -1,13 +1,15 @@
-[<< Back](../README.md)
+[<< Back](../../../README.md)
 
 # Security Framework Guide
 
 ## Overview
+
 This guide provides comprehensive security patterns, practices, and implementations for building secure software systems. It covers security by design, threat modeling, secure coding practices, and security testing integration.
 
 ## Security by Design Principles
 
 ### 1. Defense in Depth
+
 ```mermaid
 graph TB
     subgraph "Network Layer"
@@ -15,28 +17,28 @@ graph TB
         B[Load Balancer with SSL/TLS]
         C[Network Segmentation]
     end
-    
+
     subgraph "Application Layer"
         D[Authentication & Authorization]
         E[Input Validation & Sanitization]
         F[Output Encoding]
         G[Session Management]
     end
-    
+
     subgraph "Data Layer"
         H[Encryption at Rest]
         I[Encryption in Transit]
         J[Database Security]
         K[Backup Encryption]
     end
-    
+
     subgraph "Infrastructure Layer"
         L[Container Security]
         M[Secrets Management]
         N[Access Control]
         O[Monitoring & Logging]
     end
-    
+
     A --> D
     B --> E
     C --> F
@@ -47,6 +49,7 @@ graph TB
 ```
 
 ### 2. Zero Trust Architecture
+
 ```mermaid
 graph LR
     subgraph "Zero Trust Components"
@@ -56,7 +59,7 @@ graph LR
         D --> E[Continuous Monitoring]
         E --> F[Dynamic Policy Enforcement]
     end
-    
+
     subgraph "Implementation"
         G[Multi-Factor Authentication]
         H[Certificate-Based Auth]
@@ -65,7 +68,7 @@ graph LR
         K[Real-time Threat Detection]
         L[Adaptive Security Policies]
     end
-    
+
     A --> G
     B --> H
     C --> I
@@ -77,6 +80,7 @@ graph LR
 ## Threat Modeling
 
 ### STRIDE Threat Model
+
 ```mermaid
 graph TB
     subgraph "STRIDE Analysis"
@@ -87,7 +91,7 @@ graph TB
         E[Denial of Service] --> E1[Availability]
         F[Elevation of Privilege] --> F1[Authorization]
     end
-    
+
     subgraph "Mitigations"
         A1 --> G[Strong Authentication]
         B1 --> H[Digital Signatures]
@@ -99,14 +103,15 @@ graph TB
 ```
 
 ### Security Assessment Matrix
-| Component | Threat Level | Mitigation Strategy | Implementation Priority |
-|-----------|-------------|-------------------|----------------------|
-| User Authentication | **High** | Multi-factor auth, OAuth 2.0 + OIDC | **Critical** |
-| API Endpoints | **High** | Rate limiting, input validation, JWT | **Critical** |
-| Data Storage | **High** | Encryption at rest, field-level encryption | **Critical** |
-| Inter-service Communication | **Medium** | mTLS, service mesh security | **High** |
-| Frontend Security | **Medium** | CSP, SRI, XSS protection | **High** |
-| Infrastructure | **High** | Container scanning, secrets management | **Critical** |
+
+| Component                   | Threat Level | Mitigation Strategy                        | Implementation Priority |
+| --------------------------- | ------------ | ------------------------------------------ | ----------------------- |
+| User Authentication         | **High**     | Multi-factor auth, OAuth 2.0 + OIDC        | **Critical**            |
+| API Endpoints               | **High**     | Rate limiting, input validation, JWT       | **Critical**            |
+| Data Storage                | **High**     | Encryption at rest, field-level encryption | **Critical**            |
+| Inter-service Communication | **Medium**   | mTLS, service mesh security                | **High**                |
+| Frontend Security           | **Medium**   | CSP, SRI, XSS protection                   | **High**                |
+| Infrastructure              | **High**     | Container scanning, secrets management     | **Critical**            |
 
 ## Authentication & Authorization
 
@@ -126,7 +131,7 @@ public static void ConfigureAuthentication(this IServiceCollection services, ICo
         options.Authority = configuration["Auth:Authority"];
         options.Audience = configuration["Auth:Audience"];
         options.RequireHttpsMetadata = true;
-        
+
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
@@ -136,7 +141,7 @@ public static void ConfigureAuthentication(this IServiceCollection services, ICo
             ClockSkew = TimeSpan.FromMinutes(1),
             RoleClaimType = ClaimTypes.Role
         };
-        
+
         options.Events = new JwtBearerEvents
         {
             OnAuthenticationFailed = context =>
@@ -150,7 +155,7 @@ public static void ConfigureAuthentication(this IServiceCollection services, ICo
             {
                 // Additional token validation logic
                 var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
-                logger.LogInformation("Token validated for user: {UserId}", 
+                logger.LogInformation("Token validated for user: {UserId}",
                     context.Principal?.FindFirst(ClaimTypes.NameIdentifier)?.Value);
                 return Task.CompletedTask;
             }
@@ -166,23 +171,23 @@ public static void ConfigureAuthorization(this IServiceCollection services)
         // Minimum age requirement
         options.AddPolicy("MinimumAge", policy =>
             policy.Requirements.Add(new MinimumAgeRequirement(18)));
-        
+
         // Role-based policies
         options.AddPolicy("AdminOnly", policy =>
             policy.RequireRole("Administrator"));
-        
+
         options.AddPolicy("ManagerOrAdmin", policy =>
             policy.RequireRole("Manager", "Administrator"));
-        
+
         // Claims-based policies
         options.AddPolicy("CanReadUsers", policy =>
             policy.RequireClaim("permissions", "users:read"));
-        
+
         // Custom policy with multiple requirements
         options.AddPolicy("SeniorEmployee", policy =>
             policy.Requirements.Add(new SeniorEmployeeRequirement()));
     });
-    
+
     // Register custom authorization handlers
     services.AddScoped<IAuthorizationHandler, MinimumAgeAuthorizationHandler>();
     services.AddScoped<IAuthorizationHandler, SeniorEmployeeAuthorizationHandler>();
@@ -255,14 +260,14 @@ public class RoleBasedAuthorizationService : IRoleBasedAuthorizationService
         try
         {
             var cacheKey = $"user_permissions_{userId}";
-            
+
             if (!_cache.TryGetValue(cacheKey, out List<Permission>? permissions))
             {
                 permissions = await GetUserPermissionsInternalAsync(userId);
                 _cache.Set(cacheKey, permissions, TimeSpan.FromMinutes(30));
             }
 
-            return permissions?.Any(p => 
+            return permissions?.Any(p =>
                 p.Resource.Equals(resource, StringComparison.OrdinalIgnoreCase) &&
                 p.Action.Equals(action, StringComparison.OrdinalIgnoreCase)) ?? false;
         }
@@ -379,15 +384,15 @@ public class InputSanitizationMiddleware
         if (context.Request.HasJsonContentType())
         {
             context.Request.EnableBuffering();
-            
+
             var body = await new StreamReader(context.Request.Body).ReadToEndAsync();
             context.Request.Body.Position = 0;
 
             if (ContainsPotentiallyMaliciousContent(body))
             {
-                _logger.LogWarning("Potentially malicious content detected in request from {RemoteIpAddress}", 
+                _logger.LogWarning("Potentially malicious content detected in request from {RemoteIpAddress}",
                     context.Connection.RemoteIpAddress);
-                
+
                 context.Response.StatusCode = 400;
                 await context.Response.WriteAsync("Invalid request content");
                 return;
@@ -410,7 +415,7 @@ public class InputSanitizationMiddleware
             "UNION SELECT", "OR 1=1", "' OR '1'='1", "; --"
         };
 
-        return maliciousPatterns.Any(pattern => 
+        return maliciousPatterns.Any(pattern =>
             content.Contains(pattern, StringComparison.OrdinalIgnoreCase));
     }
 }
@@ -455,7 +460,7 @@ public class UserRepository : IUserRepository
     {
         var affectedRows = await _context.Database.ExecuteSqlInterpolatedAsync(
             $"UPDATE Users SET Status = {status}, UpdatedAt = {DateTime.UtcNow} WHERE Id = {userId}");
-        
+
         return affectedRows > 0;
     }
 
@@ -484,7 +489,7 @@ public class SecurityHeadersMiddleware
     public async Task InvokeAsync(HttpContext context)
     {
         // Content Security Policy
-        context.Response.Headers.Add("Content-Security-Policy", 
+        context.Response.Headers.Add("Content-Security-Policy",
             "default-src 'self'; " +
             "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; " +
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
@@ -507,7 +512,7 @@ public class SecurityHeadersMiddleware
         // Strict Transport Security
         if (context.Request.IsHttps)
         {
-            context.Response.Headers.Add("Strict-Transport-Security", 
+            context.Response.Headers.Add("Strict-Transport-Security",
                 "max-age=31536000; includeSubDomains; preload");
         }
 
@@ -607,7 +612,7 @@ public class FieldEncryptionService : IFieldEncryptionService
         try
         {
             var encryptionKey = await _keyVaultService.GetSecretAsync("data-encryption-key");
-            
+
             using var aes = Aes.Create();
             aes.Key = Convert.FromBase64String(encryptionKey);
             aes.GenerateIV();
@@ -616,14 +621,14 @@ public class FieldEncryptionService : IFieldEncryptionService
             using var msEncrypt = new MemoryStream();
             using var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write);
             using var swEncrypt = new StreamWriter(csEncrypt);
-            
+
             swEncrypt.Write(data);
             csEncrypt.FlushFinalBlock();
 
             var iv = aes.IV;
             var encryptedBytes = msEncrypt.ToArray();
             var result = new byte[iv.Length + encryptedBytes.Length];
-            
+
             Buffer.BlockCopy(iv, 0, result, 0, iv.Length);
             Buffer.BlockCopy(encryptedBytes, 0, result, iv.Length, encryptedBytes.Length);
 
@@ -653,7 +658,7 @@ public class ApplicationDbContext : DbContext
 {
     private readonly IFieldEncryptionService _encryptionService;
 
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, 
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
         IFieldEncryptionService encryptionService) : base(options)
     {
         _encryptionService = encryptionService;
@@ -701,7 +706,7 @@ public class KeyVaultService : IKeyVaultService
     public async Task<string> GetSecretAsync(string secretName)
     {
         var cacheKey = $"secret:{secretName}";
-        
+
         if (_cache.TryGetValue(cacheKey, out string? cachedSecret))
         {
             return cachedSecret!;
@@ -710,10 +715,10 @@ public class KeyVaultService : IKeyVaultService
         try
         {
             var secret = await _secretClient.GetSecretAsync(secretName);
-            
+
             // Cache for 15 minutes
             _cache.Set(cacheKey, secret.Value.Value, TimeSpan.FromMinutes(15));
-            
+
             return secret.Value.Value;
         }
         catch (Exception ex)
@@ -728,10 +733,10 @@ public class KeyVaultService : IKeyVaultService
         try
         {
             await _secretClient.SetSecretAsync(secretName, secretValue);
-            
+
             // Invalidate cache
             _cache.Remove($"secret:{secretName}");
-            
+
             _logger.LogInformation("Secret {SecretName} updated successfully", secretName);
         }
         catch (Exception ex)
@@ -783,20 +788,20 @@ public class SecureConfigurationService
     {
         var config = new T();
         var section = _configuration.GetSection(sectionName);
-        
+
         // Bind configuration
         section.Bind(config);
-        
+
         // Replace secrets placeholders
         await ReplaceSecretsInConfiguration(config);
-        
+
         return config;
     }
 
     private async Task ReplaceSecretsInConfiguration<T>(T config) where T : class
     {
         var properties = typeof(T).GetProperties();
-        
+
         foreach (var property in properties)
         {
             if (property.PropertyType == typeof(string))
@@ -833,76 +838,76 @@ jobs:
   static-analysis:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Run CodeQL Analysis
-      uses: github/codeql-action/init@v3
-      with:
-        languages: csharp, javascript
-        
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v3
-      
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
-    
-    - name: SonarQube Security Scan
-      uses: sonarqube-quality-gate-action@master
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    
-    - name: Semgrep Security Scan
-      uses: returntocorp/semgrep-action@v1
-      with:
-        config: >-
-          p/security-audit
-          p/secrets
-          p/owasp-top-ten
+      - uses: actions/checkout@v4
+
+      - name: Run CodeQL Analysis
+        uses: github/codeql-action/init@v3
+        with:
+          languages: csharp, javascript
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+      - name: SonarQube Security Scan
+        uses: sonarqube-quality-gate-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Semgrep Security Scan
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: >-
+            p/security-audit
+            p/secrets
+            p/owasp-top-ten
 
   # === Dependency Scanning ===
   dependency-scan:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Run Snyk to check for vulnerabilities
-      uses: snyk/actions/dotnet@master
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        args: --severity-threshold=high
-    
-    - name: OWASP Dependency Check
-      uses: dependency-check/Dependency-Check_Action@main
-      with:
-        project: 'myproject'
-        path: '.'
-        format: 'ALL'
-        args: >
-          --enableRetired
-          --enableExperimental
-          --failOnCVSS 7
+      - uses: actions/checkout@v4
+
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/dotnet@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+
+      - name: OWASP Dependency Check
+        uses: dependency-check/Dependency-Check_Action@main
+        with:
+          project: "myproject"
+          path: "."
+          format: "ALL"
+          args: >
+            --enableRetired
+            --enableExperimental
+            --failOnCVSS 7
 
   # === Container Security Scanning ===
   container-scan:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Build Docker image
-      run: docker build -t myapp:test .
-    
-    - name: Run Trivy vulnerability scanner
-      uses: aquasecurity/trivy-action@master
-      with:
-        image-ref: 'myapp:test'
-        format: 'sarif'
-        output: 'trivy-results.sarif'
-    
-    - name: Upload Trivy scan results
-      uses: github/codeql-action/upload-sarif@v3
-      with:
-        sarif_file: 'trivy-results.sarif'
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t myapp:test .
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: "myapp:test"
+          format: "sarif"
+          output: "trivy-results.sarif"
+
+      - name: Upload Trivy scan results
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: "trivy-results.sarif"
 
   # === DAST - Dynamic Application Security Testing ===
   dynamic-security-test:
@@ -913,46 +918,46 @@ jobs:
         image: myapp:test
         ports:
           - 8080:80
-    
+
     steps:
-    - name: Wait for application to start
-      run: |
-        timeout 300 bash -c 'until curl -f http://localhost:8080/health; do sleep 5; done'
-    
-    - name: OWASP ZAP Baseline Scan
-      uses: zaproxy/action-baseline@v0.7.0
-      with:
-        target: 'http://localhost:8080'
-        rules_file_name: '.zap/rules.tsv'
-        cmd_options: '-a'
-    
-    - name: OWASP ZAP Full Scan
-      uses: zaproxy/action-full-scan@v0.4.0
-      with:
-        target: 'http://localhost:8080'
-        rules_file_name: '.zap/rules.tsv'
-        cmd_options: '-a'
+      - name: Wait for application to start
+        run: |
+          timeout 300 bash -c 'until curl -f http://localhost:8080/health; do sleep 5; done'
+
+      - name: OWASP ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.7.0
+        with:
+          target: "http://localhost:8080"
+          rules_file_name: ".zap/rules.tsv"
+          cmd_options: "-a"
+
+      - name: OWASP ZAP Full Scan
+        uses: zaproxy/action-full-scan@v0.4.0
+        with:
+          target: "http://localhost:8080"
+          rules_file_name: ".zap/rules.tsv"
+          cmd_options: "-a"
 
   # === API Security Testing ===
   api-security-test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: API Security Testing with Postman
-      run: |
-        npm install -g newman
-        newman run tests/security/api-security-tests.json \
-          --environment tests/security/test-environment.json \
-          --reporters cli,json \
-          --reporter-json-export results.json
-    
-    - name: Upload test results
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: api-security-results
-        path: results.json
+      - uses: actions/checkout@v4
+
+      - name: API Security Testing with Postman
+        run: |
+          npm install -g newman
+          newman run tests/security/api-security-tests.json \
+            --environment tests/security/test-environment.json \
+            --reporters cli,json \
+            --reporter-json-export results.json
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: api-security-results
+          path: results.json
 ```
 
 ### 2. Security Test Cases
@@ -1042,9 +1047,9 @@ public class AuthenticationSecurityTests
         {
             var loginRequest = new { Email = maliciousInput, Password = "password" };
             var response = await client.PostAsJsonAsync("/api/auth/login", loginRequest);
-            
+
             // Should return 400 Bad Request, not 500 Internal Server Error
-            Assert.IsTrue(response.StatusCode == HttpStatusCode.BadRequest || 
+            Assert.IsTrue(response.StatusCode == HttpStatusCode.BadRequest ||
                          response.StatusCode == HttpStatusCode.Unauthorized,
                          $"SQL injection attempt should be handled gracefully: {maliciousInput}");
         }
@@ -1068,7 +1073,7 @@ public class AuthenticationSecurityTests
         {
             var userUpdate = new { FirstName = payload };
             var response = await client.PutAsJsonAsync("/api/users/profile", userUpdate);
-            
+
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode,
                 $"XSS payload should be rejected: {payload}");
         }
@@ -1098,23 +1103,27 @@ public class AuthenticationSecurityTests
 The AI agent should automatically implement security measures based on:
 
 1. **Project Type Detection:**
+
    - Web Applications → CSRF protection, XSS prevention, secure headers
    - APIs → Rate limiting, input validation, JWT authentication
    - Microservices → mTLS, service mesh security, distributed tracing
    - Data-intensive → Field-level encryption, audit logging, data classification
 
 2. **Threat Level Assessment:**
+
    - **High-risk applications** (financial, healthcare) → Advanced encryption, comprehensive audit trails
    - **Medium-risk applications** → Standard security controls, regular scanning
    - **Low-risk applications** → Basic security measures, automated scanning
 
 3. **Compliance Requirements:**
+
    - **GDPR** → Data minimization, consent management, right to erasure
    - **HIPAA** → PHI encryption, access controls, audit logging
    - **PCI DSS** → Payment data protection, secure transmission, tokenization
    - **SOX** → Data integrity, access controls, audit trails
 
 4. **Security Testing Integration:**
+
    - Automatically add appropriate security tests based on application type
    - Configure security scanning tools in CI/CD pipeline
    - Set up security monitoring and alerting
@@ -1127,4 +1136,4 @@ The AI agent should automatically implement security measures based on:
 
 This security framework ensures that every application built with the AI agent follows security best practices from the ground up, making security a core part of the development process rather than an afterthought.
 
-[<< Back](../README.md)
+[<< Back](../../../README.md)

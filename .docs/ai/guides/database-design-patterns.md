@@ -1,41 +1,43 @@
-[<< Back](../README.md)
+[<< Back](../../../README.md)
 
 # Database Design Patterns Guide
 
 ## Overview
+
 This guide provides comprehensive database design patterns, data modeling best practices, and implementation strategies for building scalable, maintainable, and performant data layers. It covers relational design, NoSQL patterns, caching strategies, and data migration approaches.
 
 ## Database Architecture Patterns
 
 ### 1. Layered Database Architecture
+
 ```mermaid
 graph TB
     subgraph "Application Layer"
         A[Controllers/APIs]
         B[Business Logic/Services]
     end
-    
+
     subgraph "Data Access Layer"
         C[Repository Pattern]
         D[Unit of Work]
         E[Data Mappers]
         F[Query Objects]
     end
-    
+
     subgraph "Database Layer"
         G[Connection Pool]
         H[Transaction Management]
         I[Database Constraints]
         J[Stored Procedures]
     end
-    
+
     subgraph "Physical Storage"
         K[Primary Database]
         L[Read Replicas]
         M[Cache Layer]
         N[Search Index]
     end
-    
+
     A --> C
     B --> D
     C --> G
@@ -49,6 +51,7 @@ graph TB
 ```
 
 ### 2. CQRS with Database Separation
+
 ```mermaid
 graph LR
     subgraph "Command Side"
@@ -56,13 +59,13 @@ graph LR
         B --> C[Write Database]
         C --> D[Event Store]
     end
-    
+
     subgraph "Query Side"
         E[Read Queries] --> F[Query Handlers]
         F --> G[Read Database]
         G --> H[Projections]
     end
-    
+
     subgraph "Synchronization"
         I[Event Bus]
         D --> I
@@ -226,7 +229,7 @@ public class User : AggregateRoot<int>
         PasswordHash = passwordHash;
         Status = UserStatus.Active;
         CreatedBy = createdBy;
-        
+
         AddDomainEvent(new UserCreatedDomainEvent(Id, email.Value));
     }
 
@@ -284,9 +287,9 @@ public class User : AggregateRoot<int>
 
     public void RevokeRole(int roleId, string revokedBy)
     {
-        var userRole = _roles.FirstOrDefault(ur => ur.RoleId == roleId && 
+        var userRole = _roles.FirstOrDefault(ur => ur.RoleId == roleId &&
             (ur.ExpiresAt == null || ur.ExpiresAt > DateTime.UtcNow));
-        
+
         if (userRole == null) return;
 
         userRole.Revoke(revokedBy);
@@ -386,14 +389,14 @@ public class PersonName : ValueObject
     {
         if (string.IsNullOrWhiteSpace(firstName))
             throw new ArgumentException("First name cannot be empty", nameof(firstName));
-        
+
         if (string.IsNullOrWhiteSpace(lastName))
             throw new ArgumentException("Last name cannot be empty", nameof(lastName));
 
         return new PersonName(firstName.Trim(), lastName.Trim(), middleName?.Trim());
     }
 
-    public string FullName => string.IsNullOrEmpty(MiddleName) 
+    public string FullName => string.IsNullOrEmpty(MiddleName)
         ? $"{FirstName} {LastName}"
         : $"{FirstName} {MiddleName} {LastName}";
 
@@ -482,7 +485,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                 .HasColumnName("Email")
                 .HasMaxLength(254)
                 .IsRequired();
-            
+
             email.HasIndex(e => e.Value)
                 .IsUnique()
                 .HasDatabaseName("IX_Users_Email");
@@ -494,12 +497,12 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                 .HasColumnName("FirstName")
                 .HasMaxLength(50)
                 .IsRequired();
-            
+
             name.Property(n => n.LastName)
                 .HasColumnName("LastName")
                 .HasMaxLength(50)
                 .IsRequired();
-            
+
             name.Property(n => n.MiddleName)
                 .HasColumnName("MiddleName")
                 .HasMaxLength(50);
@@ -571,7 +574,7 @@ public class UserRoleConfiguration : IEntityTypeConfiguration<UserRole>
     public void Configure(EntityTypeBuilder<UserRole> builder)
     {
         builder.ToTable("UserRoles");
-        
+
         // Composite key
         builder.HasKey(ur => new { ur.UserId, ur.RoleId });
 
@@ -613,8 +616,8 @@ public class UserRoleConfiguration : IEntityTypeConfiguration<UserRole>
 
 ```csharp
 // Generic Repository Interface
-public interface IRepository<TEntity, TId> 
-    where TEntity : Entity<TId> 
+public interface IRepository<TEntity, TId>
+    where TEntity : Entity<TId>
     where TId : IEquatable<TId>
 {
     Task<TEntity?> GetByIdAsync(TId id, CancellationToken cancellationToken = default);
@@ -626,14 +629,14 @@ public interface IRepository<TEntity, TId>
     Task<TEntity?> FindFirstAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
     Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
     Task<int> CountAsync(Expression<Func<TEntity, bool>>? predicate = null, CancellationToken cancellationToken = default);
-    
+
     void Add(TEntity entity);
     void AddRange(IEnumerable<TEntity> entities);
     void Update(TEntity entity);
     void UpdateRange(IEnumerable<TEntity> entities);
     void Remove(TEntity entity);
     void RemoveRange(IEnumerable<TEntity> entities);
-    
+
     IQueryable<TEntity> AsQueryable();
 }
 
@@ -671,7 +674,7 @@ public class Repository<TEntity, TId> : IRepository<TEntity, TId>
         try
         {
             IQueryable<TEntity> query = DbSet;
-            
+
             foreach (var include in includes)
             {
                 query = query.Include(include);
@@ -847,7 +850,7 @@ public interface IUserRepository : IRepository<User, int>
 // User Repository Implementation
 public class UserRepository : Repository<User, int>, IUserRepository
 {
-    public UserRepository(ApplicationDbContext context, ILogger<UserRepository> logger) 
+    public UserRepository(ApplicationDbContext context, ILogger<UserRepository> logger)
         : base(context, logger)
     {
     }
@@ -875,8 +878,8 @@ public class UserRepository : Repository<User, int>, IUserRepository
         return await DbSet
             .Include(u => u.Roles)
                 .ThenInclude(ur => ur.Role)
-            .Where(u => u.Roles.Any(ur => 
-                ur.Role.Name == roleName && 
+            .Where(u => u.Roles.Any(ur =>
+                ur.Role.Name == roleName &&
                 (ur.ExpiresAt == null || ur.ExpiresAt > DateTime.UtcNow) &&
                 ur.RevokedAt == null))
             .ToListAsync(cancellationToken);
@@ -885,7 +888,7 @@ public class UserRepository : Repository<User, int>, IUserRepository
     public async Task<bool> EmailExistsAsync(string email, int? excludeUserId = null, CancellationToken cancellationToken = default)
     {
         var query = DbSet.Where(u => u.Email.Value == email.ToLower());
-        
+
         if (excludeUserId.HasValue)
         {
             query = query.Where(u => u.Id != excludeUserId.Value);
@@ -902,7 +905,7 @@ public class UserRepository : Repository<User, int>, IUserRepository
         if (!string.IsNullOrEmpty(criteria.Search))
         {
             var searchLower = criteria.Search.ToLower();
-            query = query.Where(u => 
+            query = query.Where(u =>
                 u.Email.Value.Contains(searchLower) ||
                 u.Name.FirstName.ToLower().Contains(searchLower) ||
                 u.Name.LastName.ToLower().Contains(searchLower));
@@ -915,7 +918,7 @@ public class UserRepository : Repository<User, int>, IUserRepository
 
         if (criteria.Roles?.Any() == true)
         {
-            query = query.Where(u => u.Roles.Any(ur => 
+            query = query.Where(u => u.Roles.Any(ur =>
                 criteria.Roles.Contains(ur.Role.Name) &&
                 (ur.ExpiresAt == null || ur.ExpiresAt > DateTime.UtcNow) &&
                 ur.RevokedAt == null));
@@ -942,7 +945,7 @@ public class UserRepository : Repository<User, int>, IUserRepository
         // Apply sorting
         query = criteria.SortBy?.ToLower() switch
         {
-            "email" => criteria.SortDirection == SortDirection.Ascending 
+            "email" => criteria.SortDirection == SortDirection.Ascending
                 ? query.OrderBy(u => u.Email.Value)
                 : query.OrderByDescending(u => u.Email.Value),
             "name" => criteria.SortDirection == SortDirection.Ascending
@@ -992,7 +995,7 @@ public interface IUnitOfWork : IDisposable
     IUserRepository Users { get; }
     IRoleRepository Roles { get; }
     IPermissionRepository Permissions { get; }
-    
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     Task<int> SaveChangesAsync(string userId, CancellationToken cancellationToken = default);
     Task BeginTransactionAsync(CancellationToken cancellationToken = default);
@@ -1023,12 +1026,12 @@ public class UnitOfWork : IUnitOfWork
         _logger = logger;
     }
 
-    public IUserRepository Users => _users ??= new UserRepository(_context, 
+    public IUserRepository Users => _users ??= new UserRepository(_context,
         _context.ServiceProvider.GetRequiredService<ILogger<UserRepository>>());
-    
+
     public IRoleRepository Roles => _roles ??= new RoleRepository(_context,
         _context.ServiceProvider.GetRequiredService<ILogger<RoleRepository>>());
-    
+
     public IPermissionRepository Permissions => _permissions ??= new PermissionRepository(_context,
         _context.ServiceProvider.GetRequiredService<ILogger<PermissionRepository>>());
 
@@ -1151,7 +1154,7 @@ public class UnitOfWork : IUnitOfWork
         {
             entry.State = EntityState.Detached;
         }
-        
+
         _logger.LogInformation("Detached {EntityCount} entities from context", entries.Count);
     }
 
@@ -1239,7 +1242,7 @@ public class MultiLevelCachingService : ICachingService
             if (!string.IsNullOrEmpty(distributedValue))
             {
                 var deserializedValue = JsonSerializer.Deserialize<T>(distributedValue, _jsonOptions);
-                
+
                 // Back-fill L1 cache
                 var memoryEntryOptions = new MemoryCacheEntryOptions
                 {
@@ -1268,7 +1271,7 @@ public class MultiLevelCachingService : ICachingService
         try
         {
             var absoluteExpiry = expiry ?? TimeSpan.FromMinutes(30);
-            
+
             // Set in L1 cache (memory)
             var memoryEntryOptions = new MemoryCacheEntryOptions
             {
@@ -1346,8 +1349,8 @@ public class CachedUserRepository : IUserRepository
     public async Task<User?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
     {
         var cacheKey = $"user:id:{id}";
-        
-        return await _cachingService.GetOrSetAsync(cacheKey, 
+
+        return await _cachingService.GetOrSetAsync(cacheKey,
             async () => await _innerRepository.GetByIdAsync(id, cancellationToken),
             TimeSpan.FromMinutes(15),
             cancellationToken);
@@ -1356,7 +1359,7 @@ public class CachedUserRepository : IUserRepository
     public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
     {
         var cacheKey = $"user:email:{email.ToLower()}";
-        
+
         return await _cachingService.GetOrSetAsync(cacheKey,
             async () => await _innerRepository.GetByEmailAsync(email, cancellationToken),
             TimeSpan.FromMinutes(10),
@@ -1366,7 +1369,7 @@ public class CachedUserRepository : IUserRepository
     public void Update(User entity)
     {
         _innerRepository.Update(entity);
-        
+
         // Invalidate cache
         InvalidateUserCache(entity.Id, entity.Email.Value);
     }
@@ -1386,9 +1389,9 @@ public class CachedUserRepository : IUserRepository
     }
 
     // Delegate other methods to inner repository...
-    public Task<List<User>> GetAllAsync(CancellationToken cancellationToken = default) => 
+    public Task<List<User>> GetAllAsync(CancellationToken cancellationToken = default) =>
         _innerRepository.GetAllAsync(cancellationToken);
-        
+
     // ... (implement other interface methods)
 }
 ```
@@ -1398,24 +1401,28 @@ public class CachedUserRepository : IUserRepository
 The AI agent should automatically implement database patterns based on:
 
 ### 1. **Domain Analysis:**
+
 - **Identify aggregates and entities** from use cases and business rules
 - **Design value objects** for domain concepts that have validation rules
 - **Create proper relationships** based on business requirements and data consistency needs
 - **Implement domain events** for cross-aggregate communication
 
 ### 2. **Performance Optimization:**
+
 - **Add appropriate indexes** based on query patterns and performance requirements
 - **Implement caching strategies** for frequently accessed data
 - **Configure connection pooling** and query optimization
 - **Set up read replicas** for read-heavy workloads
 
 ### 3. **Data Consistency:**
+
 - **Implement Unit of Work** for transaction management
 - **Add optimistic concurrency control** with row versions
 - **Design proper foreign key constraints** and cascade behaviors
 - **Implement audit trails** for sensitive data changes
 
 ### 4. **Scalability Patterns:**
+
 - **Database sharding** for large datasets
 - **CQRS implementation** for read/write separation
 - **Event sourcing** for audit requirements
@@ -1423,4 +1430,4 @@ The AI agent should automatically implement database patterns based on:
 
 This comprehensive database framework ensures that the AI agent can build robust, scalable, and maintainable data layers that follow domain-driven design principles and industry best practices.
 
-[<< Back](../README.md)
+[<< Back](../../../README.md)

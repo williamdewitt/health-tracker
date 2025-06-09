@@ -28,7 +28,7 @@ Say goodbye to boilerplate code, setup headaches, and architectural decisions. T
 
 ### Step 2: Tell the AI What You Want (1 minute)
 
-1. Open `.github/prompts/initialize.md` and copy the super-prompt
+1. Open `.docs/ai/prompts/initialize.md` and copy the super-prompt
 2. Paste it into your AI assistant and describe your project:
 
 ```
@@ -204,32 +204,32 @@ custom dashboards, data visualization, and team collaboration"
 
 ### 🧠 For AI/ML Enthusiasts
 
-- **[Framework Intelligence Guide](.docs/framework-intelligence.md)** - How the AI makes smart architectural decisions
-- **[Pattern Recognition System](.docs/pattern-recognition-implementation.md)** - Automatic project classification algorithms
-- **[Error Recovery Automation](.docs/error-recovery-automation.md)** - Self-healing development processes
+- **[Framework Intelligence Guide](.docs/ai/guides/framework-intelligence.md)** - How the AI makes smart architectural decisions
+- **[Pattern Recognition System](.docs/ai/guides/pattern-recognition-implementation.md)** - Automatic project classification algorithms
+- **[Error Recovery Automation](.docs/ai/guides/error-recovery-automation.md)** - Self-healing development processes
 
 ### 🏗️ For Architecture Nerds
 
 - **[Design Principles](.docs/design.md)** - iDesign, SOLID, and Clean Architecture patterns
-- **[System Components](.docs/designs/2_system_components.md)** - Component architecture breakdown
-- **[Security Framework](.docs/security_framework.md)** - Zero Trust and secure coding practices
+- **[System Components](.docs/designs/2-system-components.md)** - Component architecture breakdown
+- **[Security Framework](.docs/ai/guides/security-framework.md)** - Zero Trust and secure coding practices
 
 ### 🔧 For DevOps Engineers
 
-- **[Enhanced Progress Tracking](.docs/enhanced-progress-tracking.md)** - Advanced milestone and recovery systems
-- **[Smart Decision Trees](.docs/smart-decision-trees.md)** - Autonomous development decision-making
-- **[DevOps & CI/CD](.docs/devops_cicd.md)** - Production deployment pipelines
+- **[Enhanced Progress Tracking](.docs/ai/guides/enhanced-progress-tracking.md)** - Advanced milestone and recovery systems
+- **[Smart Decision Trees](.docs/ai/guides/smart-decision-trees.md)** - Autonomous development decision-making
+- **[DevOps & CI/CD](.docs/ai/guides/devops-cicd.md)** - Production deployment pipelines
 
 ### 📖 Full Documentation Index
 
-**[Complete Documentation Index](.docs/INDEX.md)** - Browse all guides, examples, and technical documentation
+**[Complete Documentation Index](.docs/ai/guides/index.md)** - Browse all guides, examples, and technical documentation
 
 ## 🤝 Community & Support
 
-- **🐛 Issues & Questions**: [GitHub Issues](https://github.com/yourusername/fa.templates.vibe-coding/issues)
-- **💡 Feature Requests**: [GitHub Discussions](https://github.com/yourusername/fa.templates.vibe-coding/discussions)
-- **📖 Full Documentation**: [Complete Guide Index](.docs/INDEX.md)
-- **🤝 Contributing**: [Contribution Guidelines](.docs/support_contribute.md)
+- **🐛 Issues & Questions**: [GitHub Issues](https://github.com/frostaura/fa.templates.vibe-coding/issues)
+- **💡 Feature Requests**: [GitHub Discussions](https://github.com/frostaura/fa.templates.vibe-coding/discussions)
+- **📖 Full Documentation**: [Complete Guide Index](.docs/ai/guides/index.md)
+- **🤝 Contributing**: [Contribution Guidelines](.docs/support-contribute.md)
 
 ## 🙏 Credits & Inspiration
 
@@ -243,6 +243,6 @@ Built on the shoulders of giants:
 
 ---
 
-**🚀 Ready to build something amazing? Start with the super-prompt in `.github/prompts/initialize.md`**
+**🚀 Ready to build something amazing? Start with the super-prompt in `.docs/ai/prompts/initialize.md`**
 
 _Transform your ideas into production-ready applications - no setup required, just describe what you want to build!_

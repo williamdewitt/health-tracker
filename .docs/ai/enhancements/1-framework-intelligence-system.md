@@ -351,14 +351,14 @@ AUTOMATED QUALITY MANAGEMENT:
 5. `.docs/error-recovery-automation.md` - Intelligent error handling system
 6. `.docs/smart-decision-trees.md` - Autonomous decision-making protocols
 7. `.docs/enhanced-progress-tracking.md` - Advanced progress management
-8. `.docs/ENHANCEMENTS_SUMMARY.md` - Comprehensive enhancement documentation
+8. `.docs/enhancements-summary.md` - Comprehensive enhancement documentation
 
 ### Enhanced Framework Files:
 
 1. `.github/prompts/initialize.md` - Integrated advanced intelligence features
 2. `.github/workflows/containerization_workflow.yml` - Production-ready CI/CD
 3. `README.md` - Updated with intelligence capabilities
-4. `.docs/INDEX.md` - Added AI Agent documentation sections
+4. `.docs/ai/guides/index.md` - Added AI Agent documentation sections
 
 ## 🎯 Implementation Impact
 
