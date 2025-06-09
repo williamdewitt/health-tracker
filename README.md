@@ -1,361 +1,248 @@
-# 🚀 AI Coding Framework: Autonomous Software Development
+# 🚀 AI Coding Framework: Smart Software Development
 
-**An autonomous, production-ready AI agent framework that designs and implements complete software systems following modern architectural patterns and industry best practices.**
+**Transform your ideas into production-ready applications in minutes. Just describe what you want to build, and our intelligent AI framework handles the rest.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-green.svg)]()
-[![Architecture](https://img.shields.io/badge/Architecture-iDesign%20Principles-blue.svg)]()
+[![AI Enhanced](https://img.shields.io/badge/AI-Enhanced%20Intelligence-purple.svg)]()
 
-## 🎯 What is the AI Coding Framework?
+## ✨ What Makes This Special?
 
-The AI Coding Framework is a comprehensive AI agent framework that transforms high-level requirements into production-ready software systems. It combines:
+Say goodbye to boilerplate code, setup headaches, and architectural decisions. This framework uses advanced AI intelligence to:
 
-- **🏗️ Modern Architecture Patterns** - Follows iDesign principles, SOLID, and Clean Architecture
-- **🔄 Autonomous Development** - Minimal human intervention required after initial requirements
-- **🛡️ Security-First Design** - Built-in security patterns and threat modeling
-- **⚡ Production-Ready Output** - Complete CI/CD, testing, monitoring, and deployment
-- **📚 Comprehensive Documentation** - Auto-generated technical docs and architectural diagrams
+- **🧠 Think Like a Senior Developer** - Automatically chooses the right architecture patterns for your project
+- **🎯 Build Complete Systems** - Frontend, backend, database, smart contracts, CI/CD, and deployment - all included
+- **🛡️ Focus on Quality** - Zero warnings, 100% test coverage, security built-in
+- **⚡ Ship Fast** - From idea to deployed application in one conversation
 
-**Built for Advanced AI Platforms** - Optimized prompts and workflows designed specifically for advanced AI reasoning and code generation capabilities.
+**Perfect for:** Developers who want to focus on solving business problems instead of wrestling with setup and boilerplate.
 
-## 🤖 AI Platform Compatibility
+## 🚀 Get Started in 3 Steps
 
-The AI Coding Framework is designed specifically for integrated development environments with native AI capabilities:
+### Step 1: Setup (2 minutes)
 
-### 🎯 **Supported Platforms**
-- **GitHub Copilot in VS Code** - Full agent-mode support with autonomous workflows using Copilot Chat
-- **Cursor AI IDE** - Native AI-powered development environment with excellent framework compatibility
-
-### 💡 **Platform-Specific Benefits**
-- **Cursor AI**: Built-in codebase awareness, seamless multi-file editing with Cursor Composer, integrated terminal
-- **GitHub Copilot**: Deep VS Code integration, repository context, collaborative features through Copilot Chat
-
-The framework's super-prompt is designed to work within these integrated development environments, leveraging their native AI capabilities and codebase context awareness.
-
-## ✨ Key Features
-
-### 🤖 Autonomous AI Agent
-- **Smart Decision Trees**: Automatically progresses through development phases
-- **Context-Aware Suggestions**: Adapts to project patterns and requirements
-- **Error Recovery**: Built-in resilience patterns and failure handling
-- **Quality Gates**: 100% test coverage, zero build warnings, perfect linting scores
-
-### 🏛️ Architecture Excellence
-- **iDesign Principles**: Manager, Engine, Data Access layer separation
-- **SOLID Compliance**: Dependency injection, interface segregation, single responsibility
-- **Design Patterns**: Repository, Unit of Work, Factory, Strategy patterns
-- **Clean Code**: Zero warnings, 100% linting compliance, comprehensive documentation
-
-### 🔐 Security Framework
-- **Zero Trust Architecture**: Defense in depth, least privilege principles
-- **Authentication & Authorization**: OAuth 2.0, JWT, RBAC patterns
-- **Secure Coding**: Input validation, XSS prevention, SQL injection protection
-- **Automated Security Testing**: SAST, DAST, dependency scanning
-
-### 🚀 Full-Stack Capabilities
-- **Frontend**: React + TypeScript + Vite with modern UI patterns
-- **Backend**: ASP.NET Core Web API with clean architecture
-- **Database**: PostgreSQL with Entity Framework and advanced patterns
-- **DevOps**: Complete CI/CD pipelines, Infrastructure as Code
-- **APIs**: RESTful design with OpenAPI documentation
-
-## 🚦 Quick Start
-
-### 1. Set Up Your Development Environment
 1. **Fork this repository** to your GitHub account
-2. **Choose your AI development environment**:
-   - **Cursor AI**: Download from cursor.sh (recommended for seamless AI integration)
-   - **VS Code + GitHub Copilot**: Install VS Code with the GitHub Copilot extension
-3. **Clone your forked repository** and open it in your chosen environment
+2. **Open in your AI-powered IDE**:
+   - [Cursor AI](https://cursor.sh) (recommended - built for AI coding)
+   - VS Code with GitHub Copilot
 
-### 2. Initialize the AI Agent Framework
-**For Cursor AI Users:**
-1. **Open the super-prompt** from `.github/prompts/initialize.md`
-2. **Use Cursor's Composer** or Chat feature to load the framework
-3. **Enable codebase indexing** for full context awareness
+### Step 2: Tell the AI What You Want (1 minute)
 
-**For GitHub Copilot Users:**  
-1. **Open GitHub Copilot Chat** in VS Code (Ctrl+Shift+I / Cmd+Shift+I)
-2. **Enable Agent Mode** (crucial for autonomous operation)
-3. **Paste the super-prompt** from `.github/prompts/initialize.md` into Copilot Chat
-
-### 3. Start a New Project
-Simply describe what you want to build:
+1. Open `.github/prompts/initialize.md` and copy the super-prompt
+2. Paste it into your AI assistant and describe your project:
 
 ```
-"I want to build a task management application with user authentication, 
-real-time updates, and mobile API support"
+"Build a task management app with user authentication,
+real-time updates, and team collaboration features"
 ```
 
-### 4. Let the AI Agent Work
-The framework will automatically:
-- Extract and refine requirements
-- Design system architecture
-- Generate comprehensive documentation
-- Implement the complete solution with **zero warnings**
-- Ensure **100% linting compliance** across all stacks
-- Set up CI/CD and deployment
-- Create tests and monitoring
-- **Build and push Docker images for all services**
-- **Remove template workflows and replace with production-ready CI/CD**
+### Step 3: Watch the Magic ✨
 
-## 🎯 **Code Quality Standards**
+The AI will automatically:
 
-### **100% Quality Compliance**
-- **🔍 Perfect Linting**: Zero ESLint, TSLint, StyleCop violations
-- **⚠️ Zero Warnings**: Clean builds with no compiler warnings
-- **📝 Complete Documentation**: Full JSDoc, XML docs, inline comments
-- **🎨 Consistent Formatting**: Prettier, EditorConfig compliance
-- **🔒 Type Safety**: Strict TypeScript, nullable reference types in C#
-- **📐 Code Standards**: SOLID principles, clean architecture patterns
+- ✅ Design the complete system architecture
+- ✅ Generate beautiful, responsive frontend
+- ✅ Build secure backend with clean architecture
+- ✅ Set up database with optimized schemas
+- ✅ Create Docker containers and CI/CD pipeline
+- ✅ Include comprehensive tests and documentation
+- ✅ Deploy everything to production
 
-### **Automated Quality Gates**
-- **Pre-commit**: Linting, formatting, type checking
-- **Build Pipeline**: Zero tolerance for warnings or violations
-- **Code Coverage**: 100% test coverage requirement
-- **Security Scanning**: Automated vulnerability detection
-- **Container Builds**: Automated Docker builds and registry pushes
-- **Template Cleanup**: Removes example workflows and replaces with production CI/CD
+**Result:** A complete, production-ready application in one conversation!
 
-## 🐳 **Containerization & Deployment**
+## 🧠 Advanced AI Intelligence (What Makes This Smart)
 
-### **Automated Container Workflow**
-The framework automatically generates production-ready GitHub Actions workflows that:
+### 🎯 Automatic Project Understanding
 
-- **🔨 Build Docker Images**: Creates optimized multi-stage Dockerfiles for each service
-- **📤 Push to Registry**: Automatically pushes to Docker Hub/ACR/ECR with proper tagging
-- **🧹 Clean Up Templates**: Removes the example `containerization_workflow.yml` template
-- **⚡ Production Pipeline**: Replaces templates with complete CI/CD including:
-  - Quality gates and security scanning
-  - Multi-environment deployment (dev/staging/prod)
-  - Health checks and rollback procedures
-  - Container registry integration
+- **Smart Classification**: Analyzes your requirements to choose the perfect architecture
+- **Technology Selection**: Picks the best tech stack for your specific use case
+- **Pattern Recognition**: Detects keywords like "payment" → applies e-commerce patterns, "real-time" → adds WebSocket support
 
-### **Final Delivery Includes**
-- ✅ **Production Dockerfiles** for all services/components
-- ✅ **GitHub Actions workflows** with complete CI/CD pipeline
-- ✅ **Container orchestration** files (docker-compose.yml, Kubernetes manifests)
-- ✅ **Registry integration** with automated builds and pushes
-- ❌ **Template workflows removed** (containerization_workflow.yml deleted)
+### 🎨 Visual Intelligence
 
-## 📋 Supported Project Types
+- **Design Context Awareness**: Processes visual inspiration to create stunning, modern UIs
+- **Brand Adaptation**: Applies your color preferences and design style automatically
+- **Responsive Excellence**: Ensures beautiful experiences across all devices
 
-The framework automatically detects and applies optimal patterns for:
+### 🛡️ Built-in Quality & Security
 
-| Project Type | Architecture | Key Features |
-|--------------|--------------|--------------|
-| **Web Applications** | Layered Monolith | React + ASP.NET Core + PostgreSQL |
-| **Microservices** | Event-Driven | API Gateway + Service Discovery + Observability |
-| **Data-Intensive** | CQRS | Read/Write Separation + Caching + Analytics |
-| **Mobile Backend** | API-First | Offline Support + Push Notifications + Sync |
+- **Zero Tolerance Standards**: 100% test coverage, zero build warnings, perfect linting
+- **Security by Default**: Authentication, authorization, input validation, and security scanning
+- **Production Ready**: CI/CD pipelines, containerization, monitoring, and deployment
 
-## 🛠️ Technology Stack
+### 🔧 Error Recovery & Resilience
 
-### Default Stack
-- **Frontend**: React 18 + TypeScript + Vite + Styled Components
-- **Backend**: ASP.NET Core 8.0 (LTS) + Web API
-- **Database**: PostgreSQL + Entity Framework Core
-- **Authentication**: JWT + Refresh Tokens
-- **CI/CD**: GitHub Actions
-- **Containerization**: Docker + Docker Compose
-- **Production**: Kubernetes + Helm
+- **Timeout Recovery**: Automatically resumes if the AI session is interrupted
+- **Context Preservation**: Maintains full project context across multiple sessions
+- **Progressive Anchoring**: Smart checkpoints ensure no work is ever lost
 
-### Smart Defaults by Project Scale
-- **Small (1-5 use cases)**: Monolithic architecture
-- **Medium (6-15 use cases)**: Modular monolith  
-- **Large (16+ use cases)**: Microservices architecture
+## 🎯 What You Get
 
-## 📖 Documentation
+Every project built with this framework includes:
 
-### 🚀 Getting Started
-| Document | Description |
-|----------|-------------|
-| [Quick Start Guide](.docs/QUICKSTART.md) | Get up and running in 5 minutes |
-| [Usage Examples](.docs/examples/) | Detailed examples for different project types |
-| [Troubleshooting Guide](.docs/TROUBLESHOOTING.md) | Common issues and solutions |
+### 📱 **Beautiful Frontend**
 
-### 🏗️ Architecture & Design
-| Document | Description |
-|----------|-------------|
-| [Design Guidelines](.docs/design.md) | Core architectural principles and patterns |
-| [System Components](.docs/designs/2_system_components.md) | Component architecture with iDesign principles |
-| [Class Diagrams](.docs/designs/3_class.md) | Domain models and SOLID compliance |
-| [Sequence Diagrams](.docs/designs/4_sequence.md) | Business flow documentation |
+- Modern React application with TypeScript
+- Responsive design that works on all devices
+- Styled components with your chosen design inspiration
+- Performance optimized with lazy loading and caching
 
-### 🔐 Security & Quality
-| Document | Description |
-|----------|-------------|
-| [Code Quality Standards](.docs/code_quality_standards.md) | **100% linting compliance, zero warnings policy** |
-| [Security Framework](.docs/security_framework.md) | Zero Trust architecture and secure coding |
-| [Error Handling](.docs/error_handling.md) | Resilience patterns and error recovery |
-| [Testing Strategy](.docs/testing_strategy.md) | Comprehensive testing approach |
+### ⚡ **Robust Backend**
 
-### 🚀 Implementation & Operations  
-| Document | Description |
-|----------|-------------|
-| [API Design Standards](.docs/api_design_standards.md) | RESTful API patterns and documentation |
-| [Database Design](.docs/database_design_patterns.md) | Data modeling and repository patterns |
-| [DevOps & CI/CD](.docs/devops_cicd.md) | Deployment pipelines and infrastructure |
-| [Repository Structure](.docs/repo_structure.md) | Project organization standards |
+- Clean architecture ASP.NET Core Web API
+- Secure authentication and authorization
+- RESTful APIs with OpenAPI documentation
+- Database integration with Entity Framework
 
-## 🎯 Usage Examples
+### 🐳 **Production Infrastructure**
 
-### 🚀 Quick Start Guide
+- Docker containers for all services
+- GitHub Actions CI/CD pipeline
+- Automated testing and security scanning
+- One-click deployment to cloud platforms
 
-#### Step 1: Setup Your Workspace
-1. **Fork this repository** to your GitHub account
-2. **Clone to your local machine** or open directly in your AI-powered IDE
-3. **Open in your AI platform**: Cursor AI, GitHub Copilot in VS Code, or similar
+### 📚 **Complete Documentation**
 
-#### Step 2: Gather Visual Inspiration (CRITICAL for Beautiful UIs)
-**🎨 IMPORTANT**: Before starting, prepare visual inspiration to ensure your frontend looks stunning:
+- Architecture diagrams and technical docs
+- API documentation with examples
+- Deployment guides and troubleshooting
+- Code comments and inline documentation
 
-- **Screenshot Method**: Take screenshots of apps/websites whose design you admire
-- **Reference Apps**: Think of 2-3 specific applications with visual styles you want to emulate
-- **Design Style**: Consider minimalist (Linear, Notion), rich (Stripe, GitHub), creative (Figma, Framer), or enterprise (Vercel, DataDog)
-- **Color Preferences**: Think about your preferred color palette or brand colors
+## 💡 Perfect For Building
 
-**💡 Pro Tip**: The AI will persistently ask for visual direction until you provide clear inspiration - this ensures your final product has professional, modern design quality!
+The AI automatically detects your project type and applies the right patterns:
 
-#### Step 3: Initialize with Super-Prompt
-1. **Open the initialize prompt**: `.github/prompts/initialize.md`
-2. **Copy the entire prompt** into your AI assistant
-3. **Start the conversation** with your project idea
-4. **Share visual inspiration** when prompted (this is mandatory for beautiful frontends!)
+| **What You Want to Build** | **What You Get**                                          |
+| -------------------------- | --------------------------------------------------------- |
+| 🛒 **E-commerce Store**    | Product catalog, shopping cart, payments, admin dashboard |
+| 💬 **Chat Application**    | Real-time messaging, user presence, message history       |
+| 📋 **Task Manager**        | User accounts, team collaboration, real-time updates      |
+| 📱 **Mobile Backend**      | REST APIs, push notifications, offline sync               |
+| 📊 **Analytics Dashboard** | Data visualization, reporting, user management            |
+| 🎮 **Gaming Platform**     | User profiles, leaderboards, real-time gameplay           |
 
-#### Step 4: Let the AI Work Its Magic
-The framework will autonomously:
-- ✅ Gather detailed requirements through intelligent questioning  
-- ✅ Design complete system architecture with modern patterns
-- ✅ Generate production-ready code with 100% test coverage
-- ✅ Create beautiful, responsive frontend based on your visual inspiration
-- ✅ Set up CI/CD pipelines with automated Docker builds
-- ✅ Include comprehensive documentation and deployment guides
+## 🔄 If Something Goes Wrong
 
-### ⚠️ Auto-Formatting Warning (READ THIS!)
+### AI Session Timeout Recovery
 
-**🚨 ATTENTION CURSOR/COPILOT USERS**: 
-Your IDE's auto-formatting features might interfere with the AI's code generation process! If you experience:
-- Code getting reformatted mid-generation
-- Inconsistent spacing or indentation
-- Incomplete code blocks
+If your AI assistant stops responding or times out:
 
-**Quick Fix**: Temporarily disable auto-format-on-save and auto-format-on-paste in your IDE settings during the initial generation phase. You can re-enable them once the AI completes the implementation.
+1. **Wait 1-2 minutes** for quotas to reset
+2. **Look for the last progress marker** (📍 [MILESTONE: name] XX%)
+3. **Hit regenerate** - the AI will resume from where it left off
+4. **Switch AI models** if needed - the framework works across different platforms
 
-**Why this happens**: The framework generates code with specific formatting patterns for consistency, and competing auto-formatters can create a formatting battle that confuses the AI generation process.
+The framework's smart progress tracking ensures you never lose work, even if you switch between Cursor, Copilot, or different AI models mid-project.
 
-**Cursor Users**: `Settings → Features → Format on Save` (temporarily disable)
-**VS Code Users**: `Settings → Text Editor → Formatting → Format on Save` (temporarily disable)
+### Common Issues
 
-Don't worry - the final code will be perfectly formatted according to the framework's quality standards! 🎯
+- **Formatting conflicts**: Temporarily disable auto-format-on-save during initial generation
+- **Missing visual inspiration**: The AI will keep asking until you provide design direction
+- **Model quotas**: Switch between AI platforms seamlessly using progress markers
 
-### 🔄 AI Agent Timeout Recovery
+## 🎨 Pro Tips for Best Results
 
-**🚨 IMPORTANT - AGENT TIMEOUT HANDLING**: 
-If your AI agent times out, cuts out, or stops responding during the development process:
+### Visual Inspiration is Key
 
-#### 🛠️ **Immediate Recovery Steps**
-1. **Wait 1-2 minutes** - Allow any background processes to complete and quotas to reset
-2. **Hit the regenerate button** - This will resume the agent from where it left off
-3. **Check the last progress message** - Look for the most recent `📍 [MILESTONE: name] (percentage%)` marker
-4. **Continue from the last milestone** - The agent will automatically pick up context from progress markers
+- **Screenshot apps you love**: The AI uses these to create beautiful, modern interfaces
+- **Mention specific design styles**: "Clean like Linear" or "Rich like Stripe"
+- **Share color preferences**: Brand colors or general palette preferences
+- **Reference successful apps**: "Social features like Discord" or "Dashboard like Vercel"
 
-#### 🔄 **Model Switching Strategy**
-When hitting quota limits, you can seamlessly switch between AI models:
-- **Sonnet 3.7** ↔ **Sonnet 4**: Both models understand the framework's progress tracking system
-- **GPT-4** ↔ **Claude**: The progress markers work across different AI platforms
-- **Copilot** ↔ **Cursor**: Framework is compatible with multiple development environments
+### Project Description Tips
 
-#### 📊 **Why Timeouts Happen**
-- **Model Quota Limits**: Advanced AI models have usage quotas that reset over time
-- **Large Project Complexity**: Complex projects require extensive context processing
-- **Long-Running Operations**: Build processes, package installations, and code generation
-- **Multi-Model Usage**: Switching between model versions (e.g., Sonnet 3.7 → Sonnet 4)
-- **Session Duration**: Extended development sessions may hit platform time limits
+- **Be specific about features**: "User authentication, real-time chat, file uploads"
+- **Mention scale**: "Support 1000+ concurrent users" or "Personal project"
+- **Include integrations**: "Stripe payments, SendGrid emails, AWS storage"
+- **Specify platforms**: "Web app with mobile API" or "Desktop and mobile"
 
-#### 🎯 **Recovery Best Practices**
-- **Progress Anchoring**: The framework's progress system creates automatic recovery checkpoints
-- **Context Preservation**: Each milestone contains enough context for seamless continuation
-- **Incremental Commits**: Regular git commits ensure work is never lost
-- **Modular Structure**: One-definition-per-file organization makes partial recovery easier
-- **State Documentation**: Architecture decisions and patterns are documented throughout
+## 📚 Real Examples
 
-#### 🚀 **Framework Advantage**
-The AI Coding Framework is specifically designed for timeout resilience:
-- **📍 Progress Markers**: Every 3-5 actions include contextual anchors
-- **🏗️ Milestone Structure**: Clear phases that can be resumed independently  
-- **📚 Documentation**: Self-documenting code that AI agents can read and understand
-- **🔄 Idempotent Operations**: Safe to re-run commands without causing conflicts
-
-**Pro Tip**: The framework's enhanced progress tracking system (updated based on user feedback) provides even more frequent checkpoints and detailed context anchoring for better recovery! 📍
-
-### Example 1: E-commerce Platform
-**Setup:** Fork this repo → Open in your AI platform → Use super-prompt
+### E-commerce Platform
 
 ```
-Input: "Build an e-commerce platform with user accounts, product catalog, 
-shopping cart, payment integration, and admin dashboard"
+Input: "Build an online store with user accounts, product catalog,
+shopping cart, Stripe payments, and admin dashboard"
 
-Output: Complete solution with:
-- React storefront with responsive design
-- ASP.NET Core API with clean architecture  
-- PostgreSQL with optimized schemas
-- Stripe payment integration
-- Admin dashboard with analytics
-- Docker containerization with multi-service builds
-- CI/CD pipeline with automated Docker pushes
-- Production deployment manifests
+✅ Complete React storefront with product browsing and cart
+✅ Secure payment processing with Stripe integration
+✅ Admin dashboard for inventory and order management
+✅ User authentication and account management
+✅ Docker containers and CI/CD pipeline
+✅ Production deployment with monitoring
 ```
 
-### Example 2: Real-time Chat Application
-**Setup:** Fork this repo → Open in your AI platform → Use super-prompt
+### Team Chat Application
 
 ```
-Input: "Create a real-time chat application with multiple rooms, 
-user presence, message history, and mobile support"
+Input: "Create a Slack-like chat app with multiple channels,
+direct messages, file sharing, and user presence"
 
-Output: Complete solution with:
-- React chat interface with real-time updates
-- SignalR for WebSocket communication
-- Event-driven architecture
-- Redis for presence and caching
-- Mobile-optimized API endpoints
-- Kubernetes deployment manifests
-- GitHub Actions pipeline with container registry integration
-- Template workflows cleaned up and replaced
+✅ Real-time messaging with WebSocket support
+✅ Channel management and direct messaging
+✅ File upload and sharing capabilities
+✅ User presence and online status
+✅ Mobile-responsive design
+✅ Complete backend API with authentication
 ```
 
-## 🔄 Development Workflow
+### SaaS Analytics Dashboard
 
-1. **Requirements Gathering** → AI extracts and refines requirements
-2. **Architecture Design** → System components and technical decisions  
-3. **Implementation Planning** → Detailed milestone breakdown
-4. **Autonomous Development** → Complete solution implementation
-5. **Quality Assurance** → Automated testing and security scanning
-6. **Production Deployment** → CI/CD pipeline and infrastructure setup
+```
+Input: "Build a data analytics platform with user accounts,
+custom dashboards, data visualization, and team collaboration"
 
-## 🤝 Contributing
+✅ Interactive dashboards with charts and metrics
+✅ Custom widget builder for data visualization
+✅ Multi-tenant architecture with team workspaces
+✅ Data pipeline integration and real-time updates
+✅ Role-based access control and user management
+✅ Scalable architecture with microservices
+```
 
-We welcome contributions! Please see [Support & Contribute](.docs/support_contribute.md) for:
-- How to report issues
-- Contributing guidelines
-- Code of conduct
-- Community resources
+## 🚀 Advanced Features & Documentation
 
-## 📜 License
+### 🧠 For AI/ML Enthusiasts
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- **[Framework Intelligence Guide](.docs/framework-intelligence.md)** - How the AI makes smart architectural decisions
+- **[Pattern Recognition System](.docs/pattern-recognition-implementation.md)** - Automatic project classification algorithms
+- **[Error Recovery Automation](.docs/error-recovery-automation.md)** - Self-healing development processes
 
-## 🙏 Acknowledgments
+### 🏗️ For Architecture Nerds
 
-**Special thanks to [Conway Osler](https://www.linkedin.com/in/conway-osler?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)**, colleague and friend, for the project inspiration that made this framework possible.
+- **[Design Principles](.docs/design.md)** - iDesign, SOLID, and Clean Architecture patterns
+- **[System Components](.docs/designs/2_system_components.md)** - Component architecture breakdown
+- **[Security Framework](.docs/security_framework.md)** - Zero Trust and secure coding practices
 
-Built with modern software engineering principles:
+### 🔧 For DevOps Engineers
+
+- **[Enhanced Progress Tracking](.docs/enhanced-progress-tracking.md)** - Advanced milestone and recovery systems
+- **[Smart Decision Trees](.docs/smart-decision-trees.md)** - Autonomous development decision-making
+- **[DevOps & CI/CD](.docs/devops_cicd.md)** - Production deployment pipelines
+
+### 📖 Full Documentation Index
+
+**[Complete Documentation Index](.docs/INDEX.md)** - Browse all guides, examples, and technical documentation
+
+## 🤝 Community & Support
+
+- **🐛 Issues & Questions**: [GitHub Issues](https://github.com/yourusername/fa.templates.vibe-coding/issues)
+- **💡 Feature Requests**: [GitHub Discussions](https://github.com/yourusername/fa.templates.vibe-coding/discussions)
+- **📖 Full Documentation**: [Complete Guide Index](.docs/INDEX.md)
+- **🤝 Contributing**: [Contribution Guidelines](.docs/support_contribute.md)
+
+## 🙏 Credits & Inspiration
+
+**Special thanks to [Conway Osler](https://www.linkedin.com/in/conway-osler)** for the project inspiration that started this framework.
+
+Built on the shoulders of giants:
+
 - **iDesign Architecture** by Juval Löwy
-- **Clean Architecture** by Robert C. Martin  
+- **Clean Architecture** by Robert C. Martin
 - **Domain-Driven Design** by Eric Evans
-- **Microservices Patterns** by Chris Richardson
 
 ---
 
-**Ready to build production-ready software with AI? Get started with the super-prompt in `.github/prompts/initialize.md`!** 🚀
+**🚀 Ready to build something amazing? Start with the super-prompt in `.github/prompts/initialize.md`**
+
+_Transform your ideas into production-ready applications - no setup required, just describe what you want to build!_
