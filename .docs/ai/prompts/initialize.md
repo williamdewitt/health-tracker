@@ -87,8 +87,10 @@ Action 5: MANDATORY CONTEXT VALIDATION CHECKPOINT
 📍 **[MILESTONE: {name}] ({progress}%) - {action}**
 🔄 Context: {current_phase} | Pattern: {example_pattern_used}
 🏗️ Stack: {tech_decisions} | Design: {visual_direction_status}
+🎨 UI/UX: {requirements_status} | Beauty: {standards_compliance}/100
 📚 Docs: {design_docs_referenced} | Next: {next_2_actions}
 ✅ Quality: {linting_status} | {build_status} | {test_status}
+🧪 Frontend: {testing_status} | Visual: {validation_status}
 🎯 Session: {timestamp} | State: .github/progress/session-state.md
 🧠 Context Check: {validation_status} | Actions Since Last: {action_count}/5
 ```
@@ -144,8 +146,10 @@ Use this EXACT format for all progress messages (optimized for Copilot retention
 📍 **[MILESTONE: {name}] ({progress}%) - {action}**
 🔄 Context: {current_phase} | Pattern: {example_pattern_used}
 🏗️ Stack: {tech_decisions} | Design: {visual_direction_status}
+🎨 UI/UX: {requirements_status} | Beauty: {standards_compliance}/100
 📚 Docs: {design_docs_referenced} | Next: {next_2_actions}
 ✅ Quality: {linting_status} | {build_status} | {test_status}
+🧪 Frontend: {testing_status} | Visual: {validation_status}
 🎯 Session: {timestamp} | State: .github/progress/session-state.md
 🧭 AI Position: {mission_status} | {architecture_status} | {plan_status}
 🧠 Context Check: {validation_status} | Actions Since Last: X/5
@@ -553,6 +557,19 @@ AUTOMATIC QUALITY CHECKS:
 - After API implementation: Execute integration tests
 - After UI components: Validate accessibility and responsiveness
 - Before milestone completion: Full quality gate validation
+
+FRONTEND QUALITY ASSURANCE PROTOCOL:
+
+- **Pre-Development**: Capture UI/UX requirements using template (/.docs/ai/templates/uix-requirements-template.md)
+- **Beauty Standards**: Apply beauty framework (/.docs/ai/guides/beauty-standards-framework.md) for 90%+ visual quality
+- **Mandatory Testing**: Execute frontend testing protocol (/.docs/ai/guides/frontend-testing-protocol.md) via dev console
+- **Quality Gates**: Follow quality gate system (/.docs/ai/guides/frontend-quality-gates.md) for systematic validation
+- **Visual Validation**: Complete frontend validation checklist (/.docs/ai/checklists/frontend-validation-checklist.md)
+
+FRONTEND QUALITY GATE TRIGGERS:
+- Before frontend development: Pre-Development Gate (UI/UX requirements complete)
+- At 50% frontend completion: Mid-Development Gate (visual implementation validation)
+- Before component completion: Pre-Release Gate (comprehensive beauty and testing validation)
 ```
 
 # Autonomous Operation Guidelines
