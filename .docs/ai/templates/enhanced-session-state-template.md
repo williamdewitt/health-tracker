@@ -173,11 +173,11 @@ INTERACTION PATTERNS:
 ### **Design Documents Created**
 ```markdown
 DESIGN DOCUMENT STATUS:
-✅ [/.docs/designs/1-use-cases.md] - Complete with all user stories
-✅ [/.docs/designs/2-system-components.md] - Architecture and components
-✅ [/.docs/designs/3-class.md] - Class diagrams and relationships
-□ [/.docs/designs/4-sequence.md] - Business flow diagrams
-□ [/.docs/designs/5-frontend.md] - UI specifications and mockups
+✅ [./.docs/designs/1-use-cases.md] - Complete with all user stories
+✅ [./.docs/designs/2-system-components.md] - Architecture and components
+✅ [./.docs/designs/3-class.md] - Class diagrams and relationships
+□ [./.docs/designs/4-sequence.md] - Business flow diagrams
+□ [./.docs/designs/5-frontend.md] - UI specifications and mockups
 
 DOCUMENT VALIDATION:
 - Use Cases: [Validated against requirements | Needs review]
@@ -330,9 +330,9 @@ RECOVERY PROTOCOL FOR NEW SESSIONS:
 1. READ THIS FILE COMPLETELY
 2. VALIDATE each section against current project state
 3. READ referenced design documents:
-   - /.docs/designs/1-use-cases.md
-   - /.docs/designs/2-system-components.md
-   - /.docs/designs/3-class.md
+   - ./.docs/designs/1-use-cases.md
+   - ./.docs/designs/2-system-components.md
+   - ./.docs/designs/3-class.md
 4. CONFIRM architectural pattern and technology stack
 5. CHECK build and test status
 6. REVIEW next planned actions
