@@ -334,6 +334,76 @@ VALIDATION SUCCESS CRITERIA:
 
 ---
 
+## 📋 **DOCUMENT REVIEW TRACKING**
+
+### **Document Anchoring Status**
+```markdown
+DOCUMENT REVIEW STATUS: [🟢 Current | 🟡 Due Soon | 🔴 Overdue]
+
+REQUIREMENTS/PROMPT REVIEW:
+- Last Reviewed: [YYYY-MM-DD HH:MM] - [X actions ago]
+- Review Status: [🟢🟡🔴⚠️] - [Brief alignment assessment]
+- Key Findings: [Any important observations from last review]
+- Next Review Due: [When based on 15-action rule or milestone]
+
+DESIGN DOCUMENT REVIEW:
+- Last Reviewed: [YYYY-MM-DD HH:MM] - [X actions ago]
+- Documents Reviewed: [List specific design docs referenced]
+- Review Status: [🟢🟡🔴⚠️] - [Brief compliance assessment]
+- Architecture Compliance: [Any deviations or confirmations noted]
+- Next Review Due: [When based on 10-action rule or component work]
+
+IMPLEMENTATION PLAN REVIEW:
+- Last Reviewed: [YYYY-MM-DD HH:MM] - [X actions ago]
+- Plan Status: [🟢🟡🔴⚠️] - [Brief adherence assessment]
+- Progress Validation: [Actual vs planned progress comparison]
+- Plan Adjustments Needed: [Any scope or timeline changes required]
+- Next Review Due: [When based on 8-action rule or milestone]
+```
+
+### **AI Positioning Status**
+```markdown
+POSITIONING LAST UPDATED: [YYYY-MM-DD HH:MM]
+
+MISSION ALIGNMENT: [🟢🟡🔴⚠️]
+- Status: [Brief description of business purpose alignment]
+- Last Mission Review: [When original prompt was re-read]
+- Drift Risk: [Low | Medium | High]
+
+ARCHITECTURE ALIGNMENT: [🟢🟡🔴⚠️]
+- Status: [Brief description of design document compliance]
+- Last Architecture Review: [When design docs were referenced]
+- Compliance Issues: [Any known deviations or concerns]
+
+PLAN ALIGNMENT: [🟢🟡🔴⚠️]
+- Status: [Brief description of plan adherence]
+- Last Plan Review: [When implementation plan was validated]
+- Plan Deviation: [None | Minor | Major - with details]
+
+QUALITY ALIGNMENT: [🟢🟡🔴⚠️]
+- Status: [Brief description of quality standard compliance]
+- Quality Gate Status: [Current state of testing, linting, etc.]
+- Quality Debt: [Any technical debt or quality issues]
+```
+
+### **Document Evolution Tracking**
+```markdown
+DOCUMENT CHANGE LOG:
+- [YYYY-MM-DD]: [Document] - [Change description]
+- [YYYY-MM-DD]: [Document] - [Change description]
+
+DOCUMENT FRESHNESS ASSESSMENT:
+- Requirements: [Fresh | Aging | Stale] - [Last significant update]
+- Design Docs: [Fresh | Aging | Stale] - [Last significant update]  
+- Implementation Plan: [Fresh | Aging | Stale] - [Last significant update]
+
+REQUIRED DOCUMENT UPDATES:
+□ [Document] needs update because [reason]
+□ [Document] needs update because [reason]
+```
+
+---
+
 ## 📊 **SESSION METRICS**
 
 ### **Development Velocity Tracking**

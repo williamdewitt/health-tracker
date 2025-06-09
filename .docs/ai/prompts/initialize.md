@@ -104,6 +104,38 @@ Action 5: MANDATORY CONTEXT VALIDATION CHECKPOINT
 
 **CONTEXT VALIDATION CHECKLIST**: Follow the mandatory checklist at `.docs/ai/guides/context-validation-checklist.md` for every validation checkpoint.
 
+### **📋 SYSTEMATIC DOCUMENT ANCHORING PROTOCOL** (MANDATORY)
+
+**CRITICAL**: You MUST systematically re-read and anchor to foundational documents to prevent drift:
+
+**DOCUMENT REVIEW REQUIREMENTS:**
+- **Original Requirements/Prompt**: Re-read every 15 actions OR before major component implementation
+- **Design Documents**: Review relevant sections every 10 actions OR before component work
+- **Implementation Plan**: Validate every 8 actions OR at milestone checkpoints (25%, 50%, 75%, 100%)
+- **AI Positioning**: Update every 5 actions during context validation
+
+**MANDATORY REVIEW TRIGGERS:**
+1. **Before Major Component Implementation**: Must read relevant design document sections
+2. **At Milestone Checkpoints**: Must re-read original requirements and validate plan alignment
+3. **Context Validation Points**: Must update AI positioning status with all 4 alignment indicators
+4. **When 15+ Actions Pass**: Must re-read original prompt regardless of other activity
+
+**AI POSITIONING FRAMEWORK**: Track these 4 alignment statuses continuously:
+- **Mission Alignment** [🟢🟡🔴⚠️]: How current work serves original business purpose
+- **Architecture Alignment** [🟢🟡🔴⚠️]: How implementation follows design specifications  
+- **Plan Alignment** [🟢🟡🔴⚠️]: How progress matches implementation plan
+- **Quality Alignment** [🟢🟡🔴⚠️]: How work meets quality standards and requirements
+
+**POSITIONING VALIDATION QUESTIONS**: Before proceeding with work, ask:
+1. Does this serve the original business purpose? (Mission)
+2. Does this follow documented design patterns? (Architecture)  
+3. Does this advance the planned milestones? (Plan)
+4. Does this meet quality standards? (Quality)
+
+**DOCUMENT ANCHORING CHECKLIST**: Follow `.docs/ai/templates/document-review-checklist.md` for systematic document validation.
+
+**AI POSITIONING FRAMEWORK**: Use `.docs/ai/guides/ai-positioning-framework.md` for positioning awareness and validation protocols.
+
 ### **📍 ENHANCED PROGRESS ANCHORING** (Every 3-5 actions)
 
 Use this EXACT format for all progress messages (optimized for Copilot retention):
@@ -115,6 +147,8 @@ Use this EXACT format for all progress messages (optimized for Copilot retention
 📚 Docs: {design_docs_referenced} | Next: {next_2_actions}
 ✅ Quality: {linting_status} | {build_status} | {test_status}
 🎯 Session: {timestamp} | State: .github/progress/session-state.md
+🧭 AI Position: {mission_status} | {architecture_status} | {plan_status}
+🧠 Context Check: {validation_status} | Actions Since Last: X/5
 ```
 
 ### **🎯 CONTEXT BREADCRUMBS** (For navigation resilience)

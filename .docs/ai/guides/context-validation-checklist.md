@@ -121,6 +121,41 @@ RED FLAGS:
 ❌ UI implementation ignores design system specifications
 ```
 
+### **5. Document Anchoring Validation**
+```markdown
+DOCUMENT ANCHORING CHECK:
+□ Original requirements/prompt read within appropriate timeframe
+□ Design documents reviewed for current component work
+□ Implementation plan validated against current progress
+□ AI positioning status is current and accurate
+
+TIMEFRAME REQUIREMENTS:
+□ Requirements: Read within last 15 actions OR before major component
+□ Design Docs: Read relevant sections within last 10 actions
+□ Plan: Validated within last 8 actions OR at milestone checkpoints
+□ AI Position: Updated within last 5 actions
+
+AI POSITIONING STATUS:
+□ Mission alignment status known and current (🟢🟡🔴⚠️)
+□ Architecture alignment status validated (🟢🟡🔴⚠️)
+□ Plan alignment status confirmed (🟢🟡🔴⚠️)
+□ Quality alignment status assessed (🟢🟡🔴⚠️)
+
+DOCUMENT REVIEW TRIGGERS:
+□ Before implementing new major component
+□ At 25%, 50%, 75%, 100% milestone completion
+□ When context validation detects potential drift
+□ When 15 actions passed since last requirements review
+
+RED FLAGS:
+❌ Original requirements not reviewed in 20+ actions
+❌ Design documents not referenced during component implementation
+❌ Implementation plan ignored or significantly deviated from
+❌ AI positioning status unknown or contains ⚠️ indicators
+❌ Mission drift indicators detected (🔴 status in positioning)
+❌ Architecture deviation from documented specifications
+```
+
 ---
 
 ## 🔧 **CONTEXT RECOVERY VALIDATION**
@@ -132,6 +167,8 @@ RECOVERY NEEDED IF ANY OF THESE ARE TRUE:
 □ Business requirements misalignment found
 □ Progress tracking significantly inaccurate
 □ Design document contradictions identified
+□ Document anchoring failures detected
+□ AI positioning status contains critical warnings
 □ Technology stack confusion present
 □ Quality gate status unreliable
 
@@ -173,38 +210,38 @@ OVERALL VALIDATION STATUS:
 □ 🟠 MAJOR ISSUES: Significant inconsistencies, recovery required
 □ 🔴 CRITICAL: Context completely inconsistent, full recovery needed
 
-VALIDATION SCORE: ___/16 checks passed
+VALIDATION SCORE: ___/20 checks passed
 
 SCORE INTERPRETATION:
-- 16/16: 🟢 Excellent - Perfect context consistency
-- 14-15/16: 🟡 Good - Minor issues, low risk
-- 12-13/16: 🟠 Warning - Address issues before major work
-- <12/16: 🔴 Critical - Mandatory recovery required
+- 20/20: 🟢 Excellent - Perfect context consistency
+- 18-19/20: 🟡 Good - Minor issues, low risk
+- 15-17/20: 🟠 Warning - Address issues before major work
+- <15/20: 🔴 Critical - Mandatory recovery required
 ```
 
 ### **Required Actions Based on Results**
 ```markdown
-🟢 VALIDATED (16/16 or 15/16):
+🟢 VALIDATED (20/20 or 19/20):
 □ Update action counter to 0/5
 □ Proceed with planned implementation
 □ Continue normal development workflow
 □ Schedule next validation in 5 actions
 
-🟡 MINOR ISSUES (14-15/16):
+🟡 MINOR ISSUES (18-19/20):
 □ Document specific inconsistencies found
 □ Make minor corrections to session state
 □ Verify corrections with quick re-validation
 □ Proceed with heightened awareness
 □ Reset action counter to 0/5
 
-🟠 MAJOR ISSUES (12-13/16):
+🟠 MAJOR ISSUES (15-17/20):
 □ Halt current implementation work
 □ Execute formal context recovery protocol
 □ Update all affected documentation
 □ Perform full validation re-check
 □ Only proceed after achieving 🟢 status
 
-🔴 CRITICAL (< 12/16):
+🔴 CRITICAL (< 15/20):
 □ STOP all development work immediately
 □ Execute emergency context recovery
 □ Rebuild context from authoritative sources
@@ -240,12 +277,18 @@ NEXT PROGRESS MESSAGE MUST INCLUDE:
 📚 Docs: {design_docs_referenced} | Next: {next_2_actions}
 ✅ Quality: {linting_status} | {build_status} | {test_status}
 🎯 Session: {timestamp} | State: .github/progress/session-state.md
+🧭 AI Position: {mission_status} | {architecture_status} | {plan_status}
 🧠 Context Check: {validation_status} | Actions Since Last: 0/5
 
 WHERE validation_status IS:
 - 🟢 VALIDATED: Full consistency confirmed
 - 🟡 MINOR RESOLVED: Small issues addressed
 - ✅ RECOVERED: Major issues resolved successfully
+
+WHERE positioning statuses ARE:
+- Mission: 🟢🟡🔴⚠️ based on business purpose alignment
+- Architecture: 🟢🟡🔴⚠️ based on design document compliance
+- Plan: 🟢🟡🔴⚠️ based on implementation plan adherence
 ```
 
 ---
