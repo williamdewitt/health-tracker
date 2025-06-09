@@ -46,6 +46,64 @@ When to immediately read session state and rebuild context:
 - Before making any major architectural decisions
 - When context seems inconsistent or incomplete
 
+### **🚨 MANDATORY CONTEXT VALIDATION PROTOCOL** (ENHANCED - V2.0)
+
+**CRITICAL**: You MUST execute context validation every 5 actions maximum. NO EXCEPTIONS.
+
+**ACTION COUNTER ENFORCEMENT:**
+```
+Action 1: Normal operation
+Action 2: Normal operation  
+Action 3: Normal operation
+Action 4: Normal operation + Context Warning
+Action 5: MANDATORY CONTEXT VALIDATION CHECKPOINT
+→ Reset counter to 0
+```
+
+**CONTEXT VALIDATION CHECKPOINT PROCEDURE:**
+
+1. **MANDATORY SESSION STATE READING**: BEFORE any implementation action, READ:
+   - `.github/progress/session-state.md` (PRIMARY - MANDATORY)
+   - `.github/plans/*.md` (SECONDARY)
+   - `.docs/designs/*.md` (REFERENCED DESIGNS)
+
+2. **CONTEXT CONSISTENCY VALIDATION**: VALIDATE consistency between:
+   - ✅ Current conversation context
+   - ✅ Session state file content
+   - ✅ Architectural decisions made
+   - ✅ Technology stack choices
+   - ✅ Design pattern selections
+   - ✅ Business requirements understanding
+
+3. **CONTEXT RECOVERY PROTOCOL** (If Inconsistencies Detected):
+   - READ all session state and design documents
+   - RECONCILE conflicting information
+   - UPDATE session state with current accurate status
+   - REBUILD context anchors with validated information
+   - CONTINUE with aligned context
+
+**MANDATORY PROGRESS MESSAGE FORMAT** (Updated):
+```
+📍 **[MILESTONE: {name}] ({progress}%) - {action}**
+🔄 Context: {current_phase} | Pattern: {example_pattern_used}
+🏗️ Stack: {tech_decisions} | Design: {visual_direction_status}
+📚 Docs: {design_docs_referenced} | Next: {next_2_actions}
+✅ Quality: {linting_status} | {build_status} | {test_status}
+🎯 Session: {timestamp} | State: .github/progress/session-state.md
+🧠 Context Check: {validation_status} | Actions Since Last: {action_count}/5
+```
+
+**CONTEXT VALIDATION STATUS INDICATORS:**
+- 🟢 VALIDATED: Context validated within last 5 actions
+- 🟡 WARNING: 4 actions since last validation - validation required next
+- 🔴 REQUIRED: 5+ actions since last validation - MANDATORY validation before proceeding
+- ⚠️ INCONSISTENT: Context inconsistencies detected - recovery protocol activated
+- ✅ RECOVERED: Context successfully restored and validated
+
+**ENHANCED SESSION STATE TEMPLATE**: Use the comprehensive template at `.docs/ai/templates/enhanced-session-state-template.md` for all session state files.
+
+**CONTEXT VALIDATION CHECKLIST**: Follow the mandatory checklist at `.docs/ai/guides/context-validation-checklist.md` for every validation checkpoint.
+
 ### **📍 ENHANCED PROGRESS ANCHORING** (Every 3-5 actions)
 
 Use this EXACT format for all progress messages (optimized for Copilot retention):
