@@ -1,6 +1,11 @@
-![Picture of Legion](https://github.com/faGH/fa.templates.vibe-coding/blob/main/READMEicon.png?raw=true)
-# Gaia
-🚀 AI Coding Framework: Smart Software Development
+<p align="center">
+  <img src="https://github.com/frostaura/fa.templates.vibe-coding/blob/main/README.icon.png?raw=true" alt="Picture of Legion" width="300" />
+</p>
+
+<h1 align="center">
+  <b>G A I A</b>
+</h1>
+<h3 align="center">🚀 The AI Coding Framework: Smart Software Development</h3>
 
 **Transform your ideas into production-ready applications in minutes. Just describe what you want to build, and our intelligent AI framework handles the rest.**
 
