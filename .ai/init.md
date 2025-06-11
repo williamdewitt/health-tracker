@@ -49,15 +49,10 @@ You have full read access to all framework files. Use `read_file` tool for:
 ## Pattern Application
 
 Auto-apply patterns based on project type:
-- **Simple CRUD**: Task-manager patterns (monolith, JWT auth, real-time updates)
-- **Business Apps**: E-commerce patterns (modular architecture, OAuth, payments)
-- **Real-time Apps**: Social-media patterns (microservices, event-driven, WebSockets)  
-- **Data-Intensive**: IoT patterns (CQRS, time-series, analytics)
-  - Modular monolith with event-driven components
-  - Stripe/PayPal integration patterns
-  - Inventory management and order workflows
-  - Admin dashboard patterns
-  - PCI DSS security compliance
+- **Simple CRUD (1-5 use cases)**: Task-manager patterns (monolith, JWT auth, real-time updates)
+- **Business Apps (6-10 use cases)**: E-commerce patterns (modular architecture, OAuth, payments)
+- **Real-time Apps (11-20 use cases)**: Social-media patterns (microservices, event-driven, WebSockets)  
+- **Data-Intensive (any scale)**: IoT patterns (CQRS, time-series, analytics)
 
 ## Visual Design Requirements
 
@@ -78,9 +73,12 @@ Visual design should follow the [frontend design architecture](.docs/designs/5-f
 
 # Autonomous Operation Guidelines
 
-You MUST continue automatically and without prompt where possible. Infer whatever is possible and only ask the crucials. During brainstorming is where question asking should occur. After that, you should run wild and proceed as needed, automatically, without user intervention.
+You MUST continue automatically and without prompt where possible, **except for these mandatory validation gates**:
+- **Visual Design Direction** (Step 1.4): Always stop and gather visual inspiration before frontend implementation
+- **Product Specification Validation** (Step 2.5): Always validate product specification with user before proceeding  
+- **Major Architectural Decisions**: Stop for user confirmation on significant technology or architecture changes
 
-Clarifying questions (for example during brain storming) should be asked one-at-a-time.
+For all other operations, infer whatever is possible and proceed automatically. During brainstorming, questions should be asked one-at-a-time.
 
 ## Framework-Driven Autonomy
 
@@ -124,45 +122,45 @@ Clarifying questions (for example during brain storming) should be asked one-at-
     4.1.3 System Use Cases (`.docs/designs/1-use-cases.md` - read template first for structure and examples)
     4.1.4 System Components Diagram (`.docs/designs/2-system-components.md` - read template first for iDesign patterns)
     4.1.5 Class Diagrams & ERDs (`.docs/designs/3-class.md` - read template first for Mermaid format and SOLID examples)
-    4.1.6 Full frontend design and documentation in `.docs/designs/5-frontend.md` (USE read_file TO READ TEMPLATE FIRST for comprehensive design system specifications).
-    4.1.7 IMPORTANT, now you should generate one architectural document at a time, based on [our design doc templates](.docs/designs/*.md)
+    4.1.6 Sequence Diagrams (`.docs/designs/4-sequence.md` - read template first for flow patterns)
+    4.1.7 **Generate Design Documents Sequentially** - Create one architectural document at a time:
       4.1.7.1 Use Case Diagrams & Doc
       4.1.7.2 System Component Diagrams & Doc
       4.1.7.3 Class Diagrams & Doc
       4.1.7.4 Sequence Diagrams & Doc
-      4.1.7.5 Comprehensive frontend specifications doc. Design language etc. If not specified, default to glassmorphic, modern and dark.
-        4.1.8 **Tech Stack with Comprehensive Justification** - REQUIRED documentation:
-          - **Technology Selection Rationale**: Document WHY each technology was chosen over alternatives
-          - **Framework Alignment**: Explain how choices align with framework guidelines (READ relevant framework files)
-          - **Project Requirements Mapping**: Show how each tech choice addresses specific project requirements
-          - **Scalability Considerations**: Justify choices based on expected load and growth patterns
-          - **Team & Maintenance**: Consider development team expertise and long-term maintenance
-          - **Performance Requirements**: Align technology choices with performance and reliability needs
-          - **Integration Compatibility**: Ensure all technologies work well together in the chosen architecture
-        - **Future Extensibility**: Consider how technology choices support future feature development
-        4.1.9 Module & Layer Breakdown (following clean architecture patterns - READ `./.docs/design.md`)
-        4.1.10 Cross-cutting Concerns (security, logging, monitoring, error handling - READ respective framework files)
-        4.1.11 **CRITICAL REPOSITORY STRUCTURE COMPLIANCE** (READ `./.docs/repo-structure.md` FILE FOR EXACT STRUCTURE) - This is MANDATORY for organized, maintainable projects:
-          - **STRICT ENFORCEMENT**: The repository structure defined in `./.docs/repo-structure.md` is NON-NEGOTIABLE and must be followed exactly
-          - **Structure Validation**: Before implementation begins, validate that ALL planned directories and files conform to the framework structure
-          - **No Variations**: Do not create alternative or "improved" directory structures - use the framework standard exactly as specified
-          - **Compliance Checking**: Periodically verify structure compliance during implementation and correct any deviations immediately
-          - **Framework Structure Requirements**:
-            * Root-level organization: `./.docs`, `./.github`, `./.vscode`, `./src`
-            * Backend structure: `./src/backend/<PROJECT_NAME>.Api`, `./src/backend/<PROJECT_NAME>.Core`, `./src/backend/<PROJECT_NAME>.Shared`
-            * Frontend structure: `./src/frontend` with modern React/Next.js organization
-            * Documentation structure: `./.docs/designs/*.md` for system designs, `./.docs/` for framework docs
-            * GitHub integration: `./.github/workflows/*yml.`
-            * Docker setup: Root-level `docker-compose.yml` and `Dockerfile.<PROJECT_NAME>` files
-        4.1.12 Security Architecture
-        4.1.13 API Design
-        4.1.14 Database Design
-        4.1.15 Testing Strategy
-        4.1.16 DevOps & CI/CD Plan
-        4.1.17 Error Handling Strategy
-        4.1.18 Monitoring & Observability
-        4.1.19 Risk & Mitigation Table
-        4.1.20 Milestones (ordered checkpoints)
+      4.1.7.5 Comprehensive frontend specifications doc in `.docs/designs/5-frontend.md`. Design language etc. If not specified, default to glassmorphic, modern and dark.
+    4.1.8 **Tech Stack with Comprehensive Justification** - REQUIRED documentation:
+      - **Technology Selection Rationale**: Document WHY each technology was chosen over alternatives
+      - **Framework Alignment**: Explain how choices align with framework guidelines (READ relevant framework files)
+      - **Project Requirements Mapping**: Show how each tech choice addresses specific project requirements
+      - **Scalability Considerations**: Justify choices based on expected load and growth patterns
+      - **Team & Maintenance**: Consider development team expertise and long-term maintenance
+      - **Performance Requirements**: Align technology choices with performance and reliability needs
+      - **Integration Compatibility**: Ensure all technologies work well together in the chosen architecture
+      - **Future Extensibility**: Consider how technology choices support future feature development
+    4.1.9 Module & Layer Breakdown (following clean architecture patterns - READ `./.docs/design.md`)
+    4.1.10 Cross-cutting Concerns (security, logging, monitoring, error handling - READ respective framework files)
+    4.1.11 **CRITICAL REPOSITORY STRUCTURE COMPLIANCE** (READ `./.docs/repo-structure.md` FILE FOR EXACT STRUCTURE) - This is MANDATORY for organized, maintainable projects:
+      - **STRICT ENFORCEMENT**: The repository structure defined in `./.docs/repo-structure.md` is NON-NEGOTIABLE and must be followed exactly
+      - **Structure Validation**: Before implementation begins, validate that ALL planned directories and files conform to the framework structure
+      - **No Variations**: Do not create alternative or "improved" directory structures - use the framework standard exactly as specified
+      - **Compliance Checking**: Periodically verify structure compliance during implementation and correct any deviations immediately
+      - **Framework Structure Requirements**:
+        * Root-level organization: `./.docs`, `./.github`, `./.vscode`, `./src`
+        * Backend structure: `./src/backend/<PROJECT_NAME>.Api`, `./src/backend/<PROJECT_NAME>.Core`, `./src/backend/<PROJECT_NAME>.Shared`
+        * Frontend structure: `./src/frontend` with modern React/Next.js organization
+        * Documentation structure: `./.docs/designs/*.md` for system designs, `./.docs/` for framework docs
+        * GitHub integration: `./.github/workflows/*yml.`
+        * Docker setup: Root-level `docker-compose.yml` and `Dockerfile.<PROJECT_NAME>` files
+    4.1.12 Security Architecture
+    4.1.13 API Design
+    4.1.14 Database Design
+    4.1.15 Testing Strategy
+    4.1.16 DevOps & CI/CD Plan
+    4.1.17 Error Handling Strategy
+    4.1.18 Monitoring & Observability
+    4.1.19 Risk & Mitigation Table
+    4.1.20 Milestones (ordered checkpoints)
 
     4.2 Prefix file with `## IMPLEMENTATION PLAN`.
 
@@ -278,10 +276,10 @@ Clarifying questions (for example during brain storming) should be asked one-at-
         - Progress to next milestone when all tasks in current milestone are completed AND tests pass AND build succeeds AND linting passes AND zero warnings
         - **Quality Gates**: Each file must pass linting, formatting, and type-checking before committing
         - **Example-Based Architecture Selection**:
-          - **Task Management Apps (1-5 use cases)**: Monolithic architecture (task-manager example)
-          - **Business Apps (6-10 use cases)**: Modular monolith (e-commerce example)
-          - **Social/Content Apps (11-20 use cases)**: Event-driven microservices (social-media example)
-          - **Data-Intensive Apps (any scale)**: CQRS with time-series patterns (IoT dashboard example)
+          - **Simple Applications (1-5 use cases)**: Monolithic architecture (task-manager example)
+          - **Business Applications (6-10 use cases)**: Modular monolith (e-commerce example)
+          - **Real-time Applications (11-20 use cases)**: Event-driven microservices (social-media example)
+          - **Data-Intensive Applications (any scale)**: CQRS with time-series patterns (IoT dashboard example)
         - **Example-Based Feature Implementation**:
           - **Authentication**: Apply patterns from complexity-matched example (JWT vs OAuth)
           - **Real-time Features**: Apply WebSocket patterns from social-media or IoT examples
@@ -289,10 +287,10 @@ Clarifying questions (for example during brain storming) should be asked one-at-
           - **Analytics**: Apply IoT dashboard time-series and reporting patterns
           - **File Handling**: Apply social-media media service patterns
         - **Example-Driven Caching Strategy**:
-          - Simple apps (task-manager): Application-level caching only
-          - Business apps (e-commerce): Redis for session and product data
-          - Social apps: Multi-level caching (L1: App, L2: Redis, L3: CDN)
-          - Data apps (IoT): Time-series optimized caching and materialized views
+          - Simple applications (task-manager): Application-level caching only
+          - Business applications (e-commerce): Redis for session and product data
+          - Real-time applications: Multi-level caching (L1: App, L2: Redis, L3: CDN)
+          - Data applications (IoT): Time-series optimized caching and materialized views
         - Automatically implement pagination when data collections may exceed 100 items (all examples show this)
         - Automatically add comprehensive logging for all exceptions and key business operations (framework standard)
     5.1.5 Error Prevention Strategy:
@@ -385,11 +383,11 @@ Clarifying questions (for example during brain storming) should be asked one-at-
     - Comprehensive error handling with resilience patterns (timeout, retry, circuit breaker, fallback, bulkhead)
     - Build failures: analyze, fix, re-run (max 3 attempts before alternative approach)
     - Test failures: update implementation, verify without breaking other tests
-    5.8 **Pattern Application**: Apply example-driven patterns based on project type:
-    - Task Management: Simple auth, real-time updates, minimal APIs
-    - E-commerce: Payment flows, inventory, role-based access  
-    - Social: Event-driven, WebSocket feeds, content moderation
-    - IoT: Time-series data, real-time ingestion, monitoring
+    5.8 **Pattern Application**: Apply example-driven patterns based on project complexity:
+    - Simple applications (1-5 use cases): JWT auth, real-time updates, minimal APIs
+    - Business applications (6-10 use cases): Payment flows, inventory, role-based access  
+    - Real-time applications (11-20 use cases): Event-driven, WebSocket feeds, content moderation
+    - Data applications (any scale): Time-series data, real-time ingestion, monitoring
 
 6. **Evolution & Refactoring**: 
     6.1 Update plan with `// UPDATE:` for changes. Refactor while keeping tests green.
@@ -482,8 +480,9 @@ Clarifying questions (for example during brain storming) should be asked one-at-
     8.5 **Final verification**: Ensure all Docker builds work and CI/CD pipeline executes successfully
 9.  **Output Contract**
     9.1 Reply with `## IMPLEMENTATION PLAN` and provide comprehensive plan overview from `.ai/plan.md`.
-    9.2 Then provide file-by-file code output (ordered).
+    9.2 Create all files using appropriate tools (create_file, insert_edit_into_file, replace_string_in_file).
     9.3 Do not skip any steps unless user says so.
+    9.4 **Never print code blocks** - always use file creation/editing tools instead.
 
 # Rules, Restrictions & Framework Compliance
 
@@ -510,7 +509,12 @@ Clarifying questions (for example during brain storming) should be asked one-at-
 - **Zero Trust Architecture**: Implement comprehensive security patterns throughout all layers
 - **Threat Modeling**: Apply STRIDE methodology for security analysis
 - **Secure Coding**: Follow secure coding practices throughout implementation
-- **Authentication/Authorization**: Implement OAuth 2.0 + OpenID Connect patterns
+- **Authentication/Authorization**: Apply authentication patterns based on project complexity:
+  - **Simple Applications (1-5 use cases)**: JWT with refresh tokens and role-based access
+  - **Business Applications (6-10 use cases)**: OAuth 2.0 with role-based authorization
+  - **Enterprise Applications (11+ use cases)**: OAuth 2.0 + OpenID Connect patterns
+  - **Service-to-Service**: JWT between backend services
+  - **Frontend Default**: Simple authentication with secure session management
 
 ### Quality & Testing Standards
 
@@ -605,9 +609,11 @@ Apply these defaults based on the identified project type and matching example, 
 - Database solutions should be defaulted to postgres.
 - Frontend solutions should be defaulted to a Vite-managed ReactJS, TypeScript app.
 - CI/CD platform of choice is GitHub actions, found in `.github/workflows/*.yml`
-- Preferred auth methods are:
-  - JWT between services and front to backend comms.
-  - Frontend apps should have simple auth.
+- Authentication patterns based on project complexity:
+  - **Simple applications**: JWT with refresh tokens between services and frontend
+  - **Business applications**: OAuth 2.0 for user authentication, JWT for service communication
+  - **Enterprise applications**: OAuth 2.0 + OpenID Connect with JWT for service-to-service
+  - **Frontend apps**: Simple authentication with secure session management
 
 ---
 
