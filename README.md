@@ -34,7 +34,7 @@
 #### Step 3.1 ⚠️ 
 **On each 3rd or 2nd (if you prefer - if you have time but want better context anchoring)** "Continue" prompt you get from Copilot, you **SHOULD NOT** click "Continue" but instead paste the following prompt and ENTER.
 ```
-Ensure you comprehensively update our (progress state file)[.ai/session-state.md] with our progress, add any next steps if need be / as needed, as per the instructions of the (original big prompt)[.ai/init.md], based on (our plan)[.ai/plan.md] and (design documentation)[.docs/design.md], print the status in the following format, then proceed.
+Ensure you comprehensively update our [progress state file](.ai/session-state.md) with our progress, add any next steps if need be / as needed, as per the instructions of the [original big prompt](.ai/init.md), based on [our plan](.ai/plan.md) and [design documentation](.docs/design.md), print the status in the following format, then proceed.
 
 FORMAT:
 📍 Current Phase: [Discovery/Planning/Implementation/Testing/Deployment]
