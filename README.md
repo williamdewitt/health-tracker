@@ -28,7 +28,7 @@
 #### Step 3.1 ⚠️ 
 **On each 3rd or 2nd (if you prefer - if you have time but want better context anchoring)** "Continue" prompt you get from Copilot, you **SHOULD NOT** click "Continue" but instead paste the following prompt and ENTER.
 ```
-Ensure you comprehensively update our (progress state file)[.ai/session-state.md] with our progress, add any next steps if need be / as needed, as per the instructions of the (original big prompt)[.ai/init.md], based on (our plan)[.ai/plan.md] and (design docs)[.docs/designs/*.md], print the status in the following format, then proceed.
+Ensure you comprehensively update our (progress state file)[.ai/session-state.md] with our progress, add any next steps if need be / as needed, as per the instructions of the (original big prompt)[.ai/init.md], based on (our plan)[.ai/plan.md] and (design documentation)[.docs/design.md], print the status in the following format, then proceed.
 
 FORMAT:
 📍 Current Phase: [Discovery/Planning/Implementation/Testing/Deployment]
@@ -54,7 +54,7 @@ The AI will automatically:
 #### Step 3.3 ⚠️ At The End
 **At the end of the run** we should run the following prompt repeatedly until our solution is as refined as we want it to be:
 ```
-Ensure that the entire system has code comments, 100% unit test coverage and 0 errors or warnings. Reflect on the [design docs](.docs/designs/*.md), and ensure 1) all use cases have properly been implemented, including ALL method bodies and 2) the UI is properly tested and reflect the frontend design we captured. Finally, reflect on  [our massive initial prompt](.ai/init.md), [the plan](.ai/plan.md) and ensure the entire system is properly implemented., print the status in the following format, then proceed.
+Ensure that the entire system has code comments, 100% unit test coverage and 0 errors or warnings. Reflect on the [design documentation](.docs/design.md), and ensure 1) all use cases have properly been implemented, including ALL method bodies and 2) the UI is properly tested and reflect the frontend design we captured. Finally, reflect on  [our massive initial prompt](.ai/init.md), [the plan](.ai/plan.md) and ensure the entire system is properly implemented., print the status in the following format, then proceed.
 
 FORMAT:
 📍 Current Phase: [Discovery/Planning/Implementation/Testing/Deployment]
@@ -160,8 +160,8 @@ custom dashboards, data visualization, and team collaboration"
 
 - **🐛 Issues & Questions**: [GitHub Issues](https://github.com/frostaura/fa.templates.vibe-coding/issues)
 - **💡 Feature Requests**: [GitHub Discussions](https://github.com/frostaura/fa.templates.vibe-coding/discussions)
-- **📖 Full Documentation**: [Complete Guide Index](.docs/ai/guides/index.md)
-- **🤝 Contributing**: [Contribution Guidelines](.docs/support-contribute.md)
+- **📖 Framework Documentation**: [Architecture Guide](.docs/design.md) | [Repository Structure](.docs/repo-structure.md)
+- **🐳 Docker Support**: [Docker Setup Guide](.docs/docker-support.md)
 
 ## 🙏 Credits & Inspiration
 

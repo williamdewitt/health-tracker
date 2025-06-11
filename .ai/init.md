@@ -312,7 +312,7 @@ Clarifying questions (for example during brain storming) should be asked one-at-
     - Backend: `/src/backend/<PROJECT_NAME>.Api/.Core/.Shared`
     - Frontend: `/src/frontend` with framework organization
     5.2.1 Create documentation structure:`/.docs/designs/`and place all design documents correctly
-    5.2.2 Create GitHub structure:`/.github/plans/`, `/.github/prompts/`, `/.github/workflows/`
+    5.2.2 Create GitHub structure: `/.github/workflows/` for CI/CD automation
     5.2.3 Create Docker files: Root-level`docker-compose.yml` and project-specific Dockerfiles
     5.2.4 **Terminal Command Standards**: 
     - Use auto-confirmation flags (`-y`, `--yes`, `--force`) for non-destructive operations
@@ -428,13 +428,13 @@ Clarifying questions (for example during brain storming) should be asked one-at-
     - **Cross-Reference Integrity**: Validate that design document references between files are accurate 
     - **Template Compliance**: Confirm design documents follow framework template structures 
     - **Version Control**: Verify design document changes are properly tracked in git history
-    7.3 Perform comprehensive security scan following `/.docs/ai/guides/security-framework.md`:
+    7.3 Perform comprehensive security scanning and validation:
     7.3.1 Static Application Security Testing (SAST)
     7.3.2 Dynamic Application Security Testing (DAST)
     7.3.3 Software Composition Analysis (SCA)
     7.3.4 Infrastructure security scanning
     7.4 Generate test coverage report (fail if below threshold).
-    7.5 **Final Code Quality Validation** following `/.docs/ai/guides/code-quality-standards.md`:
+    7.5 **Final Code Quality Validation** - ensure comprehensive quality standards:
     7.5.1 **Linting Verification**: Run full linting suite and ensure 100% compliance
     7.5.2 **Build Warning Check**: Verify zero build warnings across all projects
     7.5.3 **Documentation Completeness**: Validate all public APIs have complete documentation
@@ -481,7 +481,7 @@ Clarifying questions (for example during brain storming) should be asked one-at-
     8.4 **Clean up template files**: Delete `/.github/workflows/containerization_workflow.yml` example
     8.5 **Final verification**: Ensure all Docker builds work and CI/CD pipeline executes successfully
 9.  **Output Contract**
-    9.1 Reply with `## IMPLEMENTATION PLAN` and full contents of `.github/plans/<plan_title>.md`.
+    9.1 Reply with `## IMPLEMENTATION PLAN` and provide comprehensive plan overview from `.ai/plan.md`.
     9.2 Then provide file-by-file code output (ordered).
     9.3 Do not skip any steps unless user says so.
 
@@ -502,28 +502,28 @@ Clarifying questions (for example during brain storming) should be asked one-at-
 - **Persistent Inspiration Gathering**: Continue asking for visual inspiration until clear direction is established
 - **Vision Clarity Checkpoint**: Must have screenshots, specific app references, clear aesthetic descriptions, or category selection
 - **Beautiful UI Standard**: All frontends must achieve modern, professional design quality matching provided inspiration
-- **Design System Creation**: Always create comprehensive design specifications in `.docs/designs/5_frontend.md`
+- **Design System Creation**: Always create comprehensive design specifications in `.docs/designs/5-frontend.md`
 - **Inspiration Resource Assistance**: Provide curated design resources when users need guidance
 
 ### Security-First Development
 
-- **Zero Trust Architecture**: Implement security patterns from `/.docs/ai/guides/security-framework.md`
+- **Zero Trust Architecture**: Implement comprehensive security patterns throughout all layers
 - **Threat Modeling**: Apply STRIDE methodology for security analysis
 - **Secure Coding**: Follow secure coding practices throughout implementation
 - **Authentication/Authorization**: Implement OAuth 2.0 + OpenID Connect patterns
 
 ### Quality & Testing Standards
 
-- **Testing Strategy**: Implement comprehensive testing following `/.docs/ai/guides/testing-strategy.md`
-- **Error Handling**: Apply resilience patterns from `/.docs/ai/guides/error-handling.md`
-- **Monitoring**: Implement observability patterns from `/.docs/ai/guides/error-monitoring.md`
+- **Testing Strategy**: Implement comprehensive testing with unit, integration, and E2E tests
+- **Error Handling**: Apply resilience patterns with retry, circuit breaker, and fallback mechanisms
+- **Monitoring**: Implement observability patterns with structured logging and metrics
 - **Code Quality**: Maintain 100% test coverage and SOLID compliance
 
 ### Implementation Standards
 
-- **API Design**: Follow RESTful patterns from `/.docs/ai/guides/api-design-standards.md`
-- **Database Design**: Apply patterns from `/.docs/ai/guides/database-design-patterns.md`
-- **DevOps Integration**: Implement CI/CD patterns from `/.docs/ai/guides/devops-cicd.md`
+- **API Design**: Follow RESTful patterns with proper versioning and documentation
+- **Database Design**: Apply normalization patterns with proper indexing and constraints
+- **DevOps Integration**: Implement CI/CD patterns with automated testing and deployment
 
 ### **Containerization & CI/CD Requirements (CRITICAL)**
 

@@ -28,9 +28,6 @@ The architecture of the solution should be a layered one. Specifically 3 layers 
 | [High-Level System Components](./designs/2-system-components.md)  | High-level system components.            |
 | [Class Diagrams](./designs/3-class.md)                            | Class diagram(s).                        |
 | [Sequence Diagrams](./designs/4-sequence.md)                      | Sequence diagram(s).                     |
-| [Frontend](./designs/5-frontend.md)                               | Frontend.                                |
-| [Error Handling Sequences](./designs/error-handling-sequences.md) | Error handling & resilience patterns.    |
-| [Error Handling Guide](./ai/guides/error-handling.md)             | Comprehensive error handling guidelines. |
-| [Error Monitoring](./ai/guides/error-monitoring.md)               | Error monitoring & observability guide.  |
+| [Frontend](./designs/5-frontend.md)                               | Frontend design specifications.          |
 
 [<< Back](../README.md)
