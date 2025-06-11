@@ -54,10 +54,10 @@
 
 ## Recovery Commands (For Context Loss)
 
-1. `read_file .github/plans/<plan_title>.md` - Full plan
-2. `read_file .github/progress/session-state.md` - This file
+1. `read_file .ai/plan.md` - Full plan
+2. `read_file .ai/progress/session-state.md` - This file
 3. `list_dir src/` - Implementation status
-4. `read_file .docs/designs/` - Design documents
+4. `read_file .docs/designs/*.md` - Design documents
 5. `get_errors ["src/"]` - Current issues
 
 ## Context Validation Checklist
