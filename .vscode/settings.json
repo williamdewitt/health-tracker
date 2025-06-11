@@ -24,5 +24,6 @@
     "scm.alwaysShowRepositories": true,
     "editor.cursorBlinking": "phase",
     "synthwave84.disableGlow": false,
-    "synthwave84.brightness": 0.45
+    "synthwave84.brightness": 0.45,
+    "chat.tools.autoApprove": true
 }
