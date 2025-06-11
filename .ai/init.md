@@ -168,7 +168,7 @@ Clarifying questions (for example during brain storming) should be asked one-at-
 
 5.  **Implementation (Strict Plan Compliance)**
     5.0 **GITHUB COPILOT SESSION MANAGEMENT** (ENHANCED FOR CONVERSATION SUMMARIZATION):
-    5.0.1 **Mandatory Session State Creation**: Before any implementation, create `.github/progress/session-state.md`:
+    5.0.1 **Mandatory Session State Creation**: Before any implementation, create `.ai/session-state.md`:
 
         ```markdown
         # Session State Tracker (GitHub Copilot Optimized)
@@ -212,8 +212,8 @@ Clarifying questions (for example during brain storming) should be asked one-at-
 
         ## Recovery Commands (For Context Loss)
 
-        1. `read_file .github/plans/<plan_title>.md` - Full plan
-        2. `read_file .github/progress/session-state.md` - This file
+        1. `read_file .ai/plan.md` - Full plan
+        2. `read_file .ai/session-state.md` - This file
         3. `list_dir src/` - Implementation status
         4. `read_file .docs/designs/` - Design documents
         5. `get_errors ["src/"]` - Current issues
@@ -258,11 +258,11 @@ Clarifying questions (for example during brain storming) should be asked one-at-
     5.1.1 If you need direction on which path to take next, take the next logical path instead of bothering the user with prompts. We want this system to run automatically as far as possible. This means assume CONFIRMATION on ANY/ALL commands etc, questions about proceeding etc.
     5.1.2 **MANDATORY DESIGN DOCUMENT REFERENCE DURING IMPLEMENTATION**:
         - **Before implementing ANY component**: READ the corresponding design document created in `./.docs/designs/` using `read_file` tool
-        - **Use Case Validation**: Cross-reference implementation against `./.docs/designs/1_use_cases.md` to ensure all user stories are fulfilled
+        - **Use Case Validation**: Cross-reference implementation against `./.docs/designs/1-use-cases.md` to ensure all user stories are fulfilled
         - **Architecture Compliance**: Verify component implementation matches `./.docs/designs/2-system-components.md` specifications
         - **Class Structure Adherence**: Implement exact class hierarchies and interfaces defined in `./.docs/designs/3-class.md`
         - **Sequence Implementation**: Follow exact API call patterns and business flows from `./.docs/designs/4-sequence.md`
-        - **Frontend Specification**: Implement UI components exactly as specified in `./.docs/designs/5_frontend.md`
+        - **Frontend Specification**: Implement UI components exactly as specified in `./.docs/designs/5-frontend.md`
         - **Design-Implementation Consistency**: After implementing each major component, read the relevant design document to verify 100% alignment
     5.1.3 Use the following decision tree for automatic progression:
         - If current task is completed successfully → Move to next task
@@ -354,8 +354,7 @@ Clarifying questions (for example during brain storming) should be asked one-at-
     - Update session state every 15% progress for context recovery
     - Use consistent percentage calculation: equal weight per milestone
     - **During EVERY package installation**: Show progress and estimated completion
-    - **Before EVERY major milestone transition**: Summarize completed work and preview next phase
-    - **CRITICAL**: Update `.github/progress/session-state.md` every 15% progress
+    - **Before EVERY major milestone transition**: Summarize completed work and preview next phase        - **CRITICAL**: Update `.ai/session-state.md` every 15% progress
     5.3.1 **Context Anchoring System** (ENHANCED for conversation summarization resilience): Each progress update MUST include:
         - **Where We Are**: Current milestone and task within that milestone
         - **What We Just Did**: Brief summary of the last completed action
@@ -368,7 +367,7 @@ Clarifying questions (for example during brain storming) should be asked one-at-
         - **Cross-Document Impact**: How current implementation affects other design documents
         - **Session State Update**: Confirmation that session state file is updated
     5.3.2 **Self-Recovery Protocol** (When context is lost/uncertain):
-        - **Step 1**: Read `.github/progress/session-state.md` using `read_file` tool
+        - **Step 1**: Read `.ai/session-state.md` using `read_file` tool
         - **Step 2**: Print context anchor block with recovered information
         - **Step 3**: Cross-reference with plan milestones
         - **Step 4**: Identify next logical task and proceed with progress message
@@ -404,11 +403,11 @@ Clarifying questions (for example during brain storming) should be asked one-at-
     7.1.5 **Code Style**: Consistent naming conventions and architectural patterns
     7.1.6 **Documentation**: Complete XML docs, JSDoc, and inline comments
     7.2 **Design Document Compliance Validation**:
-    7.2.1 **Use Case Fulfillment**: Verify all user stories from `/.docs/designs/1_use_cases.md` are implemented
+    7.2.1 **Use Case Fulfillment**: Verify all user stories from `/.docs/designs/1-use-cases.md` are implemented
     7.2.2 **Architecture Alignment**: Confirm system matches component design in `/.docs/designs/2-system-components.md`
     7.2.3 **Class Structure Verification**: Validate implementation follows `/.docs/designs/3-class.md` specifications
     7.2.4 **Sequence Flow Compliance**: Ensure API interactions match `/.docs/designs/4-sequence.md` patterns
-    7.2.5 **Frontend Specification Adherence**: Confirm UI matches `/.docs/designs/5_frontend.md` requirements
+    7.2.5 **Frontend Specification Adherence**: Confirm UI matches `/.docs/designs/5-frontend.md` requirements
     7.2.6 **Cross-Document Consistency**: Verify all design documents align with each other and implementation
     7.2.7 **Design Evolution Validation**: 
     - **Change Documentation Review**: Verify all design changes are properly documented in "Design Evolution" sections 
@@ -538,11 +537,11 @@ Clarifying questions (for example during brain storming) should be asked one-at-
 
 ### Documentation Requirements
 
-- **All use case diagrams** → Persist to `.docs/designs/1_use_cases.md` (read existing template for format and examples)
+- **All use case diagrams** → Persist to `.docs/designs/1-use-cases.md` (read existing template for format and examples)
 - **All system components** → Persist to `.docs/designs/2-system-components.md` (read existing template for iDesign patterns)
 - **All class diagrams** → Persist to `.docs/designs/3-class.md` (read existing template for Mermaid format and SOLID examples)
 - **All sequence diagrams** → Persist to `.docs/designs/4-sequence.md` (read existing template for flow patterns)
-- **All frontend designs** → Persist to `.docs/designs/5_frontend.md` (read existing template for comprehensive design system specifications)
+- **All frontend designs** → Persist to `.docs/designs/5-frontend.md` (read existing template for comprehensive design system specifications)
 - **All diagrams** → Use Mermaid format following framework templates
 - **CRITICAL**: Before creating any design document, READ the existing template file to understand:
   - Expected structure and sections
@@ -616,7 +615,7 @@ Apply these defaults based on the identified project type and matching example, 
 
 ### Recovery Protocol
 When resuming conversation or losing context:
-1. Read `.github/progress/session-state.md` immediately
+1. Read `.ai/session-state.md` immediately
 2. Print context anchor: `📍 [MILESTONE: name] (X%) - current status | Next: action`
 3. Cross-reference with plan milestones and design documents
 4. Update session state every 15% progress
