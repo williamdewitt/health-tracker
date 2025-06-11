@@ -1,12 +1,13 @@
 ![Picture of Legion](https://github.com/faGH/fa.templates.vibe-coding/blob/main/READMEicon.png?raw=true)
 # Gaia
-🚀 AI Coding Framework: Smart Software Development | Mark 2
+🚀 AI Coding Framework: Smart Software Development
 
 **Transform your ideas into production-ready applications in minutes. Just describe what you want to build, and our intelligent AI framework handles the rest.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-green.svg)]()
 [![AI Enhanced](https://img.shields.io/badge/AI-Enhanced%20Intelligence-purple.svg)]()
+[![Version](https://img.shields.io/badge/Mark-II-blue.svg)]()
 
 ## 🚀 Get Started in 3 Steps
 
