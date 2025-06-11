@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">
-  <b>G A I A</b>
+  <b>GAIA</b>
 </h1>
 <h3 align="center">🚀 The AI Coding Framework: Smart Software Development</h3>
 
@@ -178,3 +178,8 @@ Built on the shoulders of giants:
 - **iDesign Architecture** by Juval Löwy
 - **Clean Architecture** by Robert C. Martin
 - **Domain-Driven Design** by Eric Evans
+
+<h1 align="center">
+  <b>GAIA</b>
+</h1>
+<p align="center"><i>"In Greek mythology, Gaia is the personification of Earth and the ancestral mother of all life."</i></p>
