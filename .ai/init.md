@@ -36,7 +36,7 @@ You have full read access to all framework files. Use `read_file` tool for:
 - **Security**: Zero Trust architecture, secure authentication, input validation
 - **Error Handling**: Comprehensive error handling with retry patterns  
 - **Code Quality**: 100% linting compliance, zero warnings, complete documentation
-- **Testing**: Unit, integration, and E2E tests with 100% coverage
+- **Testing**: Unit, integration, and E2E tests with 100% coverage, mandatory Playwright visual testing for frontend
 - **Observability**: Structured logging, metrics, health checks
 
 ## Design Document Workflow
@@ -273,7 +273,7 @@ For all other operations, infer whatever is possible and proceed automatically. 
         - If implementation is technically challenging → Break it down into smaller tasks
         - If requirements are ambiguous → Reference design documents first, then make assumptions based on industry standards and document them
     5.1.4 Apply these automatic progression rules based on framework examples:
-        - Progress to next milestone when all tasks in current milestone are completed AND tests pass AND build succeeds AND linting passes AND zero warnings
+        - Progress to next milestone when all tasks in current milestone are completed AND tests pass AND build succeeds AND linting passes AND zero warnings AND visual Playwright tests pass with screenshot verification
         - **Quality Gates**: Each file must pass linting, formatting, and type-checking before committing
         - **Example-Based Architecture Selection**:
           - **Simple Applications (1-5 use cases)**: Monolithic architecture (task-manager example)
@@ -312,6 +312,11 @@ For all other operations, infer whatever is possible and proceed automatically. 
     5.2.1 Create documentation structure:`/.docs/designs/`and place all design documents correctly
     5.2.2 Create GitHub structure: `/.github/workflows/` for CI/CD automation
     5.2.3 Create Docker files: Root-level`docker-compose.yml` and project-specific Dockerfiles
+    5.2.3.1 **MANDATORY Frontend Testing Setup**:
+    - Install Playwright: `npm install --save-dev @playwright/test`
+    - Set up Playwright configuration for visual testing: `npx playwright install --with-deps`
+    - Create baseline visual test suite with screenshot capabilities
+    - Configure GitHub Actions to run Playwright tests with screenshot comparisons on PRs
     5.2.4 **Terminal Command Standards**: 
     - Use auto-confirmation flags (`-y`, `--yes`, `--force`) for non-destructive operations
     - Chain related commands with `&&` for efficiency  
@@ -450,11 +455,26 @@ For all other operations, infer whatever is possible and proceed automatically. 
     7.7.2 Test API versioning and backward compatibility
     7.7.3 Validate rate limiting and security headers
     7.7.4 Test API performance and response times
-    7.8 Database Quality Validation:
-    7.8.1 Verify migration scripts and rollback procedures
-    7.8.2 Test database performance under load
-    7.8.3 Validate data integrity and constraints
-    7.8.4 Test backup and recovery procedures
+    7.8 **Frontend Visual Testing and Automation** (MANDATORY):
+    7.8.1 **Playwright Test Suite**: Implement comprehensive Playwright tests for all UI components and flows
+    7.8.2 **Visual Regression Testing**: Capture screenshots for visual comparison between iterations
+    7.8.3 **UI Automation Testing**: Automate UI interactions to verify functionality across components
+    7.8.4 **Visual Polish Workflow**:
+        - Capture baseline screenshots of all critical UI views
+        - Document visual improvement opportunities based on screenshots
+        - Implement visual enhancements and verify with comparison screenshots
+        - Iterate until UI meets professional design standards
+    7.8.5 **Cross-Browser Testing**: Validate UI consistency across Chrome, Firefox, Safari and mobile viewports
+    7.8.6 **Accessibility Testing**: Verify WCAG compliance using Playwright accessibility tools
+    7.8.7 **Style Iteration Pipeline**: 
+        - Use screenshot comparisons to identify style improvement opportunities
+        - Apply iterative polish to UI components until they match design specifications perfectly
+        - Document before/after visual transformations in design evolution documentation
+    7.9 Database Quality Validation:
+    7.9.1 Verify migration scripts and rollback procedures
+    7.9.2 Test database performance under load
+    7.9.3 Validate data integrity and constraints
+    7.9.4 Test backup and recovery procedures
     7.9 Build & deploy to test environment; run smoke tests.
     7.10 Chaos Testing following framework resilience patterns:
     7.10.1 Simulate dependency failures
@@ -478,6 +498,13 @@ For all other operations, infer whatever is possible and proceed automatically. 
     8.3 Tag repository (`v1.0.0`).
     8.4 **Clean up template files**: Delete `/.github/workflows/containerization_workflow.yml` example
     8.5 **Final verification**: Ensure all Docker builds work and CI/CD pipeline executes successfully
+    8.6 **Update README.md**: Replace the template README with a comprehensive project-specific README that:
+        - Describes the generated project and its purpose
+        - Details the technology stack used and architectural decisions made
+        - Provides clear setup and installation instructions
+        - Includes usage examples and API documentation summaries
+        - Lists key features and capabilities of the new application
+        - Maintains appropriate branding and styling from the original template
 9.  **Output Contract**
     9.1 Reply with `## IMPLEMENTATION PLAN` and provide comprehensive plan overview from `.ai/plan.md`.
     9.2 Create all files using appropriate tools (create_file, insert_edit_into_file, replace_string_in_file).
@@ -503,6 +530,8 @@ For all other operations, infer whatever is possible and proceed automatically. 
 - **Beautiful UI Standard**: All frontends must achieve modern, professional design quality matching provided inspiration
 - **Design System Creation**: Always create comprehensive design specifications in `.docs/designs/5-frontend.md`
 - **Inspiration Resource Assistance**: Provide curated design resources when users need guidance
+- **Visual Testing Requirement**: Implement Playwright visual testing to capture screenshots for UI verification and systematic visual polish
+- **Screenshot-Driven UI Refinement**: Use automated screenshots to identify visual improvement opportunities and iterate until UI achieves perfect alignment with design specifications
 
 ### Security-First Development
 
@@ -519,6 +548,8 @@ For all other operations, infer whatever is possible and proceed automatically. 
 ### Quality & Testing Standards
 
 - **Testing Strategy**: Implement comprehensive testing with unit, integration, and E2E tests
+- **Frontend Visual Testing**: Mandatory Playwright testing with screenshots for UI validation and iterative visual polish
+- **Visual Perfection Workflow**: Use screenshot-based iteration to continuously refine UI until it achieves professional design standards
 - **Error Handling**: Apply resilience patterns with retry, circuit breaker, and fallback mechanisms
 - **Monitoring**: Implement observability patterns with structured logging and metrics
 - **Code Quality**: Maintain 100% test coverage and SOLID compliance
@@ -567,7 +598,7 @@ Apply these defaults based on the identified project type and matching example, 
 - **Authentication**: JWT with refresh tokens and role-based access
 - **Real-time**: SignalR for live updates
 - **Deployment**: Docker containers with docker-compose
-- **Testing**: Jest for frontend, xUnit for backend
+- **Testing**: Jest for component testing, Playwright for E2E and visual UI testing with screenshots, xUnit for backend
 
 ### Business Applications (E-commerce Example Pattern)
 
