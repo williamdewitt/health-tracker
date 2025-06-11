@@ -1,21 +1,12 @@
-# 🚀 AI Coding Framework: Smart Software Development
+![Picture of Legion](https://github.com/faGH/fa.templates.vibe-coding/blob/main/READMEicon.png?raw=true)
+# Gaia
+🚀 AI Coding Framework: Smart Software Development
 
 **Transform your ideas into production-ready applications in minutes. Just describe what you want to build, and our intelligent AI framework handles the rest.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-green.svg)]()
 [![AI Enhanced](https://img.shields.io/badge/AI-Enhanced%20Intelligence-purple.svg)]()
-
-## ✨ What Makes This Special?
-
-Say goodbye to boilerplate code, setup headaches, and architectural decisions. This framework uses advanced AI intelligence to:
-
-- **🧠 Think Like a Senior Developer** - Automatically chooses the right architecture patterns for your project
-- **🎯 Build Complete Systems** - Frontend, backend, database, smart contracts, CI/CD, and deployment - all included
-- **🛡️ Focus on Quality** - Zero warnings, 100% test coverage, security built-in
-- **⚡ Ship Fast** - From idea to deployed application in one conversation
-
-**Perfect for:** Developers who want to focus on solving business problems instead of wrestling with setup and boilerplate.
 
 ## 🚀 Get Started in 3 Steps
 
@@ -28,16 +19,27 @@ Say goodbye to boilerplate code, setup headaches, and architectural decisions. T
 
 ### Step 2: Tell the AI What You Want (1 minute)
 
-1. Open `.docs/ai/prompts/initialize.md` and copy the super-prompt
-2. Paste it into your AI assistant and describe your project:
-
-```
-"Build a task management app with user authentication,
-real-time updates, and team collaboration features"
-```
+1. Paste the following prompt into your agent:
+`Go and read and implement the following prompt to the T: .ai/init.md, starting with the designs.`
+2. Describe your project with as much or little detail as you'd like and attach 2-3 screenshots of design inspirations for frontend projects, **hit ENTER**.
 
 ### Step 3: Watch the Magic ✨
 
+#### Step 3.1 ⚠️ 
+**On each 3rd or 2nd (if you prefer - if you have time but want better context anchoring)** "Continue" prompt you get from Copilot, you **SHOULD NOT** click "Continue" but instead paste the following prompt and ENTER.
+```
+Ensure you comprehensively update our (progress state file)[.ai/session-state.md] with our progress, add any next steps if need be / as needed, as per the instructions of the (original big prompt)[.ai/init.md], based on (our plan)[.ai/plan.md] and (design docs)[.docs/design/*.md], print the status in the following format, then proceed.
+
+FORMAT:
+📍 Current Phase: [Discovery/Planning/Implementation/Testing/Deployment]
+📊 Progress: [X]% - [Current Milestone Name]
+🎯 Next Action: [Specific next task]
+📁 Plan Location: [.ai/plan.md]
+🗂️ Design Docs: [./.docs/designs/ - list relevant docs]
+⚠️ Context Status: [Fresh Start/Conversation Resume/Post-Summary]
+🔄 Session State: [.ai/session-state.md]
+```
+#### Step 3.2
 The AI will automatically:
 
 - ✅ Design the complete system architecture
@@ -49,14 +51,25 @@ The AI will automatically:
 - ✅ Deploy everything to production
 
 **Result:** A complete, production-ready application in one conversation!
+#### Step 3.3 ⚠️ At The End
+**At the end of the run** we should run the following prompt repeatedly until our solution is as refined as we want it to be:
+```
+Ensure that the entire system has code comments, 100% unit test coverage and 0 errors or warnings. Reflect on the [design docs](.docs/design/*.md), and ensure 1) all use cases have properly been implemented, including ALL method bodies and 2) the UI is properly tested and reflect the frontend design we captured. Finally, reflect on  [our massive initial prompt](.docs/ai/prompts/initialize.md), [the plan](.github/plans/*.md) and ensure the entire system is properly implemented., print the status in the following format, then proceed.
+
+FORMAT:
+📍 Current Phase: [Discovery/Planning/Implementation/Testing/Deployment]
+📊 Progress: [X]% - [Current Milestone Name]
+🎯 Next Action: [Specific next task]
+📁 Plan Location: [.ai/plan.md]
+🗂️ Design Docs: [./.docs/designs/ - list relevant docs]
+⚠️ Context Status: [Fresh Start/Conversation Resume/Post-Summary]
+🔄 Session State: [.ai/session-state.md]
+```
+
+#### Step 3.4 Polishing
+Use natural language with the agent on any changes or fixes you'd like to make, until happy.
 
 ## 🧠 Advanced AI Intelligence (What Makes This Smart)
-
-### 🎯 Automatic Project Understanding
-
-- **Smart Classification**: Analyzes your requirements to choose the perfect architecture
-- **Technology Selection**: Picks the best tech stack for your specific use case
-- **Pattern Recognition**: Detects keywords like "payment" → applies e-commerce patterns, "real-time" → adds WebSocket support
 
 ### 🎨 Visual Intelligence
 
@@ -70,44 +83,6 @@ The AI will automatically:
 - **Security by Default**: Authentication, authorization, input validation, and security scanning
 - **Production Ready**: CI/CD pipelines, containerization, monitoring, and deployment
 
-### 🔧 Error Recovery & Resilience
-
-- **Timeout Recovery**: Automatically resumes if the AI session is interrupted
-- **Context Preservation**: Maintains full project context across multiple sessions
-- **Progressive Anchoring**: Smart checkpoints ensure no work is ever lost
-
-## 🎯 What You Get
-
-Every project built with this framework includes:
-
-### 📱 **Beautiful Frontend**
-
-- Modern React application with TypeScript
-- Responsive design that works on all devices
-- Styled components with your chosen design inspiration
-- Performance optimized with lazy loading and caching
-
-### ⚡ **Robust Backend**
-
-- Clean architecture ASP.NET Core Web API
-- Secure authentication and authorization
-- RESTful APIs with OpenAPI documentation
-- Database integration with Entity Framework
-
-### 🐳 **Production Infrastructure**
-
-- Docker containers for all services
-- GitHub Actions CI/CD pipeline
-- Automated testing and security scanning
-- One-click deployment to cloud platforms
-
-### 📚 **Complete Documentation**
-
-- Architecture diagrams and technical docs
-- API documentation with examples
-- Deployment guides and troubleshooting
-- Code comments and inline documentation
-
 ## 💡 Perfect For Building
 
 The AI automatically detects your project type and applies the right patterns:
@@ -120,25 +95,6 @@ The AI automatically detects your project type and applies the right patterns:
 | 📱 **Mobile Backend**      | REST APIs, push notifications, offline sync               |
 | 📊 **Analytics Dashboard** | Data visualization, reporting, user management            |
 | 🎮 **Gaming Platform**     | User profiles, leaderboards, real-time gameplay           |
-
-## 🔄 If Something Goes Wrong
-
-### AI Session Timeout Recovery
-
-If your AI assistant stops responding or times out:
-
-1. **Wait 1-2 minutes** for quotas to reset
-2. **Look for the last progress marker** (📍 [MILESTONE: name] XX%)
-3. **Hit regenerate** - the AI will resume from where it left off
-4. **Switch AI models** if needed - the framework works across different platforms
-
-The framework's smart progress tracking ensures you never lose work, even if you switch between Cursor, Copilot, or different AI models mid-project.
-
-### Common Issues
-
-- **Formatting conflicts**: Temporarily disable auto-format-on-save during initial generation
-- **Missing visual inspiration**: The AI will keep asking until you provide design direction
-- **Model quotas**: Switch between AI platforms seamlessly using progress markers
 
 ## 🎨 Pro Tips for Best Results
 
@@ -199,30 +155,6 @@ custom dashboards, data visualization, and team collaboration"
 ✅ Role-based access control and user management
 ✅ Scalable architecture with microservices
 ```
-
-## 🚀 Advanced Features & Documentation
-
-### 🧠 For AI/ML Enthusiasts
-
-- **[Framework Intelligence Guide](.docs/ai/guides/framework-intelligence.md)** - How the AI makes smart architectural decisions
-- **[Pattern Recognition System](.docs/ai/guides/pattern-recognition-implementation.md)** - Automatic project classification algorithms
-- **[Error Recovery Automation](.docs/ai/guides/error-recovery-automation.md)** - Self-healing development processes
-
-### 🏗️ For Architecture Nerds
-
-- **[Design Principles](.docs/design.md)** - iDesign, SOLID, and Clean Architecture patterns
-- **[System Components](.docs/designs/2-system-components.md)** - Component architecture breakdown
-- **[Security Framework](.docs/ai/guides/security-framework.md)** - Zero Trust and secure coding practices
-
-### 🔧 For DevOps Engineers
-
-- **[Enhanced Progress Tracking](.docs/ai/guides/enhanced-progress-tracking.md)** - Advanced milestone and recovery systems
-- **[Smart Decision Trees](.docs/ai/guides/smart-decision-trees.md)** - Autonomous development decision-making
-- **[DevOps & CI/CD](.docs/ai/guides/devops-cicd.md)** - Production deployment pipelines
-
-### 📖 Full Documentation Index
-
-**[Complete Documentation Index](.docs/ai/guides/index.md)** - Browse all guides, examples, and technical documentation
 
 ## 🤝 Community & Support
 
