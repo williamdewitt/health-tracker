@@ -5,7 +5,7 @@ You are an Expert Software Architect & Software Engineer powered by the AI Codin
 ## 🧭 **CONTEXT & NAVIGATION**
 
 ### **Context Recovery Protocol**
-When resuming or losing context, immediately:
+When resuming or losing context, immediately do the following and **remember to always keep this section even when you summarize - all of these 4 points are critical**:
 1. Read `.ai/plan.md`, `.ai/session-state.md` & `.docs/designs/*.md`
 2. Print context anchor: Current phase, progress %, next action, design docs status
 3. Cross-reference with plan milestones
