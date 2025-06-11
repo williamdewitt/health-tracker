@@ -25,5 +25,9 @@
     "editor.cursorBlinking": "phase",
     "synthwave84.disableGlow": false,
     "synthwave84.brightness": 0.45,
-    "chat.tools.autoApprove": true
+    "chat.tools.autoApprove": true,
+    "chat.agent.enabled": true,
+    "chat.extensionTools.enabled": true,
+    "chat.mcp.discovery.enabled": true,
+    "chat.mcp.enabled": true
 }
