@@ -33,19 +33,10 @@ Go and read and implement the following prompt to the T: .ai/init.md, starting w
 
 ### Step 3: Watch the Magic ✨
 
-#### Step 3.1 ⚠️ 
+#### Step 3.1 (OPTIONAL) 
 **On each 3rd or 2nd (if you prefer - if you have time but want better context anchoring)** "Continue" prompt you get from Copilot, you **SHOULD NOT** click "Continue" but instead paste the following prompt and ENTER.
 ```
-Ensure you comprehensively update our [progress state file](.ai/session-state.md) with our progress, add any next steps if need be / as needed, as per the instructions of the [original big prompt](.ai/init.md), based on [our plan](.ai/plan.md) and [design documentation](.docs/design.md), print the status in the following format, then proceed.
-
-FORMAT:
-📍 Current Phase: [Discovery/Planning/Implementation/Testing/Deployment]
-📊 Progress: [X]% - [Current Milestone Name]
-🎯 Next Action: [Specific next task]
-📁 Plan Location: [.ai/plan.md]
-🗂️ Design Docs: [./.docs/designs/ - list relevant docs]
-⚠️ Context Status: [Fresh Start/Conversation Resume/Post-Summary]
-🔄 Session State: [.ai/session-state.md]
+Ensure you comprehensively update our [progress state file](.ai/session-state.md) with our progress, add any next steps if need be / as needed, as per the instructions of the [original big prompt](.ai/init.md), based on [our plan](.ai/plan.md) and [design documentation](.docs/design.md), then proceed.
 ```
 #### Step 3.2
 The AI will automatically:
@@ -55,23 +46,13 @@ The AI will automatically:
 - ✅ Build secure backend with clean architecture
 - ✅ Set up database with optimized schemas
 - ✅ Create Docker containers and CI/CD pipeline
-- ✅ Include comprehensive tests and documentation
-- ✅ Deploy everything to production
+- ✅ Include comprehensive tests and design documentation
 
 **Result:** A complete, production-ready application in one conversation!
-#### Step 3.3 ⚠️ At The End
+#### Step 3.3 ⚠️ At The End (VALIDATION | MANDATORY)
 **At the end of the run** we should run the following prompt repeatedly until our solution is as refined as we want it to be:
 ```
-Ensure that the entire system has code comments, 100% unit test coverage and 0 errors or warnings. Reflect on the [design documentation](.docs/design.md), and ensure 1) all use cases have properly been implemented, including ALL method bodies and 2) the UI is properly tested and reflect the frontend design we captured. Finally, reflect on  [our massive initial prompt](.ai/init.md), [the plan](.ai/plan.md) and ensure the entire system is properly implemented., print the status in the following format, then proceed. Lets create some end to end tests to validate that the UI's beauty is 1st class. Recap .docs/designs/5-frontend.md and create headless (always) playwright tests for those criteria.
-
-FORMAT:
-📍 Current Phase: [Discovery/Planning/Implementation/Testing/Deployment]
-📊 Progress: [X]% - [Current Milestone Name]
-🎯 Next Action: [Specific next task]
-📁 Plan Location: [.ai/plan.md]
-🗂️ Design Docs: [./.docs/designs/ - list relevant docs]
-⚠️ Context Status: [Fresh Start/Conversation Resume/Post-Summary]
-🔄 Session State: [.ai/session-state.md]
+Ensure that the entire system has code comments, 100% unit test coverage and 0 errors or warnings. Reflect on the [design documentation](.docs/design.md), and ensure 1) all use cases have properly been implemented, including ALL method bodies and 2) the UI/UX is properly tested and reflect the frontend design we captured. Reflect on  [our massive initial prompt](.ai/init.md), [the plan](.ai/plan.md) and ensure the entire system is properly implemented., print the status in the following format, then proceed. Lets create some end to end tests to validate that the UI's beauty is 1st class. Recap .docs/designs/5-frontend.md and create headless (always) playwright tests for those criteria and fix any broken tests to the best of your ability. For all web server projects, there should be E2E tests for each endpoint too. For all frontends integrating with backends etc, there should be passing E2E tests too for every use case, unless impossible. Ensure all tests pass one last time. Open up the application / website via the terminal. I want to see the end-result, at the end. Ensure that ALL ROUTES on the frontends and ALL CONTROLLERS on the backend should be working flawlessly. Create tests for it all, with playwright or otherwise. In order for the system to be production-ready we need the various components, to be implemented and fully integration tested where possible and 100% test coverage.
 ```
 
 #### Step 3.4 Polishing
