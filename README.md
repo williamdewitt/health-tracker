@@ -26,7 +26,9 @@
 ### Step 2: Tell the AI What You Want (1 minute)
 
 1. Paste the following prompt into your agent:
-`Go and read and implement the following prompt to the T: .ai/init.md, starting with the designs.`
+```
+Go and read and implement the following prompt to the T: .ai/init.md, starting with the designs.
+```
 2. Describe your project with as much or little detail as you'd like and attach 2-3 screenshots of design inspirations for frontend projects, **hit ENTER**.
 
 ### Step 3: Watch the Magic ✨
