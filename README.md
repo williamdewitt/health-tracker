@@ -62,7 +62,7 @@ The AI will automatically:
 #### Step 3.3 ⚠️ At The End
 **At the end of the run** we should run the following prompt repeatedly until our solution is as refined as we want it to be:
 ```
-Ensure that the entire system has code comments, 100% unit test coverage and 0 errors or warnings. Reflect on the [design documentation](.docs/design.md), and ensure 1) all use cases have properly been implemented, including ALL method bodies and 2) the UI is properly tested and reflect the frontend design we captured. Finally, reflect on  [our massive initial prompt](.ai/init.md), [the plan](.ai/plan.md) and ensure the entire system is properly implemented., print the status in the following format, then proceed.
+Ensure that the entire system has code comments, 100% unit test coverage and 0 errors or warnings. Reflect on the [design documentation](.docs/design.md), and ensure 1) all use cases have properly been implemented, including ALL method bodies and 2) the UI is properly tested and reflect the frontend design we captured. Finally, reflect on  [our massive initial prompt](.ai/init.md), [the plan](.ai/plan.md) and ensure the entire system is properly implemented., print the status in the following format, then proceed. Lets create some end to end tests to validate that the UI's beauty is 1st class. Recap .docs/designs/5-frontend.md and create headless (always) playwright tests for those criteria.
 
 FORMAT:
 📍 Current Phase: [Discovery/Planning/Implementation/Testing/Deployment]
