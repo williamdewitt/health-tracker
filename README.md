@@ -171,6 +171,11 @@ custom dashboards, data visualization, and team collaboration"
 - **📖 Framework Documentation**: [Architecture Guide](.docs/design.md) | [Repository Structure](.docs/repo-structure.md)
 - **🐳 Docker Support**: [Docker Setup Guide](.docs/docker-support.md)
 
+In order to make changes to the Gaia framework to match your exact needs and desires, simply use the following prompt **in a new chat**, and speak to the system and tell it what you want to improve, change, etc.
+```
+This is our super-prompt to generate entire end-to-end systems. Read the readme.md file to understand more then kick into the mode of helping me improve the prompt and documentation, based on my comments.
+```
+
 ## 🙏 Credits & Inspiration
 
 **Special thanks to [Conway Osler](https://www.linkedin.com/in/conway-osler)** for the project inspiration that started this framework.
