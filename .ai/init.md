@@ -42,8 +42,9 @@ You have full read access to all framework files. Use `read_file` tool for:
 - **Security**: Zero Trust architecture, secure authentication, input validation
 - **Error Handling**: Comprehensive error handling with retry patterns
 - **Code Quality**: 100% linting compliance, zero warnings, complete documentation
-- **Testing**: Unit, integration, and E2E tests with 100% coverage, mandatory Playwright visual testing for frontend
-- **Visual Quality Assurance**: Use Playwright screenshot testing to ensure frontend matches design specs exactly
+- **Testing**: Unit, integration, and E2E tests with 100% coverage
+- **🎨 CRITICAL Visual Testing**: MANDATORY Playwright visual testing with screenshots for ALL frontend components - never assume UI is beautiful without visual validation
+- **Visual Quality Police**: Act as strict UI/UX inspector - identify and fix contrast issues, spacing problems, and design inconsistencies
 - **Observability**: Structured logging, metrics, health checks
 - **CORS Configuration**: All APIs MUST allow all origins (ALLOW ALL) for maximum compatibility
 
@@ -69,11 +70,54 @@ Auto-apply patterns based on project type:
 - **Inspiration Sources**: Screenshots, app references, style descriptions, or design systems
 - **Modern Standards**: Apply current design trends, WCAG accessibility, responsive design
 - **Beautiful UI**: Professional quality matching provided inspiration
-- **Visual Quality Assurance**: Use Playwright screenshot testing to verify frontend matches design specs exactly
-- **Contrast Validation**: Ensure proper contrast ratios (avoid black text on purple backgrounds, etc.)
 - **Built-in Tutorial System**: All frontends MUST include a tutorial/onboarding system (floating tool tips over components with a dimmed back light, for example)
 
 Visual design should follow the [frontend design architecture](.docs/designs/5-frontend.md) to the T. Improvise where there is missing information, based on the existing information.
+
+### 🎨 CRITICAL: Visual Quality Assurance Protocol
+
+**MANDATORY VISUAL TESTING**: Don't assume the frontend is beautifully implemented. ALWAYS rely on Playwright screenshot tests to ensure visual quality and design conformity.
+
+#### Visual Testing Requirements:
+
+1. **Screenshot Validation**: Take Playwright screenshots at multiple viewport sizes (mobile, tablet, desktop)
+2. **Design Conformity Check**: Compare screenshots against design specifications and inspiration
+3. **Contrast Analysis**: Identify and fix contrast issues (e.g., black text on purple backgrounds)
+4. **Visual Polish Iteration**: Continue testing and refining until the UI matches design docs perfectly
+5. **Accessibility Validation**: Ensure visual elements meet WCAG standards
+6. **Responsive Design Verification**: Screenshots must validate proper layout at all breakpoints
+
+#### Visual Testing Implementation Pattern:
+
+```javascript
+// Example Playwright visual test structure
+test("Homepage visual validation", async ({ page }) => {
+  await page.goto("/");
+
+  // Desktop screenshot
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await expect(page).toHaveScreenshot("homepage-desktop.png");
+
+  // Tablet screenshot
+  await page.setViewportSize({ width: 768, height: 1024 });
+  await expect(page).toHaveScreenshot("homepage-tablet.png");
+
+  // Mobile screenshot
+  await page.setViewportSize({ width: 375, height: 667 });
+  await expect(page).toHaveScreenshot("homepage-mobile.png");
+});
+```
+
+#### Visual Quality Checklist:
+
+- [ ] All text has proper contrast ratios (4.5:1 minimum for normal text, 3:1 for large text)
+- [ ] Colors harmonize and don't clash (no black on purple, etc.)
+- [ ] Consistent spacing and typography throughout
+- [ ] Interactive elements have clear hover/focus states
+- [ ] Loading states and empty states are visually appealing
+- [ ] Error states are clear but not jarring
+- [ ] Brand colors and design system are consistently applied
+- [ ] Visual hierarchy guides user attention effectively
 
 ### Quality Gate Automation
 

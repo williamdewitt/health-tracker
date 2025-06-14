@@ -69,7 +69,14 @@ The AI will automatically:
   2.1. all use cases have properly been implemented across the system, including ALL method bodies and
   2.2. the UI/UX is properly tested and reflect the frontend design we captured by reflecting on [our massive initial prompt](.ai/init.md), [the plan](.ai/plan.md) and ensure the entire system is properly implemented.
 
-3. You should pretend to be the frontend UI/UX police, create comprehensive Playwright tests for each criteria that needs to be confirm for the perfect UI. You SHOULD use **screenhots** from Playwright at various points and then analyze them as the UI police, in order to determine if it's perfect or now. If not, iterate on the failed tests until they are passing/the UI/UX is perfect, where possible. Recap .docs/designs/5-frontend.md for more on the frontend requirements. Pay attention to bad contrasting things like black titles on purple backgrounds etc.
+3. 🎨 CRITICAL VISUAL QUALITY ASSURANCE: Act as the strict frontend UI/UX police. Don't assume the frontend is beautiful - PROVE IT with comprehensive Playwright visual tests:
+   3.1. Create Playwright tests that take SCREENSHOTS at multiple viewport sizes (mobile, tablet, desktop)
+   3.2. Analyze the screenshots as a UI/UX expert - check for contrast issues (no black text on purple backgrounds!), spacing problems, alignment issues, and overall visual appeal
+   3.3. Compare screenshots against the design specifications in .docs/designs/5-frontend.md
+   3.4. Iterate and fix any visual problems until the UI is genuinely beautiful and professional
+   3.5. Test all interactive states: hover, focus, loading, error, and empty states
+   3.6. Ensure responsive design works flawlessly across all breakpoints
+   3.7. Validate that the UI matches the visual inspiration and design direction provided
 
 4. For all web server projects, there should be E2E tests for each endpoint too. For all frontends integrating with backends etc, there should be comprehensive and passing E2E tests too for every use case, unless impossible.
 
@@ -77,7 +84,7 @@ The AI will automatically:
 
 6. In order for the system to be production-ready we need the various components, to be implemented and fully integration tested where possible and 100% test coverage.
 
-7. At the end, ensure all tests pass one last time.
+7. At the end, ensure all tests pass one last time - especially the visual regression tests.
 
 8. Open up the application / website via the terminal. I want to see the end-result, at the end.
 ```
@@ -97,6 +104,8 @@ Use natural language with the agent on any changes or fixes you'd like to make, 
 ### 🛡️ Built-in Quality & Security
 
 - **Zero Tolerance Standards**: 100% test coverage, zero build warnings, perfect linting
+- **🎨 Visual Quality Assurance**: Mandatory Playwright screenshot testing to ensure genuinely beautiful, professional UIs
+- **Contrast & Accessibility**: Automated detection of poor contrast (no black text on purple backgrounds!)
 - **Security by Default**: Authentication, authorization, input validation, and security scanning
 - **Production Ready**: CI/CD pipelines, containerization, monitoring, and deployment
 
