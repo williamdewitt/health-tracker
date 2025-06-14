@@ -6,8 +6,9 @@
 2. **Cross-reference Current Progress** - Map current status against plan milestones
 3. **Validate Alignment** - Ensure session state reflects plan accurately
 4. **Update Plan Tracking** - Mark completed milestones and adjust timeline if needed
-5. **Document Deviations** - Note any changes from original plan with rationale
-6. **🚀 AUTOMATICALLY CONTINUE** - Never stop after sync, immediately proceed to next task
+5. **📋 UPDATE USE CASE TRACKING** - Sync with .docs/designs/1-use-cases.md and update completion status
+6. **Document Deviations** - Note any changes from original plan with rationale
+7. **🚀 AUTOMATIC CONTINUE** - Never stop after sync, immediately proceed to next task
 
 ## 🚀 AUTOMATIC CONTINUATION RULES
 
@@ -104,6 +105,85 @@
 **Linting Status**: [Clean/Violations count]
 **Design Docs Status**: [5 docs with completion status]
 
+## 📋 **MANDATORY USE CASE TRACKING**
+
+**CRITICAL**: Every use case from the design documentation MUST be implemented and tracked. This section ensures 100% use case coverage.
+
+### **Use Case Completion Status**
+
+**Source**: Use cases are derived from [.docs/designs/1-use-cases.md]
+
+**Primary Use Cases** (Core functionality - MANDATORY):
+
+- [⏳] **UC-001**: [Use Case Name] - [Brief Description]
+
+  - Status: [Not Started/In Progress/Completed/Tested]
+  - Implementation: [Frontend/Backend/Both]
+  - Tests: [Unit/Integration/E2E] - [Pass/Fail/Pending]
+  - Notes: [Any implementation notes or blockers]
+
+- [🔄] **UC-002**: [Use Case Name] - [Brief Description]
+
+  - Status: [Not Started/In Progress/Completed/Tested]
+  - Implementation: [Frontend/Backend/Both]
+  - Tests: [Unit/Integration/E2E] - [Pass/Fail/Pending]
+  - Notes: [Any implementation notes or blockers]
+
+- [✅] **UC-003**: [Use Case Name] - [Brief Description]
+  - Status: [Not Started/In Progress/Completed/Tested]
+  - Implementation: [Frontend/Backend/Both]
+  - Tests: [Unit/Integration/E2E] - [Pass/Fail/Pending]
+  - Notes: [Any implementation notes or blockers]
+
+**Secondary Use Cases** (Nice-to-have features):
+
+- [⏳] **UC-S01**: [Secondary Use Case] - [Brief Description]
+  - Status: [Not Started/In Progress/Completed/Tested]
+  - Priority: [Low/Medium/High]
+  - Dependencies: [List of primary use cases this depends on]
+
+### **Use Case Implementation Guidelines**
+
+**Implementation Requirements**:
+
+- [ ] **Frontend Implementation**: All UI components and user interactions
+- [ ] **Backend Implementation**: All API endpoints and business logic
+- [ ] **Database Schema**: All required tables, relationships, and constraints
+- [ ] **Authentication**: Proper user access controls for each use case
+- [ ] **Validation**: Input validation and error handling
+- [ ] **Testing**: Unit, integration, and E2E tests for each use case
+
+**Use Case Validation Checklist**:
+
+- [ ] All use case steps can be completed by end users
+- [ ] Error scenarios are handled gracefully
+- [ ] Use case aligns with business requirements
+- [ ] Performance requirements are met
+- [ ] Security requirements are implemented
+- [ ] Accessibility requirements are fulfilled
+
+### **Use Case Progress Summary**
+
+**Completion Metrics**:
+
+- **Total Use Cases**: [X]
+- **Completed**: [Y] ([Z]%)
+- **In Progress**: [A] ([B]%)
+- **Not Started**: [C] ([D]%)
+- **Blocked**: [E] ([F]%)
+
+**Critical Path Use Cases** (Must complete before deployment):
+
+1. [Use Case Name] - [Status] - [Blocking Reason if applicable]
+2. [Use Case Name] - [Status] - [Blocking Reason if applicable]
+3. [Use Case Name] - [Status] - [Blocking Reason if applicable]
+
+**Risk Assessment**:
+
+- **High Risk**: [List use cases with implementation challenges]
+- **Dependencies**: [Use cases blocked by external factors]
+- **Timeline Impact**: [Use cases that may affect delivery schedule]
+
 ## Navigation Context
 
 **Next Actions**: [1-3 specific immediate tasks with file references]
@@ -130,15 +210,16 @@
 **MANDATORY SEQUENCE** - Execute in this exact order:
 
 1. `read_file .ai/plan.md` - **FIRST PRIORITY** - Full project plan
-2. `read_file .ai/session-state.md` - Current session state (this file)
-3. `read_file .docs/designs/*.md` - Design documents status
-4. `list_dir src/` - Implementation status
-5. `get_errors ["src/"]` - Current issues
+2. `read_file .docs/designs/1-use-cases.md` - **SECOND PRIORITY** - All use cases for tracking
+3. `read_file .ai/session-state.md` - Current session state (this file)
+4. `read_file .docs/designs/*.md` - Design documents status
+5. `list_dir src/` - Implementation status
+6. `get_errors ["src/"]` - Current issues
 
-**Plan Sync Command**: Always run after context recovery:
+**Plan & Use Case Sync Command**: Always run after context recovery:
 
 ```
-[PLAN-SYNC] Read .ai/plan.md, cross-reference with current session state, validate milestone progress, and update this session-state.md with accurate plan tracking information.
+[PLAN-SYNC] Read .ai/plan.md and .docs/designs/1-use-cases.md, cross-reference with current session state, validate milestone progress and use case completion, and update this session-state.md with accurate tracking information.
 ```
 
 ## Context Validation Checklist
@@ -167,6 +248,17 @@
 - [ ] Technology stack matches plan specifications
 - [ ] Timeline is realistic based on plan milestones
 - [ ] Quality gates align with plan requirements
+
+**Use Case Tracking Validation** (MANDATORY):
+
+- [ ] All use cases from .docs/designs/1-use-cases.md are identified and listed
+- [ ] Each use case has clear status tracking (Not Started/In Progress/Completed/Tested)
+- [ ] Implementation coverage is specified for each use case (Frontend/Backend/Both)
+- [ ] Test coverage is documented for each use case (Unit/Integration/E2E)
+- [ ] Critical path use cases are identified and prioritized
+- [ ] Blocked use cases have documented blockers and mitigation plans
+- [ ] Use case completion percentage is mathematically accurate
+- [ ] No use cases are missing from the original design documentation
 
 ## Framework Intelligence Markers
 
