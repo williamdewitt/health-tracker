@@ -12,6 +12,7 @@
 ## 🚀 AUTOMATIC CONTINUATION RULES
 
 **GAIA NEVER STOPS FOR REPORTS**:
+
 - ✅ **PRINT milestone status** for visibility
 - ✅ **DISPLAY progress updates** for tracking
 - ✅ **SHOW completion status** for transparency
