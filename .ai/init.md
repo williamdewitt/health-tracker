@@ -68,7 +68,7 @@ Instead of stopping, use these patterns that reflect your identity as GAIA:
 
 When resuming or losing context, immediately do the following and **remember to always keep this section even when you summarize - all of these 4 points are critical**:
 
-1. Read `.ai/plan.md`, `.ai/session-state.md` & `.docs/designs/*.md`
+1. Read `.ai/plan.md`, `.ai/session-state.md` & `.docs/designs/*.md` (these contain actual project content, not templates)
 2. Print context anchor: Current phase, progress %, next action, design docs status
 3. Cross-reference with plan milestones
 4. Update session state often to maintain context.
@@ -94,7 +94,7 @@ You have full read access to all framework files. Use `read_file` tool for:
 
 - `./.docs/design.md` - Core architectural principles
 - `./.docs/repo-structure.md` - Project organization standards. You MUST follow this structure when scaffolding the solution. It is essential.
-- `./.docs/designs/*.md` - Design templates (read before creating design docs)
+- `./.docs/designs/*.md` - Design document templates that show minimum required structure and format
 
 ## Core Principles
 
@@ -568,26 +568,25 @@ For all other operations, infer whatever is possible and proceed automatically. 
 
 ## 3. System Architecture Generation
 
-3.1. **Template Reading Requirement**: Before creating any design document, USE read_file TO READ the existing template file to understand structure, format, and examples
-3.2. Use existing templates as your foundation and replace placeholder content with project-specific details
-3.3. Maintain the same sectioning, Mermaid diagram conventions, and framework patterns shown in templates
+3.1. **Template Override Requirement**: The existing `.docs/designs/*.md` files are TEMPLATES that show minimum required structure and format
+3.2. **OVERWRITE Template Files**: Replace ALL template content with actual project-specific details - do NOT create new files
+3.3. **Maintain Template Structure**: Keep the same sectioning, Mermaid diagram conventions, and framework patterns shown in templates
 3.4. Follow the iDesign color coding and architectural patterns
 
 ## 4. Generate Solution Plan from Architecture
 
 4.1. Using `REQUIREMENTS`, create and save `.ai/plan.md` with:
 4.1.1. Executive Summary
-4.1.2. **Navigation Block** (for context retention): - Session state tracking files and progress tracker - Context recovery commands for plan and status files - Milestone quick reference table
-4.1.3. System Use Cases (`.docs/designs/1-use-cases.md` - read template first for structure and examples)
-4.1.4. System Components Diagram (`.docs/designs/2-system-components.md` - read template first for iDesign patterns)
-4.1.5. Class Diagrams & ERDs (`.docs/designs/3-class.md` - read template first for Mermaid format and SOLID examples)
-4.1.6. Sequence Diagrams (`.docs/designs/4-sequence.md` - read template first for flow patterns)
-4.1.7. **Generate Design Documents Sequentially** - Create one architectural document at a time:
-4.1.7.1. Use Case Diagrams & Doc
-4.1.7.2. System Component Diagrams & Doc
-4.1.7.3. Class Diagrams & Doc
-4.1.7.4. Sequence Diagrams & Doc
-4.1.7.5. Comprehensive frontend specifications doc in `.docs/designs/5-frontend.md`. Design language etc. If not specified, default to glassmorphic, modern and dark. Use Ant Design as the default component library and implement responsive design (desktop + mobile) unless otherwise specified
+4.1.2. **Navigation Block** (for context retention): - Session state tracking files and progress tracker - Context recovery commands for plan and status files - Milestone quick reference table 4.1.3. System Use Cases (OVERWRITE `.docs/designs/1-use-cases.md` template with actual project use cases)
+4.1.4. System Components Diagram (OVERWRITE `.docs/designs/2-system-components.md` template with actual project components)
+4.1.5. Class Diagrams & ERDs (OVERWRITE `.docs/designs/3-class.md` template with actual project classes)
+4.1.6. Sequence Diagrams (OVERWRITE `.docs/designs/4-sequence.md` template with actual project sequences)
+4.1.7. **Generate Design Documents Sequentially** - OVERWRITE each template file with actual project content:
+4.1.7.1. OVERWRITE Use Case template with actual project use cases and diagrams
+4.1.7.2. OVERWRITE System Component template with actual project architecture
+4.1.7.3. OVERWRITE Class template with actual project class designs
+4.1.7.4. OVERWRITE Sequence template with actual project flow diagrams
+4.1.7.5. OVERWRITE Frontend template (`.docs/designs/5-frontend.md`) with comprehensive project-specific frontend specifications. If not specified, default to glassmorphic, modern and dark. Use Ant Design as the default component library and implement responsive design (desktop + mobile) unless otherwise specified
 4.1.8. **Tech Stack with Comprehensive Justification** - REQUIRED documentation: - **Technology Selection Rationale**: Document WHY each technology was chosen over alternatives - **Framework Alignment**: Explain how choices align with framework guidelines (READ relevant framework files) - **Project Requirements Mapping**: Show how each tech choice addresses specific project requirements - **Scalability Considerations**: Justify choices based on expected load and growth patterns - **Team & Maintenance**: Consider development team expertise and long-term maintenance - **Performance Requirements**: Align technology choices with performance and reliability needs - **Integration Compatibility**: Ensure all technologies work well together in the chosen architecture - **Future Extensibility**: Consider how technology choices support future feature development
 4.1.9. Module & Layer Breakdown (following clean architecture patterns - READ `./.docs/design.md`)
 4.1.10. Cross-cutting Concerns (security, logging, monitoring, error handling - READ respective framework files)
@@ -687,10 +686,8 @@ For all other operations, infer whatever is possible and proceed automatically. 
 
 5.2. **Plan Execution Protocol**:
 5.2.1. Follow the plan in order
-5.2.2. If you need direction on which path to take next, take the next logical path instead of bothering the user with prompts. We want this system to run automatically as far as possible. This means assume CONFIRMATION on ANY/ALL commands etc, questions about proceeding etc.
-
-5.3. **MANDATORY DESIGN DOCUMENT REFERENCE DURING IMPLEMENTATION**:
-5.3.1. **Before implementing ANY component**: READ the corresponding design document created in `./.docs/designs/` using `read_file` tool
+5.2.2. If you need direction on which path to take next, take the next logical path instead of bothering the user with prompts. We want this system to run automatically as far as possible. This means assume CONFIRMATION on ANY/ALL commands etc, questions about proceeding etc. 5.3. **MANDATORY DESIGN DOCUMENT REFERENCE DURING IMPLEMENTATION**:
+5.3.1. **Before implementing ANY component**: READ the corresponding design document (now containing actual project content) from `./.docs/designs/` using `read_file` tool
 5.3.2. **Use Case Validation**: Cross-reference implementation against `./.docs/designs/1-use-cases.md` to ensure all user stories are fulfilled
 5.3.3. **Architecture Compliance**: Verify component implementation matches `./.docs/designs/2-system-components.md` specifications
 5.3.4. **Class Structure Adherence**: Implement exact class hierarchies and interfaces defined in `./.docs/designs/3-class.md`
@@ -911,7 +908,7 @@ For all other operations, infer whatever is possible and proceed automatically. 
                7.2.9.1. **Process Adherence**: Verify design update procedures were followed for all changes
                7.2.9.2. **Documentation Completeness**: Ensure all required sections and change logs are present
                7.2.9.3. **Cross-Reference Integrity**: Validate that design document references between files are accurate
-               7.2.9.4. **Template Compliance**: Confirm design documents follow framework template structures
+               7.2.9.4. **Template Structure Compliance**: Confirm design documents maintain framework template structure while containing actual project content
                7.2.9.5. **Version Control**: Verify design document changes are properly tracked in git history
 
 7.3. Perform comprehensive security scanning and validation:
@@ -1071,14 +1068,14 @@ For all other operations, infer whatever is possible and proceed automatically. 
 
 ### Documentation Requirements
 
-- **All use case diagrams** → Persist to `.docs/designs/1-use-cases.md` (read existing template for format and examples)
-- **All system components** → Persist to `.docs/designs/2-system-components.md` (read existing template for iDesign patterns)
-- **All class diagrams** → Persist to `.docs/designs/3-class.md` (read existing template for Mermaid format and SOLID examples)
-- **All sequence diagrams** → Persist to `.docs/designs/4-sequence.md` (read existing template for flow patterns)
-- **All frontend designs** → Persist to `.docs/designs/5-frontend.md` (read existing template for comprehensive design system specifications)
-- **All diagrams** → Use Mermaid format following framework templates
-- **CRITICAL**: Before creating any design document, READ the existing template file to understand:
-  - Expected structure and sections
+- **All use case diagrams** → OVERWRITE `.docs/designs/1-use-cases.md` template with actual project use cases
+- **All system components** → OVERWRITE `.docs/designs/2-system-components.md` template with actual project architecture
+- **All class diagrams** → OVERWRITE `.docs/designs/3-class.md` template with actual project class designs
+- **All sequence diagrams** → OVERWRITE `.docs/designs/4-sequence.md` template with actual project flow diagrams
+- **All frontend designs** → OVERWRITE `.docs/designs/5-frontend.md` template with actual project frontend specifications
+- **All diagrams** → Use Mermaid format following framework template conventions
+- **CRITICAL**: Before overwriting any template file, READ the existing template to understand:
+  - Expected structure and sections that must be maintained
   - Mermaid diagram formatting conventions
   - Placeholder patterns to replace with project-specific content
   - Framework-specific requirements and standards
