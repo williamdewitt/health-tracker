@@ -182,6 +182,63 @@ Auto-apply patterns based on project type:
 - **Modern Aesthetics**: Current design trends (glassmorphism, subtle shadows, rounded corners)
 - **Performance**: Optimized assets and efficient loading patterns
 
+### 🧩 **DEFAULT COMPONENT LIBRARY: ANT DESIGN**
+
+**MANDATORY**: Use Ant Design as the default component library for all frontend applications unless explicitly specified otherwise by the user.
+
+#### **Ant Design Implementation Requirements**:
+
+**Installation & Setup**:
+
+```bash
+npm install antd
+npm install @ant-design/icons
+```
+
+**Import Patterns**:
+
+```javascript
+import { Button, Card, Form, Input, Table, Modal } from "antd";
+import { UserOutlined, HomeOutlined, SettingOutlined } from "@ant-design/icons";
+```
+
+**Theme Customization**:
+
+```javascript
+import { ConfigProvider, theme } from "antd";
+
+// Custom theme configuration
+const customTheme = {
+  token: {
+    colorPrimary: "#your-brand-color",
+    borderRadius: 8,
+    // Add custom design tokens
+  },
+};
+```
+
+**Component Usage Standards**:
+
+- **Form Handling**: Always use Ant Design Form components with proper validation
+- **Data Display**: Use Table, List, or Card components for structured data
+- **Navigation**: Implement Menu, Breadcrumb, and Pagination from Antd
+- **Feedback**: Use Message, Notification, and Modal for user feedback
+- **Icons**: Use Ant Design's icon library (@ant-design/icons) consistently
+
+**Design Integration**:
+
+- Customize Ant Design theme to match brand colors and aesthetics
+- Override component styles only when necessary for brand consistency
+- Maintain Ant Design's accessibility standards and behavior patterns
+- Use Ant Design's responsive grid system for layouts
+
+**When NOT to Use Ant Design**:
+
+- User explicitly requests a different component library (Material-UI, Chakra UI, etc.)
+- Project requires highly custom, artistic, or non-standard UI components
+- Performance requirements demand lighter-weight alternatives
+- Existing project already uses a different established component system
+
 ### **Inspiration Sources** (When Provided):
 
 - Screenshots, app references, style descriptions, or design systems
@@ -195,6 +252,7 @@ Auto-apply patterns based on project type:
 #### **Tutorial System Requirements**:
 
 **Core Components**:
+
 - **Interactive Overlay Tutorial**: Step-by-step guided tour with highlighted elements
 - **Floating Tooltips**: Contextual help bubbles with dimmed backdrop
 - **Progress Tracking**: Visual progress indicator showing completion status
@@ -203,6 +261,7 @@ Auto-apply patterns based on project type:
 - **Progressive Disclosure**: Introduce features gradually as users advance
 
 **Implementation Specifications**:
+
 - **Spotlight Effect**: Highlight current element with dimmed overlay (rgba(0,0,0,0.7))
 - **Tooltip Positioning**: Smart positioning to avoid viewport edges
 - **Animation**: Smooth transitions (300ms) between tutorial steps
@@ -211,6 +270,7 @@ Auto-apply patterns based on project type:
 - **Persistence**: Remember user's tutorial progress across sessions
 
 **Tutorial Content Structure**:
+
 1. **Welcome Screen**: Brief introduction to the application purpose
 2. **Core Features Tour**: 3-5 most important features with interactive demonstrations
 3. **Navigation Guide**: How to move around the application
@@ -218,12 +278,14 @@ Auto-apply patterns based on project type:
 5. **Help Resources**: Where to find additional help and documentation
 
 **Technical Implementation**:
+
 - Use libraries like Intro.js, Shepherd.js, or Reactour for React apps
 - Custom implementation with overlay divs and z-index management
 - State management for tutorial progress and user preferences
 - Analytics tracking for tutorial completion rates and drop-off points
 
 **Audience-Specific Tutorial Adaptations**:
+
 - **Business Users**: Focus on efficiency, workflow optimization, data insights
 - **Consumer Users**: Emphasize fun, discovery, social features
 - **Creative Users**: Highlight creation tools, customization options
@@ -360,7 +422,7 @@ For all other operations, infer whatever is possible and proceed automatically. 
       4.1.7.2 System Component Diagrams & Doc
       4.1.7.3 Class Diagrams & Doc
       4.1.7.4 Sequence Diagrams & Doc
-      4.1.7.5 Comprehensive frontend specifications doc in `.docs/designs/5-frontend.md`. Design language etc. If not specified, default to glassmorphic, modern and dark.
+      4.1.7.5 Comprehensive frontend specifications doc in `.docs/designs/5-frontend.md`. Design language etc. If not specified, default to glassmorphic, modern and dark. Use Ant Design as the default component library unless otherwise specified.
       4.1.8 **Tech Stack with Comprehensive Justification** - REQUIRED documentation:
 
       - **Technology Selection Rationale**: Document WHY each technology was chosen over alternatives
@@ -791,7 +853,7 @@ Apply these defaults based on the identified project type and matching example, 
 - For all directory and file structuring, you should adhere to the agreed-upon repository directory structure as specified in `.docs/repo-structure.md`
 - Backend solutions should be defaulted to be the latest LTS version of dotnet.
 - Database solutions should be defaulted to postgres.
-- Frontend solutions should be defaulted to a Vite-managed ReactJS, TypeScript app with hash routing.
+- Frontend solutions should be defaulted to a Vite-managed ReactJS, TypeScript app with hash routing and Ant Design components.
 - **MANDATORY**: All frontend applications MUST use hash routing (#/) for deployment flexibility.
 - CI/CD platform of choice is GitHub actions, found in `.github/workflows/*.yml`
 - Authentication patterns based on project complexity:

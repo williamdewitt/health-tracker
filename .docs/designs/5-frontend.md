@@ -564,11 +564,217 @@ When users don't provide visual inspiration or UI/UX directives, GAIA automatica
 - **CSS Modules**: For component-specific styles when needed
 - **PostCSS**: For CSS processing and autoprefixing
 
-**Component Libraries** (Choose based on project needs):
+**Component Libraries**:
 
-- **Headless UI**: For accessible, unstyled components
-- **Radix UI**: For complex, accessible components
-- **Custom Components**: Built with design system specifications
+- **Ant Design (Default)**: Primary component library with comprehensive React components, built-in theming, and professional design system
+- **Alternative Options** (when specifically requested):
+  - **Headless UI**: For accessible, unstyled components
+  - **Radix UI**: For complex, accessible components
+  - **Custom Components**: Built with design system specifications
+
+### 🐜 **ANT DESIGN IMPLEMENTATION (DEFAULT)**
+
+**CRITICAL**: Use Ant Design as the default component library for all frontends unless explicitly specified otherwise by the user.
+
+#### **Core Ant Design Setup**:
+
+- **Package**: `antd` latest stable version
+- **Icons**: `@ant-design/icons` for comprehensive icon library
+- **Styling**: `@ant-design/cssinjs` for CSS-in-JS theming
+- **Date Handling**: Integrate with Day.js (Ant Design's preferred date library)
+
+#### **Ant Design Component Usage**:
+
+**Form Components** (Default choices):
+
+- **Form**: `Form` component with built-in validation
+- **Input**: `Input`, `Input.TextArea`, `Input.Password`
+- **Select**: `Select` with search and multi-select capabilities
+- **DatePicker**: `DatePicker`, `RangePicker` for date selections
+- **Upload**: `Upload` with drag-and-drop support
+- **Button**: `Button` with various types and sizes
+
+**Layout Components**:
+
+- **Layout**: `Layout`, `Header`, `Content`, `Footer`, `Sider`
+- **Grid**: `Row` and `Col` for responsive layouts
+- **Space**: `Space` for consistent spacing between elements
+- **Divider**: `Divider` for visual separation
+
+**Navigation Components**:
+
+- **Menu**: `Menu` for navigation with nested items
+- **Breadcrumb**: `Breadcrumb` for navigation hierarchy
+- **Pagination**: `Pagination` for data navigation
+- **Steps**: `Steps` for multi-step processes
+
+**Data Display Components**:
+
+- **Table**: `Table` with sorting, filtering, and pagination
+- **List**: `List` for structured data display
+- **Card**: `Card` for content containers
+- **Descriptions**: `Descriptions` for detailed information display
+- **Tag**: `Tag` for labels and categories
+
+**Feedback Components**:
+
+- **Alert**: `Alert` for important messages
+- **Message**: `message` for global feedback
+- **Notification**: `notification` for system notifications
+- **Modal**: `Modal` for dialogs and confirmations
+- **Popconfirm**: `Popconfirm` for action confirmations
+
+#### **Ant Design Theming Configuration**:
+
+**Custom Theme Setup**:
+
+```typescript
+import { ConfigProvider, theme } from "antd";
+
+const customTheme = {
+  token: {
+    // Primary colors
+    colorPrimary: "#1890ff", // Customize based on project
+    colorSuccess: "#52c41a",
+    colorWarning: "#faad14",
+    colorError: "#f5222d",
+    colorInfo: "#1890ff",
+
+    // Layout
+    borderRadius: 8,
+    wireframe: false,
+
+    // Typography
+    fontSize: 14,
+    fontFamily: "Inter, system-ui, sans-serif",
+  },
+  components: {
+    Button: {
+      borderRadius: 8,
+      controlHeight: 44, // Accessibility-friendly height
+    },
+    Input: {
+      borderRadius: 8,
+      controlHeight: 44,
+    },
+    // ... other component customizations
+  },
+};
+```
+
+**Responsive Design with Ant Design**:
+
+- Use Ant Design's built-in responsive grid system
+- Leverage breakpoint utilities: `xs`, `sm`, `md`, `lg`, `xl`, `xxl`
+- Implement responsive props for components (e.g., `Table` responsive scrolling)
+
+#### **Integration with Design System**:
+
+**Color Palette Integration**:
+
+- Map project colors to Ant Design's token system
+- Use `ConfigProvider` to apply custom color scheme
+- Maintain semantic color meanings (success, warning, error)
+
+**Typography Integration**:
+
+- Configure Ant Design's typography tokens
+- Use `Typography` component for consistent text styling
+- Apply custom font families through theme configuration
+
+**Spacing System Integration**:
+
+- Utilize Ant Design's `Space` component for consistent spacing
+- Configure custom spacing tokens if needed
+- Maintain 8px grid system compatibility
+
+#### **Ant Design Best Practices**:
+
+**Performance Optimization**:
+
+- Use tree-shaking to include only used components
+- Implement proper `import` statements: `import { Button } from 'antd'`
+- Configure babel-plugin-import for automatic tree-shaking
+
+**Accessibility Compliance**:
+
+- Leverage Ant Design's built-in accessibility features
+- Test with keyboard navigation and screen readers
+- Customize ARIA labels when needed
+
+**Customization Guidelines**:
+
+- Use CSS-in-JS theming rather than global CSS overrides
+- Implement custom components that extend Ant Design components
+- Maintain consistency with Ant Design's design language
+
+#### **Tutorial System Integration**:
+
+- **Tutorial Tooltips**: Use Ant Design's `Tooltip` and `Popover` components
+- **Tour Component**: Utilize Ant Design's `Tour` component for guided tours
+- **Progress Indicator**: Use `Progress` component for tutorial completion
+- **Navigation**: Implement with `Button` components and consistent styling
+
+#### **Common Component Patterns**:
+
+**Form Implementation**:
+
+```typescript
+import { Form, Input, Button, Select, DatePicker } from "antd";
+
+const MyForm = () => (
+  <Form layout="vertical" onFinish={onFinish}>
+    <Form.Item label="Name" name="name" rules={[{ required: true }]}>
+      <Input placeholder="Enter your name" />
+    </Form.Item>
+    <Form.Item
+      label="Email"
+      name="email"
+      rules={[{ required: true, type: "email" }]}
+    >
+      <Input placeholder="Enter your email" />
+    </Form.Item>
+    <Form.Item>
+      <Button type="primary" htmlType="submit">
+        Submit
+      </Button>
+    </Form.Item>
+  </Form>
+);
+```
+
+**Data Table Implementation**:
+
+```typescript
+import { Table, Space, Button } from "antd";
+
+const columns = [
+  {
+    title: "Name",
+    dataIndex: "name",
+    key: "name",
+  },
+  {
+    title: "Action",
+    key: "action",
+    render: (_, record) => (
+      <Space size="middle">
+        <Button type="link">Edit</Button>
+        <Button type="link" danger>
+          Delete
+        </Button>
+      </Space>
+    ),
+  },
+];
+```
+
+#### **When NOT to Use Ant Design**:
+
+- User explicitly requests a different component library
+- Project requires highly custom, brand-specific components
+- Performance requirements demand minimal bundle size
+- Design system conflicts fundamentally with Ant Design's patterns
 
 ### State Management & Data Fetching
 
@@ -599,6 +805,7 @@ When users don't provide visual inspiration or UI/UX directives, GAIA automatica
 **CRITICAL**: Every frontend MUST include a comprehensive, built-in tutorial/onboarding system. This is a core requirement, not optional.
 
 #### **Tutorial System Libraries**:
+
 - **Primary**: Intro.js, Shepherd.js, or Reactour for React applications
 - **Custom Implementation**: Overlay divs with z-index management for specific needs
 - **State Management**: Tutorial progress tracking with localStorage persistence
@@ -607,6 +814,7 @@ When users don't provide visual inspiration or UI/UX directives, GAIA automatica
 #### **Tutorial System Components**:
 
 **Core Tutorial Components**:
+
 - **Tutorial Overlay**: Semi-transparent backdrop (rgba(0,0,0,0.7)) with spotlight effect
 - **Tutorial Tooltip**: Positioned tooltip with arrow, description, and navigation controls
 - **Progress Indicator**: Visual progress bar showing tutorial completion (e.g., "3 of 8")
@@ -614,6 +822,7 @@ When users don't provide visual inspiration or UI/UX directives, GAIA automatica
 - **Tutorial Menu**: Always-accessible help menu for re-starting tutorials
 
 **Tutorial Content Structure**:
+
 1. **Welcome Screen**: Brief app introduction with key value propositions
 2. **Navigation Tour**: How to move around the application (menu, breadcrumbs, etc.)
 3. **Core Features**: 3-5 most important features with interactive demonstrations
@@ -623,6 +832,7 @@ When users don't provide visual inspiration or UI/UX directives, GAIA automatica
 #### **Implementation Specifications**:
 
 **Visual Design**:
+
 - **Spotlight Effect**: Highlighted element with 8px border-radius, white border
 - **Backdrop**: Semi-transparent overlay (rgba(0,0,0,0.7)) covering entire viewport
 - **Tooltip Design**: White background, Level 4 shadow, 12px border-radius
@@ -631,11 +841,13 @@ When users don't provide visual inspiration or UI/UX directives, GAIA automatica
 - **Animation**: 300ms smooth transitions between steps
 
 **Responsive Behavior**:
+
 - **Mobile**: Tooltip positioning adapts to avoid viewport edges
 - **Tablet**: Larger tooltip sizes with more comfortable spacing
 - **Desktop**: Full-featured tooltips with detailed descriptions
 
 **Accessibility**:
+
 - **Keyboard Navigation**: Arrow keys, Enter, and Esc key support
 - **Screen Reader**: ARIA labels and announcements for tutorial steps
 - **Focus Management**: Proper focus trapping and restoration
@@ -644,26 +856,31 @@ When users don't provide visual inspiration or UI/UX directives, GAIA automatica
 #### **Audience-Specific Tutorial Adaptations**:
 
 **Business/Enterprise Applications**:
+
 - Focus on efficiency, workflow optimization, and data insights
 - Highlight reporting features, collaboration tools, and integrations
 - Emphasize security features and admin controls
 
 **Consumer/General Applications**:
+
 - Emphasize fun, discovery, and social features
 - Show personalization options and customization
 - Highlight sharing and social interaction features
 
 **Creative/Portfolio Applications**:
+
 - Showcase creation tools and artistic features
 - Highlight customization options and themes
 - Show portfolio organization and presentation features
 
 **Technical/Developer Applications**:
+
 - Show advanced features, integrations, and API access
 - Highlight customization options and developer tools
 - Demonstrate automation features and workflow optimization
 
 #### **Quality Requirements**:
+
 - Track completion rates and identify drop-off points
 - Update tutorials when UI changes
 - Test tutorials on all supported devices and browsers
