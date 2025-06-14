@@ -1,4 +1,25 @@
-# Session State Template (Enhanced AI Navigation)
+# ## 🔄 MANDATORY SYNC PROTOCOL
+
+**CRITICAL**: Every time you update this session-state file, you MUST:
+
+1. **Read and Review .ai/plan.md** - Understand the complete project plan
+2. **Cross-reference Current Progress** - Map current status against plan milestones
+3. **Validate Alignment** - Ensure session state reflects plan accurately
+4. **Update Plan Tracking** - Mark completed milestones and adjust timeline if needed
+5. **Document Deviations** - Note any changes from original plan with rationale
+6. **🚀 AUTOMATICALLY CONTINUE** - Never stop after sync, immediately proceed to next task
+
+## 🚀 AUTOMATIC CONTINUATION RULES
+
+**GAIA NEVER STOPS FOR REPORTS**:
+- ✅ **PRINT milestone status** for visibility
+- ✅ **DISPLAY progress updates** for tracking
+- ✅ **SHOW completion status** for transparency
+- ❌ **NEVER PAUSE** for user acknowledgment
+- ❌ **NEVER WAIT** for milestone approval
+- ❌ **NEVER STOP** for status confirmation
+
+**Continuation Pattern**: "Milestone [X] completed (Y%). Proceeding to [Next Task]..."tate Template (Enhanced AI Navigation)
 
 ## 🔄 MANDATORY SYNC PROTOCOL
 
@@ -174,6 +195,7 @@
 4. **Update Tracking**: Mark completed items, update progress percentages
 5. **Document Changes**: Record any deviations or scope adjustments
 6. **Validate Next Steps**: Ensure next actions align with plan priorities
+7. **🚀 IMMEDIATELY CONTINUE**: Never stop after sync - proceed to next task automatically
 
 ### Plan Sync Quality Checklist
 
@@ -183,5 +205,6 @@
 - [ ] Next actions are derived from plan priorities
 - [ ] Any plan deviations are justified and documented
 - [ ] Timeline adjustments are realistic and explained
+- [ ] **🚀 Automatic continuation**: Ready to proceed without user confirmation
 
-**Remember**: The plan is the source of truth. Session state should reflect plan reality, not replace it.
+**Remember**: The plan is the source of truth. Session state should reflect plan reality, not replace it. **ALWAYS CONTINUE AUTOMATICALLY AFTER SYNC**.

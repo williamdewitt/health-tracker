@@ -35,27 +35,35 @@ Go and read and implement the following prompt to the T: .ai/init.md, starting w
 
 ### Step 3: Watch the Magic ✨
 
-#### Step 3.1 (OPTIONAL)
+#### Step 3.1 🚀 AUTOMATIC CONTINUATION
 
-**On each 3rd** "Continue" prompt you get from Copilot, you **SHOULD NOT** click "Continue" but instead paste the following prompt and ENTER (this will continue for you in a smarter manner).
+**GAIA NEVER STOPS**: The system now automatically continues without requiring "Continue" prompts. You'll see:
 
+- ✅ **Milestone updates** displayed for visibility
+- ✅ **Progress reports** shown for tracking
+- ✅ **Status updates** printed for transparency  
+- ✅ **Automatic continuation** to the next task
+
+**No user intervention needed** - GAIA will work continuously until completion!
+
+**Optional Enhancement**: If you want to sync manually, you can still use:
 ```
 [REMINDER] Sync with and update your session file (./.ai/session-state.md) based on progress, regularly make sure you align with ./.docs/designs/*.md and ./.ai/plan.md. Then let's proceed with what's next.
 ```
 
-#### Step 3.2
+#### Step 3.2 🚀 Automatic Development
 
-The AI will automatically:
+The AI will automatically and continuously:
 
 - ✅ Design the complete system architecture
-- ✅ Generate beautiful, responsive frontend
+- ✅ Generate beautiful, responsive frontend  
 - ✅ Build secure backend with clean architecture
 - ✅ Set up database with optimized schemas
 - ✅ Create Docker containers and CI/CD pipeline
 - ✅ Include comprehensive tests and design documentation
-- ✅ Include comprehensive tests and design documentation
+- ✅ **Continue automatically** through all milestones without stopping
 
-**Result:** A complete, production-ready application in one conversation!
+**Result:** A complete, production-ready application in one continuous conversation!
 
 #### Step 3.3 ⚠️ At The End (VALIDATION | MANDATORY)
 
