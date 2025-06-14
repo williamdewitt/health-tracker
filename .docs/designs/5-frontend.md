@@ -193,233 +193,725 @@ When users don't provide visual inspiration or UI/UX directives, GAIA automatica
 - Info: `#3B82F6` - Blue for informational states
 - Info Light: `#DBEAFE` - Light blue for info backgrounds
 
-### Typography (Modern, Readable, Beautiful)
+## 🔔 **MANDATORY NOTIFICATION SYSTEM**
 
-**Font Families**:
+### **Default User Feedback Requirements**
 
-- Primary: `[MODERN_FONT]` (e.g., Inter, SF Pro, Roboto) - For UI elements and body text
-- Display: `[DISPLAY_FONT]` (e.g., Outfit, Manrope, Poppins) - For headings and marketing copy
-- Monospace: `[MONO_FONT]` (e.g., JetBrains Mono, Fira Code) - For code and technical content
+**CRITICAL**: Every frontend application MUST implement a comprehensive notification system for user feedback, especially for API interactions and critical user actions.
 
-**Type Scale** (Harmonious, modern proportions):
+#### **Required Notification Scenarios**
 
-- Display XL: `48px` / `600` / `1.1` (Hero headings)
-- Display L: `36px` / `600` / `1.2` (Page titles)
-- Display M: `30px` / `600` / `1.2` (Section titles)
-- Heading XL: `24px` / `600` / `1.3` (Major headings)
-- Heading L: `20px` / `600` / `1.3` (Sub-headings)
-- Heading M: `18px` / `600` / `1.4` (Component titles)
-- Heading S: `16px` / `600` / `1.4` (Small headings)
-- Body L: `18px` / `400` / `1.6` (Large body text)
-- Body M: `16px` / `400` / `1.6` (Default body text)
-- Body S: `14px` / `400` / `1.5` (Small body text)
-- Caption: `12px` / `400` / `1.4` (Captions and labels)
-- Label: `14px` / `500` / `1.4` (Form labels and UI labels)
+**API Interaction Notifications**:
 
-### Spacing System (8pt Grid for Perfect Alignment)
+- **API Call Failures**: Network errors, server errors (5xx), timeout errors
+- **API Call Success**: Form submissions, data saves, record updates, deletions
+- **Authentication Events**: Login/logout success, session expiration warnings
+- **Validation Errors**: Client-side and server-side validation failures
+- **Loading States**: Long-running operations, data fetching, file uploads
 
-**Base Unit**: `8px` (All spacing is multiples of 8px for visual harmony)
-**Scale**:
+**System Event Notifications**:
 
-- XS: `4px` (0.5 units) - Tight spacing within components
-- S: `8px` (1 unit) - Default component padding
-- M: `16px` (2 units) - Standard spacing between elements
-- L: `24px` (3 units) - Larger spacing between sections
-- XL: `32px` (4 units) - Major section spacing
-- 2XL: `48px` (6 units) - Large layout spacing
-- 3XL: `64px` (8 units) - Page-level spacing
-- 4XL: `96px` (12 units) - Hero section spacing
+- **Connection Status**: Network connectivity changes, offline mode
+- **Data Sync**: Background synchronization status, conflict resolution
+- **Feature Updates**: New features, maintenance notifications
+- **Critical Alerts**: Security warnings, system maintenance
 
-**Component-Specific Spacing**:
+#### **Notification Types & Implementation**
 
-- Button Padding: `12px 24px` (S + M)
-- Card Padding: `24px` (L)
-- Form Field Spacing: `16px` (M)
-- Section Spacing: `48px` (2XL)
+**Using Ant Design Notification System**:
 
-### Modern Shadows & Elevation System
+```javascript
+import { notification, message } from "antd";
 
-**Shadow Levels** (Subtle, layered depth):
+// Error Notifications (API Failures)
+notification.error({
+  message: "Operation Failed",
+  description:
+    "Unable to save changes. Please check your connection and try again.",
+  duration: 6,
+  placement: "topRight",
+});
 
-- Level 0: `none` (Flat elements)
-- Level 1: `0 1px 2px 0 rgba(0, 0, 0, 0.05)` (Subtle lift)
-- Level 2: `0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)` (Card level)
-- Level 3: `0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)` (Elevated elements)
-- Level 4: `0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)` (Modals)
-- Level 5: `0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)` (Floating panels)
+// Success Notifications
+message.success("Changes saved successfully!");
 
-### Border Radius (Soft, Modern Feel)
+// Loading States
+message.loading("Saving changes...", 0);
 
-**Scale**:
+// Warning Notifications
+notification.warning({
+  message: "Session Expiring",
+  description: "Your session will expire in 5 minutes. Please save your work.",
+  duration: 10,
+});
+```
 
-- None: `0px` (Sharp edges for specific design needs)
-- SM: `4px` (Small components like badges)
-- DEFAULT: `8px` (Standard buttons and inputs)
-- MD: `12px` (Cards and larger components)
-- LG: `16px` (Large cards and sections)
-- XL: `24px` (Hero sections and major components)
-- FULL: `9999px` (Pills and circular elements)
+**Notification Standards**:
 
-## Modern Layout & Grid System
+- **Error (API Failures)**: Red theme, 6-8 second duration, actionable message
+- **Success**: Green theme, 3-4 second duration, confirmation message
+- **Warning**: Orange theme, 5-6 second duration, cautionary message
+- **Info**: Blue theme, 4-5 second duration, informational message
+- **Loading**: Auto-dismiss when operation completes
 
-### Responsive Breakpoints (Mobile-First)
+#### **Error Message Categories**
 
-- **Mobile**: `0px` to `767px` (Mobile phones)
-- **Tablet**: `768px` to `1023px` (Tablets and small laptops)
-- **Desktop**: `1024px` to `1439px` (Standard desktop)
-- **Large Desktop**: `1440px+` (Large monitors and widescreen)
+**Network & Server Errors**:
 
-### Container System (Centered, Responsive)
+- **Network Error**: "Connection failed. Please check your internet connection and try again."
+- **Server Error (5xx)**: "Something went wrong on our end. Please try again in a few moments."
+- **Timeout Error**: "Request timed out. Please try again."
+- **Rate Limit**: "Too many requests. Please wait a moment before trying again."
 
-- **Max Width**: `1440px` (Large screens)
-- **Container Padding**:
-  - Mobile: `16px` (Comfortable mobile margins)
-  - Tablet: `24px` (More breathing room)
-  - Desktop: `32px` (Desktop margins)
-  - Large Desktop: `48px` (Wide screen margins)
+**Authentication & Authorization**:
 
-### Grid System (CSS Grid/Flexbox Hybrid)
+- **Session Expired**: "Your session has expired. Please log in again to continue."
+- **Unauthorized**: "You don't have permission to perform this action."
+- **Invalid Credentials**: "Invalid username or password. Please try again."
 
-- **Grid Columns**: `12` columns (Flexible layout options)
-- **Gutter Width**: `24px` (Consistent spacing)
-- **Grid Type**: CSS Grid for page layout, Flexbox for components
+**Validation & Data Errors**:
 
-## 🎨 Beautiful Component Specifications
+- **Validation Error**: "Please check the highlighted fields and correct any errors."
+- **Duplicate Data**: "This record already exists. Please use a different value."
+- **Missing Required Data**: "Please fill in all required fields before submitting."
+- **Invalid Format**: "Please enter a valid [email/phone/date] format."
 
-### Navigation (Modern, Clean Header)
+#### **Notification Positioning & Behavior**
 
-**Header/Navbar**:
+**Desktop Layout**:
 
-- Height: `64px` (Standard comfortable height)
-- Background: `White/Gray-50` with `border-bottom: 1px solid Gray-200`
-- Logo: Left-aligned, `32px` height, `medium` font weight
-- Navigation Items:
-  - Font: `Body M` with `500` weight
-  - Color: `Gray-600` default, `Primary` active, `Gray-800` hover
-  - Spacing: `32px` between items
-  - Active indicator: `2px` bottom border in `Primary` color
-- Mobile: Hamburger menu transforms to slide-out drawer
-- Search: Integrated search bar (when needed) with `Level 1` shadow
-- Profile: Avatar `32px` with dropdown menu
-- CTA Button: Primary button style in top right
+- **Primary Position**: Top-right corner for standard notifications
+- **Critical Alerts**: Center modal overlay for important messages
+- **Loading States**: Inline or center overlay depending on context
 
-### Modern Button System
+**Mobile Layout**:
 
-**Primary Button** (Main actions):
+- **Primary Position**: Top of screen, full width
+- **Critical Alerts**: Full-screen overlay for important messages
+- **Loading States**: Inline with touch-friendly dismiss options
 
-- Background: `Primary` color
-- Text: `White` color, `Label` typography
-- Border: `none`
-- Padding: `12px 24px` (comfortable click target)
-- Border Radius: `DEFAULT (8px)`
-- Height: `44px` minimum (accessible touch target)
-- Hover: `Primary-Dark` background, `Level 2` shadow
-- Active: `Primary-Dark` background, `Level 1` shadow
-- Disabled: `Gray-200` background, `Gray-400` text
-- Focus: `2px` outline in `Primary` color with `2px` offset
+**Accessibility Features**:
 
-**Secondary Button** (Secondary actions):
+- **Screen Reader**: Proper ARIA labels and live regions
+- **Keyboard Navigation**: Focus management and dismiss shortcuts
+- **High Contrast**: Sufficient color contrast for all notification types
+- **Reduced Motion**: Respect user motion preferences
 
-- Background: `White`
-- Text: `Primary` color, `Label` typography
-- Border: `1px solid Primary`
-- Padding: `12px 24px`
-- Hover: `Primary-Light` background, `Primary-Dark` text
-- Focus: Same as primary button
+#### **Implementation Pattern**
 
-**Ghost Button** (Tertiary actions):
+**HTTP Client with Automatic Notifications**:
 
-- Background: `transparent`
-- Text: `Gray-600` color, `Label` typography
-- Border: `none`
-- Padding: `12px 16px`
-- Hover: `Gray-100` background, `Gray-800` text
-- Border Radius: `DEFAULT (8px)`
+```javascript
+// API service with built-in error handling
+class ApiService {
+  constructor() {
+    this.client = axios.create({
+      baseURL: "/api",
+      timeout: 10000,
+    });
 
-### Beautiful Form Components
+    this.setupInterceptors();
+  }
 
-**Input Fields**:
+  setupInterceptors() {
+    // Request interceptor
+    this.client.interceptors.request.use((config) => {
+      if (config.showLoading !== false) {
+        message.loading("Loading...", 0);
+      }
+      return config;
+    });
 
-- Height: `44px` (Accessible touch target)
-- Padding: `12px 16px`
-- Border: `1px solid Gray-300`
-- Border Radius: `DEFAULT (8px)`
-- Font: `Body M`
-- Background: `White`
-- Focus State:
-  - Border: `2px solid Primary`
-  - Shadow: `0 0 0 3px Primary` with `0.1` opacity
-- Error State:
-  - Border: `2px solid Error`
-  - Background: `Error-Light`
-- Placeholder: `Gray-400` color
-- Labels: `Label` typography, `Gray-700` color, `8px` margin-bottom
+    // Response interceptor
+    this.client.interceptors.response.use(
+      (response) => {
+        message.destroy(); // Clear loading
 
-**Select Dropdowns**:
+        if (response.config.showSuccess) {
+          message.success(
+            response.config.successMessage ||
+              "Operation completed successfully!"
+          );
+        }
 
-- Same styling as inputs
-- Dropdown icon: `Gray-400` chevron-down
-- Options: `White` background, `Gray-800` text
-- Option hover: `Gray-50` background
-- Option selected: `Primary-Light` background
+        return response;
+      },
+      (error) => {
+        message.destroy(); // Clear loading
+        this.handleApiError(error);
+        return Promise.reject(error);
+      }
+    );
+  }
 
-### Card System (Elegant, Layered)
+  handleApiError(error) {
+    if (error.code === "NETWORK_ERROR") {
+      notification.error({
+        message: "Connection Error",
+        description: "Please check your internet connection and try again.",
+      });
+    } else if (error.response?.status === 401) {
+      notification.error({
+        message: "Authentication Required",
+        description: "Your session has expired. Please log in again.",
+      });
+    } else if (error.response?.status >= 500) {
+      notification.error({
+        message: "Server Error",
+        description: "Something went wrong on our end. Please try again later.",
+      });
+    } else {
+      notification.error({
+        message: "Request Failed",
+        description:
+          error.response?.data?.message || "An unexpected error occurred.",
+      });
+    }
+  }
+}
+```
 
-**Default Card**:
+**Form Submission with Notifications**:
 
-- Background: `White`
-- Border: `none` (shadow provides definition)
-- Border Radius: `MD (12px)`
-- Padding: `24px` (L spacing)
-- Shadow: `Level 2` (Card level)
-- Hover State: `Level 3` shadow with smooth transition
+```javascript
+const handleSubmit = async (values) => {
+  try {
+    message.loading("Saving...", 0);
 
-**Elevated Card** (For important content):
+    await api.post("/submit", values, {
+      showSuccess: true,
+      successMessage: "Form submitted successfully!",
+    });
 
-- Same as default but with `Level 3` shadow
-- Hover: `Level 4` shadow
+    // Additional success actions
+    form.resetFields();
+    navigate("/success");
+  } catch (error) {
+    // Error automatically handled by interceptor
+    console.error("Submission failed:", error);
+  }
+};
+```
 
-**Flat Card** (For dense layouts):
+#### **Notification System Exceptions**
 
-- Border: `1px solid Gray-200`
-- Shadow: `none`
-- Hover: `Level 1` shadow
+**When NOT to Use Default Notifications**:
 
-### Modal/Dialog System
+- User explicitly requests silent mode or custom notification system
+- Specialized applications where notifications interfere with workflow
+- Real-time applications where notifications would be overwhelming
+- Custom notification systems already implemented with equivalent functionality
 
-**Modal Overlay**:
+## 🎨 **GAIA's UI/UX EXPERTISE** (When No Inspiration Provided)
 
-- Background: `rgba(0, 0, 0, 0.5)` (Semi-transparent backdrop)
-- Backdrop blur: `4px` (Modern glass effect)
+### **Automatic Design Intelligence**
 
-**Modal Container**:
+When users don't provide visual inspiration or UI/UX directives, GAIA automatically becomes the expert UI/UX designer, analyzing the target audience and crafting the perfect interface.
 
-- Background: `White`
-- Border Radius: `LG (16px)`
-- Shadow: `Level 5` (Maximum elevation)
-- Max Width: `500px` (Comfortable reading width)
-- Padding: `32px` (XL spacing)
-- Animation: Scale in from `0.95` to `1.0` with opacity fade
+### **Audience-Driven Design Matrix**
 
-### Data Display Components
+#### **Business/Enterprise Applications**
 
-**Tables**:
+**Characteristics**: Professional, trustworthy, efficient
+**Color Palette**:
 
-- Header: `Gray-50` background, `Label` typography, `Gray-700` text
-- Rows: Alternating `White` and `Gray-25` backgrounds
-- Cell Padding: `16px` vertical, `12px` horizontal
-- Border: `1px solid Gray-200` between rows
-- Hover: `Gray-50` background on row
+- Primary: Deep blues (#1E40AF, #3B82F6) or sophisticated grays (#374151, #6B7280)
+- Accent: Professional greens (#059669, #10B981) or warm oranges (#EA580C, #F97316)
+  **Typography**: Clean sans-serif (Inter, Roboto, Open Sans)
+  **Layout**: Grid-based, data-dense, clear hierarchy
+  **Examples**: Stripe, Linear, Notion, Salesforce Lightning
 
-**Status Badges**:
+#### **Consumer/General Applications**
 
-- Padding: `4px 12px`
-- Border Radius: `FULL (9999px)`
-- Font: `Caption` with `500` weight
-- Success: `Success` background, `White` text
-- Warning: `Warning` background, `White` text
-- Error: `Error` background, `White` text
-- Info: `Info` background, `White` text
+**Characteristics**: Friendly, approachable, intuitive
+**Color Palette**:
+
+- Primary: Warm blues (#2563EB, #3B82F6) or friendly purples (#7C3AED, #8B5CF6)
+- Accent: Energetic colors (#EF4444, #F59E0B, #10B981)
+  **Typography**: Rounded, friendly fonts (Inter, Poppins, Nunito)
+  **Layout**: Card-based, whitespace-heavy, mobile-first
+  **Examples**: Airbnb, Spotify, Instagram, Apple
+
+#### **Creative/Portfolio Applications**
+
+**Characteristics**: Bold, expressive, showcase-focused
+**Color Palette**:
+
+- Primary: Bold, artistic colors (#DC2626, #7C2D12, #1F2937)
+- Accent: Vibrant, creative colors (#F59E0B, #8B5CF6, #EC4899)
+  **Typography**: Distinctive fonts (Outfit, Playfair Display, custom)
+  **Layout**: Asymmetrical, image-heavy, creative grids
+  **Examples**: Behance, Dribbble, Awwwards, Adobe
+
+#### **Technical/Developer Applications**
+
+**Characteristics**: Functional, customizable, information-dense
+**Color Palette**:
+
+- Primary: Dark themes (#111827, #1F2937) with accent colors (#3B82F6, #10B981)
+- Light: Clean grays (#F9FAFB, #F3F4F6) with technical blues
+  **Typography**: Monospace options (JetBrains Mono, Fira Code) + sans-serif
+  **Layout**: Dashboard-style, customizable panels, terminal-inspired
+  **Examples**: GitHub, VS Code, Vercel, Figma
+
+### **GAIA's Creative Process**
+
+1. **Audience Analysis**: Extract target user type from project description
+2. **Industry Research**: Apply industry-specific design patterns and expectations
+3. **Color Psychology**: Select colors that evoke appropriate emotions and trust
+4. **Information Architecture**: Design user flows that match user mental models
+5. **Accessibility Integration**: Ensure inclusive design from the ground up
+6. **Modern Trends Integration**: Apply current design trends appropriately
+
+### **Default Design Decisions** (When Creating Original UI)
+
+#### **Color Strategy**:
+
+- **Primary Color**: Choose based on industry (blue for trust, green for growth, purple for creativity)
+- **Accent Colors**: Complementary colors that enhance, not compete
+- **Neutral Palette**: Modern grays with proper contrast ratios (4.5:1 minimum)
+- **Semantic Colors**: Green for success, red for errors, amber for warnings, blue for info
+
+#### **Typography Hierarchy**:
+
+- **Display/Hero**: 3.5rem (56px) - Landing page headlines
+- **H1**: 2.5rem (40px) - Page titles
+- **H2**: 2rem (32px) - Section headers
+- **H3**: 1.5rem (24px) - Subsection headers
+- **Body Large**: 1.125rem (18px) - Important content
+- **Body**: 1rem (16px) - Standard content
+- **Small**: 0.875rem (14px) - Meta information
+- **Caption**: 0.75rem (12px) - Fine print
+
+#### **Spacing System** (8px base):
+
+- **XS**: 4px - Icon spacing, small gaps
+- **SM**: 8px - Element padding, tight spacing
+- **MD**: 16px - Standard spacing between elements
+- **LG**: 24px - Section spacing
+- **XL**: 32px - Large section breaks
+- **2XL**: 48px - Major layout divisions
+- **3XL**: 64px - Hero section spacing
+
+#### **Component Defaults**:
+
+- **Buttons**: Rounded corners (8px), hover states, focus rings
+- **Cards**: Subtle shadows, rounded corners (12px), proper padding
+- **Forms**: Clear labels, proper spacing, validation states
+- **Navigation**: Intuitive hierarchy, clear active states
+- **Loading States**: Skeleton screens, progressive loading
+- **Empty States**: Helpful illustrations, clear next steps
+
+## 🎨 Visual Inspiration & Design Direction
+
+### Design References
+
+- **Primary Inspiration**: `[LINKS_TO_SPECIFIC_APPS/WEBSITES]`
+- **Secondary References**: `[ADDITIONAL_INSPIRATION_SOURCES]`
+- **Target Aesthetic**: `[MODERN_MINIMALIST/RICH_DETAILED/CREATIVE_BOLD/ENTERPRISE_PROFESSIONAL/ETC]`
+
+### Design Philosophy
+
+- **Core Principle**: `[BEAUTY_THROUGH_SIMPLICITY/SOPHISTICATED_DETAIL/BOLD_CREATIVITY/ETC]`
+- **User Experience Goals**: `[INTUITIVE_NAVIGATION/DELIGHTFUL_INTERACTIONS/EFFICIENT_WORKFLOWS/ETC]`
+- **Brand Personality**: `[TRUSTWORTHY/INNOVATIVE/PLAYFUL/PROFESSIONAL/ETC]`
+
+## Design System
+
+### Color Palette
+
+**Primary Colors** (Based on inspiration/brand):
+
+- Primary: `#[HEX_CODE]` - Main brand color for CTAs and primary actions
+- Primary Light: `#[HEX_CODE]` - Hover states and backgrounds
+- Primary Dark: `#[HEX_CODE]` - Active states and emphasis
+- Secondary: `#[HEX_CODE]` - Accent color for highlights and secondary actions
+- Tertiary: `#[HEX_CODE]` - Supporting color for variety and interest
+
+**Neutral Palette** (Modern, sophisticated neutrals):
+
+- White: `#FFFFFF` - Pure white for backgrounds
+- Gray 50: `#[HEX_CODE]` - Lightest gray for subtle backgrounds
+- Gray 100: `#[HEX_CODE]` - Very light gray for disabled states
+- Gray 200: `#[HEX_CODE]` - Light gray for borders
+- Gray 300: `#[HEX_CODE]` - Medium-light gray for secondary text
+- Gray 400: `#[HEX_CODE]` - Medium gray for placeholders
+- Gray 500: `#[HEX_CODE]` - True gray for secondary text
+- Gray 600: `#[HEX_CODE]` - Dark gray for primary text
+- Gray 700: `#[HEX_CODE]` - Very dark gray for headings
+- Gray 800: `#[HEX_CODE]` - Almost black for emphasis
+- Gray 900: `#[HEX_CODE]` - Pure black for maximum contrast
+
+**Semantic Colors** (Modern, accessible):
+
+- Success: `#10B981` - Green for success states
+- Success Light: `#D1FAE5` - Light green for success backgrounds
+- Warning: `#F59E0B` - Amber for warning states
+- Warning Light: `#FEF3C7` - Light amber for warning backgrounds
+- Error: `#EF4444` - Red for error states
+- Error Light: `#FEE2E2` - Light red for error backgrounds
+- Info: `#3B82F6` - Blue for informational states
+- Info Light: `#DBEAFE` - Light blue for info backgrounds
+
+## 🔔 **MANDATORY NOTIFICATION SYSTEM**
+
+### **Default User Feedback Requirements**
+
+**CRITICAL**: Every frontend application MUST implement a comprehensive notification system for user feedback, especially for API interactions and critical user actions.
+
+#### **Required Notification Scenarios**
+
+**API Interaction Notifications**:
+
+- **API Call Failures**: Network errors, server errors (5xx), timeout errors
+- **API Call Success**: Form submissions, data saves, record updates, deletions
+- **Authentication Events**: Login/logout success, session expiration warnings
+- **Validation Errors**: Client-side and server-side validation failures
+- **Loading States**: Long-running operations, data fetching, file uploads
+
+**System Event Notifications**:
+
+- **Connection Status**: Network connectivity changes, offline mode
+- **Data Sync**: Background synchronization status, conflict resolution
+- **Feature Updates**: New features, maintenance notifications
+- **Critical Alerts**: Security warnings, system maintenance
+
+#### **Notification Types & Implementation**
+
+**Using Ant Design Notification System**:
+
+```javascript
+import { notification, message } from "antd";
+
+// Error Notifications (API Failures)
+notification.error({
+  message: "Operation Failed",
+  description:
+    "Unable to save changes. Please check your connection and try again.",
+  duration: 6,
+  placement: "topRight",
+});
+
+// Success Notifications
+message.success("Changes saved successfully!");
+
+// Loading States
+message.loading("Saving changes...", 0);
+
+// Warning Notifications
+notification.warning({
+  message: "Session Expiring",
+  description: "Your session will expire in 5 minutes. Please save your work.",
+  duration: 10,
+});
+```
+
+**Notification Standards**:
+
+- **Error (API Failures)**: Red theme, 6-8 second duration, actionable message
+- **Success**: Green theme, 3-4 second duration, confirmation message
+- **Warning**: Orange theme, 5-6 second duration, cautionary message
+- **Info**: Blue theme, 4-5 second duration, informational message
+- **Loading**: Auto-dismiss when operation completes
+
+#### **Error Message Categories**
+
+**Network & Server Errors**:
+
+- **Network Error**: "Connection failed. Please check your internet connection and try again."
+- **Server Error (5xx)**: "Something went wrong on our end. Please try again in a few moments."
+- **Timeout Error**: "Request timed out. Please try again."
+- **Rate Limit**: "Too many requests. Please wait a moment before trying again."
+
+**Authentication & Authorization**:
+
+- **Session Expired**: "Your session has expired. Please log in again to continue."
+- **Unauthorized**: "You don't have permission to perform this action."
+- **Invalid Credentials**: "Invalid username or password. Please try again."
+
+**Validation & Data Errors**:
+
+- **Validation Error**: "Please check the highlighted fields and correct any errors."
+- **Duplicate Data**: "This record already exists. Please use a different value."
+- **Missing Required Data**: "Please fill in all required fields before submitting."
+- **Invalid Format**: "Please enter a valid [email/phone/date] format."
+
+#### **Notification Positioning & Behavior**
+
+**Desktop Layout**:
+
+- **Primary Position**: Top-right corner for standard notifications
+- **Critical Alerts**: Center modal overlay for important messages
+- **Loading States**: Inline or center overlay depending on context
+
+**Mobile Layout**:
+
+- **Primary Position**: Top of screen, full width
+- **Critical Alerts**: Full-screen overlay for important messages
+- **Loading States**: Inline with touch-friendly dismiss options
+
+**Accessibility Features**:
+
+- **Screen Reader**: Proper ARIA labels and live regions
+- **Keyboard Navigation**: Focus management and dismiss shortcuts
+- **High Contrast**: Sufficient color contrast for all notification types
+- **Reduced Motion**: Respect user motion preferences
+
+#### **Implementation Pattern**
+
+**HTTP Client with Automatic Notifications**:
+
+```javascript
+// API service with built-in error handling
+class ApiService {
+  constructor() {
+    this.client = axios.create({
+      baseURL: "/api",
+      timeout: 10000,
+    });
+
+    this.setupInterceptors();
+  }
+
+  setupInterceptors() {
+    // Request interceptor
+    this.client.interceptors.request.use((config) => {
+      if (config.showLoading !== false) {
+        message.loading("Loading...", 0);
+      }
+      return config;
+    });
+
+    // Response interceptor
+    this.client.interceptors.response.use(
+      (response) => {
+        message.destroy(); // Clear loading
+
+        if (response.config.showSuccess) {
+          message.success(
+            response.config.successMessage ||
+              "Operation completed successfully!"
+          );
+        }
+
+        return response;
+      },
+      (error) => {
+        message.destroy(); // Clear loading
+        this.handleApiError(error);
+        return Promise.reject(error);
+      }
+    );
+  }
+
+  handleApiError(error) {
+    if (error.code === "NETWORK_ERROR") {
+      notification.error({
+        message: "Connection Error",
+        description: "Please check your internet connection and try again.",
+      });
+    } else if (error.response?.status === 401) {
+      notification.error({
+        message: "Authentication Required",
+        description: "Your session has expired. Please log in again.",
+      });
+    } else if (error.response?.status >= 500) {
+      notification.error({
+        message: "Server Error",
+        description: "Something went wrong on our end. Please try again later.",
+      });
+    } else {
+      notification.error({
+        message: "Request Failed",
+        description:
+          error.response?.data?.message || "An unexpected error occurred.",
+      });
+    }
+  }
+}
+```
+
+**Form Submission with Notifications**:
+
+```javascript
+const handleSubmit = async (values) => {
+  try {
+    message.loading("Saving...", 0);
+
+    await api.post("/submit", values, {
+      showSuccess: true,
+      successMessage: "Form submitted successfully!",
+    });
+
+    // Additional success actions
+    form.resetFields();
+    navigate("/success");
+  } catch (error) {
+    // Error automatically handled by interceptor
+    console.error("Submission failed:", error);
+  }
+};
+```
+
+#### **Notification System Exceptions**
+
+**When NOT to Use Default Notifications**:
+
+- User explicitly requests silent mode or custom notification system
+- Specialized applications where notifications interfere with workflow
+- Real-time applications where notifications would be overwhelming
+- Custom notification systems already implemented with equivalent functionality
+
+## 🎨 **GAIA's UI/UX EXPERTISE** (When No Inspiration Provided)
+
+### **Automatic Design Intelligence**
+
+When users don't provide visual inspiration or UI/UX directives, GAIA automatically becomes the expert UI/UX designer, analyzing the target audience and crafting the perfect interface.
+
+### **Audience-Driven Design Matrix**
+
+#### **Business/Enterprise Applications**
+
+**Characteristics**: Professional, trustworthy, efficient
+**Color Palette**:
+
+- Primary: Deep blues (#1E40AF, #3B82F6) or sophisticated grays (#374151, #6B7280)
+- Accent: Professional greens (#059669, #10B981) or warm oranges (#EA580C, #F97316)
+  **Typography**: Clean sans-serif (Inter, Roboto, Open Sans)
+  **Layout**: Grid-based, data-dense, clear hierarchy
+  **Examples**: Stripe, Linear, Notion, Salesforce Lightning
+
+#### **Consumer/General Applications**
+
+**Characteristics**: Friendly, approachable, intuitive
+**Color Palette**:
+
+- Primary: Warm blues (#2563EB, #3B82F6) or friendly purples (#7C3AED, #8B5CF6)
+- Accent: Energetic colors (#EF4444, #F59E0B, #10B981)
+  **Typography**: Rounded, friendly fonts (Inter, Poppins, Nunito)
+  **Layout**: Card-based, whitespace-heavy, mobile-first
+  **Examples**: Airbnb, Spotify, Instagram, Apple
+
+#### **Creative/Portfolio Applications**
+
+**Characteristics**: Bold, expressive, showcase-focused
+**Color Palette**:
+
+- Primary: Bold, artistic colors (#DC2626, #7C2D12, #1F2937)
+- Accent: Vibrant, creative colors (#F59E0B, #8B5CF6, #EC4899)
+  **Typography**: Distinctive fonts (Outfit, Playfair Display, custom)
+  **Layout**: Asymmetrical, image-heavy, creative grids
+  **Examples**: Behance, Dribbble, Awwwards, Adobe
+
+#### **Technical/Developer Applications**
+
+**Characteristics**: Functional, customizable, information-dense
+**Color Palette**:
+
+- Primary: Dark themes (#111827, #1F2937) with accent colors (#3B82F6, #10B981)
+- Light: Clean grays (#F9FAFB, #F3F4F6) with technical blues
+  **Typography**: Monospace options (JetBrains Mono, Fira Code) + sans-serif
+  **Layout**: Dashboard-style, customizable panels, terminal-inspired
+  **Examples**: GitHub, VS Code, Vercel, Figma
+
+### **GAIA's Creative Process**
+
+1. **Audience Analysis**: Extract target user type from project description
+2. **Industry Research**: Apply industry-specific design patterns and expectations
+3. **Color Psychology**: Select colors that evoke appropriate emotions and trust
+4. **Information Architecture**: Design user flows that match user mental models
+5. **Accessibility Integration**: Ensure inclusive design from the ground up
+6. **Modern Trends Integration**: Apply current design trends appropriately
+
+### **Default Design Decisions** (When Creating Original UI)
+
+#### **Color Strategy**:
+
+- **Primary Color**: Choose based on industry (blue for trust, green for growth, purple for creativity)
+- **Accent Colors**: Complementary colors that enhance, not compete
+- **Neutral Palette**: Modern grays with proper contrast ratios (4.5:1 minimum)
+- **Semantic Colors**: Green for success, red for errors, amber for warnings, blue for info
+
+#### **Typography Hierarchy**:
+
+- **Display/Hero**: 3.5rem (56px) - Landing page headlines
+- **H1**: 2.5rem (40px) - Page titles
+- **H2**: 2rem (32px) - Section headers
+- **H3**: 1.5rem (24px) - Subsection headers
+- **Body Large**: 1.125rem (18px) - Important content
+- **Body**: 1rem (16px) - Standard content
+- **Small**: 0.875rem (14px) - Meta information
+- **Caption**: 0.75rem (12px) - Fine print
+
+#### **Spacing System** (8px base):
+
+- **XS**: 4px - Icon spacing, small gaps
+- **SM**: 8px - Element padding, tight spacing
+- **MD**: 16px - Standard spacing between elements
+- **LG**: 24px - Section spacing
+- **XL**: 32px - Large section breaks
+- **2XL**: 48px - Major layout divisions
+- **3XL**: 64px - Hero section spacing
+
+#### **Component Defaults**:
+
+- **Buttons**: Rounded corners (8px), hover states, focus rings
+- **Cards**: Subtle shadows, rounded corners (12px), proper padding
+- **Forms**: Clear labels, proper spacing, validation states
+- **Navigation**: Intuitive hierarchy, clear active states
+- **Loading States**: Skeleton screens, progressive loading
+- **Empty States**: Helpful illustrations, clear next steps
+
+## 🎨 Visual Inspiration & Design Direction
+
+### Design References
+
+- **Primary Inspiration**: `[LINKS_TO_SPECIFIC_APPS/WEBSITES]`
+- **Secondary References**: `[ADDITIONAL_INSPIRATION_SOURCES]`
+- **Target Aesthetic**: `[MODERN_MINIMALIST/RICH_DETAILED/CREATIVE_BOLD/ENTERPRISE_PROFESSIONAL/ETC]`
+
+### Design Philosophy
+
+- **Core Principle**: `[BEAUTY_THROUGH_SIMPLICITY/SOPHISTICATED_DETAIL/BOLD_CREATIVITY/ETC]`
+- **User Experience Goals**: `[INTUITIVE_NAVIGATION/DELIGHTFUL_INTERACTIONS/EFFICIENT_WORKFLOWS/ETC]`
+- **Brand Personality**: `[TRUSTWORTHY/INNOVATIVE/PLAYFUL/PROFESSIONAL/ETC]`
+
+## Design System
+
+### Color Palette
+
+**Primary Colors** (Based on inspiration/brand):
+
+- Primary: `#[HEX_CODE]` - Main brand color for CTAs and primary actions
+- Primary Light: `#[HEX_CODE]` - Hover states and backgrounds
+- Primary Dark: `#[HEX_CODE]` - Active states and emphasis
+- Secondary: `#[HEX_CODE]` - Accent color for highlights and secondary actions
+- Tertiary: `#[HEX_CODE]` - Supporting color for variety and interest
+
+**Neutral Palette** (Modern, sophisticated neutrals):
+
+- White: `#FFFFFF` - Pure white for backgrounds
+- Gray 50: `#[HEX_CODE]` - Lightest gray for subtle backgrounds
+- Gray 100: `#[HEX_CODE]` - Very light gray for disabled states
+- Gray 200: `#[HEX_CODE]` - Light gray for borders
+- Gray 300: `#[HEX_CODE]` - Medium-light gray for secondary text
+- Gray 400: `#[HEX_CODE]` - Medium gray for placeholders
+- Gray 500: `#[HEX_CODE]` - True gray for secondary text
+- Gray 600: `#[HEX_CODE]` - Dark gray for primary text
+- Gray 700: `#[HEX_CODE]` - Very dark gray for headings
+- Gray 800: `#[HEX_CODE]` - Almost black for emphasis
+- Gray 900: `#[HEX_CODE]` - Pure black for maximum contrast
+
+**Semantic Colors** (Modern, accessible):
+
+- Success: `#10B981` - Green for success states
+- Success Light: `#D1FAE5` - Light green for success backgrounds
+- Warning: `#F59E0B` - Amber for warning states
+- Warning Light: `#FEF3C7` - Light amber for warning backgrounds
+- Error: `#EF4444` - Red for error states
+- Error Light: `#FEE2E2` - Light red for error backgrounds
+- Info: `#3B82F6` - Blue for informational states
+- Info Light: `#DBEAFE` - Light blue for info backgrounds
 
 ## ✨ Modern Animations & Micro-interactions
 
@@ -836,7 +1328,7 @@ const columns = [
 - **React Icons**: Comprehensive icon library
 - **Date-fns**: For date manipulation and formatting
 
-### 🎓 **MANDATORY TUTORIAL/ONBOARDING SYSTEM**
+## 🎓 **MANDATORY TUTORIAL/ONBOARDING SYSTEM**
 
 **CRITICAL**: Every frontend MUST include a comprehensive, built-in tutorial/onboarding system. This is a core requirement, not optional.
 
@@ -1334,26 +1826,8 @@ jobs:
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
-          name: visual-test-results
-          path: test-results/
+          name: visual-regression-results
+          path: |
+            tests/visual/screenshots/**/*.png
+            tests/visual/videos/**/*.webm
 ```
-
-### Quality Gates
-
-**Before Deployment Checklist**:
-
-- [ ] All visual tests pass
-- [ ] Screenshots reviewed and approved
-- [ ] Contrast ratios validated
-- [ ] Responsive design confirmed across all breakpoints
-- [ ] Interactive states tested and working
-- [ ] Loading and error states are visually appealing
-- [ ] Design matches provided inspiration/specifications
-
----
-
-**Note**: This comprehensive specification ensures the frontend will be not just functional, but truly beautiful, modern, and user-friendly. All placeholder values should be replaced with project-specific details during requirements gathering, with particular attention to the visual inspiration and design direction sections.
-
-**REMEMBER**: Never ship a frontend without thorough visual testing - beauty is not optional, it's mandatory for professional applications.
-
-[<< Back](./../design.md)

@@ -177,6 +177,7 @@ Auto-apply patterns based on project type:
 
 - **Hierarchy**: Clear visual hierarchy with proper typography scales
 - **Responsive Design**: MANDATORY desktop and mobile support with tablet optimization
+- **User Feedback**: MANDATORY notification system for API failures, success states, and critical user actions
 - **Whitespace**: Generous use of whitespace for breathing room
 - **Consistency**: Consistent spacing, colors, and component styles
 - **Accessibility**: WCAG AA compliant contrast ratios and keyboard navigation
@@ -223,7 +224,7 @@ const customTheme = {
 - **Form Handling**: Always use Ant Design Form components with proper validation
 - **Data Display**: Use Table, List, or Card components for structured data
 - **Navigation**: Implement Menu, Breadcrumb, and Pagination from Antd
-- **Feedback**: Use Message, Notification, and Modal for user feedback
+- **Feedback**: MANDATORY use of Message, Notification, and Modal for user feedback, especially API errors and success states
 - **Icons**: Use Ant Design's icon library (@ant-design/icons) consistently
 
 **Design Integration**:
@@ -239,6 +240,130 @@ const customTheme = {
 - Project requires highly custom, artistic, or non-standard UI components
 - Performance requirements demand lighter-weight alternatives
 - Existing project already uses a different established component system
+
+### 🔔 **MANDATORY NOTIFICATION SYSTEM**
+
+**CRITICAL**: ALL frontends MUST include a comprehensive notification system for user feedback, especially for API interactions and critical user actions.
+
+#### **Default Notification Requirements**:
+
+**Mandatory Notification Scenarios**:
+
+- **API Call Failures**: Network errors, server errors, timeout errors
+- **API Call Success**: Form submissions, data saves, critical operations
+- **Validation Errors**: Form validation, input errors, business rule violations
+- **Authentication Events**: Login success/failure, session expiration, logout
+- **Loading States**: Long-running operations, data fetching, background processes
+- **System Events**: Maintenance modes, feature updates, important announcements
+
+**Ant Design Notification Implementation**:
+
+```javascript
+import { notification, message } from "antd";
+
+// API Error Handling
+const handleApiError = (error) => {
+  notification.error({
+    message: "Operation Failed",
+    description:
+      error.message || "An unexpected error occurred. Please try again.",
+    duration: 6,
+    placement: "topRight",
+  });
+};
+
+// Success Notifications
+const handleApiSuccess = (action) => {
+  message.success(`${action} completed successfully!`);
+};
+
+// Loading States
+const handleLoading = (promise, loadingMessage = "Processing...") => {
+  message.loading(loadingMessage, 0);
+  return promise.finally(() => message.destroy());
+};
+```
+
+**Notification Types & Standards**:
+
+- **Error Notifications**: Red color, 6-8 second duration, detailed error message
+- **Success Notifications**: Green color, 3-4 second duration, confirmation message
+- **Warning Notifications**: Orange color, 5-6 second duration, cautionary message
+- **Info Notifications**: Blue color, 4-5 second duration, informational message
+- **Loading Notifications**: Auto-dismiss when operation completes
+
+**Implementation Standards**:
+
+- **Consistent Positioning**: Top-right corner for notifications, center for critical alerts
+- **Auto-Dismiss**: Appropriate duration based on message importance and length
+- **User Control**: Allow manual dismissal with close button
+- **Accessibility**: Screen reader compatible, keyboard navigation support
+- **Mobile Optimization**: Responsive sizing and positioning for mobile devices
+
+**API Integration Pattern**:
+
+```javascript
+// HTTP Client with Default Notifications
+const apiClient = axios.create({
+  baseURL: "/api",
+});
+
+// Request interceptor for loading states
+apiClient.interceptors.request.use((config) => {
+  if (!config.silent) {
+    message.loading("Loading...", 0);
+  }
+  return config;
+});
+
+// Response interceptor for error handling
+apiClient.interceptors.response.use(
+  (response) => {
+    message.destroy(); // Clear loading
+    if (response.config.showSuccess) {
+      message.success("Operation completed successfully!");
+    }
+    return response;
+  },
+  (error) => {
+    message.destroy(); // Clear loading
+
+    if (error.response?.status === 401) {
+      notification.error({
+        message: "Authentication Required",
+        description: "Please log in to continue.",
+      });
+    } else if (error.response?.status >= 500) {
+      notification.error({
+        message: "Server Error",
+        description: "Something went wrong on our end. Please try again later.",
+      });
+    } else {
+      notification.error({
+        message: "Request Failed",
+        description: error.response?.data?.message || "An error occurred.",
+      });
+    }
+
+    return Promise.reject(error);
+  }
+);
+```
+
+**Error Handling Categories**:
+
+- **Network Errors**: "Connection failed. Please check your internet connection."
+- **Authentication Errors**: "Session expired. Please log in again."
+- **Validation Errors**: "Please check the highlighted fields and try again."
+- **Permission Errors**: "You don't have permission to perform this action."
+- **Server Errors**: "Something went wrong on our end. Please try again later."
+- **Not Found Errors**: "The requested resource could not be found."
+
+**Notification System Exceptions**:
+
+- User explicitly requests no notifications (silent mode)
+- Specialized applications where notifications would interfere with workflow
+- Custom notification systems already implemented
 
 ### 📱 **MANDATORY RESPONSIVE DESIGN**
 
@@ -744,10 +869,12 @@ For all other operations, infer whatever is possible and proceed automatically. 
       7.5.6 **Performance Standards**: Ensure build and lint times meet thresholds
       7.6 Error Handling Verification:
       7.6.1 Verify exception handling for each error scenario in the code
-      7.6.2 Validate error recovery mechanisms (retries, circuit breakers)
-      7.6.3 Test boundary conditions and edge cases
-      7.6.4 Confirm proper logging of all error conditions
-      7.6.5 Verify graceful degradation of functionality
+      7.6.2 **🔔 MANDATORY Notification Testing**: Verify all API failures trigger appropriate user notifications
+      7.6.3 Validate error recovery mechanisms (retries, circuit breakers)
+      7.6.4 Test boundary conditions and edge cases
+      7.6.5 Confirm proper logging of all error conditions
+      7.6.6 Verify graceful degradation of functionality
+      7.6.7 **Test User Feedback**: Ensure all error scenarios display clear, actionable messages to users
       7.7 API Quality Validation:
       7.7.1 Verify OpenAPI documentation completeness
       7.7.2 Test API versioning and backward compatibility
@@ -924,7 +1051,7 @@ Apply these defaults based on the identified project type and matching example, 
 - For all directory and file structuring, you should adhere to the agreed-upon repository directory structure as specified in `.docs/repo-structure.md`
 - Backend solutions should be defaulted to be the latest LTS version of dotnet.
 - Database solutions should be defaulted to postgres.
-- Frontend solutions should be defaulted to a Vite-managed ReactJS, TypeScript app with hash routing, Ant Design components, and responsive design (desktop + mobile support).
+- Frontend solutions should be defaulted to a Vite-managed ReactJS, TypeScript app with hash routing, Ant Design components, comprehensive notification system for API feedback, and responsive design (desktop + mobile support).
 - **MANDATORY**: All frontend applications MUST use hash routing (#/) for deployment flexibility.
 - CI/CD platform of choice is GitHub actions, found in `.github/workflows/*.yml`
 - Authentication patterns based on project complexity:
