@@ -6,6 +6,42 @@
 
 This document captures the complete frontend application specification, design system, and architecture. It serves as the single source of truth for all UI/UX decisions and implementation details. This specification ensures the frontend is not just functional, but truly beautiful and modern.
 
+**MANDATORY DEFAULTS**: All frontends must include responsive design supporting desktop and mobile devices, unless explicitly specified otherwise by the user.
+
+## 📱 **MANDATORY RESPONSIVE DESIGN REQUIREMENTS**
+
+**CRITICAL**: Every frontend application MUST support responsive design across desktop and mobile devices unless the user explicitly specifies otherwise.
+
+### **Default Responsive Standards**:
+
+**Required Device Support**:
+
+- **Desktop**: 1024px+ (Primary development and business use)
+- **Tablet**: 768px - 1023px (Intermediate layouts)
+- **Mobile**: 375px - 767px (Essential mobile experience)
+
+**Implementation Requirements**:
+
+- **Mobile-First Development**: Build for mobile first, enhance for desktop
+- **Flexible Grid Systems**: CSS Grid/Flexbox or Ant Design's responsive grid
+- **Responsive Typography**: Scalable text sizes across all breakpoints
+- **Touch Optimization**: 44px minimum touch targets for mobile
+- **Navigation Adaptation**: Collapsible menus and mobile-friendly navigation
+
+**Quality Assurance**:
+
+- **Playwright Testing**: Mandatory screenshot tests at all breakpoints
+- **Cross-Device Validation**: Test on actual mobile devices when possible
+- **Performance Optimization**: Fast loading on mobile networks
+- **Accessibility**: Keyboard navigation and screen reader compatibility
+
+**When Responsive Design is NOT Required**:
+
+- User explicitly requests desktop-only application
+- Specialized hardware/kiosk applications
+- Technical constraints preventing responsive implementation
+- User specifies single-device targeting
+
 ## 🎨 **GAIA's UI/UX EXPERTISE** (When No Inspiration Provided)
 
 ### **Automatic Design Intelligence**

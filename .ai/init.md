@@ -176,6 +176,7 @@ Auto-apply patterns based on project type:
 #### **Default Design Principles When Creating Original UI**:
 
 - **Hierarchy**: Clear visual hierarchy with proper typography scales
+- **Responsive Design**: MANDATORY desktop and mobile support with tablet optimization
 - **Whitespace**: Generous use of whitespace for breathing room
 - **Consistency**: Consistent spacing, colors, and component styles
 - **Accessibility**: WCAG AA compliant contrast ratios and keyboard navigation
@@ -238,6 +239,46 @@ const customTheme = {
 - Project requires highly custom, artistic, or non-standard UI components
 - Performance requirements demand lighter-weight alternatives
 - Existing project already uses a different established component system
+
+### 📱 **MANDATORY RESPONSIVE DESIGN**
+
+**CRITICAL**: ALL frontends MUST support desktop and mobile devices with responsive design, unless explicitly specified otherwise by the user.
+
+#### **Default Responsive Requirements**:
+
+**Target Devices & Breakpoints**:
+
+- **Mobile**: 375px - 767px (Primary mobile devices, phones)
+- **Tablet**: 768px - 1023px (Tablets, small laptops)
+- **Desktop**: 1024px+ (Desktops, large laptops, wide screens)
+
+**Implementation Standards**:
+
+- **Mobile-First Approach**: Design and code for mobile first, then enhance for larger screens
+- **Flexible Layouts**: Use CSS Grid and Flexbox for responsive layouts
+- **Responsive Typography**: Text scales appropriately across all device sizes
+- **Touch-Friendly**: Minimum 44px touch targets for mobile interactions
+- **Content Priority**: Most important content visible on mobile without horizontal scrolling
+
+**Ant Design Responsive Integration**:
+
+- Use Ant Design's responsive grid system (`Col` with `xs`, `sm`, `md`, `lg`, `xl` props)
+- Leverage Ant Design's responsive utilities and breakpoint tokens
+- Implement responsive navigation patterns (drawer menus for mobile)
+- Use responsive table solutions (horizontal scroll or stacked layouts)
+
+**Testing Requirements**:
+
+- **Mandatory Playwright Testing**: Screenshot tests at all three breakpoints (mobile, tablet, desktop)
+- **Cross-Device Validation**: Test on actual devices when possible
+- **Orientation Testing**: Support both portrait and landscape modes
+- **Performance**: Ensure fast loading on mobile networks
+
+**Responsive Design Exceptions**:
+
+- User explicitly requests desktop-only or mobile-only application
+- Specialized applications (kiosks, embedded systems, specific hardware)
+- Applications with technical constraints that prevent responsive implementation
 
 ### **Inspiration Sources** (When Provided):
 
@@ -355,7 +396,7 @@ test("Homepage visual validation", async ({ page }) => {
 - Execute build verification after component completion
 - Run tests after business logic and API implementation
 - **Mandatory Playwright Visual Testing**: Use screenshot comparisons to ensure UI matches design specs
-- Validate accessibility and responsiveness for UI components
+- Validate accessibility and MANDATORY responsiveness (desktop + mobile) for all UI components
 - Iterate frontend implementation until Playwright tests pass with proper contrast and design compliance
 - Before milestone completion: Full quality gate validation
 
@@ -422,7 +463,7 @@ For all other operations, infer whatever is possible and proceed automatically. 
       4.1.7.2 System Component Diagrams & Doc
       4.1.7.3 Class Diagrams & Doc
       4.1.7.4 Sequence Diagrams & Doc
-      4.1.7.5 Comprehensive frontend specifications doc in `.docs/designs/5-frontend.md`. Design language etc. If not specified, default to glassmorphic, modern and dark. Use Ant Design as the default component library unless otherwise specified.
+      4.1.7.5 Comprehensive frontend specifications doc in `.docs/designs/5-frontend.md`. Design language etc. If not specified, default to glassmorphic, modern and dark. Use Ant Design as the default component library and implement responsive design (desktop + mobile) unless otherwise specified.
       4.1.8 **Tech Stack with Comprehensive Justification** - REQUIRED documentation:
 
       - **Technology Selection Rationale**: Document WHY each technology was chosen over alternatives
@@ -853,7 +894,7 @@ Apply these defaults based on the identified project type and matching example, 
 - For all directory and file structuring, you should adhere to the agreed-upon repository directory structure as specified in `.docs/repo-structure.md`
 - Backend solutions should be defaulted to be the latest LTS version of dotnet.
 - Database solutions should be defaulted to postgres.
-- Frontend solutions should be defaulted to a Vite-managed ReactJS, TypeScript app with hash routing and Ant Design components.
+- Frontend solutions should be defaulted to a Vite-managed ReactJS, TypeScript app with hash routing, Ant Design components, and responsive design (desktop + mobile support).
 - **MANDATORY**: All frontend applications MUST use hash routing (#/) for deployment flexibility.
 - CI/CD platform of choice is GitHub actions, found in `.github/workflows/*.yml`
 - Authentication patterns based on project complexity:
