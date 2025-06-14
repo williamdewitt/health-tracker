@@ -1,5 +1,15 @@
 # ## 🔄 MANDATORY SYNC PROTOCOL
 
+**🚨 CRITICAL BEFORE PROCESSING**: Every time you read or update this session-state file, you MUST FIRST read `.ai/plan.md` using the `read_file` tool to understand the complete project context and plan.
+
+**MANDATORY SEQUENCE**:
+
+1. **🔍 READ PLAN FIRST**: `read_file('.ai/plan.md')` - This is NON-NEGOTIABLE
+2. **Then process this session state** - Map current status against plan
+3. **Cross-reference and validate** - Ensure alignment with plan milestones
+4. **Update accordingly** - Reflect plan reality in session state
+5. **🚀 CONTINUE AUTOMATICALLY** - Never stop after reading/updating
+
 **CRITICAL**: Every time you update this session-state file, you MUST:
 
 1. **Read and Review .ai/plan.md** - Understand the complete project plan
@@ -253,7 +263,7 @@ test("UC-001: Complete User Registration Flow", async ({ page }) => {
 1. [Use Case] - [Test File] - [Failure Reason] - [Priority: High/Critical]
 2. [Use Case] - [Test File] - [Failure Reason] - [Priority: High/Critical]
 
-### **Use Case Progress Summary**
+### \*\*Use Case Progress Summary
 
 **Completion Metrics**:
 
@@ -364,6 +374,8 @@ test("UC-001: Complete User Registration Flow", async ({ page }) => {
 
 **MANDATORY Sync Triggers**:
 
+- **🔍 EVERY TIME** you read this session-state.md file (ALWAYS read plan.md first)
+- **🔍 EVERY TIME** you update this session-state.md file (ALWAYS read plan.md first)
 - At the start of every session (context recovery)
 - Before beginning any new milestone
 - When encountering blockers or scope changes
@@ -371,9 +383,13 @@ test("UC-001: Complete User Registration Flow", async ({ page }) => {
 - When session state shows >20% progress change
 - Before finalizing any major architectural decisions
 
+**NON-NEGOTIABLE RULE**: Never process session state without first reading the plan file.
+
 ### How to Perform Plan Sync
 
-1. **Read Plan**: `read_file .ai/plan.md`
+**MANDATORY SEQUENCE** (Never deviate from this order):
+
+1. **🔍 READ PLAN FIRST**: `read_file('.ai/plan.md')` - **THIS IS STEP #1 ALWAYS**
 2. **Compare Status**: Match current progress against plan milestones
 3. **Identify Gaps**: Note any missing or incomplete items from plan
 4. **Update Tracking**: Mark completed items, update progress percentages
@@ -381,8 +397,11 @@ test("UC-001: Complete User Registration Flow", async ({ page }) => {
 6. **Validate Next Steps**: Ensure next actions align with plan priorities
 7. **🚀 IMMEDIATELY CONTINUE**: Never stop after sync - proceed to next task automatically
 
+**CRITICAL REMINDER**: Step 1 is non-negotiable. You cannot properly process session state without understanding the plan context.
+
 ### Plan Sync Quality Checklist
 
+- [ ] **🔍 PLAN READ FIRST**: Plan has been read using `read_file` tool BEFORE processing session state
 - [ ] Plan has been read in current session
 - [ ] Milestone status accurately reflects plan
 - [ ] Progress tracking is mathematically consistent
@@ -391,4 +410,17 @@ test("UC-001: Complete User Registration Flow", async ({ page }) => {
 - [ ] Timeline adjustments are realistic and explained
 - [ ] **🚀 Automatic continuation**: Ready to proceed without user confirmation
 
-**Remember**: The plan is the source of truth. Session state should reflect plan reality, not replace it. **ALWAYS CONTINUE AUTOMATICALLY AFTER SYNC**.
+**Remember**: The plan is the source of truth. Session state should reflect plan reality, not replace it. **ALWAYS READ PLAN FIRST, THEN CONTINUE AUTOMATICALLY AFTER SYNC**.
+
+---
+
+## 🚨 **CRITICAL REMINDER**
+
+**BEFORE YOU DO ANYTHING WITH THIS SESSION STATE FILE**:
+
+1. **🔍 READ THE PLAN**: `read_file('.ai/plan.md')`
+2. **UNDERSTAND THE CONTEXT**: Know what the project is trying to achieve
+3. **THEN PROCESS**: Update session state based on plan reality
+4. **🚀 CONTINUE AUTOMATICALLY**: Never stop after reading/updating
+
+**This is not optional. This is not a suggestion. This is a MANDATORY requirement for proper AI operation.**
