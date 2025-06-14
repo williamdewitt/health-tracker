@@ -152,6 +152,7 @@
 - [ ] **Authentication**: Proper user access controls for each use case
 - [ ] **Validation**: Input validation and error handling
 - [ ] **Testing**: Unit, integration, and E2E tests for each use case
+- [ ] **🎭 PLAYWRIGHT USER FLOW TESTING**: MANDATORY end-to-end testing of complete user journeys for each use case
 
 **Use Case Validation Checklist**:
 
@@ -161,6 +162,96 @@
 - [ ] Performance requirements are met
 - [ ] Security requirements are implemented
 - [ ] Accessibility requirements are fulfilled
+
+### **🎭 MANDATORY PLAYWRIGHT USE CASE TESTING**
+
+**CRITICAL**: Every use case MUST have corresponding Playwright tests that validate the complete user journey from frontend to backend integration.
+
+#### **Use Case Testing Requirements**:
+
+**Complete Integration Testing**:
+
+- [ ] **Frontend Components**: All UI components required for use case are implemented and functional
+- [ ] **Backend Methods**: All API endpoints and business logic are working and accessible
+- [ ] **Database Integration**: Data persistence and retrieval work correctly
+- [ ] **Routing**: All navigation paths within the use case function properly
+- [ ] **Authentication Flow**: User access controls are properly enforced
+- [ ] **Error Handling**: All error scenarios are handled gracefully in the UI
+
+**Playwright Test Implementation**:
+
+```javascript
+// Example: Use Case UC-001 - User Registration
+test("UC-001: Complete User Registration Flow", async ({ page }) => {
+  // 1. Navigate to registration page
+  await page.goto("/register");
+
+  // 2. Fill registration form
+  await page.fill('[data-testid="email"]', "test@example.com");
+  await page.fill('[data-testid="password"]', "SecurePassword123");
+  await page.fill('[data-testid="confirmPassword"]', "SecurePassword123");
+
+  // 3. Submit form and verify backend integration
+  await page.click('[data-testid="submit-registration"]');
+
+  // 4. Verify successful registration (frontend feedback)
+  await expect(page.locator('[data-testid="success-message"]')).toBeVisible();
+
+  // 5. Verify redirect to expected page
+  await expect(page).toHaveURL("/dashboard");
+
+  // 6. Verify user is authenticated (backend integration)
+  await expect(page.locator('[data-testid="user-avatar"]')).toBeVisible();
+});
+```
+
+**Use Case Test Coverage Requirements**:
+
+- [ ] **Happy Path**: Complete successful user journey
+- [ ] **Error Scenarios**: All validation and error cases
+- [ ] **Edge Cases**: Boundary conditions and unusual inputs
+- [ ] **Cross-Browser**: Chrome, Firefox, Safari compatibility
+- [ ] **Responsive**: Mobile, tablet, desktop viewport testing
+- [ ] **Performance**: Reasonable load times and responsiveness
+
+**Integration Validation Checklist**:
+
+- [ ] Frontend form submissions reach backend APIs
+- [ ] Backend responses properly update frontend UI
+- [ ] Database changes are reflected in frontend displays
+- [ ] User authentication state persists across page navigations
+- [ ] Real-time features (if applicable) work end-to-end
+- [ ] File uploads/downloads function correctly
+- [ ] Third-party integrations (payment, auth, etc.) work in test environment
+
+#### **Use Case Test Status Tracking**:
+
+**Primary Use Cases**:
+
+- [⏳] **UC-001**: [Use Case Name]
+
+  - Playwright Test: [Not Created/Created/Passing/Failing]
+  - Test File: `/tests/use-cases/uc-001-[name].spec.ts`
+  - Last Run: [Date/Time]
+  - Status: [Pass/Fail] - [Issues if failing]
+
+- [🔄] **UC-002**: [Use Case Name]
+  - Playwright Test: [Not Created/Created/Passing/Failing]
+  - Test File: `/tests/use-cases/uc-002-[name].spec.ts`
+  - Last Run: [Date/Time]
+  - Status: [Pass/Fail] - [Issues if failing]
+
+**Test Execution Summary**:
+
+- **Total Use Case Tests**: [X]
+- **Passing Tests**: [Y] ([Z]%)
+- **Failing Tests**: [A] ([B]%)
+- **Not Implemented**: [C] ([D]%)
+
+**Critical Test Failures** (Must fix before deployment):
+
+1. [Use Case] - [Test File] - [Failure Reason] - [Priority: High/Critical]
+2. [Use Case] - [Test File] - [Failure Reason] - [Priority: High/Critical]
 
 ### **Use Case Progress Summary**
 

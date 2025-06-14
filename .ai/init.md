@@ -576,10 +576,38 @@ For all other operations, infer whatever is possible and proceed automatically. 
     5.1 Follow the plan in order.
     5.1.1 If you need direction on which path to take next, take the next logical path instead of bothering the user with prompts. We want this system to run automatically as far as possible. This means assume CONFIRMATION on ANY/ALL commands etc, questions about proceeding etc.
     5.1.2 **MANDATORY DESIGN DOCUMENT REFERENCE DURING IMPLEMENTATION**: - **Before implementing ANY component**: READ the corresponding design document created in `./.docs/designs/` using `read_file` tool - **Use Case Validation**: Cross-reference implementation against `./.docs/designs/1-use-cases.md` to ensure all user stories are fulfilled - **Architecture Compliance**: Verify component implementation matches `./.docs/designs/2-system-components.md` specifications - **Class Structure Adherence**: Implement exact class hierarchies and interfaces defined in `./.docs/designs/3-class.md` - **Sequence Implementation**: Follow exact API call patterns and business flows from `./.docs/designs/4-sequence.md` - **Frontend Specification**: Implement UI components exactly as specified in `./.docs/designs/5-frontend.md` - **Design-Implementation Consistency**: After implementing each major component, read the relevant design document to verify 100% alignment
-    5.1.3 Use the following decision tree for automatic progression: - If current task is completed successfully → Move to next task - If build fails → Fix errors and re-run build - If tests fail → Fix failing tests and re-run - **If linting violations exist → Fix ALL violations immediately** - **If build warnings exist → Resolve ALL warnings before proceeding** - **If code quality standards not met → Refactor to meet 100% compliance** - **If implementation doesn't match design documents → Read design docs and align implementation** - If implementation is technically challenging → Break it down into smaller tasks - If requirements are ambiguous → Reference design documents first, then make assumptions based on industry standards and document them
-    5.1.4 Apply these automatic progression rules based on framework examples: - Progress to next milestone when all tasks in current milestone are completed AND tests pass AND build succeeds AND linting passes AND zero warnings AND visual Playwright tests pass with screenshot verification - **Quality Gates**: Each file must pass linting, formatting, and type-checking before committing - **Example-Based Architecture Selection**: - **Simple Applications (1-5 use cases)**: Monolithic architecture (task-manager example) - **Business Applications (6-10 use cases)**: Modular monolith (e-commerce example) - **Real-time Applications (11-20 use cases)**: Event-driven microservices (social-media example) - **Data-Intensive Applications (any scale)**: CQRS with time-series patterns (IoT dashboard example) - **Example-Based Feature Implementation**: - **Authentication**: Apply patterns from complexity-matched example (JWT vs OAuth) - **Real-time Features**: Apply WebSocket patterns from social-media or IoT examples - **Payment Processing**: Apply e-commerce example security and integration patterns - **Analytics**: Apply IoT dashboard time-series and reporting patterns - **File Handling**: Apply social-media media service patterns - **Example-Driven Caching Strategy**: - Simple applications (task-manager): Application-level caching only - Business applications (e-commerce): Redis for session and product data - Real-time applications: Multi-level caching (L1: App, L2: Redis, L3: CDN) - Data applications (IoT): Time-series optimized caching and materialized views - Automatically implement pagination when data collections may exceed 100 items (all examples show this) - Automatically add comprehensive logging for all exceptions and key business operations (framework standard)
-    5.1.5 Error Prevention Strategy: - Apply appropriate input validation at all boundaries - Use strongly typed parameters and return values - Implement proper exception handling with specific exception types - Add pre-condition and post-condition checks for critical operations - Use defensive programming techniques for external inputs
-    5.1.6 **Design Evolution**: When implementation differs from design:
+
+    5.1.2.1 **🎭 MANDATORY USE CASE TESTING**: For every use case implementation:
+
+    - **Complete Integration Testing**: Ensure frontend components, backend APIs, and database integration all work together
+    - **Playwright User Flow Tests**: Create automated tests that validate the complete user journey from UI interaction to data persistence
+    - **Test Structure**: `/tests/use-cases/uc-[number]-[name].spec.ts` following the format:
+      ```javascript
+      test("UC-XXX: [Use Case Name] - Complete User Journey", async ({
+        page,
+      }) => {
+        // 1. Navigate to entry point
+        // 2. Complete all user interactions
+        // 3. Verify frontend updates
+        // 4. Verify backend integration
+        // 5. Verify data persistence
+        // 6. Test error scenarios
+      });
+      ```
+    - **Integration Requirements**: Every use case test must validate:
+      - Frontend form submissions reach correct backend endpoints
+      - Backend responses properly update frontend UI
+      - Database changes are reflected in frontend immediately
+      - User authentication/authorization works end-to-end
+      - Error handling displays appropriate user feedback
+      - Responsive design works across mobile, tablet, desktop
+    - **Test Execution**: Run use case tests after completing each use case implementation
+    - **Quality Gate**: No use case is considered complete until its Playwright test passes consistently
+      5.1.3 Use the following decision tree for automatic progression: - If current task is completed successfully → Move to next task - If build fails → Fix errors and re-run build - If tests fail → Fix failing tests and re-run - **If linting violations exist → Fix ALL violations immediately** - **If build warnings exist → Resolve ALL warnings before proceeding** - **If code quality standards not met → Refactor to meet 100% compliance** - **If implementation doesn't match design documents → Read design docs and align implementation** - If implementation is technically challenging → Break it down into smaller tasks - If requirements are ambiguous → Reference design documents first, then make assumptions based on industry standards and document them
+
+      5.1.4 Apply these automatic progression rules based on framework examples: - Progress to next milestone when all tasks in current milestone are completed AND tests pass AND build succeeds AND linting passes AND zero warnings AND visual Playwright tests pass with screenshot verification AND use case Playwright tests validate complete user journeys - **Quality Gates**: Each file must pass linting, formatting, and type-checking before committing AND each use case must have passing Playwright integration tests - **Example-Based Architecture Selection**: - **Simple Applications (1-5 use cases)**: Monolithic architecture (task-manager example) - **Business Applications (6-10 use cases)**: Modular monolith (e-commerce example) - **Real-time Applications (11-20 use cases)**: Event-driven microservices (social-media example) - **Data-Intensive Applications (any scale)**: CQRS with time-series patterns (IoT dashboard example) - **Example-Based Feature Implementation**: - **Authentication**: Apply patterns from complexity-matched example (JWT vs OAuth) - **Real-time Features**: Apply WebSocket patterns from social-media or IoT examples - **Payment Processing**: Apply e-commerce example security and integration patterns - **Analytics**: Apply IoT dashboard time-series and reporting patterns - **File Handling**: Apply social-media media service patterns - **Example-Driven Caching Strategy**: - Simple applications (task-manager): Application-level caching only - Business applications (e-commerce): Redis for session and product data - Real-time applications: Multi-level caching (L1: App, L2: Redis, L3: CDN) - Data applications (IoT): Time-series optimized caching and materialized views - Automatically implement pagination when data collections may exceed 100 items (all examples show this) - Automatically add comprehensive logging for all exceptions and key business operations (framework standard)
+      5.1.5 Error Prevention Strategy: - Apply appropriate input validation at all boundaries - Use strongly typed parameters and return values - Implement proper exception handling with specific exception types - Add pre-condition and post-condition checks for critical operations - Use defensive programming techniques for external inputs
+      5.1.6 **Design Evolution**: When implementation differs from design:
 
     - Stop implementation, update design documents FIRST
     - Document change reasoning in affected design documents
@@ -598,7 +626,9 @@ For all other operations, infer whatever is possible and proceed automatically. 
     - Install Playwright: `npm install --save-dev @playwright/test`
     - Set up Playwright configuration for visual testing: `npx playwright install --with-deps`
     - Create baseline visual test suite with screenshot capabilities
-    - Configure GitHub Actions to run Playwright tests with screenshot comparisons on PRs
+    - **🎭 Create Use Case Test Directory**: `/tests/use-cases/` for user journey validation
+    - **Configure Use Case Testing**: Set up Playwright tests for complete frontend-backend-database integration validation
+    - Configure GitHub Actions to run Playwright tests with screenshot comparisons AND use case validation on PRs
       5.2.4 **Terminal Command Standards**:
     - Use auto-confirmation flags (`-y`, `--yes`, `--force`) for non-destructive operations
     - Chain related commands with `&&` for efficiency
