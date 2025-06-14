@@ -20,7 +20,7 @@
 - ❌ **NEVER WAIT** for milestone approval
 - ❌ **NEVER STOP** for status confirmation
 
-**Continuation Pattern**: "Milestone [X] completed (Y%). Proceeding to [Next Task]..."tate Template (Enhanced AI Navigation)
+**Continuation Pattern**: "Milestone [X] completed (Y%). Nurturing the next phase of creation..."tate Template (Enhanced AI Navigation)
 
 ## 🔄 MANDATORY SYNC PROTOCOL
 
