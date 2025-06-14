@@ -1,10 +1,10 @@
 # ## 🔄 MANDATORY SYNC PROTOCOL
 
-**🚨 CRITICAL BEFORE PROCESSING**: Every time you read or update this session-state file, you MUST FIRST read `.ai/plan.md` using the `read_file` tool to understand the complete project context and plan.
+**🚨 CRITICAL BEFORE PROCESSING**: Every time you read or update this session-state file, you MUST FIRST read `./.ai/plan.md` using the `read_file` tool to understand the complete project context and plan.
 
 **MANDATORY SEQUENCE**:
 
-1. **🔍 READ PLAN FIRST**: `read_file('.ai/plan.md')` - This is NON-NEGOTIABLE
+1. **🔍 READ PLAN FIRST**: `read_file('./.ai/plan.md')` - This is NON-NEGOTIABLE
 2. **Then process this session state** - Map current status against plan
 3. **Cross-reference and validate** - Ensure alignment with plan milestones
 4. **Update accordingly** - Reflect plan reality in session state
@@ -12,11 +12,11 @@
 
 **CRITICAL**: Every time you update this session-state file, you MUST:
 
-1. **Read and Review .ai/plan.md** - Understand the complete project plan
+1. **Read and Review ./.ai/plan.md** - Understand the complete project plan
 2. **Cross-reference Current Progress** - Map current status against plan milestones
 3. **Validate Alignment** - Ensure session state reflects plan accurately
 4. **Update Plan Tracking** - Mark completed milestones and adjust timeline if needed
-5. **📋 UPDATE USE CASE TRACKING** - Sync with .docs/designs/1-use-cases.md and update completion status
+5. **📋 UPDATE USE CASE TRACKING** - Sync with ./.docs/designs/1-use-cases.md and update completion status
 6. **Document Deviations** - Note any changes from original plan with rationale
 7. **🚀 AUTOMATIC CONTINUE** - Never stop after sync, immediately proceed to next task
 
@@ -37,7 +37,7 @@
 
 **CRITICAL**: Every time you update this session-state file, you MUST:
 
-1. **Read and Review .ai/plan.md** - Understand the complete project plan
+1. **Read and Review ./.ai/plan.md** - Understand the complete project plan
 2. **Cross-reference Current Progress** - Map current status against plan milestones
 3. **Validate Alignment** - Ensure session state reflects plan accurately
 4. **Update Plan Tracking** - Mark completed milestones and adjust timeline if needed
@@ -121,7 +121,7 @@
 
 ### **Use Case Completion Status**
 
-**Source**: Use cases are derived from [.docs/designs/1-use-cases.md]
+**Source**: Use cases are derived from [./.docs/designs/1-use-cases.md]
 
 **Primary Use Cases** (Core functionality - MANDATORY):
 
@@ -310,24 +310,24 @@ test("UC-001: Complete User Registration Flow", async ({ page }) => {
 
 **MANDATORY SEQUENCE** - Execute in this exact order:
 
-1. `read_file .ai/plan.md` - **FIRST PRIORITY** - Full project plan
-2. `read_file .docs/designs/1-use-cases.md` - **SECOND PRIORITY** - All use cases for tracking
-3. `read_file .ai/session-state.md` - Current session state (this file)
-4. `read_file .docs/designs/*.md` - Design documents status
+1. `read_file ./.ai/plan.md` - **FIRST PRIORITY** - Full project plan
+2. `read_file ./.docs/designs/1-use-cases.md` - **SECOND PRIORITY** - All use cases for tracking
+3. `read_file ./.ai/session-state.md` - Current session state (this file)
+4. `read_file ./.docs/designs/*.md` - Design documents status
 5. `list_dir src/` - Implementation status
 6. `get_errors ["src/"]` - Current issues
 
 **Plan & Use Case Sync Command**: Always run after context recovery:
 
 ```
-[PLAN-SYNC] Read .ai/plan.md and .docs/designs/1-use-cases.md, cross-reference with current session state, validate milestone progress and use case completion, and update this session-state.md with accurate tracking information.
+[PLAN-SYNC] Read ./.ai/plan.md and ./.docs/designs/1-use-cases.md, cross-reference with current session state, validate milestone progress and use case completion, and update this session-state.md with accurate tracking information.
 ```
 
 ## Context Validation Checklist
 
 **Plan Synchronization** (MANDATORY):
 
-- [ ] .ai/plan.md has been read and reviewed in this session
+- [ ] ./.ai/plan.md has been read and reviewed in this session
 - [ ] Current milestone matches plan.md milestone definitions
 - [ ] Progress percentage aligns with plan timeline
 - [ ] Any deviations from plan are documented with rationale
@@ -352,7 +352,7 @@ test("UC-001: Complete User Registration Flow", async ({ page }) => {
 
 **Use Case Tracking Validation** (MANDATORY):
 
-- [ ] All use cases from .docs/designs/1-use-cases.md are identified and listed
+- [ ] All use cases from ./.docs/designs/1-use-cases.md are identified and listed
 - [ ] Each use case has clear status tracking (Not Started/In Progress/Completed/Tested)
 - [ ] Implementation coverage is specified for each use case (Frontend/Backend/Both)
 - [ ] Test coverage is documented for each use case (Unit/Integration/E2E)
@@ -389,7 +389,7 @@ test("UC-001: Complete User Registration Flow", async ({ page }) => {
 
 **MANDATORY SEQUENCE** (Never deviate from this order):
 
-1. **🔍 READ PLAN FIRST**: `read_file('.ai/plan.md')` - **THIS IS STEP #1 ALWAYS**
+1. **🔍 READ PLAN FIRST**: `read_file('./.ai/plan.md')` - **THIS IS STEP #1 ALWAYS**
 2. **Compare Status**: Match current progress against plan milestones
 3. **Identify Gaps**: Note any missing or incomplete items from plan
 4. **Update Tracking**: Mark completed items, update progress percentages
@@ -418,7 +418,7 @@ test("UC-001: Complete User Registration Flow", async ({ page }) => {
 
 **BEFORE YOU DO ANYTHING WITH THIS SESSION STATE FILE**:
 
-1. **🔍 READ THE PLAN**: `read_file('.ai/plan.md')`
+1. **🔍 READ THE PLAN**: `read_file('./.ai/plan.md')`
 2. **UNDERSTAND THE CONTEXT**: Know what the project is trying to achieve
 3. **THEN PROCESS**: Update session state based on plan reality
 4. **🚀 CONTINUE AUTOMATICALLY**: Never stop after reading/updating
