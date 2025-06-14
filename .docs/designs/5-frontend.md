@@ -594,11 +594,80 @@ When users don't provide visual inspiration or UI/UX directives, GAIA automatica
 - **React Icons**: Comprehensive icon library
 - **Date-fns**: For date manipulation and formatting
 
-**Charts & Visualization** (when needed):
+### 🎓 **MANDATORY TUTORIAL/ONBOARDING SYSTEM**
 
-- **Recharts**: For React-native charts
-- **Chart.js**: For advanced charting needs
-- **D3.js**: For custom data visualizations
+**CRITICAL**: Every frontend MUST include a comprehensive, built-in tutorial/onboarding system. This is a core requirement, not optional.
+
+#### **Tutorial System Libraries**:
+- **Primary**: Intro.js, Shepherd.js, or Reactour for React applications
+- **Custom Implementation**: Overlay divs with z-index management for specific needs
+- **State Management**: Tutorial progress tracking with localStorage persistence
+- **Analytics**: Tutorial completion and drop-off tracking
+
+#### **Tutorial System Components**:
+
+**Core Tutorial Components**:
+- **Tutorial Overlay**: Semi-transparent backdrop (rgba(0,0,0,0.7)) with spotlight effect
+- **Tutorial Tooltip**: Positioned tooltip with arrow, description, and navigation controls
+- **Progress Indicator**: Visual progress bar showing tutorial completion (e.g., "3 of 8")
+- **Navigation Controls**: Previous, Next, Skip, and Exit buttons
+- **Tutorial Menu**: Always-accessible help menu for re-starting tutorials
+
+**Tutorial Content Structure**:
+1. **Welcome Screen**: Brief app introduction with key value propositions
+2. **Navigation Tour**: How to move around the application (menu, breadcrumbs, etc.)
+3. **Core Features**: 3-5 most important features with interactive demonstrations
+4. **Primary Actions**: Key actions users will perform regularly
+5. **Help & Support**: Where to find documentation, contact support, or get help
+
+#### **Implementation Specifications**:
+
+**Visual Design**:
+- **Spotlight Effect**: Highlighted element with 8px border-radius, white border
+- **Backdrop**: Semi-transparent overlay (rgba(0,0,0,0.7)) covering entire viewport
+- **Tooltip Design**: White background, Level 4 shadow, 12px border-radius
+- **Typography**: Body M for descriptions, Label for buttons
+- **Colors**: Primary color for action buttons, Gray-600 for secondary text
+- **Animation**: 300ms smooth transitions between steps
+
+**Responsive Behavior**:
+- **Mobile**: Tooltip positioning adapts to avoid viewport edges
+- **Tablet**: Larger tooltip sizes with more comfortable spacing
+- **Desktop**: Full-featured tooltips with detailed descriptions
+
+**Accessibility**:
+- **Keyboard Navigation**: Arrow keys, Enter, and Esc key support
+- **Screen Reader**: ARIA labels and announcements for tutorial steps
+- **Focus Management**: Proper focus trapping and restoration
+- **Skip Options**: Easy skip/exit options for experienced users
+
+#### **Audience-Specific Tutorial Adaptations**:
+
+**Business/Enterprise Applications**:
+- Focus on efficiency, workflow optimization, and data insights
+- Highlight reporting features, collaboration tools, and integrations
+- Emphasize security features and admin controls
+
+**Consumer/General Applications**:
+- Emphasize fun, discovery, and social features
+- Show personalization options and customization
+- Highlight sharing and social interaction features
+
+**Creative/Portfolio Applications**:
+- Showcase creation tools and artistic features
+- Highlight customization options and themes
+- Show portfolio organization and presentation features
+
+**Technical/Developer Applications**:
+- Show advanced features, integrations, and API access
+- Highlight customization options and developer tools
+- Demonstrate automation features and workflow optimization
+
+#### **Quality Requirements**:
+- Track completion rates and identify drop-off points
+- Update tutorials when UI changes
+- Test tutorials on all supported devices and browsers
+- Automated tests for tutorial functionality
 
 ## 📁 Modern File Structure
 

@@ -187,52 +187,49 @@ Auto-apply patterns based on project type:
 - Screenshots, app references, style descriptions, or design systems
 - **Modern Standards**: Apply current design trends, WCAG accessibility, responsive design
 - **Beautiful UI**: Professional quality matching provided inspiration
-- **Built-in Tutorial System**: All frontends MUST include a tutorial/onboarding system (floating tool tips over components with a dimmed back light, for example)
 
-Visual [frontend design docs](.docs/designs/5-frontend.md) should be persisted to and followed, to the [frontend design architecture](.docs/designs/5-frontend.md) to the T. Improvise where there is missing information, based on the existing information.
+### 🎓 **MANDATORY BUILT-IN TUTORIAL SYSTEM**
 
-### 🎨 **CREATIVE UI/UX DECISION MAKING PROCESS**
+**CRITICAL**: ALL frontends MUST include a comprehensive, built-in tutorial/onboarding system. This is NOT optional.
 
-**When No Inspiration is Provided, GAIA Must**:
+#### **Tutorial System Requirements**:
 
-1. **Analyze the Project Context**:
+**Core Components**:
+- **Interactive Overlay Tutorial**: Step-by-step guided tour with highlighted elements
+- **Floating Tooltips**: Contextual help bubbles with dimmed backdrop
+- **Progress Tracking**: Visual progress indicator showing completion status
+- **Skip/Restart Options**: User control over tutorial experience
+- **Persistent Help**: Always-available help button/menu
+- **Progressive Disclosure**: Introduce features gradually as users advance
 
-   - What type of application is this? (e-commerce, social, dashboard, portfolio, etc.)
-   - Who is the primary audience? (business users, consumers, creatives, developers)
-   - What emotions should the UI evoke? (trust, excitement, professionalism, creativity)
+**Implementation Specifications**:
+- **Spotlight Effect**: Highlight current element with dimmed overlay (rgba(0,0,0,0.7))
+- **Tooltip Positioning**: Smart positioning to avoid viewport edges
+- **Animation**: Smooth transitions (300ms) between tutorial steps
+- **Responsive**: Tutorial adapts to mobile, tablet, and desktop layouts
+- **Accessibility**: Keyboard navigation and screen reader support
+- **Persistence**: Remember user's tutorial progress across sessions
 
-2. **Make Creative Decisions**:
+**Tutorial Content Structure**:
+1. **Welcome Screen**: Brief introduction to the application purpose
+2. **Core Features Tour**: 3-5 most important features with interactive demonstrations
+3. **Navigation Guide**: How to move around the application
+4. **Key Actions**: Primary user actions they'll perform regularly
+5. **Help Resources**: Where to find additional help and documentation
 
-   - **Color Palette**: Choose 2-3 primary colors that match the audience and purpose
-   - **Typography**: Select font families that convey the right personality
-   - **Layout Style**: Grid-based professional vs. creative asymmetrical vs. card-based friendly
-   - **Visual Elements**: Illustrations, icons, photography style, graphic elements
+**Technical Implementation**:
+- Use libraries like Intro.js, Shepherd.js, or Reactour for React apps
+- Custom implementation with overlay divs and z-index management
+- State management for tutorial progress and user preferences
+- Analytics tracking for tutorial completion rates and drop-off points
 
-3. **Document Design Decisions**:
+**Audience-Specific Tutorial Adaptations**:
+- **Business Users**: Focus on efficiency, workflow optimization, data insights
+- **Consumer Users**: Emphasize fun, discovery, social features
+- **Creative Users**: Highlight creation tools, customization options
+- **Technical Users**: Show advanced features, integrations, API access
 
-   - Explain WHY you chose specific colors, fonts, and layouts
-   - Connect design choices to user psychology and business goals
-   - Reference successful apps that use similar approaches
-
-4. **Create Comprehensive Design System**:
-   - Complete color palette with semantic meanings
-   - Typography scale with usage guidelines
-   - Component library with consistent styling
-   - Responsive behavior specifications
-
-**Example Creative Process**:
-
-```
-Project: Task Management App for Small Teams
-Audience Analysis: Business users who need efficiency but also team collaboration
-Design Direction: Clean, professional, but with friendly collaborative elements
-Color Choice: Primary blue (#3B82F6) for trust, secondary green (#10B981) for success
-Typography: Inter for readability and professionalism
-Layout: Card-based for flexibility, grid-based for data views
-Inspiration: Notion's flexibility + Linear's polish + Slack's collaboration feel
-```
-
-### **GAIA's Visual Design Workflow**:
+### **GAIA'S VISUAL DESIGN WORKFLOW**
 
 1. **Receive Project Brief**: Understand the project goals, target audience, and key features
 2. **Conduct Research**: Explore similar applications, design trends, and user expectations
@@ -245,7 +242,7 @@ Inspiration: Notion's flexibility + Linear's polish + Slack's collaboration feel
 9. **Refine Designs**: Iterate on the designs based on user feedback and testing results
 10. **Handoff to Development**: Provide all design assets, specifications, and documentation to the development team
 
-### **GAIA's Visual Quality Assurance Protocol**
+### **GAIA's VISUAL QUALITY ASSURANCE PROTOCOL**
 
 **MANDATORY VISUAL TESTING**: Don't assume the frontend is beautifully implemented. ALWAYS rely on Playwright screenshot tests to ensure visual quality and design conformity.
 
