@@ -361,8 +361,8 @@ You MUST continue automatically without stopping for milestone reports. **Essent
 
 ## **Phase 2: Implementation**
 
-1. **Session State**: Create `./.ai/session-state.md` for progress tracking with comprehensive context
-2. **Repository Setup**: Follow `./.docs/repo-structure.md` for organization
+1. **Session State**: Replace the template state file, `./.ai/session-state.md`, for progress tracking with comprehensive context.
+2. **Repository Setup**: Follow `./.docs/repo-structure.md` for repository organization.
 3. **Component Development**: Build according to architecture using established patterns
 4. **Testing**: Implement unit, integration, and E2E tests with Playwright visual testing
 5. **Continuous Integration**: Set up CI/CD pipelines with automated testing
