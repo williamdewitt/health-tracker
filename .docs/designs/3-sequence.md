@@ -2,7 +2,7 @@
 
 # Sequence Diagrams
 
-Below we elaborate on the system's sequence diagrams that are based on the [system components](./2-system-components.md) and the [class diagrams](./3-class.md).
+Below we elaborate on the system's sequence diagrams that are based on the [class diagrams](./2-class.md).
 
 We follow the iDesign principles as highlighted in the [design.md](./../design.md) file in this repository.
 

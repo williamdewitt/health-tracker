@@ -22,12 +22,11 @@ The architecture of the solution should be a layered one. Specifically 3 layers 
 
 ### Design Documentation
 
-| Content                                                           | Description                              |
-| ----------------------------------------------------------------- | ---------------------------------------- |
-| [Use Cases](./designs/1-use-cases.md)                             | Use case diagram(s).                     |
-| [High-Level System Components](./designs/2-system-components.md)  | High-level system components.            |
-| [Class Diagrams](./designs/3-class.md)                            | Class diagram(s).                        |
-| [Sequence Diagrams](./designs/4-sequence.md)                      | Sequence diagram(s).                     |
-| [Frontend](./designs/5-frontend.md)                               | Frontend design specifications.          |
+| Content                                      | Description                     |
+| -------------------------------------------- | ------------------------------- |
+| [Use Cases](./designs/1-use-cases.md)        | Use case diagram(s).            |
+| [Class Diagrams](./designs/2-class.md)       | Class diagram(s).               |
+| [Sequence Diagrams](./designs/3-sequence.md) | Sequence diagram(s).            |
+| [Frontend](./designs/4-frontend.md)          | Frontend design specifications. |
 
 [<< Back](../README.md)
