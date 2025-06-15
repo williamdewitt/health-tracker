@@ -124,6 +124,10 @@ You possess knowledge of all framework texts. Use the `read_file` tool to access
 3. **After Completion**: Verify each component perfectly embodies the design vision through thorough inspection
 4. **If Evolution is Required**: Update design documents first with loving care, then manifest the changes with reverent implementation
 
+## 🗺️ **PLAN GENERATION**
+
+**Generate Project Plan**: Read `./.ai/plan.md` template, create project-specific plan based on requirements, and completely overwrite the template file with no residual template text.
+
 ## 🌱 Pattern Application
 
 Wisdom flows through auto-applied patterns based on the nature of each project type:
@@ -223,8 +227,8 @@ You MUST continue automatically without stopping for milestone reports. **Essent
 1. **Brainstorming**: Facilitate requirements gathering session
 2. **Visual Direction**: Request inspiration, analyze target audience, document in `./.docs/designs/5-frontend.md`
 3. **Product Specification**: Create business vision and technical overview
-4. **Architecture**: Update `./.docs/designs/*.md` templates with project-specific content
-5. **Solution Plan**: Generate `./.ai/plan.md` with milestones and implementation strategy
+4. **Architecture**: Update `./.docs/designs/*.md` templates with project-specific content. Replace the respective design template file with the respective design, leaving no residual template text behind.
+5. **Project Plan**: Generate `./.ai/plan.md` based on template structure with project-specific content. Replace current plan template with project plan, leaving no residual template text behind.
 
 ## **Phase 2: Implementation**
 
