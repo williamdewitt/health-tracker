@@ -141,6 +141,8 @@ You possess knowledge of all framework texts. Use the `read_file` tool to access
 ## 🌟 Core Principles
 
 - **iDesign Architecture**: ESSENTIAL - Follow the patterns in `./.docs/design.md` as the blueprint for all creation
+- **Semantic HTML**: ESSENTIAL - Use proper semantic elements for accessibility and document structure
+- **WCAG 2.1 AA Compliance**: ESSENTIAL - Ensure accessibility for all users including keyboard navigation and screen readers
 - **Security**: Zero Trust architecture with authentication and input validation
 - **Error Handling**: Comprehensive error handling with retry patterns
 - **Code Quality**: 100% linting compliance, zero warnings, complete documentation
@@ -149,6 +151,233 @@ You possess knowledge of all framework texts. Use the `read_file` tool to access
 - **UI/UX Standards**: Act as quality inspector - identify and fix contrast issues, spacing problems, and design inconsistencies
 - **Observability**: Structured logging, metrics, and health checks
 - **CORS Configuration**: All APIs MUST allow all origins for maximum compatibility
+
+## 🛡️ **ADVANCED ERROR HANDLING & RESILIENCE PATTERNS**
+
+### **🔄 Retry & Circuit Breaker Patterns**
+
+**ESSENTIAL**: Every GAIA application must implement comprehensive error handling and resilience patterns for production reliability.
+
+**Retry Strategy Implementation**:
+
+- **Exponential Backoff**: Progressive delay between retry attempts (1s, 2s, 4s, 8s)
+- **Jitter Addition**: Random delay variation to prevent thundering herd problems
+- **Maximum Attempts**: Configurable retry limits (default: 3 attempts for transient errors)
+- **Idempotency Keys**: Ensure safe retry behavior for non-idempotent operations
+- **Selective Retries**: Only retry transient errors (network timeouts, 503s, rate limits)
+
+**Circuit Breaker Pattern**:
+
+- **Failure Threshold**: Open circuit after consecutive failures (default: 5 failures)
+- **Recovery Timeout**: Half-open state testing period (default: 30 seconds)
+- **Health Monitoring**: Automatic circuit state management and monitoring
+- **Fallback Mechanisms**: Graceful degradation when services are unavailable
+
+### **🚨 Error Classification & Handling**
+
+**Error Categories**:
+
+**🔴 Critical Errors** (Immediate user notification + logging):
+
+- Authentication failures and security violations
+- Payment processing errors and financial transaction failures
+- Data corruption or integrity violations
+- System-wide service outages
+
+**🟡 Recoverable Errors** (Retry with user feedback):
+
+- Network timeouts and connectivity issues
+- Rate limiting and temporary service unavailability
+- File upload/download interruptions
+- Third-party API temporary failures
+
+**🟢 Validation Errors** (User-friendly guidance):
+
+- Form input validation failures
+- Business rule violations
+- Permission and authorization denials
+- Resource not found scenarios
+
+### **💬 User-Centric Error Communication**
+
+**MANDATORY Error UX Principles**:
+
+- **Clear Language**: Avoid technical jargon, use human-readable messages
+- **Actionable Guidance**: Tell users exactly what they can do to resolve the issue
+- **Context Preservation**: Maintain user's work and form data during error recovery
+- **Progressive Disclosure**: Show basic message first, with "details" option for technical info
+- **Accessibility Compliance**: Error messages must meet WCAG standards with proper ARIA labels
+
+**Error Message Templates**:
+
+```typescript
+// User-friendly error messages with clear actions
+const errorMessages = {
+  networkError: {
+    title: "Connection Problem",
+    message: "We're having trouble connecting to our servers.",
+    action: "Please check your internet connection and try again.",
+    retryable: true,
+  },
+  validationError: {
+    title: "Please Check Your Information",
+    message: "Some information needs to be corrected before we can continue.",
+    action: "Please review the highlighted fields below.",
+    retryable: false,
+  },
+  authenticationError: {
+    title: "Sign In Required",
+    message: "Your session has expired for security reasons.",
+    action: "Please sign in again to continue.",
+    retryable: false,
+  },
+};
+```
+
+### **📊 Error Monitoring & Analytics**
+
+**Comprehensive Error Tracking**:
+
+- **Error Rate Monitoring**: Track error frequency and patterns across all services
+- **User Journey Impact**: Measure how errors affect user conversion and satisfaction
+- **Performance Correlation**: Link errors to performance degradation and resource usage
+- **Proactive Alerting**: Automated notifications for error rate spikes and critical failures
+
+**Error Recovery Metrics**:
+
+- **Retry Success Rate**: Percentage of errors resolved through retry mechanisms
+- **Circuit Breaker Effectiveness**: Frequency and duration of circuit breaker activations
+- **User Error Recovery**: How often users successfully recover from error scenarios
+- **Mean Time to Recovery (MTTR)**: Average time to resolve critical system errors
+
+## 🔐 **COMPREHENSIVE SECURITY FRAMEWORK**
+
+### **🛡️ Zero Trust Architecture Implementation**
+
+**ESSENTIAL**: Every GAIA application implements security-first principles with comprehensive defense mechanisms.
+
+**Authentication & Authorization**:
+
+- **Multi-Factor Authentication (MFA)**: MANDATORY for all user accounts
+- **JWT Token Management**: Secure token generation, validation, and rotation
+- **Role-Based Access Control (RBAC)**: Granular permissions with principle of least privilege
+- **Session Management**: Secure session handling with automatic timeout and renewal
+- **OAuth 2.0/OpenID Connect**: Industry-standard authentication protocols
+
+**Data Protection**:
+
+- **Encryption at Rest**: All sensitive data encrypted using AES-256
+- **Encryption in Transit**: TLS 1.3 for all network communications
+- **API Security**: Rate limiting, request validation, and CORS configuration
+- **Input Sanitization**: Comprehensive validation and sanitization of all user inputs
+- **SQL Injection Prevention**: Parameterized queries and ORM security patterns
+
+### **🔍 Security Monitoring & Compliance**
+
+**Automated Security Scanning**:
+
+- **Static Application Security Testing (SAST)**: Code analysis for vulnerabilities
+- **Dynamic Application Security Testing (DAST)**: Runtime security testing
+- **Dependency Scanning**: Automated vulnerability detection in third-party packages
+- **Container Security**: Docker image scanning and runtime protection
+- **Infrastructure as Code Security**: Terraform and configuration security validation
+
+**Compliance Standards**:
+
+- **OWASP Top 10**: Protection against most critical web application risks
+- **GDPR Compliance**: Data privacy and protection requirements (where applicable)
+- **SOC 2 Type II**: Security controls for service organizations
+- **HIPAA Compliance**: Healthcare data protection (when handling medical data)
+- **PCI DSS**: Payment card data security standards (when processing payments)
+
+### **🚨 Incident Response & Recovery**
+
+**Security Incident Management**:
+
+- **Automated Threat Detection**: Real-time monitoring for suspicious activities
+- **Incident Response Plan**: Documented procedures for security breach handling
+- **Forensic Logging**: Comprehensive audit trails for security investigation
+- **Backup & Recovery**: Secure data backup with tested recovery procedures
+- **Business Continuity**: Disaster recovery planning and testing
+
+**Security Metrics & KPIs**:
+
+- **Mean Time to Detection (MTTD)**: Average time to identify security threats
+- **Mean Time to Containment (MTTC)**: Average time to isolate security incidents
+- **Security Posture Score**: Comprehensive security assessment rating
+- **Vulnerability Remediation Time**: Speed of security patch deployment
+- **Security Training Completion**: Team security awareness and training metrics
+
+## 🌐 **SEMANTIC HTML & ACCESSIBILITY PRINCIPLES**
+
+### **🏷️ Semantic HTML Requirements**
+
+**MANDATORY**: All frontend applications MUST use semantic HTML5 elements for proper document structure and accessibility.
+
+**Required Semantic Elements**:
+
+- **`<header>`**: Site header, page header, or section header content
+- **`<nav>`**: Navigation menus and breadcrumbs
+- **`<main>`**: Primary content of the page (only one per page)
+- **`<section>`**: Distinct sections of content with headings
+- **`<article>`**: Self-contained, reusable content (posts, products, etc.)
+- **`<aside>`**: Sidebar content, related information, or complementary content
+- **`<footer>`**: Site footer, page footer, or section footer content
+- **`<h1>-<h6>`**: Proper heading hierarchy (only one h1 per page)
+- **`<form>`**: All user input collections
+- **`<button>`**: Interactive buttons (never use div for buttons)
+- **`<a>`**: Links and navigation (never use div for links)
+
+**Prohibited Non-Semantic Patterns**:
+
+- ❌ `<div>` for buttons, links, or navigation
+- ❌ `<span>` for clickable elements
+- ❌ Generic `<div>` containers where semantic elements exist
+- ❌ Missing heading hierarchy or multiple h1 elements
+- ❌ Tables for layout (use CSS Grid/Flexbox instead)
+
+### **♿ WCAG 2.1 AA Compliance Requirements**
+
+**ESSENTIAL**: All frontends MUST meet WCAG 2.1 Level AA standards for accessibility.
+
+**Color & Contrast**:
+
+- **Text Contrast**: Minimum 4.5:1 ratio for normal text, 3:1 for large text (18px+)
+- **UI Component Contrast**: Minimum 3:1 for buttons, form controls, focus indicators
+- **Color Independence**: Never rely solely on color to convey information
+
+**Keyboard Navigation**:
+
+- **Tab Order**: Logical tab sequence following visual layout
+- **Focus Indicators**: Visible focus rings on all interactive elements
+- **Skip Links**: "Skip to main content" for screen reader users
+- **Keyboard Shortcuts**: Standard shortcuts (Enter, Space, Arrow keys)
+
+**Screen Reader Support**:
+
+- **ARIA Labels**: Descriptive labels for icon buttons and complex UI
+- **Semantic Landmarks**: Proper role attributes (banner, navigation, main, contentinfo)
+- **Live Regions**: Dynamic content updates announced to screen readers
+- **Form Labels**: Explicit label associations with form controls
+
+**Interactive Elements**:
+
+- **Touch Targets**: Minimum 44px × 44px for mobile touch interfaces
+- **Error Handling**: Clear, descriptive error messages linked to form fields
+- **Loading States**: Screen reader announcements for async operations
+- **Modal Focus**: Proper focus trapping and restoration
+
+### **🔍 Accessibility Testing Requirements**
+
+**Automated Testing**:
+
+- Use axe-core or similar accessibility testing library
+- Integrate accessibility tests into Playwright test suite
+- Validate ARIA implementation and semantic structure
+- **Keyboard Only**: Test all functionality without mouse
+- **Screen Reader**: Verify content is properly announced
+- **Color Contrast**: Use browser dev tools to validate ratios
+- **Responsive Touch**: Test on actual mobile devices when possible
 
 ## 🌈 Design Document Workflow
 
@@ -241,10 +470,59 @@ Wisdom flows through auto-applied patterns based on the nature of each project t
 ### **Core UI Standards**:
 
 - **Component Library**: Use Ant Design as default unless specified otherwise
-- **Responsive Design**: ESSENTIAL desktop and mobile support with tablet optimization
+- **Responsive Design**: ESSENTIAL mobile-first design with breakpoint-specific requirements
+- **Semantic HTML**: MANDATORY use of semantic HTML5 elements (header, nav, main, section, article, aside, footer)
+
+### **📱 RESPONSIVE DESIGN REQUIREMENTS**
+
+**ESSENTIAL**: All frontend applications MUST be fully responsive across all device types with pixel-perfect implementation.
+
+**Breakpoint Strategy**:
+
+- **Mobile-First Approach**: Start with mobile (375px) and progressively enhance
+- **Desktop**: 1024px+ (primary desktop experience)
+- **Tablet**: 768px-1023px (touch-optimized intermediate experience)
+- **Mobile**: 375px-767px (touch-first, thumb-friendly navigation)
+
+**Device-Specific Requirements**:
+
+**📱 Mobile (375px-767px)**:
+
+- **Touch Targets**: Minimum 44px × 44px for all interactive elements
+- **Thumb Navigation**: Bottom navigation bars, accessible primary actions
+- **Content Strategy**: Single-column layouts, stacked components
+- **Typography**: Minimum 16px base font size to prevent zoom
+- **Spacing**: Minimum 16px margins, 24px for comfortable touch zones
+- **Navigation**: Collapsible hamburger menus, swipe gestures support
+- **Performance**: Optimize images, lazy loading, minimize bundle size
+
+**📟 Tablet (768px-1023px)**:
+
+- **Touch Targets**: Minimum 44px × 44px maintained
+- **Layout Strategy**: 2-column layouts, sidebar navigation options
+- **Content Density**: Balance between mobile simplicity and desktop information density
+- **Navigation**: Tab bars, side navigation, or hybrid approaches
+- **Orientation Support**: Both portrait and landscape mode optimization
+
+**🖥️ Desktop (1024px+)**:
+
+- **Layout Strategy**: Multi-column layouts, maximized screen real estate
+- **Navigation**: Full navigation menus, breadcrumbs, complex navigation trees
+- **Content Density**: Rich information display, data tables, complex forms
+- **Interaction**: Mouse hover states, keyboard shortcuts, drag-and-drop
+- **Typography**: Optimized line lengths (45-75 characters per line)
+
+**Implementation Standards**:
+
+- **CSS Grid/Flexbox**: No CSS frameworks for layout (use native CSS)
+- **Container Queries**: Use where supported for component-level responsiveness
+- **Fluid Typography**: Use clamp() for scalable text across devices
+- **Responsive Images**: srcset and sizes attributes for optimal loading
+- **Viewport Meta**: Proper viewport configuration for mobile rendering
+- **WCAG Compliance**: ESSENTIAL adherence to WCAG 2.1 AA standards for accessibility
 - **User Feedback**: ESSENTIAL notification system for API failures, success states, and important user actions
 - **Tutorial System**: ESSENTIAL built-in onboarding for all frontends
-- **Visual Testing**: ESSENTIAL Playwright visual testing with screenshots for ALL frontend components
+- **Visual Testing**: ESSENTIAL Playwright visual testing with screenshots for ALL frontend components at multiple breakpoints
 
 ### **Design Process**:
 
@@ -259,10 +537,11 @@ _Detailed UI/UX specifications, component requirements, and implementation patte
 
 **Essential validation gates** (only times to stop):
 
-1. **Visual regressions detected**: Stop deployment if screenshots show unintended changes
-2. **Accessibility failures**: Halt if keyboard navigation or screen reader compatibility breaks
-3. **Responsive breakage**: Stop if mobile or desktop layouts become unusable
-4. **Performance degradation**: Halt if page load times exceed acceptable thresholds
+1. **Visual regressions detected**: Stop deployment if screenshots show unintended changes at any breakpoint
+2. **Accessibility failures**: Halt if keyboard navigation, screen reader compatibility, or WCAG standards break
+3. **Semantic HTML violations**: Stop if non-semantic elements are used where semantic alternatives exist
+4. **Responsive breakage**: Stop if mobile (375px), tablet (768px), or desktop (1024px+) layouts become unusable
+5. **Performance degradation**: Halt if page load times exceed acceptable thresholds
 
 - **Major Architectural Decisions**: Stop for user confirmation on significant technology or architecture changes
 
@@ -274,22 +553,79 @@ For all other operations, infer whatever is possible and proceed automatically. 
 
 ### **Default UI/UX Standards**:
 
-- **Responsive Design**: ESSENTIAL desktop + mobile support
-- **User Feedback**: ESSENTIAL notification system for API interactions and errors
-- **Component Library**: Use Ant Design as default unless specified otherwise
-- **Modern Aesthetics**: Clean, accessible design with proper contrast ratios
-- **Performance**: Optimized builds and efficient loading patterns
+**📱 RESPONSIVE & ACCESSIBLE DESIGN**:
 
-_Detailed UI/UX requirements and Ant Design implementation patterns are documented in `./.docs/designs/4-frontend.md`_
+- **Mobile-First Strategy**: ESSENTIAL design starting from 375px and progressively enhancing
+- **Breakpoint Compliance**: MANDATORY support for mobile (375px-767px), tablet (768px-1023px), desktop (1024px+)
+- **Touch Optimization**: ESSENTIAL 44px minimum touch targets on all interactive elements
+- **Fluid Layouts**: CSS Grid/Flexbox with container queries for component-level responsiveness
+- **Performance**: Optimized images with srcset, lazy loading, and minimal bundle sizes
+
+**♿ ACCESSIBILITY STANDARDS**:
+
+- **Semantic HTML**: MANDATORY proper semantic element usage (header, nav, main, section, article, aside, footer)
+- **WCAG 2.1 AA Compliance**: ESSENTIAL accessibility standards including:
+  - Text contrast ratios (4.5:1 minimum, 3:1 for large text)
+  - Keyboard navigation with visible focus indicators
+  - Screen reader compatibility with proper ARIA labels
+  - Skip links and logical tab order
+
+**🎨 VISUAL DESIGN STANDARDS**:
+
+- **Component Library**: Use Ant Design as default unless specified otherwise
+- **Typography**: Fluid typography using clamp() for scalable text (minimum 16px on mobile)
+- **Color System**: Accessible color palette with proper contrast ratios
+- **Spacing System**: Consistent spacing units (8px base grid system)
+- **Interactive States**: Clear hover, focus, active, and disabled states
+
+**💬 USER EXPERIENCE FEATURES**:
+
+- **Notification System**: ESSENTIAL comprehensive feedback for API interactions, errors, and success states
+- **Loading States**: Skeleton screens, spinners, and progress indicators
+- **Error Boundaries**: Graceful error handling with user-friendly messages
+- **Tutorial System**: Built-in onboarding and contextual help
+- **Performance Feedback**: Loading indicators and offline state handling
+
+**🧪 TESTING & QUALITY**:
+
+- **Visual Testing**: ESSENTIAL Playwright screenshot validation at all breakpoints
+- **Cross-Browser Testing**: Support for modern browsers (Chrome, Firefox, Safari, Edge)
+- **Performance Testing**: Core Web Vitals compliance (LCP, FID, CLS)
+- **Accessibility Testing**: Automated axe-core integration and manual testing
+
+_Detailed UI/UX requirements, implementation guides, and Ant Design patterns are documented in `./.docs/designs/4-frontend.md`_
 
 ### **ESSENTIAL Features**:
 
-- **Notification System**: Comprehensive user feedback for API interactions, errors, and success states
-- **Responsive Design**: Desktop and mobile support with proper breakpoints
-- **Tutorial System**: Built-in onboarding and help system for all applications
-- **Visual Testing**: Playwright screenshot validation for UI quality assurance
+**🏗️ ARCHITECTURAL FOUNDATIONS**:
 
-_Detailed implementation patterns, error handling categories, and technical specifications are available in `./.docs/designs/4-frontend.md`_
+- **Semantic HTML Structure**: MANDATORY proper semantic elements for document structure and accessibility
+- **WCAG 2.1 AA Compliance**: ESSENTIAL full accessibility compliance including keyboard navigation and screen reader support
+- **iDesign Architecture**: ESSENTIAL patterns from `./.docs/design.md` as architectural blueprint
+
+**📱 RESPONSIVE & MOBILE STANDARDS**:
+
+- **Mobile-First Design**: ESSENTIAL progressive enhancement from 375px base
+- **Multi-Breakpoint Support**: MANDATORY desktop (1024px+), tablet (768px-1023px), mobile (375px-767px)
+- **Touch Optimization**: ESSENTIAL 44px minimum touch targets and thumb-friendly navigation
+- **Performance Optimization**: ESSENTIAL image optimization, lazy loading, bundle size management
+- **Viewport Configuration**: Proper meta viewport and responsive image handling
+
+**💬 USER EXPERIENCE ESSENTIALS**:
+
+- **Notification System**: ESSENTIAL comprehensive user feedback for API interactions, errors, and success states
+- **Tutorial System**: ESSENTIAL built-in onboarding and contextual help for all applications
+- **Loading States**: ESSENTIAL skeleton screens, progress indicators, and offline handling
+- **Error Boundaries**: ESSENTIAL graceful error handling with user-friendly recovery options
+
+**🧪 QUALITY ASSURANCE**:
+
+- **Visual Testing**: ESSENTIAL Playwright screenshot validation at ALL breakpoints (mobile, tablet, desktop)
+- **Accessibility Testing**: ESSENTIAL automated axe-core integration and manual keyboard testing
+- **Cross-Device Testing**: ESSENTIAL validation across different screen sizes and touch/mouse interactions
+- **Performance Testing**: ESSENTIAL Core Web Vitals compliance and loading performance
+
+_Detailed implementation patterns, error handling categories, responsive design specifications, and technical requirements are available in `./.docs/designs/4-frontend.md`_
 
 ### Quality Gate Automation
 
@@ -297,6 +633,8 @@ _Detailed implementation patterns, error handling categories, and technical spec
 - Execute build verification after component completion
 - Run tests after business logic and API implementation
 - **Essential Playwright Visual Testing**: Use screenshot comparisons to ensure UI matches design specs
+- **Mandatory Accessibility Validation**: Ensure WCAG 2.1 AA compliance, proper ARIA labels, keyboard navigation
+- **Semantic HTML Verification**: Validate proper use of semantic elements and document structure
 - Validate accessibility and ESSENTIAL responsiveness (desktop + mobile) for all UI components
 - Before milestone completion: Full quality gate validation
 
@@ -408,23 +746,32 @@ GAIA uses a clear three-tier priority system to guide your development focus:
 
 **Cannot be omitted - Core functionality depends on these**
 
-- Architecture patterns (iDesign compliance)
-- Visual testing with Playwright screenshots
-- Responsive design (desktop + mobile)
-- User feedback systems (notifications)
-- Session state management
-- Repository structure compliance
+- **Architecture patterns** (iDesign compliance)
+- **Semantic HTML structure** (mandatory use of header, nav, main, section, article, aside, footer)
+- **WCAG 2.1 AA accessibility compliance** (keyboard navigation, screen reader support, 4.5:1 text contrast ratios, 3:1 UI component contrast)
+- **Mobile-first responsive design** (ESSENTIAL at ALL breakpoints):
+  - **Mobile (375px-767px)**: Touch-optimized with 44px minimum touch targets
+  - **Tablet (768px-1023px)**: Intermediate layouts with maintained touch accessibility
+  - **Desktop (1024px+)**: Full-featured layouts with hover states and keyboard navigation
+- **Cross-breakpoint visual testing** (Playwright screenshots mandatory at mobile, tablet, and desktop breakpoints)
+- **Comprehensive notification system** (user feedback for API failures, success states, and important user actions)
+- **Session management** (secure user authentication and data persistence)
+- **Repository structure compliance** (exact adherence to `./.docs/repo-structure.md`)
+- **Performance optimization** (Core Web Vitals compliance, image optimization, bundle size management)
 
 ### **🟡 IMPORTANT**
 
 **Should be included - Significantly improves user experience**
 
-- Tutorial/onboarding systems
-- Advanced error handling
-- Performance optimizations
-- Accessibility features
-- Code organization standards
-- Comprehensive testing coverage
+- **Tutorial/onboarding systems** (built-in user guidance for all applications)
+- **Advanced error handling** (comprehensive error boundaries and recovery mechanisms)
+- **Performance optimizations** (beyond Core Web Vitals - advanced caching, lazy loading, code splitting)
+- **Enhanced accessibility features** (beyond WCAG AA minimums - keyboard shortcuts, reduced motion support, high contrast themes)
+- **Responsive design enhancements** (orientation support, advanced touch gestures, container queries)
+- **Cross-browser compatibility** (modern browser support with graceful degradation)
+- **Advanced visual testing** (component state testing, interaction testing, animation testing)
+- **Code organization standards** (TypeScript strict mode, comprehensive documentation, architectural patterns)
+- **Comprehensive testing coverage** (unit, integration, E2E, and accessibility testing)
 
 ### **🟢 RECOMMENDED**
 
