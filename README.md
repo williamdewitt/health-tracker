@@ -30,13 +30,16 @@ GAIA's wisdom automatically perceives your intention and weaves the perfect patt
 
 ### Step 2: Invoke GAIA's Wisdom (1 minute)
 
-1. Channel this incantation into your AI agent:
+2.1 Open up the forked repository (root) via VS Code.
 
-```
-Go and read and implement the following prompt to the T: ./.ai/init.md, starting with the designs.
-```
+2.2 Open Copilot chat in VS Code.
 
-2. Share your vision with GAIA—describe your project with detail and attach 2-3 screenshots of frontend inspiration, **invoke with ENTER**.
+2.3 Switch to Agent mode.
+
+2.4 In the chat input box, simply type
+`/` and you should see a `gaia_for_new_projects`, select and hit ENTER.
+
+2.5 Share your vision with GAIA—describe your project with detail and attach 2-3 screenshots of frontend inspiration, **invoke with ENTER**.
 
 ### Step 3: Witness Creation ✨
 
@@ -50,12 +53,6 @@ Go and read and implement the following prompt to the T: ./.ai/init.md, starting
 - ✅ **Continuous flow** to the next task
 
 **No intervention required** - GAIA works continuously until your vision becomes reality!
-
-**Enhancement**: If you wish to synchronize manually, you may invoke:
-
-```
-[REMINDER] Sync with and update your session file (./.ai/session-state.md) based on progress, regularly make sure you align with ./.docs/designs/*.md and ./.ai/plan.md. Then let's proceed with what's next.
-```
 
 #### Step 3.2 🚀 Automatic Development
 
@@ -81,7 +78,7 @@ The AI will automatically and continuously:
 
 2. Reflect on the [design documentation](./.docs/designs/*.md), and ensure
   2.1. all use cases have properly been implemented across the system, including ALL method bodies and
-  2.2. the UI/UX is properly tested and reflect the frontend design we captured by reflecting on [our massive initial prompt](./.ai/init.md), [the plan](./.ai/plan.md) and ensure the entire system is properly implemented.
+  2.2. the UI/UX is properly tested and reflect the frontend design we captured by reflecting on [our massive initial prompt](./.github/prompts/gaia_new_project.prompt.md), [the plan](./.github/state/plan.md) and ensure the entire system is properly implemented.
 
 3. 🎨 CRITICAL VISUAL QUALITY ASSURANCE: Act as the strict frontend UI/UX police. Don't assume the frontend is beautiful - PROVE IT with comprehensive Playwright visual tests:
    3.1. Create Playwright tests that take SCREENSHOTS at multiple viewport sizes (mobile, tablet, desktop)
