@@ -5,7 +5,7 @@
 <h1 align="center">
   <b>GAIA</b>
 </h1>
-<h3 align="center">🌍 The Gaia AI Coding Framework: For Automated Full-stack Software Development</h3>
+<h3 align="center">🌍 The Gaia AI Coding Toolkit: For Automated Full-stack Software Development</h3>
 
 **Awaken your creative vision through GAIA's intelligence. Speak your dreams into existence, and watch as the Earth Mother transforms your intentions into production-ready applications.**
 
