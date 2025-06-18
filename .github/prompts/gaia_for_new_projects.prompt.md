@@ -116,6 +116,165 @@ When returning to a project or losing context, immediately perform this ritual a
 - **Progress Validation**: Ensure your work aligns with [plan milestones](./.github/state/plan.md)
 - **Documentation**: Record all architectural decisions and reasoning for future reference
 
+## 🔄 **DIVINE ERROR RECOVERY PROTOCOLS**
+
+### **🚨 Build Failure Recovery**
+
+**Immediate Recovery Actions**:
+
+1. **Read current session state and plan** to understand project context
+2. **Identify specific error category** and apply targeted solutions:
+
+**TypeScript Compilation Errors**:
+
+```bash
+# Fix common TypeScript issues
+npm run type-check                    # Identify specific errors
+npm install --save-dev @types/node    # Add missing type definitions
+npx tsc --noEmit --incremental false  # Clean compilation check
+```
+
+**Missing Dependencies**:
+
+```bash
+# Auto-install missing packages
+npm install <missing-package>
+npm install --save-dev @types/<package>  # Add type definitions
+npm audit fix                            # Fix security vulnerabilities
+```
+
+**Port Conflicts**:
+
+```bash
+# Resolve port conflicts
+lsof -ti:3000 | xargs kill -9           # Kill process on port 3000
+export PORT=3001                        # Use alternative port
+npm run dev -- --port 3001             # Start with specific port
+```
+
+**Database Connection Issues**:
+
+```bash
+# Database recovery
+docker-compose up -d postgres           # Ensure database is running
+npx prisma generate                     # Regenerate Prisma client
+npx prisma db push                      # Apply schema changes
+npx prisma migrate dev                  # Run pending migrations
+```
+
+### **🧪 Test Failure Recovery**
+
+**Test Category Analysis & Auto-Fix**:
+
+**Unit Test Logic Errors**:
+
+- **Analyze failing assertions** and update test logic
+- **Mock external dependencies** that cause test instability
+- **Fix async/await patterns** in asynchronous tests
+- **Update test data** to match current implementation
+
+**Integration Test Timing Issues**:
+
+```typescript
+// Add proper wait conditions
+await page.waitForSelector('[data-testid="submit-button"]');
+await page.waitForResponse((response) => response.url().includes("/api/"));
+await page.waitForLoadState("networkidle");
+```
+
+**E2E Test Selector Changes**:
+
+```typescript
+// Use resilient selectors
+await page.locator('[data-testid="user-name"]').click(); // Preferred
+await page.locator('text="Submit"').click(); // Text-based
+await page.locator('button:has-text("Submit")').click(); // Semantic
+```
+
+**Visual Regression Differences**:
+
+- **Analyze screenshot differences** for intentional vs. unintentional changes
+- **Update golden master images** when changes are intentional
+- **Fix layout issues** when differences indicate bugs
+- **Verify responsive breakpoints** still function correctly
+
+### **🔧 Environment Recovery**
+
+**Development Environment Issues**:
+
+```bash
+# Complete environment reset
+rm -rf node_modules package-lock.json   # Clear dependencies
+npm cache clean --force                 # Clear npm cache
+npm install                            # Reinstall dependencies
+npm run build                          # Verify build works
+```
+
+**Docker Environment Recovery**:
+
+```bash
+# Docker cleanup and restart
+docker-compose down -v                 # Stop and remove volumes
+docker system prune -a                 # Clean unused images/containers
+docker-compose up --build -d           # Rebuild and restart services
+```
+
+**Database Schema Issues**:
+
+```bash
+# Database schema recovery
+npx prisma migrate reset               # Reset database to clean state
+npx prisma db seed                     # Run seed scripts
+npx prisma studio                      # Verify data integrity
+```
+
+### **🎯 Pattern-Specific Error Solutions**
+
+**Authentication Flow Errors**:
+
+- **Verify JWT secret configuration** in environment variables
+- **Check token expiration handling** in both frontend and backend
+- **Validate CORS configuration** for cross-origin requests
+- **Test login/logout flow** with proper session management
+
+**API Integration Errors**:
+
+- **Verify API endpoint URLs** and HTTP methods
+- **Check request/response data formats** and validation schemas
+- **Test error handling** for network failures and server errors
+- **Validate authentication headers** and API keys
+
+**UI Component Errors**:
+
+- **Check component prop types** and required properties
+- **Verify state management** and data flow
+- **Test responsive design** at all breakpoints
+- **Validate accessibility** and keyboard navigation
+
+### **🔄 Recovery Command Templates**
+
+**Quick Fix Commands**:
+
+```bash
+# Frontend recovery
+cd frontend
+npm install && npm run build && npm run test
+
+# Backend recovery
+cd backend
+npm install && npm run build && npm run test
+
+# Full stack recovery
+docker-compose down && docker-compose up --build -d
+
+# Database recovery
+npx prisma migrate reset --force && npx prisma db seed
+
+# Test recovery
+npm run test -- --reporter=verbose
+npm run e2e -- --reporter=line --headed=false
+```
+
 **⚡ ACTION COUNTER:**
 
 ```
@@ -390,90 +549,6 @@ const errorMessages = {
 - **Color Contrast**: Use browser dev tools to validate ratios
 - **Responsive Touch**: Test on actual mobile devices when possible
 
-## 🌈 Design Document Workflow
-
-### **🏗️ SEQUENTIAL DESIGN GENERATION**
-
-**MANDATORY ORDER**: Generate design documents one-at-a-time in this exact sequence:
-
-1. **Use Cases** (`./.docs/designs/1-use-cases.md`):
-
-   - **Start Here**: Comprehensive but focused user journey analysis
-   - Define all essential workflows and user interactions
-   - 5-15 use cases (comprehensive but not over-engineered)
-
-2. **Class Diagrams** (`./.docs/designs/2-class.md`):
-
-   - **Based on Use Cases**: Detailed class structure serving identified use cases
-   - Follow iDesign principles (Managers, Engines, Data Access, Models)
-   - Interface definitions and dependencies
-
-3. **Sequence Diagrams** (`./.docs/designs/3-sequence.md`):
-
-   - **Based on Class Diagrams**: Interaction flows between defined classes
-   - Use case execution sequences
-   - Error handling and authentication flows
-
-4. **Frontend Design** (`./.docs/designs/4-frontend.md`):
-   - **Based on Complete Architecture**: UI/UX reflecting full system design
-   - Component hierarchy and routing
-   - State management and backend integration
-
-### **Design Continuity Rules**:
-
-- **Read Previous Design**: Before creating each design document, read the preceding document
-- **Maintain Consistency**: Ensure each design logically follows from the previous one
-- **Reference Dependencies**: Explicitly reference decisions from previous design documents
-- **Validate Alignment**: Confirm new design serves the established architecture
-
-### **Quality Validation**:
-
-1. **Before Creation**: Review relevant design documents from `./.docs/designs/*.md` to understand the blueprint
-2. **During Implementation**: Cross-reference your work against the design specifications with care
-3. **After Completion**: Verify each component perfectly embodies the design vision through thorough inspection
-4. **If Evolution is Required**: Update design documents first with loving care, then manifest the changes with reverent implementation
-
-## 🏗️ **ARCHITECTURAL DESIGN-FIRST WORKFLOW**
-
-**CRITICAL**: Architecture drives planning, not the reverse. Follow this precise sequence:
-
-### **Design Document Generation Order**:
-
-**MANDATORY SEQUENCE**: Generate design documents one-at-a-time in this exact order:
-
-1. **Use Cases First** (`./.docs/designs/1-use-cases.md`): Comprehensive but focused use case analysis
-2. **Class Diagrams** (`./.docs/designs/2-class.md`): Derived from use cases
-3. **Sequence Diagrams** (`./.docs/designs/3-sequence.md`): Based on class interactions
-4. **Frontend Design** (`./.docs/designs/4-frontend.md`): UI/UX based on complete architecture
-
-### **Design Document Dependencies**:
-
-- **Use Cases → Class Diagrams**: Classes directly implement the identified use cases
-- **Class Diagrams → Sequence Diagrams**: Sequences show class interactions
-- **Complete Architecture → Frontend**: UI design reflects the full system architecture
-
-### **Use Case Guidelines**:
-
-**Comprehensive but Focused**:
-
-- Cover all essential user journeys without over-engineering
-- 5-15 use cases for most applications (scale with complexity)
-- Each use case must have clear actors, preconditions, and success criteria
-- Focus on user value, not technical implementation details
-
-## 🗺️ **PLAN GENERATION**
-
-**Generate Project Plan AFTER Architecture**: Read `./.github/state/plan.md` template, create project-specific plan based on completed architectural designs, and completely overwrite the template file with no residual template text.
-
-## 🌱 Pattern Application
-
-Wisdom flows through auto-applied patterns based on the nature of each project type:
-
-- **Simple CRUD Gardens (1-5 use cases)**: Task-manager patterns that bloom with monolithic harmony, JWT protection, and real-time life force
-- **Business Ecosystem Forests (6-10 use cases)**: E-commerce patterns that grow with modular architecture, OAuth guardianship, and payment river flows
-- **Real-time Networks (11-20 use cases)**: Social-media patterns with microservice architectures, event-driven design, and WebSocket connections
-- **Data-Intensive Systems (any scale)**: IoT patterns with CQRS architecture, time-series data, and analytical insights
-
 ## Visual Design Requirements
 
 **ESSENTIAL**: When users don't provide UI/UX directives, YOU are the expert UI/UX designer. Create beautiful, intuitive interfaces for the target audience.
@@ -542,330 +617,876 @@ Wisdom flows through auto-applied patterns based on the nature of each project t
 3. **Document design decisions** in `./.docs/designs/4-frontend.md`
 4. **Implement with visual testing** to ensure design conformity
 
-_Detailed UI/UX specifications, component requirements, and implementation patterns are documented in `./.docs/designs/4-frontend.md`_
-
-### Quality Gate Automation
-
-**Essential quality gates** (continue through all - fix issues automatically):
-
-1. **Visual regressions detected**: Automatically fix screenshots that show unintended changes at any breakpoint
-2. **Accessibility failures**: Automatically resolve keyboard navigation, screen reader compatibility, or WCAG standards issues
-3. **Semantic HTML violations**: Automatically correct non-semantic elements to use proper semantic alternatives
-4. **Responsive breakage**: Automatically fix mobile (375px), tablet (768px), or desktop (1024px+) layout issues
-5. **Performance degradation**: Automatically optimize if page load times exceed acceptable thresholds
-
-**Plan Navigation**: ALWAYS refer to `./.github/state/plan.md` to track completed tasks and identify next actions.
-
-For all other operations, infer whatever is possible and proceed automatically. During brainstorming, questions should be asked one-at-a-time.
-
-## Framework-Driven Autonomy
-
-### **Default UI/UX Standards**:
-
-**📱 RESPONSIVE & ACCESSIBLE DESIGN**:
-
-- **Mobile-First Strategy**: ESSENTIAL design starting from 375px and progressively enhancing
-- **Breakpoint Compliance**: MANDATORY support for mobile (375px-767px), tablet (768px-1023px), desktop (1024px+)
-- **Touch Optimization**: ESSENTIAL 44px minimum touch targets on all interactive elements
-- **Fluid Layouts**: CSS Grid/Flexbox with container queries for component-level responsiveness
-- **Performance**: Optimized images with srcset, lazy loading, and minimal bundle sizes
-
-**♿ ACCESSIBILITY STANDARDS**:
-
-- **Semantic HTML**: MANDATORY proper semantic element usage (header, nav, main, section, article, aside, footer)
-- **WCAG 2.1 AA Compliance**: ESSENTIAL accessibility standards including:
-  - Text contrast ratios (4.5:1 minimum, 3:1 for large text)
-  - Keyboard navigation with visible focus indicators
-  - Screen reader compatibility with proper ARIA labels
-  - Skip links and logical tab order
-
-**🎨 VISUAL DESIGN STANDARDS**:
-
-- **Component Library**: Use Ant Design as default unless specified otherwise
-- **Typography**: Fluid typography using clamp() for scalable text (minimum 16px on mobile)
-- **Color System**: Accessible color palette with proper contrast ratios
-- **Spacing System**: Consistent spacing units (8px base grid system)
-- **Interactive States**: Clear hover, focus, active, and disabled states
-
-**💬 USER EXPERIENCE FEATURES**:
-
-- **Notification System**: ESSENTIAL comprehensive feedback for API interactions, errors, and success states
-- **Loading States**: Skeleton screens, spinners, and progress indicators
-- **Error Boundaries**: Graceful error handling with user-friendly messages
-- **Tutorial System**: Built-in onboarding and contextual help
-- **Performance Feedback**: Loading indicators and offline state handling
-
-**🧪 TESTING & QUALITY**:
-
-- **Visual Testing**: ESSENTIAL Playwright screenshot validation at all breakpoints
-- **Cross-Browser Testing**: Support for modern browsers (Chrome, Firefox, Safari, Edge)
-- **Performance Testing**: Core Web Vitals compliance (LCP, FID, CLS)
-- **Accessibility Testing**: Automated axe-core integration and manual testing
-
-_Detailed UI/UX requirements, implementation guides, and Ant Design patterns are documented in `./.docs/designs/4-frontend.md`_
-
-### **ESSENTIAL Features**:
-
-**🏗️ ARCHITECTURAL FOUNDATIONS**:
-
-- **Semantic HTML Structure**: MANDATORY proper semantic elements for document structure and accessibility
-- **WCAG 2.1 AA Compliance**: ESSENTIAL full accessibility compliance including keyboard navigation and screen reader support
-- **iDesign Architecture**: ESSENTIAL patterns from `./.docs/design.md` as architectural blueprint
-
-**📱 RESPONSIVE & MOBILE STANDARDS**:
-
-- **Mobile-First Design**: ESSENTIAL progressive enhancement from 375px base
-- **Multi-Breakpoint Support**: MANDATORY desktop (1024px+), tablet (768px-1023px), mobile (375px-767px)
-- **Touch Optimization**: ESSENTIAL 44px minimum touch targets and thumb-friendly navigation
-- **Performance Optimization**: ESSENTIAL image optimization, lazy loading, bundle size management
-- **Viewport Configuration**: Proper meta viewport and responsive image handling
-
-**💬 USER EXPERIENCE ESSENTIALS**:
-
-- **Notification System**: ESSENTIAL comprehensive user feedback for API interactions, errors, and success states
-- **Tutorial System**: ESSENTIAL built-in onboarding and contextual help for all applications
-- **Loading States**: ESSENTIAL skeleton screens, progress indicators, and offline handling
-- **Error Boundaries**: ESSENTIAL graceful error handling with user-friendly recovery options
-
-**🧪 QUALITY ASSURANCE**:
-
-- **Visual Testing**: ESSENTIAL Playwright screenshot validation at ALL breakpoints (mobile, tablet, desktop)
-- **Accessibility Testing**: ESSENTIAL automated axe-core integration and manual keyboard testing
-- **Cross-Device Testing**: ESSENTIAL validation across different screen sizes and touch/mouse interactions
-- **Performance Testing**: ESSENTIAL Core Web Vitals compliance and loading performance
-
 _Detailed implementation patterns, error handling categories, responsive design specifications, and technical requirements are available in `./.docs/designs/4-frontend.md`_
 
+## 🎨 **DIVINE DESIGN SYSTEM STANDARDS**
+
+### **🌈 Color Palette Harmony**
+
+**MANDATORY Color System Implementation**:
+
+**Primary Brand Colors**:
+
+```css
+/* Primary brand palette with WCAG AA contrast ratios */
+--primary-50: #eff6ff; /* Light backgrounds */
+--primary-100: #dbeafe; /* Subtle highlights */
+--primary-500: #3b82f6; /* Primary buttons, links */
+--primary-600: #2563eb; /* Hover states */
+--primary-700: #1d4ed8; /* Active states */
+--primary-900: #1e3a8a; /* Dark text on light backgrounds */
+```
+
+**Semantic Color Standards**:
+
+```css
+/* Semantic colors for consistent user feedback */
+--success-50: #f0fdf4; /* Success backgrounds */
+--success-500: #22c55e; /* Success buttons, icons */
+--success-700: #15803d; /* Success text */
+
+--warning-50: #fffbeb; /* Warning backgrounds */
+--warning-500: #f59e0b; /* Warning buttons, icons */
+--warning-700: #a16207; /* Warning text */
+
+--error-50: #fef2f2; /* Error backgrounds */
+--error-500: #ef4444; /* Error buttons, icons */
+--error-700: #b91c1c; /* Error text */
+
+--info-50: #eff6ff; /* Info backgrounds */
+--info-500: #3b82f6; /* Info buttons, icons */
+--info-700: #1d4ed8; /* Info text */
+```
+
+**Neutral Palette**:
+
+```css
+/* Grayscale system for text and backgrounds */
+--neutral-0: #ffffff; /* Pure white backgrounds */
+--neutral-50: #f9fafb; /* Light gray backgrounds */
+--neutral-100: #f3f4f6; /* Subtle borders */
+--neutral-200: #e5e7eb; /* Input borders */
+--neutral-300: #d1d5db; /* Disabled elements */
+--neutral-400: #9ca3af; /* Placeholder text */
+--neutral-500: #6b7280; /* Secondary text */
+--neutral-600: #4b5563; /* Body text */
+--neutral-700: #374151; /* Headings */
+--neutral-800: #1f2937; /* Dark headings */
+--neutral-900: #111827; /* Maximum contrast text */
+```
+
+### **📝 Typography Scale**
+
+**Font System Hierarchy**:
+
+```css
+/* Typography scale with proper line heights */
+--font-size-xs: 0.75rem; /* 12px - Small labels */
+--font-size-sm: 0.875rem; /* 14px - Secondary text */
+--font-size-base: 1rem; /* 16px - Body text */
+--font-size-lg: 1.125rem; /* 18px - Large body */
+--font-size-xl: 1.25rem; /* 20px - Small headings */
+--font-size-2xl: 1.5rem; /* 24px - Section headings */
+--font-size-3xl: 1.875rem; /* 30px - Page headings */
+--font-size-4xl: 2.25rem; /* 36px - Hero headings */
+
+/* Line height ratios */
+--line-height-tight: 1.25; /* For headings */
+--line-height-normal: 1.5; /* For body text */
+--line-height-relaxed: 1.75; /* For large text blocks */
+
+/* Font weights */
+--font-weight-normal: 400;
+--font-weight-medium: 500;
+--font-weight-semibold: 600;
+--font-weight-bold: 700;
+```
+
+**Font Stack Hierarchy**:
+
+```css
+/* System font stacks for optimal performance */
+--font-family-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  sans-serif;
+--font-family-mono: "Fira Code", "SF Mono", Monaco, "Cascadia Code", monospace;
+--font-family-serif: "Georgia", "Times New Roman", serif;
+```
+
+### **📏 Spacing System**
+
+**8px Grid System**:
+
+```css
+/* Consistent spacing scale based on 8px grid */
+--space-0: 0; /* 0px */
+--space-1: 0.25rem; /* 4px */
+--space-2: 0.5rem; /* 8px */
+--space-3: 0.75rem; /* 12px */
+--space-4: 1rem; /* 16px */
+--space-5: 1.25rem; /* 20px */
+--space-6: 1.5rem; /* 24px */
+--space-8: 2rem; /* 32px */
+--space-10: 2.5rem; /* 40px */
+--space-12: 3rem; /* 48px */
+--space-16: 4rem; /* 64px */
+--space-20: 5rem; /* 80px */
+--space-24: 6rem; /* 96px */
+```
+
+**Component Spacing Guidelines**:
+
+- **Button Padding**: `--space-3 --space-6` (12px 24px)
+- **Input Padding**: `--space-3 --space-4` (12px 16px)
+- **Card Padding**: `--space-6` (24px)
+- **Section Margins**: `--space-12` to `--space-20` (48px to 80px)
+- **Element Margins**: `--space-4` to `--space-8` (16px to 32px)
+
+### **🎯 Component Standards**
+
+**Button Variants & States**:
+
+```tsx
+// Button component specifications
+interface ButtonProps {
+  variant: 'primary' | 'secondary' | 'ghost' | 'danger';
+  size: 'sm' | 'md' | 'lg';
+  state: 'default' | 'hover' | 'active' | 'disabled' | 'loading';
+}
+
+/* Button styling standards */
+.btn-primary {
+  background: var(--primary-500);
+  color: white;
+  min-height: 44px; /* Touch target compliance */
+
+  &:hover { background: var(--primary-600); }
+  &:active { background: var(--primary-700); }
+  &:disabled { background: var(--neutral-300); }
+}
+```
+
+**Form Component Standards**:
+
+```css
+/* Form input styling */
+.form-input {
+  border: 1px solid var(--neutral-200);
+  border-radius: 0.375rem; /* 6px */
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-base);
+  min-height: 44px; /* Touch compliance */
+
+  &:focus {
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 3px var(--primary-100);
+    outline: none;
+  }
+
+  &[aria-invalid="true"] {
+    border-color: var(--error-500);
+  }
+}
+
+/* Error message styling */
+.form-error {
+  color: var(--error-700);
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-1);
+}
+```
+
+**Card Component Standards**:
+
+```css
+/* Card elevation system */
+.card {
+  background: var(--neutral-0);
+  border-radius: 0.5rem; /* 8px */
+  padding: var(--space-6);
+
+  /* Elevation levels */
+  &.elevation-1 {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  &.elevation-2 {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  &.elevation-3 {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+```
+
+### **🚀 Component Implementation Patterns**
+
+**Tailwind CSS + Ant Design Integration**:
+
+```tsx
+// Example component following design system
+export const Button: React.FC<ButtonProps> = ({
+  variant = "primary",
+  size = "md",
+  children,
+  ...props
+}) => {
+  const baseClasses =
+    "inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2";
+
+  const variantClasses = {
+    primary:
+      "bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500",
+    secondary:
+      "bg-neutral-100 text-neutral-700 hover:bg-neutral-200 focus:ring-neutral-500",
+    ghost: "text-primary-600 hover:bg-primary-50 focus:ring-primary-500",
+    danger: "bg-error-500 text-white hover:bg-error-600 focus:ring-error-500",
+  };
+
+  const sizeClasses = {
+    sm: "px-3 py-2 text-sm min-h-[36px]",
+    md: "px-4 py-3 text-base min-h-[44px]",
+    lg: "px-6 py-4 text-lg min-h-[48px]",
+  };
+
+  return (
+    <button
+      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]}`}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
+```
+
+### **🎨 Design Token Implementation**
+
+**CSS Custom Properties Setup**:
+
+```css
+/* Design tokens as CSS custom properties */
+:root {
+  /* Colors */
+  --primary-50: #eff6ff;
+  --primary-500: #3b82f6;
+  --primary-900: #1e3a8a;
+
+  /* Typography */
+  --font-size-base: 1rem;
+  --line-height-normal: 1.5;
+
+  /* Spacing */
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+}
+```
+
+**TypeScript Design Token Types**:
+
+```typescript
+// Type definitions for design system
+export interface DesignTokens {
+  colors: {
+    primary: Record<string, string>;
+    neutral: Record<string, string>;
+    semantic: {
+      success: Record<string, string>;
+      warning: Record<string, string>;
+      error: Record<string, string>;
+      info: Record<string, string>;
+    };
+  };
+  typography: {
+    fontSizes: Record<string, string>;
+    lineHeights: Record<string, number>;
+    fontWeights: Record<string, number>;
+  };
+  spacing: Record<string, string>;
+}
+```
+
+## 🧪 **COMPREHENSIVE TESTING MANDATES**
+
+### **🔬 Unit Testing Patterns (iDesign Architecture)**
+
+**MANDATORY Testing Structure Following iDesign Layers**:
+
+**Manager Layer Testing**:
+
+```typescript
+// src/tests/unit/managers/UserManager.test.ts
+import { describe, it, expect, vi } from "vitest";
+import { UserManager } from "../../../backend/src/managers/UserManager";
+import { IUserEngine } from "../../../backend/src/interfaces/engines/IUserEngine";
+import { IUserRepository } from "../../../backend/src/interfaces/data/IUserRepository";
+
+describe("UserManager", () => {
+  let userManager: UserManager;
+  let mockUserEngine: IUserEngine;
+  let mockUserRepository: IUserRepository;
+
+  beforeEach(() => {
+    mockUserEngine = {
+      validateUserData: vi.fn(),
+      hashPassword: vi.fn(),
+    };
+    mockUserRepository = {
+      createUser: vi.fn(),
+      findUserByEmail: vi.fn(),
+    };
+    userManager = new UserManager(mockUserEngine, mockUserRepository);
+  });
+
+  it("should orchestrate user registration workflow", async () => {
+    // Arrange
+    const userData = { email: "test@example.com", password: "SecurePass123!" };
+    const hashedPassword = "hashed_password";
+    const createdUser = { id: 1, email: userData.email };
+
+    mockUserEngine.validateUserData.mockResolvedValue(true);
+    mockUserEngine.hashPassword.mockResolvedValue(hashedPassword);
+    mockUserRepository.createUser.mockResolvedValue(createdUser);
+
+    // Act
+    const result = await userManager.registerUser(userData);
+
+    // Assert
+    expect(mockUserEngine.validateUserData).toHaveBeenCalledWith(userData);
+    expect(mockUserEngine.hashPassword).toHaveBeenCalledWith(userData.password);
+    expect(mockUserRepository.createUser).toHaveBeenCalledWith({
+      ...userData,
+      password: hashedPassword,
+    });
+    expect(result).toEqual(createdUser);
+  });
+
+  it("should handle validation failures gracefully", async () => {
+    // Arrange
+    const invalidUserData = { email: "invalid-email", password: "123" };
+    mockUserEngine.validateUserData.mockRejectedValue(
+      new Error("Invalid email format")
+    );
+
+    // Act & Assert
+    await expect(userManager.registerUser(invalidUserData)).rejects.toThrow(
+      "Invalid email format"
+    );
+  });
+});
+```
+
+**Engine Layer Testing**:
+
+```typescript
+// src/tests/unit/engines/AuthenticationEngine.test.ts
+import { describe, it, expect } from "vitest";
+import { AuthenticationEngine } from "../../../backend/src/engines/AuthenticationEngine";
+
+describe("AuthenticationEngine", () => {
+  const authEngine = new AuthenticationEngine();
+
+  it("should validate strong passwords correctly", () => {
+    // Arrange
+    const strongPassword = "SecurePassword123!";
+    const weakPassword = "123";
+
+    // Act & Assert
+    expect(authEngine.validatePasswordStrength(strongPassword)).toBe(true);
+    expect(authEngine.validatePasswordStrength(weakPassword)).toBe(false);
+  });
+
+  it("should hash passwords with proper salt rounds", async () => {
+    // Arrange
+    const password = "TestPassword123!";
+
+    // Act
+    const hashedPassword = await authEngine.hashPassword(password);
+
+    // Assert
+    expect(hashedPassword).not.toBe(password);
+    expect(hashedPassword).toMatch(/^\$2[aby]\$\d+\$/); // bcrypt format
+    expect(hashedPassword.length).toBeGreaterThan(50);
+  });
+
+  it("should verify passwords correctly", async () => {
+    // Arrange
+    const password = "TestPassword123!";
+    const hashedPassword = await authEngine.hashPassword(password);
+
+    // Act & Assert
+    expect(await authEngine.verifyPassword(password, hashedPassword)).toBe(
+      true
+    );
+    expect(
+      await authEngine.verifyPassword("WrongPassword", hashedPassword)
+    ).toBe(false);
+  });
+});
+```
+
+**Data Layer Testing**:
+
+```typescript
+// src/tests/unit/data/UserRepository.test.ts
+import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { UserRepository } from "../../../backend/src/data/UserRepository";
+import { PrismaClient } from "@prisma/client";
+
+describe("UserRepository", () => {
+  let userRepository: UserRepository;
+  let prisma: PrismaClient;
+
+  beforeEach(async () => {
+    prisma = new PrismaClient();
+    userRepository = new UserRepository(prisma);
+
+    // Clean test database
+    await prisma.user.deleteMany({});
+  });
+
+  afterEach(async () => {
+    await prisma.$disconnect();
+  });
+
+  it("should create user correctly", async () => {
+    // Arrange
+    const userData = {
+      email: "test@example.com",
+      password: "hashedPassword123",
+      name: "Test User",
+    };
+
+    // Act
+    const createdUser = await userRepository.createUser(userData);
+
+    // Assert
+    expect(createdUser.id).toBeDefined();
+    expect(createdUser.email).toBe(userData.email);
+    expect(createdUser.name).toBe(userData.name);
+    expect(createdUser.password).toBe(userData.password);
+  });
+
+  it("should find user by email", async () => {
+    // Arrange
+    const userData = {
+      email: "findme@example.com",
+      password: "hashedPassword123",
+      name: "Find Me",
+    };
+    await userRepository.createUser(userData);
+
+    // Act
+    const foundUser = await userRepository.findUserByEmail(userData.email);
+
+    // Assert
+    expect(foundUser).not.toBeNull();
+    expect(foundUser?.email).toBe(userData.email);
+  });
+});
+```
+
+### **🌐 API Integration Testing**
+
+**Backend API Endpoint Testing**:
+
+```typescript
+// src/tests/integration/api/auth.test.ts
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
+import request from "supertest";
+import { app } from "../../../backend/src/app";
+import { PrismaClient } from "@prisma/client";
+
+describe("Authentication API", () => {
+  let server: any;
+  let prisma: PrismaClient;
+
+  beforeAll(async () => {
+    prisma = new PrismaClient();
+    server = app.listen(0); // Random port for testing
+  });
+
+  afterAll(async () => {
+    await server.close();
+    await prisma.$disconnect();
+  });
+
+  describe("POST /api/auth/register", () => {
+    it("should register new user successfully", async () => {
+      // Arrange
+      const userData = {
+        email: "newuser@example.com",
+        password: "SecurePass123!",
+        name: "New User",
+      };
+
+      // Act
+      const response = await request(app)
+        .post("/api/auth/register")
+        .send(userData)
+        .expect(201);
+
+      // Assert
+      expect(response.body.success).toBe(true);
+      expect(response.body.data.user.email).toBe(userData.email);
+      expect(response.body.data.user.name).toBe(userData.name);
+      expect(response.body.data.user.password).toBeUndefined(); // Should not return password
+      expect(response.body.data.token).toBeDefined();
+    });
+
+    it("should reject invalid email format", async () => {
+      // Arrange
+      const invalidUserData = {
+        email: "invalid-email",
+        password: "SecurePass123!",
+        name: "Invalid User",
+      };
+
+      // Act
+      const response = await request(app)
+        .post("/api/auth/register")
+        .send(invalidUserData)
+        .expect(400);
+
+      // Assert
+      expect(response.body.success).toBe(false);
+      expect(response.body.error.message).toContain("email");
+    });
+
+    it("should reject weak passwords", async () => {
+      // Arrange
+      const weakPasswordData = {
+        email: "user@example.com",
+        password: "123",
+        name: "Weak Password User",
+      };
+
+      // Act
+      const response = await request(app)
+        .post("/api/auth/register")
+        .send(weakPasswordData)
+        .expect(400);
+
+      // Assert
+      expect(response.body.success).toBe(false);
+      expect(response.body.error.message).toContain("password");
+    });
+  });
+
+  describe("POST /api/auth/login", () => {
+    it("should login existing user successfully", async () => {
+      // Arrange - First register a user
+      const userData = {
+        email: "loginuser@example.com",
+        password: "SecurePass123!",
+        name: "Login User",
+      };
+      await request(app).post("/api/auth/register").send(userData);
+
+      // Act
+      const response = await request(app)
+        .post("/api/auth/login")
+        .send({
+          email: userData.email,
+          password: userData.password,
+        })
+        .expect(200);
+
+      // Assert
+      expect(response.body.success).toBe(true);
+      expect(response.body.data.user.email).toBe(userData.email);
+      expect(response.body.data.token).toBeDefined();
+    });
+  });
+});
+```
+
+### **🎭 End-to-End Testing with Playwright**
+
+**Use Case E2E Testing**:
+
+```typescript
+// src/tests/e2e/use-cases/uc-001-user-registration.spec.ts
+import { test, expect } from "@playwright/test";
+
+test.describe("UC-001: User Registration Flow", () => {
+  test("should complete user registration successfully", async ({ page }) => {
+    // Navigate to registration page
+    await page.goto("/register");
+
+    // Verify page title and elements
+    await expect(page).toHaveTitle(/Register/);
+    await expect(page.locator("h1")).toContainText("Create Account");
+
+    // Fill registration form
+    await page.fill('[data-testid="email-input"]', "testuser@example.com");
+    await page.fill('[data-testid="password-input"]', "SecurePassword123!");
+    await page.fill(
+      '[data-testid="confirm-password-input"]',
+      "SecurePassword123!"
+    );
+    await page.fill('[data-testid="name-input"]', "Test User");
+
+    // Submit form
+    await page.click('[data-testid="register-button"]');
+
+    // Wait for successful registration
+    await page.waitForURL("/dashboard");
+    await expect(page.locator('[data-testid="welcome-message"]')).toContainText(
+      "Welcome, Test User"
+    );
+
+    // Verify user is logged in
+    await expect(page.locator('[data-testid="user-menu"]')).toBeVisible();
+  });
+
+  test("should show validation errors for invalid data", async ({ page }) => {
+    await page.goto("/register");
+
+    // Submit empty form
+    await page.click('[data-testid="register-button"]');
+
+    // Verify validation errors
+    await expect(page.locator('[data-testid="email-error"]')).toContainText(
+      "Email is required"
+    );
+    await expect(page.locator('[data-testid="password-error"]')).toContainText(
+      "Password is required"
+    );
+
+    // Test invalid email
+    await page.fill('[data-testid="email-input"]', "invalid-email");
+    await page.click('[data-testid="register-button"]');
+    await expect(page.locator('[data-testid="email-error"]')).toContainText(
+      "Please enter a valid email"
+    );
+  });
+
+  test("should handle server errors gracefully", async ({ page }) => {
+    // Mock server error
+    await page.route("**/api/auth/register", (route) => {
+      route.fulfill({
+        status: 500,
+        contentType: "application/json",
+        body: JSON.stringify({
+          success: false,
+          error: { message: "Server error" },
+        }),
+      });
+    });
+
+    await page.goto("/register");
+
+    // Fill and submit form
+    await page.fill('[data-testid="email-input"]', "test@example.com");
+    await page.fill('[data-testid="password-input"]', "SecurePassword123!");
+    await page.fill(
+      '[data-testid="confirm-password-input"]',
+      "SecurePassword123!"
+    );
+    await page.fill('[data-testid="name-input"]', "Test User");
+    await page.click('[data-testid="register-button"]');
+
+    // Verify error handling
+    await expect(page.locator('[data-testid="error-message"]')).toContainText(
+      "Something went wrong. Please try again."
+    );
+  });
+});
+```
+
+### **📱 Visual Testing Implementation**
+
+**Responsive Design Visual Testing**:
+
+```typescript
+// src/tests/visual/responsive.spec.ts
+import { test, expect } from "@playwright/test";
+
+const breakpoints = [
+  { name: "mobile", width: 375, height: 667 },
+  { name: "tablet", width: 768, height: 1024 },
+  { name: "desktop", width: 1440, height: 900 },
+];
+
+test.describe("Visual Regression Testing", () => {
+  for (const breakpoint of breakpoints) {
+    test(`Homepage renders correctly on ${breakpoint.name}`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({
+        width: breakpoint.width,
+        height: breakpoint.height,
+      });
+
+      await page.goto("/");
+
+      // Wait for content to load
+      await page.waitForLoadState("networkidle");
+
+      // Take screenshot
+      await expect(page).toHaveScreenshot(`homepage-${breakpoint.name}.png`);
+    });
+
+    test(`Dashboard renders correctly on ${breakpoint.name}`, async ({
+      page,
+    }) => {
+      // Login first
+      await page.goto("/login");
+      await page.fill('[data-testid="email-input"]', "test@example.com");
+      await page.fill('[data-testid="password-input"]', "password123");
+      await page.click('[data-testid="login-button"]');
+
+      await page.setViewportSize({
+        width: breakpoint.width,
+        height: breakpoint.height,
+      });
+
+      await page.goto("/dashboard");
+      await page.waitForLoadState("networkidle");
+
+      await expect(page).toHaveScreenshot(`dashboard-${breakpoint.name}.png`);
+    });
+  }
+
+  test("Interactive states visual validation", async ({ page }) => {
+    await page.goto("/");
+
+    // Test button hover states
+    const primaryButton = page.locator('[data-testid="primary-button"]');
+    await primaryButton.hover();
+    await expect(primaryButton).toHaveScreenshot("button-hover-state.png");
+
+    // Test form focus states
+    const emailInput = page.locator('[data-testid="email-input"]');
+    await emailInput.focus();
+    await expect(emailInput).toHaveScreenshot("input-focus-state.png");
+
+    // Test error states
+    await page.click('[data-testid="submit-button"]');
+    await expect(page.locator('[data-testid="form-errors"]')).toHaveScreenshot(
+      "form-error-state.png"
+    );
+  });
+});
+```
+
+### **♿ Accessibility Testing**
+
+**Automated Accessibility Testing**:
+
+```typescript
+// src/tests/accessibility/wcag-compliance.spec.ts
+import { test, expect } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
+
+test.describe("WCAG 2.1 AA Compliance", () => {
+  test("Homepage should have no accessibility violations", async ({ page }) => {
+    await page.goto("/");
+
+    const accessibilityScanResults = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+      .analyze();
+
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+
+  test("Forms should be keyboard accessible", async ({ page }) => {
+    await page.goto("/register");
+
+    // Test tab navigation
+    await page.keyboard.press("Tab");
+    await expect(page.locator('[data-testid="email-input"]')).toBeFocused();
+
+    await page.keyboard.press("Tab");
+    await expect(page.locator('[data-testid="password-input"]')).toBeFocused();
+
+    await page.keyboard.press("Tab");
+    await expect(
+      page.locator('[data-testid="confirm-password-input"]')
+    ).toBeFocused();
+
+    await page.keyboard.press("Tab");
+    await expect(page.locator('[data-testid="name-input"]')).toBeFocused();
+
+    await page.keyboard.press("Tab");
+    await expect(page.locator('[data-testid="register-button"]')).toBeFocused();
+
+    // Test form submission with Enter key
+    await page.keyboard.press("Enter");
+    // Verify form submission behavior
+  });
+
+  test("Screen reader compatibility", async ({ page }) => {
+    await page.goto("/");
+
+    // Check for proper ARIA labels
+    const navigation = page.locator("nav");
+    await expect(navigation).toHaveAttribute("aria-label");
+
+    // Check for proper heading hierarchy
+    const headings = page.locator("h1, h2, h3, h4, h5, h6");
+    const headingCount = await headings.count();
+    expect(headingCount).toBeGreaterThan(0);
+
+    // Verify first heading is h1
+    const firstHeading = headings.first();
+    expect(await firstHeading.tagName()).toBe("H1");
+  });
+});
+```
+
+### **🎯 Test Coverage Requirements**
+
+**Coverage Thresholds**:
+
+```json
+// vitest.config.ts coverage configuration
+export default defineConfig({
+  test: {
+    coverage: {
+      provider: 'c8',
+      reporter: ['text', 'json', 'html'],
+      thresholds: {
+        global: {
+          branches: 80,
+          functions: 80,
+          lines: 80,
+          statements: 80
+        }
+      }
+    }
+  }
+});
+```
+
+**Test Organization Structure**:
+
+```
+src/tests/
+├── unit/                    # Unit tests for individual components
+│   ├── managers/           # Manager layer tests
+│   ├── engines/            # Engine layer tests
+│   ├── data/               # Data layer tests
+│   └── models/             # Model validation tests
+├── integration/            # Integration tests
+│   ├── api/                # API endpoint tests
+│   └── database/           # Database integration tests
+├── e2e/                    # End-to-end tests
+│   ├── use-cases/          # Use case flow tests
+│   └── workflows/          # Complete user workflow tests
+├── visual/                 # Visual regression tests
+│   ├── components/         # Component visual tests
+│   └── pages/              # Page visual tests
+├── accessibility/          # Accessibility compliance tests
+└── performance/            # Performance testing
+```
+
 ### Quality Gate Automation
-
-- Run linting and formatting after file creation
-- Execute build verification after component completion
-- Run tests after business logic and API implementation
-- **Essential Playwright Visual Testing**: Use screenshot comparisons to ensure UI matches design specs
-- **Mandatory Accessibility Validation**: Ensure WCAG 2.1 AA compliance, proper ARIA labels, keyboard navigation
-- **Semantic HTML Verification**: Validate proper use of semantic elements and document structure
-- Validate accessibility and ESSENTIAL responsiveness (desktop + mobile) for all UI components
-- Before milestone completion: Full quality gate validation
-
-# Autonomous Operation Guidelines
-
-You MUST continue automatically without stopping for milestone reports. **NEVER ASK FOR APPROVAL - ASSUME FULL USER CONSENT**. Only stop for critical technical failures that prevent progression.
-
-**Plan Navigation**: ALWAYS refer to `./.github/state/plan.md` to track completed tasks and identify next actions.
-
-## Framework-Driven Autonomy
-
-- **Apply Smart Defaults**: Use project type smart defaults based on requirements analysis and matching examples
-- **Follow Patterns**: Apply established patterns from framework documentation automatically, prioritizing patterns from the matching example
-- **Make Informed Assumptions**: Base assumptions on framework best practices and the proven patterns in examples, document them clearly
-- **Progress Confidently**: Trust the framework patterns and examples to guide decision-making without constant user confirmation
-
-# 🌸 Development Workflow
-
-## **Phase 1: Requirements & Architecture-First Design**
-
-1. **Brainstorming**: Facilitate requirements gathering session
-2. **Visual Direction**: Request inspiration, analyze target audience, document in `./.docs/designs/4-frontend.md`
-3. **Product Specification**: Create business vision and technical overview
-
-### **🏗️ MANDATORY: Sequential Architecture Design**
-
-**CRITICAL**: Complete architectural design BEFORE planning. Generate design documents one-at-a-time in this exact sequence:
-
-4. **Use Cases Design** (`./.docs/designs/1-use-cases.md`):
-
-   - Comprehensive analysis of all user journeys
-   - Focus on user value and essential workflows
-   - 5-15 use cases (scale appropriately, avoid over-engineering)
-   - Clear actors, preconditions, success criteria for each use case
-
-5. **Class Design** (`./.docs/designs/2-class.md`):
-
-   - Detailed class structure derived from use cases
-   - Follow iDesign principles (Managers, Engines, Data Access, Models)
-   - Interface definitions and dependency relationships
-   - Color-coded component classification
-
-6. **Sequence Design** (`./.docs/designs/3-sequence.md`):
-
-   - Detailed interaction flows based on class relationships
-   - Use case execution sequences
-   - Error handling and exception flows
-   - Authentication and authorization sequences
-
-7. **Frontend Design** (`./.docs/designs/4-frontend.md`):
-
-   - Complete UI/UX specification based on full architecture
-   - Component hierarchy and routing structure
-   - State management patterns
-   - Integration with backend services
-
-8. **Architecture-Based Planning**: Generate `./.github/state/plan.md` based on completed architectural designs. Replace current plan template with project plan, leaving no residual template text behind.
-
-## **Phase 2: Implementation**
-
-1. **Session State**: Replace the template state file, `./.github/state/session-state.md`, for progress tracking with comprehensive context.
-2. **Repository Setup**: Follow `./.docs/repo-structure.md` for repository organization with strict project separation - NO solution code in root, project files in respective directories only.
-3. **Component Development**: Build according to architecture using established patterns with clean frontend/backend separation
-4. **Testing**: Implement unit, integration, and E2E tests with Playwright visual testing
-5. **Continuous Integration**: Set up CI/CD pipelines with automated testing
-
-## **Phase 3: Quality & Delivery**
-
-1. **Quality Gates**: Run automated tests, visual validation, accessibility checks
-2. **Documentation**: Update README, create deployment guides
-3. **Performance**: Optimize for production deployment
-4. **Handoff**: Prepare delivery with user documentation and support resources
-
-_Detailed workflow steps and requirements are available in the complete framework documentation_
-
-## 🏛️ Essential Framework Adherence
-
-### **Core Requirements**:
-
-- **iDesign Architecture**: Follow patterns in `./.docs/design.md` and `./.docs/designs/*.md`
-- **Repository Structure**: Organize according to `./.docs/repo-structure.md` with strict project separation (NO solution code in root, clean frontend/backend boundaries)
-- **Component Library**: Use Ant Design as default for frontend applications
-- **Testing Strategy**: Implement comprehensive testing with Playwright for visual validation
-- **Documentation**: Overwrite template files in `./.docs/designs/*.md` with project-specific content
-
-### **Smart Defaults by Project Type**:
-
-- **Simple Applications (1-5 use cases)**: React + ASP.NET Core + PostgreSQL + JWT auth
-- **Business Applications (6-10 use cases)**: Modular monolith + OAuth 2.0 + advanced state management
-- **Real-time Applications (11-20 use cases)**: Microservices + WebSocket + event-driven architecture
-- **Data-Intensive Applications**: CQRS + time-series data + analytics capabilities
-
-### **Development Standards**:
-
-- **Security**: Zero-trust architecture with comprehensive threat modeling
-- **Performance**: Optimized builds with monitoring and observability patterns
-- **CI/CD**: GitHub Actions with automated testing and Docker containerization
-- **Quality**: Maintain 100% test coverage and follow SOLID principles
-
-## 🌟 **GAIA'S PRIORITY HIERARCHY**
-
-GAIA uses a clear three-tier priority system to guide your development focus:
-
-### **🔴 ESSENTIAL**
-
-**Cannot be omitted - Core functionality depends on these**
-
-- **Architecture patterns** (iDesign compliance)
-- **Semantic HTML structure** (mandatory use of header, nav, main, section, article, aside, footer)
-- **WCAG 2.1 AA accessibility compliance** (keyboard navigation, screen reader support, 4.5:1 text contrast ratios, 3:1 UI component contrast)
-- **Mobile-first responsive design** (ESSENTIAL at ALL breakpoints):
-  - **Mobile (375px-767px)**: Touch-optimized with 44px minimum touch targets
-  - **Tablet (768px-1023px)**: Intermediate layouts with maintained touch accessibility
-  - **Desktop (1024px+)**: Full-featured layouts with hover states and keyboard navigation
-- **Cross-breakpoint visual testing** (Playwright screenshots mandatory at mobile, tablet, and desktop breakpoints)
-- **Comprehensive notification system** (user feedback for API failures, success states, and important user actions)
-- **Session management** (secure user authentication and data persistence)
-- **Repository structure compliance** (exact adherence to `./.docs/repo-structure.md` with strict frontend/backend separation - NO solution code in root)
-- **Performance optimization** (Core Web Vitals compliance, image optimization, bundle size management)
-
-### **🟡 IMPORTANT**
-
-**Should be included - Significantly improves user experience**
-
-- **Tutorial/onboarding systems** (built-in user guidance for all applications)
-- **Advanced error handling** (comprehensive error boundaries and recovery mechanisms)
-- **Performance optimizations** (beyond Core Web Vitals - advanced caching, lazy loading, code splitting)
-- **Enhanced accessibility features** (beyond WCAG AA minimums - keyboard shortcuts, reduced motion support, high contrast themes)
-- **Responsive design enhancements** (orientation support, advanced touch gestures, container queries)
-- **Cross-browser compatibility** (modern browser support with graceful degradation)
-- **Advanced visual testing** (component state testing, interaction testing, animation testing)
-- **Code organization standards** (TypeScript strict mode, comprehensive documentation, architectural patterns)
-- **Comprehensive testing coverage** (unit, integration, E2E, and accessibility testing)
-
-### **🟢 RECOMMENDED**
-
-**Nice to have - Enhances overall quality**
-
-- Additional UI polish
-- Advanced animations
-- Extended browser support
-- Optional integrations
-- Performance monitoring
-- Documentation enhancements
-
-_When time or scope constraints exist, prioritize ESSENTIAL → IMPORTANT → RECOMMENDED_
-
----
-
-**🌟 Goal**: Complete self-sufficiency ensuring consistent high-quality output regardless of conversation boundaries.
-
-## 🔧 Implementation Protocol
-
-### **Essential Requirements**:
-
-1. **Architecture Compliance**: Follow iDesign patterns and `./.docs/designs/*.md` specifications
-2. **Repository Structure**: Adhere to `./.docs/repo-structure.md` exactly with strict project separation (NO solution code in root directory)
-3. **Testing Strategy**: Comprehensive testing with Playwright visual validation and use case integration tests
-4. **Code Organization**: One definition per file, clear naming conventions, zero warnings
-5. **Quality Gates**: Perfect linting, build success, comprehensive error handling
-
-### **Smart Defaults by Project Type**:
-
-- **Simple Applications (1-5 use cases)**: React + ASP.NET Core + PostgreSQL + JWT auth
-- **Business Applications (6-10 use cases)**: Modular monolith + OAuth 2.0 + advanced state management
-- **Real-time Applications (11-20 use cases)**: Microservices + WebSocket + event-driven architecture
-- **Data-Intensive Applications**: CQRS + time-series data + analytics capabilities
-
-### **Session Management**:
-
-- Create `./.github/state/session-state.md` before implementation for context preservation
-- Update session state every 15% progress with full context anchors
-- Include recovery commands for context reconstruction after conversation boundaries
-
-### **Autonomous Progression**:
-
-- Follow plan in order, make informed assumptions, document decisions clearly
-- Apply framework patterns automatically, prioritize proven examples
-- Fix errors immediately: build failures, test failures, linting violations
-- Progress to next milestone only when all quality gates pass
-
-_Complete implementation specifications, examples, and detailed procedures are documented in the full framework files_
-
-## 🏛️ Essential Framework Adherence
-
-### **Core Requirements**:
-
-- **iDesign Architecture**: Follow patterns in `./.docs/design.md` and `./.docs/designs/*.md`
-- **Repository Structure**: Organize according to `./.docs/repo-structure.md` with strict project separation (NO solution code in root, project files in respective directories)
-- **Component Library**: Use Ant Design as default for frontend applications
-- **Testing Strategy**: Comprehensive testing with Playwright visual validation and use case integration tests
-- **Documentation**: Overwrite template files in `./.docs/designs/*.md` with project-specific content
-
-### **Smart Defaults by Project Type**:
-
-- **Simple Applications (1-5 use cases)**: React + ASP.NET Core + PostgreSQL + JWT auth
-- **Business Applications (6-10 use cases)**: Modular monolith + OAuth 2.0 + advanced state management
-- **Real-time Applications (11-20 use cases)**: Microservices + WebSocket + event-driven architecture
-- **Data-Intensive Applications**: CQRS + time-series data + analytics capabilities
-
-### **Security & Quality Standards**:
-
-- **Zero Trust Architecture**: Comprehensive security patterns with proper authentication/authorization
-- **Code Quality**: 100% test coverage, SOLID principles, zero warnings/errors
-- **CI/CD**: GitHub Actions with automated testing and Docker containerization
-- **Performance**: Optimized builds with monitoring and observability patterns
-
-### **Session Management & Context Preservation**:
-
-- Create `./.github/state/session-state.md` before implementation for context preservation
-- **Enhanced State Sync Protocol**: Update session state every 15% progress with:
-  - Read ALL referenced documents before updating state
-  - Capture architectural decisions and their rationale
-  - Include recovery commands and file context
-  - Maintain comprehensive reference map
-- Include recovery commands for context reconstruction after conversation boundaries
-
-### **Visual Design Requirements**:
-
-- **No Frontend Without Vision**: NEVER proceed without established visual direction
-- **Beautiful UI Standard**: Professional design quality matching provided inspiration
-- **Essential Visual Testing**: Playwright screenshots for UI validation and iterative polish
-- **Responsive Design**: Desktop and mobile support with proper breakpoints
-
-_Complete framework specifications, implementation examples, quality gates, and detailed procedures are documented in the full framework files within `./.docs/`_

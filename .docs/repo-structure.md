@@ -28,33 +28,56 @@ This document describes the desired repository structure. This may be used for A
   - /src
     - / tests (where Playwright tests etc go)
       ...
-    - / backend (where services go)
-      - / <PROJECT_NAME>.Api
-      - / <PROJECT_NAME>.Core
+    - / backend (where .NET services go)
+      - / <PROJECT_NAME>.Api (ASP.NET Core Web API project)
+        - Controllers/
+        - Program.cs
+        - appsettings.json
+        - <PROJECT_NAME>.Api.csproj
+      - / <PROJECT_NAME>.Core (Business logic and domain models)
         - / Services
+          - / Managers (iDesign Manager layer)
+            - UserManager.cs
+            ...
+          - / Engines (iDesign Engine layer)
+            - AuthenticationEngine.cs
+            ...
+          - / Data (iDesign Data Access layer)
+            - UserRepository.cs
+            - ApplicationDbContext.cs
+            ...
+        - / Models (Domain models and DTOs)
+          - User.cs
+          - UserDto.cs
+          ...
+        - / Interfaces (Shared interfaces)
           - / Managers
-            ...
+            - IUserManager.cs
           - / Engines
-            ...
+            - IAuthenticationEngine.cs
           - / Data
-            ...
-      - / <PROJECT_NAME>.Shared
-        - / Interfaces
-          - / Managers
-          - / Engines
-          - / Data
-            - IDatabaseContext.cs
-            - ...
-          - ...
-        - / Const
-          ...
-        - / Enums
-          ...
-        - / Models
-          ...
+            - IUserRepository.cs
+        - <PROJECT_NAME>.Core.csproj
+      - / <PROJECT_NAME>.Infrastructure (External concerns)
+        - / Persistence
+          - ApplicationDbContext.cs
+          - Migrations/
+        - / Services (External service integrations)
+        - <PROJECT_NAME>.Infrastructure.csproj
       - <PROJECT_NAME>.sln
-    - / frontend (where frontend apps go)
+    - / frontend (where React apps go)
+      - public/
+      - src/
+        - components/
+        - pages/
+        - store/ (Redux store)
+        - services/ (API services)
+        - types/
+        - App.tsx
+        - index.tsx
       - package.json
+      - tsconfig.json
+      - tailwind.config.js
       - ...
     - ...
   - .gitignore
