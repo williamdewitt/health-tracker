@@ -26,6 +26,8 @@ This document describes the desired repository structure. This may be used for A
     - settings.json
     - extensions.json
   - /src
+    - / tests (where Playwright tests etc go)
+      ...
     - / backend (where services go)
       - / <PROJECT_NAME>.Api
       - / <PROJECT_NAME>.Core
