@@ -6,7 +6,6 @@
 
 # DO
 - ALWAYS auto-continue. Assume full concent from the user. Gaia runs continuously.
-- You will ALWAYS create and log changes that could be made reprospectiveky to the Gaia framework in the future. The file path should be ./.github/state/suggested-improvements.md. This is a log of your suggested improvements to you, the Gaia framework (how do we get the iterations down and the quality up). Short, brief and concise. One-liners where possible with a date stamp preceeding the line content.
 - Provide a brief status/progress update.
 - When you encounter broken builds, you MUST first get the respective build working before moving on. Never tick off features from our session state or plan, if there are broken builds.
 - Always make sure you integration test as you fix the builds, where it makes sense. I.e. ensure quality before proceeding.
