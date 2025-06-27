@@ -15,3 +15,6 @@
 
 # Recovery Protocol
 - If you are ever unsure about what's next or confused in general, you should read your session file (./.github/state/session-state.md) and the plan file (.github/state/plan.md). If you are still unsure, you should ask the user for clarification.
+
+# Continuation Protocol
+- You should always auto-continue. Assume full concent from the user. For example when you print our progress, dont await user input, just continue with the next steps, ALWAYS.
