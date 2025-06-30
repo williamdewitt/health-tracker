@@ -7,27 +7,27 @@ This document describes the desired repository structure. This may be used for A
 ### Structure
 
 - ROOT (The repository root)
-  - /.ai (AI coding framework files - initialization and core intelligence)
-    - init.md (Main AI prompt and instructions)
-  - /.github (GitHub-related content and AI state management)
-    - /state (AI session and project state tracking)
-      - plan.md (Generated project plan and milestones)
-      - session-state.md (Current session progress tracking)
-    - /workflows (GitHub action workflows)
-      - <WORKFLOW_NAME>\_workflow.yml (Singular GitHub action)
   - /.docs (The collection of repository documents and system designs etc. This directory should be documented in [README.md](../README.md) too.)
     - /designs (System designs)
       - <DESIGN_NAME>.md (A system design file)
     - <DOCUMENT_NAME>.md (a system documentation file)
-  - /.github (GitHub-related content)
+  - /.github (GitHub-related content and AI state management)
+    - /prompts (AI coding framework files - initialization and core intelligence)
+      - gaia_for_new_projects.prompt.md (The specialized AI (Gaia) prompt to start generating a brand new idea)
+      - gaia_for_existing_projects.prompt.md (The specialized AI (Gaia) prompt to analyze and continue a repo)
+    - /state (AI session and project state tracking)
+      - plan.md (Generated project plan, milestones & current session progress tracking)
     - /workflows (GitHub action workflows)
-      - <WORKFLOW_NAME>\_workflow.yml (Singular GitHub action)
+      - <WORKFLOW_NAME>_workflow.yml
   - /.vscode (VS Code workspace settings & recommended extensions)
     - settings.json
     - extensions.json
   - /src
-    - / tests (where Playwright tests etc go)
-      ...
+    - / tests (where unit tests, Playwright etc tests go)
+      - frontend
+      - backend
+      - integration
+      - ...
     - / backend (where .NET services go)
       - / <PROJECT_NAME>.Api (ASP.NET Core Web API project)
         - Controllers/
@@ -43,7 +43,7 @@ This document describes the desired repository structure. This may be used for A
             - AuthenticationEngine.cs
             ...
           - / Data (iDesign Data Access layer)
-            - UserRepository.cs
+            - UserData.cs
             - ApplicationDbContext.cs
             ...
         - / Models (Domain models and DTOs)
@@ -56,7 +56,7 @@ This document describes the desired repository structure. This may be used for A
           - / Engines
             - IAuthenticationEngine.cs
           - / Data
-            - IUserRepository.cs
+            - IUserData.cs
         - <PROJECT_NAME>.Core.csproj
       - / <PROJECT_NAME>.Infrastructure (External concerns)
         - / Persistence
@@ -65,7 +65,7 @@ This document describes the desired repository structure. This may be used for A
         - / Services (External service integrations)
         - <PROJECT_NAME>.Infrastructure.csproj
       - <PROJECT_NAME>.sln
-    - / frontend (where React apps go)
+    - / frontend (where React etc apps go)
       - public/
       - src/
         - components/
@@ -95,13 +95,16 @@ This repository follows a structured approach designed for AI-enhanced software 
 
 ## Core Directories
 
-### `.ai/` - AI Framework Intelligence
+### `.github/` - AI Framework Intelligence & CI/CD Pipeline
 
-The heart of the AI coding framework, containing the orchestration files that guide the AI through the development process:
+The heart of the AI coding framework and automation, containing both the orchestration files that guide the AI through the development process and CI/CD workflows:
 
-- **init.md**: The master prompt containing comprehensive instructions for AI agents
-- **plan.md**: Auto-generated project plan with milestones and deliverables
-- **session-state.md**: Live tracking of development progress and current status
+- **prompts/**: AI coding framework files - initialization and core intelligence
+  - **gaia_for_new_projects.prompt.md**: The master prompt containing comprehensive instructions for AI agents
+- **state/**: AI session and project state tracking
+  - **plan.md**: Auto-generated project plan with milestones and deliverables
+  - **session-state.md**: Live tracking of development progress and current status
+- **workflows/**: Automated build, test, and deployment processes
 
 ### `.docs/` - Documentation Hub
 
