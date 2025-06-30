@@ -280,22 +280,36 @@ npx prisma studio                      # Verify data integrity
 **Quick Fix Commands**:
 
 ```bash
-# Frontend recovery
+# Frontend recovery (React + TypeScript)
 cd frontend
 npm install && npm run build && npm run test
 
-# Backend recovery
+# Backend recovery - .NET Default
+cd backend
+dotnet restore && dotnet build && dotnet test
+
+# Backend recovery - Node.js Alternative (when user specified)
 cd backend
 npm install && npm run build && npm run test
 
 # Full stack recovery
 docker-compose down && docker-compose up --build -d
 
-# Database recovery
+# Database recovery - Entity Framework (.NET Default)
+cd backend
+dotnet ef database update
+dotnet ef database drop --force && dotnet ef database update
+dotnet run --seed-data
+
+# Database recovery - Prisma (Node.js Alternative)
 npx prisma migrate reset --force && npx prisma db seed
 
-# Test recovery
+# Test recovery - Technology Aware
+# For .NET projects:
+dotnet test --verbosity normal
+# For Node.js projects:
 npm run test -- --reporter=verbose
+# For E2E tests (all stacks):
 npm run e2e -- --reporter=line --headed=false
 ```
 
@@ -1034,26 +1048,31 @@ export interface DesignTokens {
 
 ### **🔬 Unit Testing Patterns (iDesign Architecture)**
 
+**🌟 Technology-Adaptive Testing**: Choose testing patterns based on selected backend technology.
+
 **MANDATORY Testing Structure Following iDesign Layers**:
 
-**Manager Layer Testing**:
+**✨ .NET Backend Testing (Default)**:
+- **Framework**: xUnit + Moq for mocking
+- **Structure**: Tests/Unit/, Tests/Integration/, Tests/E2E/
+- **Patterns**: WebApplicationFactory for API testing, Mock<T> for dependencies
+- **Commands**: `dotnet test --verbosity normal`
 
-```typescript
-// src/tests/unit/managers/UserManager.test.ts
-import { describe, it, expect, vi } from "vitest";
-import { UserManager } from "../../../backend/src/managers/UserManager";
-import { IUserEngine } from "../../../backend/src/interfaces/engines/IUserEngine";
-import { IUserRepository } from "../../../backend/src/interfaces/data/IUserRepository";
+**🌿 Node.js Backend Testing (Alternative)**:
+- **Framework**: Vitest + Jest for mocking  
+- **Structure**: src/tests/unit/, src/tests/integration/, src/tests/e2e/
+- **Patterns**: Supertest for API testing, vi.fn() for mocking
+- **Commands**: `npm run test -- --reporter=verbose`
 
-describe("UserManager", () => {
-  let userManager: UserManager;
-  let mockUserEngine: IUserEngine;
-  let mockUserRepository: IUserRepository;
+**� Frontend Testing (All Stacks)**:
+- **Framework**: Vitest + React Testing Library
+- **Patterns**: Component testing, user interaction testing
+- **Commands**: `npm run test`
 
-  beforeEach(() => {
-    mockUserEngine = {
-      validateUserData: vi.fn(),
-      hashPassword: vi.fn(),
+**🌐 E2E Testing (All Stacks)**:
+- **Framework**: Playwright
+- **Patterns**: User flow testing, visual regression testing
+- **Commands**: `npm run e2e -- --reporter=line --headed=false`
     };
     mockUserRepository = {
       createUser: vi.fn(),
@@ -1068,214 +1087,21 @@ describe("UserManager", () => {
     const hashedPassword = "hashed_password";
     const createdUser = { id: 1, email: userData.email };
 
-    mockUserEngine.validateUserData.mockResolvedValue(true);
-    mockUserEngine.hashPassword.mockResolvedValue(hashedPassword);
-    mockUserRepository.createUser.mockResolvedValue(createdUser);
-
-    // Act
-    const result = await userManager.registerUser(userData);
-
-    // Assert
-    expect(mockUserEngine.validateUserData).toHaveBeenCalledWith(userData);
-    expect(mockUserEngine.hashPassword).toHaveBeenCalledWith(userData.password);
-    expect(mockUserRepository.createUser).toHaveBeenCalledWith({
-      ...userData,
-      password: hashedPassword,
-    });
-    expect(result).toEqual(createdUser);
-  });
-
-  it("should handle validation failures gracefully", async () => {
-    // Arrange
-    const invalidUserData = { email: "invalid-email", password: "123" };
-    mockUserEngine.validateUserData.mockRejectedValue(
-      new Error("Invalid email format")
-    );
-
-    // Act & Assert
-    await expect(userManager.registerUser(invalidUserData)).rejects.toThrow(
-      "Invalid email format"
-    );
-  });
-});
-```
-
-**Engine Layer Testing**:
-
-```typescript
-// src/tests/unit/engines/AuthenticationEngine.test.ts
-import { describe, it, expect } from "vitest";
-import { AuthenticationEngine } from "../../../backend/src/engines/AuthenticationEngine";
-
-describe("AuthenticationEngine", () => {
-  const authEngine = new AuthenticationEngine();
-
-  it("should validate strong passwords correctly", () => {
-    // Arrange
-    const strongPassword = "SecurePassword123!";
-    const weakPassword = "123";
-
-    // Act & Assert
-    expect(authEngine.validatePasswordStrength(strongPassword)).toBe(true);
-    expect(authEngine.validatePasswordStrength(weakPassword)).toBe(false);
-  });
-
-  it("should hash passwords with proper salt rounds", async () => {
-    // Arrange
-    const password = "TestPassword123!";
-
-    // Act
-    const hashedPassword = await authEngine.hashPassword(password);
-
-    // Assert
-    expect(hashedPassword).not.toBe(password);
-    expect(hashedPassword).toMatch(/^\$2[aby]\$\d+\$/); // bcrypt format
-    expect(hashedPassword.length).toBeGreaterThan(50);
-  });
-
-  it("should verify passwords correctly", async () => {
-    // Arrange
-    const password = "TestPassword123!";
-    const hashedPassword = await authEngine.hashPassword(password);
-
-    // Act & Assert
-    expect(await authEngine.verifyPassword(password, hashedPassword)).toBe(
-      true
-    );
-    expect(
-      await authEngine.verifyPassword("WrongPassword", hashedPassword)
-    ).toBe(false);
-  });
-});
-```
-
-**Data Layer Testing**:
-
-```typescript
-// src/tests/unit/data/UserRepository.test.ts
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { UserRepository } from "../../../backend/src/data/UserRepository";
-import { PrismaClient } from "@prisma/client";
-
-describe("UserRepository", () => {
-  let userRepository: UserRepository;
-  let prisma: PrismaClient;
-
-  beforeEach(async () => {
-    prisma = new PrismaClient();
-    userRepository = new UserRepository(prisma);
-
-    // Clean test database
-    await prisma.user.deleteMany({});
-  });
-
-  afterEach(async () => {
-    await prisma.$disconnect();
-  });
-
-  it("should create user correctly", async () => {
-    // Arrange
-    const userData = {
-      email: "test@example.com",
-      password: "hashedPassword123",
-      name: "Test User",
-    };
-
-    // Act
-    const createdUser = await userRepository.createUser(userData);
-
-    // Assert
-    expect(createdUser.id).toBeDefined();
-    expect(createdUser.email).toBe(userData.email);
-    expect(createdUser.name).toBe(userData.name);
-    expect(createdUser.password).toBe(userData.password);
-  });
-
-  it("should find user by email", async () => {
-    // Arrange
-    const userData = {
-      email: "findme@example.com",
-      password: "hashedPassword123",
-      name: "Find Me",
-    };
-    await userRepository.createUser(userData);
-
-    // Act
-    const foundUser = await userRepository.findUserByEmail(userData.email);
-
-    // Assert
-    expect(foundUser).not.toBeNull();
-    expect(foundUser?.email).toBe(userData.email);
-  });
-});
-```
-
 ### **🌐 API Integration Testing**
 
-**Backend API Endpoint Testing**:
+**🌟 Technology-Adaptive API Testing**: Choose testing patterns based on selected backend technology.
 
-```typescript
-// src/tests/integration/api/auth.test.ts
-import { describe, it, expect, beforeAll, afterAll } from "vitest";
-import request from "supertest";
-import { app } from "../../../backend/src/app";
-import { PrismaClient } from "@prisma/client";
+**✨ .NET API Testing (Default)**:
+- **Framework**: WebApplicationFactory + xUnit
+- **Patterns**: HTTP client testing, dependency injection in tests
+- **Structure**: Tests/Integration/Controllers/
+- **Focus**: Request/response validation, status codes, data serialization
 
-describe("Authentication API", () => {
-  let server: any;
-  let prisma: PrismaClient;
-
-  beforeAll(async () => {
-    prisma = new PrismaClient();
-    server = app.listen(0); // Random port for testing
-  });
-
-  afterAll(async () => {
-    await server.close();
-    await prisma.$disconnect();
-  });
-
-  describe("POST /api/auth/register", () => {
-    it("should register new user successfully", async () => {
-      // Arrange
-      const userData = {
-        email: "newuser@example.com",
-        password: "SecurePass123!",
-        name: "New User",
-      };
-
-      // Act
-      const response = await request(app)
-        .post("/api/auth/register")
-        .send(userData)
-        .expect(201);
-
-      // Assert
-      expect(response.body.success).toBe(true);
-      expect(response.body.data.user.email).toBe(userData.email);
-      expect(response.body.data.user.name).toBe(userData.name);
-      expect(response.body.data.user.password).toBeUndefined(); // Should not return password
-      expect(response.body.data.token).toBeDefined();
-    });
-
-    it("should reject invalid email format", async () => {
-      // Arrange
-      const invalidUserData = {
-        email: "invalid-email",
-        password: "SecurePass123!",
-        name: "Invalid User",
-      };
-
-      // Act
-      const response = await request(app)
-        .post("/api/auth/register")
-        .send(invalidUserData)
-        .expect(400);
-
-      // Assert
-      expect(response.body.success).toBe(false);
-      expect(response.body.error.message).toContain("email");
-    });
+**🌿 Node.js API Testing (Alternative)**:
+- **Framework**: Supertest + Vitest/Jest
+- **Patterns**: Express app testing, middleware validation
+- **Structure**: src/tests/integration/api/
+- **Focus**: Endpoint functionality, error handling, authentication flows
 
     it("should reject weak passwords", async () => {
       // Arrange
