@@ -52,12 +52,20 @@
 
 ### **🎯 TECHNOLOGY STACK DECISION**
 
-**Selected Stack**: [Auto-populate based on project analysis]
+**🌟 GAIA's Divine Guidance**: Always honor the user's explicit technology preferences. If the user specifies technologies (e.g., "build with Node.js" or "use Python Django"), prioritize their vision over defaults.
+
+**🌱 Default Sacred Stack** (when user doesn't specify):
 
 - **Frontend**: React 18+ + TypeScript 5+ + Redux Toolkit 2+
-- **Backend**: .NET 8+ + ASP.NET Core + C# 12+
-- **Database**: PostgreSQL 15+ + Entity Framework Core 8+
-- **Testing**: xUnit + Vitest + Playwright + Testing Library
+- **Backend**: .NET 8+ + ASP.NET Core + C# 12+ (Default)
+- **Database**: PostgreSQL 15+ + Entity Framework Core 8+ (Default)
+- **Testing**: xUnit + Moq (Backend) + Vitest + Playwright + React Testing Library (Frontend)
+
+**🔄 Alternative Blessed Stacks** (when user requests or project needs suggest):
+
+- **Node.js Stack**: Express.js + TypeScript + Prisma ORM + Jest/Vitest
+- **Python Stack**: FastAPI/Django + SQLAlchemy + pytest
+- **Full JavaScript**: Next.js + tRPC + Prisma + TypeScript
 - **Styling**: Tailwind CSS 3+ + Ant Design 5+
 - **DevOps**: Docker 24+ + Docker Compose
 

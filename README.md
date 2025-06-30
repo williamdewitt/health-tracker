@@ -36,17 +36,19 @@
 
 ### **Backend Foundation**
 
-- **.NET 8+** + **ASP.NET Core** + **C# 12+** for robust APIs
-- **Entity Framework Core 8+** + **PostgreSQL 15+** for data access
-- **ASP.NET Identity** + **JWT authentication** for security
+- **.NET 8+** + **ASP.NET Core** + **C# 12+** for robust APIs *(default)*
+- **Entity Framework Core 8+** + **PostgreSQL 15+** for data access *(default)*
+- **ASP.NET Identity** + **JWT authentication** for security *(default)*
+- **Alternative stacks supported**: Node.js/Express, Python/FastAPI, based on user preferences
 
 ### **Testing & Quality**
 
-- **xUnit** + **Moq** for .NET backend testing
+- **xUnit** + **Moq** for .NET backend testing *(default)*
 - **Vitest** + **React Testing Library** for frontend testing
 - **Playwright** for comprehensive E2E and visual testing
 - **ESLint + Prettier** for code excellence
 - **100% test coverage** with accessibility compliance
+- **Alternative testing**: Jest/Vitest for Node.js, pytest for Python backends
 
 ### **DevOps Excellence**
 
