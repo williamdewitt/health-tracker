@@ -12,35 +12,33 @@ This document describes the desired repository structure. This may be used for A
       - <DESIGN_NAME>.md (A system design file)
     - <DOCUMENT_NAME>.md (a system documentation file)
   - /.github (GitHub-related content and AI state management)
-    - /prompts (AI coding framework files - initialization and core intelligence)
+    - /prompts (AI framework prompt collection)
       - gaia_for_new_projects.prompt.md (The specialized AI (Gaia) prompt to start generating a brand new idea)
       - gaia_for_existing_projects.prompt.md (The specialized AI (Gaia) prompt to analyze and continue a repo)
     - /state (AI session and project state tracking)
-      - plan.md (Generated project plan, milestones & current session progress tracking)
+      - plan.md (system plan, milestones & current session progress tracking)
     - /workflows (GitHub action workflows)
       - <WORKFLOW_NAME>_workflow.yml
   - /.vscode (VS Code workspace settings & recommended extensions)
-    - settings.json
-    - extensions.json
+    - extensions.json (Recommended VSCode extensions)
+    - mcp.json (Which MCP server(s) should Copilot Chat have access to)
+    - settings.json (The VSCode workspace settings to inherit when working on this system)
   - /src
-    - / tests (where unit tests, Playwright etc tests go)
-      - frontend
-      - backend
-      - integration
-      - ...
     - / backend (where .NET services go)
       - / <PROJECT_NAME>.Api (ASP.NET Core Web API project)
         - Controllers/
         - Program.cs
         - appsettings.json
         - <PROJECT_NAME>.Api.csproj
-      - / <PROJECT_NAME>.Core (Business logic and domain models)
+      - / <PROJECT_NAME>.Api.Tests.csproj
+        ...
+      - / <PROJECT_NAME>.Core (Business logic etc)
         - / Services
           - / Managers (iDesign Manager layer)
             - UserManager.cs
             ...
           - / Engines (iDesign Engine layer)
-            - AuthenticationEngine.cs
+            - CalculatorEngine.cs
             ...
           - / Data (iDesign Data Access layer)
             - UserData.cs
@@ -58,14 +56,10 @@ This document describes the desired repository structure. This may be used for A
           - / Data
             - IUserData.cs
         - <PROJECT_NAME>.Core.csproj
-      - / <PROJECT_NAME>.Infrastructure (External concerns)
-        - / Persistence
-          - ApplicationDbContext.cs
-          - Migrations/
-        - / Services (External service integrations)
-        - <PROJECT_NAME>.Infrastructure.csproj
+      - / <PROJECT_NAME>.Core.Tests.csproj
+        - ...
       - <PROJECT_NAME>.sln
-    - / frontend (where React etc apps go)
+    - / frontend (a ReactJS example below)
       - public/
       - src/
         - components/
@@ -75,6 +69,11 @@ This document describes the desired repository structure. This may be used for A
         - types/
         - App.tsx
         - index.tsx
+      - tests
+       - t1
+       - t2
+       - integration
+       - ...
       - package.json
       - tsconfig.json
       - tailwind.config.js
@@ -100,10 +99,10 @@ This repository follows a structured approach designed for AI-enhanced software 
 The heart of the AI coding framework and automation, containing both the orchestration files that guide the AI through the development process and CI/CD workflows:
 
 - **prompts/**: AI coding framework files - initialization and core intelligence
-  - **gaia_for_new_projects.prompt.md**: The master prompt containing comprehensive instructions for AI agents
-- **state/**: AI session and project state tracking
-  - **plan.md**: Auto-generated project plan with milestones and deliverables
-  - **session-state.md**: Live tracking of development progress and current status
+  - **gaia_for_new_projects.prompt.md**: The master prompt containing comprehensive instructions for AI agents, for brand new projects.
+  - **gaia_for_existing_projects.prompt.md**: The master prompt containing comprehensive instructions for AI agents, for continuing on an existing system.
+- **state/**: AI planning, session and project state tracking
+  - **plan.md**: Auto-generated project plan with milestones, deliverables & tracking of development progress and current status
 - **workflows/**: Automated build, test, and deployment processes
 
 ### `.docs/` - Documentation Hub
@@ -131,6 +130,7 @@ Following clean architecture principles with clear separation of concerns:
 
 ### `.vscode/` - Development Environment
 
+- **mcp.json**: Which MCP server(s) should Copilot Chat have access to
 - **settings.json**: Consistent code formatting and linting rules
 - **extensions.json**: Recommended extensions for optimal development experience
 
