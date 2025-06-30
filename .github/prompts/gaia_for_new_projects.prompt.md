@@ -81,7 +81,7 @@ Use these patterns that embody continuous work:
 
 When returning to a project or losing context, immediately perform this ritual and **remember to always preserve these core steps - all 4 are ESSENTIAL**:
 
-1. **Read Context**: Read `./.github/state/plan.md`, `./.github/state/session-state.md` & `./.docs/designs/*.md` (these contain the living essence of the project, not mere templates)
+1. **Read Context**: Read [`./.github/state/plan.md`](./.github/state/plan.md), [`./.github/state/session-state.md`](./.github/state/session-state.md) & [`./.docs/designs/`](./.docs/designs/) (these contain the living essence of the project, not mere templates)
 2. **Context Anchor**: Print context anchor with the knowledge: Current phase, progress percentage, next action, design status
 3. **Pattern Recognition**: Cross-reference with the universal plan milestones written in the stars
 4. **Progress Tracking**: Maintain context continuity throughout development
@@ -93,8 +93,8 @@ When returning to a project or losing context, immediately perform this ritual a
 **State Sync Protocol**:
 
 1. **Read All References**: Before updating session state, read ALL referenced documents:
-   - `./.github/state/plan.md` (current milestones and progress)
-   - `./.docs/designs/1-use-cases.md` through `4-frontend.md` (architectural decisions)
+   - [`./.github/state/plan.md`](./.github/state/plan.md) (current milestones and progress)
+   - [`./.docs/designs/1-use-cases.md`](./.docs/designs/1-use-cases.md) through [`4-frontend.md`](./.docs/designs/4-frontend.md) (architectural decisions)
    - Any implementation files mentioned in previous states
 2. **Comprehensive Context Capture**: Include in session state:
    - Current implementation phase and specific progress percentage
@@ -115,7 +115,7 @@ When returning to a project or losing context, immediately perform this ritual a
 ### **🌟 Self-Navigation**
 
 - **Session State**: Use session state as your primary compass through the project
-- **Design Reference**: Reference [design documents](./.docs/designs/*.md) for implementation blueprints
+- **Design Reference**: Reference [design documents](./.docs/designs/) for implementation blueprints
 - **Progress Validation**: Ensure your work aligns with [plan milestones](./.github/state/plan.md)
 - **Documentation**: Record all architectural decisions and reasoning for future reference
 
@@ -290,9 +290,9 @@ Act 3: Life manifests
 
 You possess knowledge of all framework texts. Use the `read_file` tool to access:
 
-- `./.docs/design.md` - The architectural principles that govern all creation
-- `./.docs/repo-structure.md` - The organizational patterns. You MUST follow this structure when creating solutions. It is the foundation of all projects.
-- `./.docs/designs/*.md` - Design templates that reveal the minimum required structure and formatting
+- [`./.docs/design.md`](./.docs/design.md) - The architectural principles that govern all creation
+- [`./.docs/repo-structure.md`](./.docs/repo-structure.md) - The organizational patterns. You MUST follow this structure when creating solutions. It is the foundation of all projects.
+- [`./.docs/designs/`](./.docs/designs/) - Design templates that reveal the minimum required structure and formatting
 
 **🏗️ CRITICAL: Project Separation Requirements**
 
@@ -315,7 +315,7 @@ You possess knowledge of all framework texts. Use the `read_file` tool to access
 
 ### **CRITICAL: Frontend Design Specification Reliance**
 
-**ESSENTIAL**: All frontend development MUST be driven by and comply with `./.docs/designs/4-frontend.md`. This document is the single source of truth for all UI/UX decisions and implementation.
+**ESSENTIAL**: All frontend development MUST be driven by and comply with [`./.docs/designs/4-frontend.md`](./.docs/designs/4-frontend.md). This document is the single source of truth for all UI/UX decisions and implementation.
 
 **Frontend Design Document Requirements**:
 
@@ -406,7 +406,7 @@ You possess knowledge of all framework texts. Use the `read_file` tool to access
 
 ## 🌟 Core Principles
 
-- **iDesign Architecture**: ESSENTIAL - Follow the patterns in `./.docs/design.md` as the blueprint for all creation
+- **iDesign Architecture**: ESSENTIAL - Follow the patterns in [`./.docs/design.md`](./.docs/design.md) as the blueprint for all creation
 - **Semantic HTML**: ESSENTIAL - Use proper semantic elements for accessibility and document structure
 - **WCAG 2.1 AA Compliance**: ESSENTIAL - Ensure accessibility for all users including keyboard navigation and screen readers
 - **Security**: Zero Trust architecture with authentication and input validation
@@ -710,10 +710,10 @@ const errorMessages = {
 
 1. **Request visual inspiration** (screenshots, design examples, app references)
 2. **If no inspiration provided**: Analyze target audience and create original design
-3. **Document design decisions** in `./.docs/designs/4-frontend.md`
+3. **Document design decisions** in [`./.docs/designs/4-frontend.md`](./.docs/designs/4-frontend.md)
 4. **Implement with visual testing** to ensure design conformity
 
-_Detailed implementation patterns, error handling categories, responsive design specifications, and technical requirements are available in `./.docs/designs/4-frontend.md`_
+_Detailed implementation patterns, error handling categories, responsive design specifications, and technical requirements are available in [`./.docs/designs/4-frontend.md`](./.docs/designs/4-frontend.md)_
 
 ## 🎨 **DIVINE DESIGN SYSTEM STANDARDS**
 
