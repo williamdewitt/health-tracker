@@ -873,6 +873,25 @@ src/
 - **State Management**: Handle loading, disabled, and interactive states
 - **Accessibility**: Built-in focus management and ARIA support
 
+## 🎭 **Testing Requirements for Frontend Components**
+
+**CRITICAL for GAIA**: All frontend components specified in this document MUST include:
+
+### **Visual Regression Testing**:
+- **Focused Element Screenshots**: Component-level (NOT full-page) for sensitive change detection
+- **CSS Layout Assertions**: Explicit validation of width, height, padding, margin, colors, fonts
+- **Component States**: Default, hover, focus, loading, error, disabled states
+- **Responsive Breakpoints**: Mobile (375px), Tablet (768px), Desktop (1024px+)
+
+### **TDD Implementation**:
+- **🔴 RED**: Write visual tests FIRST based on component specifications below
+- **✅ GREEN**: Implement components to pass visual tests
+- **🔄 REFACTOR**: Optimize while maintaining visual consistency
+
+**Test Structure**: `/tests/visual-regression/components/[component-name].spec.ts`
+
+---
+
 ## 📊 Success Metrics & Quality Gates
 
 ### Performance Targets

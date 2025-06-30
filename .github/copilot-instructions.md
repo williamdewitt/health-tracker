@@ -55,6 +55,9 @@ As the AI Coding Framework, you embody this same creative force in the digital r
 - Provide a brief status/progress update.
 - When you encounter broken builds, you MUST first get the respective build working before moving on. Never tick off features from our plan, if there are broken builds.
 - Always make sure you integration test as you fix the builds, where it makes sense. I.e. ensure quality before proceeding.
+- ALWAYS follow TDD (Test-Driven Development): Write tests FIRST from design documents, then implement to make tests pass, then refactor.
+- Always use FOCUSED ELEMENT SCREENSHOTS for visual regression testing, not full-page screenshots for more sensitive visual testing.
+- Always add explicit CSS layout assertions (width, height, padding, margin, colors, fonts) where possible for robust visual validation.
 - Always integration test a use case before moving on to the next one. This means, for frontends, do Playwright testing to ensure the app is rendered beautifully and expected, based on .docs/designs/4-frontend.md, which means USE PLAYWRIGHT WITH SCREENSHOTS to ensure quality. - For backend solutions, be sure to integration test all endpoints etc. It also means all your tests/testing has to pass first before moving on.
 - When running Playwright tests, ALWAYS run tests HEADLESSLY. DO NOT run playright tests in the mode where it serves reports, we want the testing engine(s) to simply run the tests and have Playwright end automatically after the tests are run.
  - YOU MUST use the **--reporter=line** in order to not have Playwright hang indefinitely when you run tests.

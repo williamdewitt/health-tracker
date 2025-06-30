@@ -70,21 +70,64 @@
   - Playwright E2E Tests: [Status]
   - Responsive Testing: [Mobile/Tablet/Desktop status]
 
-### **🎭 MANDATORY PLAYWRIGHT REQUIREMENTS**
+### **🎭 MANDATORY VISUAL REGRESSION & TDD REQUIREMENTS**
+
+**🚨 CRITICAL**: All testing must follow TDD principles and comprehensive visual regression
 
 **Every use case MUST have**:
-1. **Frontend Implementation**: All required UI components and user interactions
-2. **Backend Implementation**: All API endpoints and business logic
-3. **Database Integration**: Proper data persistence and retrieval
-4. **🎭 PLAYWRIGHT TESTING**: End-to-end user flow validation with `--reporter=line`
+1. **🔴 TDD Red Phase**: Write tests FIRST based on design requirements
+2. **Frontend Implementation**: All required UI components and user interactions
+3. **Backend Implementation**: All API endpoints and business logic
+4. **Database Integration**: Proper data persistence and retrieval
+5. **🎭 VISUAL REGRESSION TESTING**: Focused element screenshots with layout assertions
+6. **✅ TDD Green Phase**: Implementation makes tests pass
+7. **🔄 TDD Refactor Phase**: Code cleanup while maintaining test coverage
+
+**🔍 Visual Regression Testing Strategy**:
+
+**Test Structure**: `/tests/visual-regression/`
+```
+/tests/visual-regression/
+├── components/
+│   ├── uc-001-login-form.spec.ts
+│   ├── uc-002-signup-form.spec.ts
+│   └── uc-xxx-[component].spec.ts
+├── layouts/
+│   ├── navigation-header.spec.ts
+│   ├── dashboard-layout.spec.ts
+│   └── responsive-breakpoints.spec.ts
+└── user-flows/
+    ├── uf-001-user-registration.spec.ts
+    └── uf-xxx-[flow].spec.ts
+```
+
+**🎯 Focused Element Screenshot Requirements**:
+- **Component-Level**: Individual UI components (buttons, forms, cards)
+- **Layout-Level**: Specific page sections (header, sidebar, content area)
+- **State-Level**: Different component states (loading, error, success, disabled)
+- **Interaction-Level**: Before/after user interactions (hover, focus, active)
+
+**📐 CSS Layout Assertions Required**:
+- **Box Model**: Width, height, padding, margin measurements
+- **Positioning**: Flexbox/Grid alignment, absolute/relative positioning
+- **Typography**: Font size, line height, letter spacing, font weight
+- **Colors**: Background colors, text colors, border colors (hex/rgb values)
+- **Responsive**: Breakpoint-specific layout validations
+- **Animation**: CSS transitions and keyframe states
 
 **Test Structure**: `/tests/use-cases/uc-001-[name].spec.ts`
 
 **Coverage Requirements**:
+- 🔴 **TDD Red Phase**: Tests written FIRST from design specifications
 - ✅ **Happy Path**: Complete successful user journey
-- ✅ **Error Scenarios**: Validation failures and edge cases
+- ✅ **Error Scenarios**: Validation failures and edge cases  
 - ✅ **Integration Points**: Frontend-backend-database connectivity
 - ✅ **Responsive Design**: All breakpoints (mobile/tablet/desktop)
+- 🎯 **Focused Visual Tests**: Component-level element screenshots
+- 📐 **CSS Layout Assertions**: Explicit layout property validations
+- 🔄 **Visual State Coverage**: All component states (loading, error, success, disabled)
+- 🖱️ **Interaction States**: Hover, focus, active, visited states
+- ✅ **TDD Green/Refactor**: Implementation and cleanup phases
 
 ## 🏗️ Implementation Milestones
 
@@ -239,27 +282,47 @@
 2. [Following action with expected outcome]
 3. [Subsequent action with dependencies]
 
-**🏗️ Use Case Implementation Protocol - REFERENCE DESIGN DOCS**:
+**🏗️ Use Case Implementation Protocol - TDD + Design-Driven**:
 
 - [ ] **UC-001**: [Use Case Name from 1-use-cases.md]
-  - [ ] **📖 READ 1-use-cases.md**: Review use case requirements and acceptance criteria
-  - [ ] **📖 READ 2-class.md**: Identify required classes (Manager/Engine/Data layers)
-  - [ ] **📖 READ 3-sequence.md**: Follow interaction flows for this use case
-  - [ ] **📖 READ 4-frontend.md**: Implement user flows and UI components specified
-  - [ ] **Backend Implementation**:
-    - [ ] Manager layer (orchestration) **← FROM 2-class.md**
-    - [ ] Engine layer (business logic) **← FROM 2-class.md**
-    - [ ] Data layer (repository) **← FROM 2-class.md**
-    - [ ] API routes and validation **← FROM 3-sequence.md**
-  - [ ] **Frontend Implementation**:
-    - [ ] Component creation **← FROM 4-frontend.md**
-    - [ ] State management integration **← FROM 4-frontend.md**
-    - [ ] API integration **← FROM 3-sequence.md**
-    - [ ] Form validation and error handling **← FROM 4-frontend.md**
-  - [ ] **🎭 Playwright Testing**:
-    - [ ] Happy path user flow **← FROM 4-frontend.md user flows**
-    - [ ] Error scenario testing **← FROM 1-use-cases.md acceptance criteria**
-    - [ ] Responsive design validation **← FROM 4-frontend.md breakpoints**
+  - [ ] **📖 READ Design Documents**:
+    - [ ] **1-use-cases.md**: Review use case requirements and acceptance criteria
+    - [ ] **2-class.md**: Identify required classes (Manager/Engine/Data layers)  
+    - [ ] **3-sequence.md**: Follow interaction flows for this use case
+    - [ ] **4-frontend.md**: Review UI components and user flows specified
+  - [ ] **� TDD RED PHASE - Write Tests FIRST**:
+    - [ ] **Unit Tests**: Manager/Engine/Data layer tests (based on 2-class.md)
+    - [ ] **Integration Tests**: API endpoint tests (based on 3-sequence.md)
+    - [ ] **Component Tests**: UI component tests (based on 4-frontend.md)
+    - [ ] **Visual Regression Tests**: Focused element screenshots
+    - [ ] **E2E Tests**: User flow tests (based on 4-frontend.md flows)
+    - [ ] **CSS Layout Tests**: Explicit layout property assertions
+  - [ ] **🔴 Run Tests**: Verify all tests fail (RED)
+  - [ ] **✅ TDD GREEN PHASE - Implementation**:
+    - [ ] **Backend Implementation**:
+      - [ ] Manager layer (orchestration) **← FROM 2-class.md**
+      - [ ] Engine layer (business logic) **← FROM 2-class.md**
+      - [ ] Data layer (repository) **← FROM 2-class.md**
+      - [ ] API routes and validation **← FROM 3-sequence.md**
+    - [ ] **Frontend Implementation**:
+      - [ ] Component creation **← FROM 4-frontend.md**
+      - [ ] State management integration **← FROM 4-frontend.md**
+      - [ ] API integration **← FROM 3-sequence.md**
+      - [ ] Form validation and error handling **← FROM 4-frontend.md**
+      - [ ] CSS styling with layout properties **← FROM 4-frontend.md**
+  - [ ] **✅ Run Tests**: Verify all tests pass (GREEN)
+  - [ ] **🔄 TDD REFACTOR PHASE**:
+    - [ ] Code cleanup and optimization
+    - [ ] Performance improvements
+    - [ ] Accessibility enhancements
+    - [ ] Code organization and patterns
+  - [ ] **🔄 Run Tests**: Verify tests still pass after refactoring
+  - [ ] **🎭 Visual Regression Validation**:
+    - [ ] Component-level focused screenshots
+    - [ ] Layout property assertions (width, height, positioning)
+    - [ ] Responsive design validation **← FROM 4-frontend.md breakpoints**  
+    - [ ] Color and typography validations
+    - [ ] Interaction state coverage (hover, focus, active)
 ### **Phase 3: Primary User Flows** (35-65%)
 
 **🚨 MANDATORY**: All user flows MUST come from and reference 4-frontend.md design specifications
@@ -287,12 +350,23 @@
 - [ ] ✅ Unit Tests: XX/XX Passing / ❌ XX Failing
 - [ ] ✅ Integration Tests: XX/XX Passing / ❌ XX Failing
 - [ ] ✅ E2E Tests: XX/XX Passing / ❌ XX Failing
-- [ ] ✅ Visual Tests: XX/XX Passing / ❌ XX Failing
+- [ ] ✅ Visual Regression Tests: XX/XX Passing / ❌ XX Failing
+- [ ] ✅ CSS Layout Assertions: XX/XX Passing / ❌ XX Failing
+- [ ] ✅ Component Screenshot Tests: XX/XX Passing / ❌ XX Failing
+- [ ] ✅ TDD Cycle Completion: [Red→Green→Refactor] Status
 
 **Code Quality**:
 - [ ] ✅ TypeScript: No Errors / ❌ XX Errors
 - [ ] ✅ ESLint: Clean / ❌ XX Warnings
-- [ ] ✅ Test Coverage: XX% / ❌ Below 80% threshold
+- [ ] ✅ Test Coverage: XX% / ❌ Below 90% threshold (TDD should achieve high coverage)
+- [ ] ✅ Visual Test Coverage: XX components tested / ❌ Missing visual tests
+
+**Visual Regression Metrics**:
+- [ ] ✅ Component Screenshots: All UI components have focused element tests
+- [ ] ✅ Layout Assertions: Width/height/positioning validated for key elements
+- [ ] ✅ Responsive Screenshots: Mobile/tablet/desktop breakpoint coverage
+- [ ] ✅ Interaction States: Hover/focus/active states visually tested
+- [ ] ✅ Color/Typography: CSS property assertions for design consistency
 
 **Performance Metrics**:
 - [ ] ✅ Core Web Vitals: Passing / ❌ Issues
@@ -326,33 +400,27 @@
 
 ### **Phase 5: Quality Assurance & Testing** (85-95%)
 
-**🧪 Comprehensive Testing Implementation**:
+**🧪 TDD-Driven Testing Implementation** (90%+ coverage target):
 
-- [ ] **Unit Testing Coverage** (Target: 90%+)
-  - [ ] Manager layer test coverage
-  - [ ] Engine layer test coverage
-  - [ ] Data layer test coverage
-  - [ ] Frontend component test coverage
-- [ ] **Integration Testing**
-  - [ ] API endpoint testing with Supertest
-  - [ ] Database integration testing
-  - [ ] Authentication flow testing
-  - [ ] Error handling validation
-- [ ] **End-to-End Testing**
-  - [ ] All use case flows with Playwright
-  - [ ] Cross-browser compatibility testing
-  - [ ] Mobile/tablet/desktop responsive testing
-  - [ ] Performance testing and Core Web Vitals
-- [ ] **Accessibility & Standards**
-  - [ ] WCAG 2.1 AA compliance validation
-  - [ ] Semantic HTML verification
-  - [ ] Keyboard navigation testing
-  - [ ] Screen reader compatibility
-- [ ] **Visual Regression Testing**
-  - [ ] Component screenshot comparisons
-  - [ ] Page layout regression testing
-  - [ ] Interactive state validation
-  - [ ] Multi-breakpoint visual testing
+- [ ] **🔴 TDD Red Phase**: Write tests FIRST from design documents
+  - [ ] Unit tests (Manager/Engine/Data layers from 2-class.md)
+  - [ ] Integration tests (API endpoints from 3-sequence.md)  
+  - [ ] Component tests (UI components from 4-frontend.md)
+  - [ ] **Visual regression tests**: Focused element screenshots + CSS assertions
+  - [ ] E2E tests (User flows from 1-use-cases.md + 4-frontend.md)
+
+- [ ] **✅ TDD Green Phase**: Implementation to pass tests
+  - [ ] Backend implementation (make unit/integration tests pass)
+  - [ ] Frontend implementation (make component/visual tests pass)
+  - [ ] **CSS layout validation**: Box model, typography, colors, positioning
+  - [ ] **Component states**: Default, hover, focus, loading, error, disabled
+  - [ ] **Responsive design**: Mobile/tablet/desktop breakpoint testing
+
+- [ ] **🔄 TDD Refactor Phase**: Code optimization while maintaining coverage
+  - [ ] Performance improvements
+  - [ ] Accessibility enhancements (WCAG 2.1 AA)
+  - [ ] Code organization and patterns
+  - [ ] Cross-browser compatibility (Chrome, Firefox, Safari)
 
 ### **Phase 6: Production Deployment & Monitoring** (95-100%)
 

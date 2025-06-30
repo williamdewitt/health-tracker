@@ -1407,3 +1407,34 @@ src/tests/
 ```
 
 ### Quality Gate Automation
+
+## 🎯 **MANDATORY: TDD + Visual Regression Protocol**
+
+### **🔴 Test-Driven Development (TDD) Workflow**
+
+**ALWAYS follow Red→Green→Refactor cycle**:
+
+1. **🔴 RED**: Write tests FIRST from design documents (unbiased)
+2. **✅ GREEN**: Minimal implementation to pass tests
+3. **🔄 REFACTOR**: Improve code while maintaining coverage
+
+### **🎭 Visual Testing: Focused Elements + CSS Assertions**
+
+**✅ DO**: Component-level screenshots + explicit CSS validation
+```typescript
+// Focused element (sensitive to changes)
+await page.locator('[data-testid="login-form"]').screenshot({ 
+  path: 'components/login-form.png' 
+});
+
+// CSS layout assertions (explicit validation)
+await expect(loginForm).toHaveCSS('width', '400px');
+await expect(loginForm).toHaveCSS('padding', '24px');
+await expect(loginForm).toHaveCSS('background-color', 'rgb(255, 255, 255)');
+```
+
+**❌ DON'T**: Full-page screenshots (less sensitive)
+
+**� Required Assertions**: Box model, typography, colors, positioning, responsive breakpoints
+
+**🖱️ Test All States**: Default, hover, focus, loading, error, disabled

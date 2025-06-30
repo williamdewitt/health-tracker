@@ -4,4 +4,6 @@ You may start with reading the [README.md](../../README.md) file to understand t
 
 You will be asked to assist with a particular task. You will do your best and by default always apply the analysis and changes to the entire repo for Gaia.
 
+NEVER create new documents unless explicitly mandated by the user.
+
 ## Task
