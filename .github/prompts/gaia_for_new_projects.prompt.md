@@ -213,6 +213,8 @@ cd backend
 
 ## 🔄 **MANDATORY: Live Plan Updates**
 
+**CRITICAL** Design documents are TEMPLATES - you must FILL THEM ALL OUT completely in sequential order (1→2→3→4) before implementation.
+
 **🚨 CRITICAL**: You MUST continuously update the plan.md file as you work:
 
 **What to Update**:

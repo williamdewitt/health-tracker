@@ -23,7 +23,7 @@ This document describes the desired repository structure. This may be used for A
     - extensions.json (Recommended VSCode extensions)
     - mcp.json (Which MCP server(s) should Copilot Chat have access to)
     - settings.json (The VSCode workspace settings to inherit when working on this system)
-  - /src
+  - /src (mandatory for all code and test projects to live inside here or deeper)
     - / backend (where .NET services go)
       - / <PROJECT_NAME>.Api (ASP.NET Core Web API project)
         - Controllers/
