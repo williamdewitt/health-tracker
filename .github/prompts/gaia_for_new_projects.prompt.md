@@ -311,6 +311,99 @@ You possess knowledge of all framework texts. Use the `read_file` tool to access
 - **Each design builds on the previous**: Maintain consistency and logical flow between design documents
 - **Plan follows architecture**: Only after architectural design is complete, generate the implementation plan
 
+## 🎨 **MANDATORY FRONTEND DESIGN INTEGRATION**
+
+### **CRITICAL: Frontend Design Specification Reliance**
+
+**ESSENTIAL**: All frontend development MUST be driven by and comply with `./.docs/designs/4-frontend.md`. This document is the single source of truth for all UI/UX decisions and implementation.
+
+**Frontend Design Document Requirements**:
+
+- **User Flow Registry**: MANDATORY maintenance of complete user flow → use case mapping
+- **Component Specifications**: All UI components must be documented with implementation details
+- **Visual Standards**: Color palettes, typography, spacing, and interaction patterns
+- **Responsive Design**: Breakpoint strategies and device-specific requirements
+- **Accessibility Compliance**: WCAG 2.1 AA standards and testing protocols
+- **Notification System**: Comprehensive user feedback and error handling patterns
+
+### **🗺️ User Flow Planning Protocol**
+
+**CRITICAL**: Every project MUST include comprehensive user flow planning and documentation.
+
+**User Flow Requirements**:
+
+1. **Flow Discovery**: Extract ALL user journeys from use cases in 1-use-cases.md
+2. **Flow Documentation**: Document each flow using the template in 4-frontend.md
+3. **Component Mapping**: Link flows to required UI components and interactions
+4. **Integration Testing**: Create Playwright tests for every user flow
+5. **Cross-Reference Validation**: Ensure complete traceability from use case → user flow → implementation
+
+**Plan.md User Flow Section Requirements**:
+
+```markdown
+## 🗺️ User Flow Implementation Strategy
+
+### **User Flow Registry** (Reference: 4-frontend.md)
+
+**CRITICAL**: All user flows documented in frontend design must be implemented and tested.
+
+#### **Phase X: User Flow Implementation**
+
+- [ ] **UF-001-[FLOW-NAME]**: [Brief description]
+  - [ ] Frontend UI components implemented
+  - [ ] Backend API endpoints connected
+  - [ ] Integration testing with Playwright
+  - [ ] Responsive design validation (mobile/tablet/desktop)
+  - [ ] Error scenario handling
+  - [ ] Success criteria validation
+
+- [ ] **UF-002-[FLOW-NAME]**: [Brief description]
+  - [ ] [Same checklist structure for each flow]
+
+#### **User Flow Quality Gates**:
+
+- [ ] **Completeness**: Every use case has corresponding user flows
+- [ ] **Implementation**: All flows have working frontend → backend → database integration
+- [ ] **Testing**: Playwright E2E tests cover all flow variations
+- [ ] **Responsive**: All flows work across all device breakpoints
+- [ ] **Accessibility**: All flows meet WCAG 2.1 AA standards
+- [ ] **Error Handling**: All failure scenarios provide proper user feedback
+```
+
+### **Frontend Design Compliance Checks**
+
+**MANDATORY Validation Protocol**:
+
+1. **Visual Quality Assurance**: Use Playwright screenshots to validate design conformity
+2. **Component Standards**: Verify all components match specifications in 4-frontend.md
+3. **Responsive Design**: Test all breakpoints defined in frontend specification
+4. **User Experience**: Validate flows match the documented user journey expectations
+5. **Accessibility**: Ensure WCAG compliance as specified in frontend design document
+
+**Quality Gate Integration**:
+
+- **Design Review**: Every frontend implementation must reference 4-frontend.md
+- **Visual Testing**: Mandatory Playwright screenshot tests for design validation
+- **User Flow Testing**: Complete E2E testing of all documented user flows
+- **Cross-Device Testing**: Validation across all responsive breakpoints
+- **Accessibility Testing**: Automated and manual accessibility validation
+
+### **Frontend Design Document Maintenance**
+
+**Living Document Protocol**:
+
+- **User Flow Updates**: Add new flows as use cases are discovered or refined
+- **Component Registry**: Maintain current component specifications and patterns
+- **Design Evolution**: Update visual standards as project requirements evolve
+- **Testing Integration**: Ensure testing protocols match implementation reality
+- **Quality Standards**: Regular audits to maintain design system consistency
+
+**Implementation Tracking**:
+
+- **Progress Mapping**: Track implementation progress against documented flows
+- **Quality Metrics**: Monitor design compliance and user experience metrics
+- **Continuous Improvement**: Regular design review and optimization cycles
+
 ## 🌟 Core Principles
 
 - **iDesign Architecture**: ESSENTIAL - Follow the patterns in `./.docs/design.md` as the blueprint for all creation

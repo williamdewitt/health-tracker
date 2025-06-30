@@ -10,15 +10,16 @@
 4. **Update accordingly** - Reflect plan reality in session state
 5. **🚀 CONTINUE AUTOMATICALLY** - Never stop after reading/updating
 
-**CRITICAL**: Every time you update this session-state file, you MUST:
+**CRITICAL**: Every time you update this session-state file, you MUST (ALWAYS READ ENTIRE DESIGN DOCS):
 
 1. **Read and Review ./.github/state/plan.md** - Understand the complete project plan
 2. **Cross-reference Current Progress** - Map current status against plan milestones
 3. **Validate Alignment** - Ensure session state reflects plan accurately
 4. **Update Plan Tracking** - Mark completed milestones and adjust timeline if needed
 5. **📋 UPDATE USE CASE TRACKING** - Sync with ./.docs/designs/1-use-cases.md and update completion status
-6. **Document Deviations** - Note any changes from original plan with rationale
-7. **🚀 AUTOMATIC CONTINUE** - Never stop after sync, immediately proceed to next task
+6. **🗺️ UPDATE USER FLOW TRACKING** - Sync with ./.docs/designs/4-frontend.md user flow registry and update implementation status
+7. **Document Deviations** - Note any changes from original plan with rationale
+8. **🚀 AUTOMATIC CONTINUE** - Never stop after sync, immediately proceed to next task
 
 ## 🚀 AUTOMATIC CONTINUATION RULES
 
@@ -42,6 +43,44 @@
 3. **Validate Alignment** - Ensure session state reflects plan accurately
 4. **Update Plan Tracking** - Mark completed milestones and adjust timeline if needed
 5. **Document Deviations** - Note any changes from original plan with rationale
+
+## 📋 Use Case & User Flow Tracking
+
+### Use Case Implementation Status
+**Reference**: `./.docs/designs/1-use-cases.md`
+
+**Use Case Completion Matrix**:
+- **UC-001: [Use Case Name]**: [Not Started/In Progress/Testing/Complete]
+  - Frontend: [Status]
+  - Backend: [Status] 
+  - Database: [Status]
+  - Testing: [Status]
+- **UC-002: [Use Case Name]**: [Status]
+  - [Same pattern for each use case]
+
+### User Flow Implementation Status
+**Reference**: `./.docs/designs/4-frontend.md` - User Flow Registry
+
+**User Flow Completion Matrix**:
+- **UF-001-[FLOW-NAME]**: [Not Started/In Progress/Testing/Complete]
+  - Related Use Cases: [UC-001, UC-002]
+  - Implementation Priority: [High/Medium/Low]
+  - Frontend Components: [Status with specific component names]
+  - Backend Integration: [Status with API endpoints]
+  - Responsive Testing: [Mobile/Tablet/Desktop status]
+  - Playwright E2E Tests: [Status]
+  - Visual Regression Tests: [Status]
+  - Accessibility Validation: [Status]
+  - Error Scenario Coverage: [Status]
+- **UF-002-[FLOW-NAME]**: [Status]
+  - [Same pattern for each user flow]
+
+### Flow-to-Use Case Traceability
+**Critical Mapping Validation**:
+- **Coverage Check**: ✅/❌ All use cases have corresponding user flows
+- **Implementation Sync**: ✅/❌ User flow implementation matches use case requirements
+- **Testing Alignment**: ✅/❌ E2E tests cover all documented user flows
+- **Design Compliance**: ✅/❌ UI implementation matches frontend design specification
 
 ## Current Status
 

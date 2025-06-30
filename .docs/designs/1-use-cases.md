@@ -5,6 +5,18 @@ Below we elaborate on the system's use cases. These document various use cases t
 
 We follow the iDesign principles as highlighted in the [design.md](./../design.md) file in this repository.
 
+## 🎨 **CRITICAL: Frontend Design Integration**
+
+**⚠️ MANDATORY FOR GAIA**: When implementing any use case from this document:
+
+1. **ALWAYS reference [4-frontend.md](./4-frontend.md)** for complete UI/UX specifications
+2. **Follow the user flows and wireframes** exactly as specified in the frontend design
+3. **Implement component states and behaviors** according to the component catalog
+4. **Ensure responsive design** meets all breakpoint requirements
+5. **Include error handling and loading states** as specified in frontend patterns
+
+**🚫 NEVER implement UI without consulting the frontend design specification first.**
+
 ## System Requirements
 *Document the high-level system requirements that drive these use cases*
 
@@ -56,6 +68,17 @@ graph TB
     end
 ```
 
+### User Flow Diagrams & Wireframes
+**CRITICAL**: All user flows, wireframes, component behaviors, and UI implementation details are documented in **[4-frontend.md](./4-frontend.md)**. 
+
+**🎨 Frontend Design Reference**: See the comprehensive UI/UX specifications in [4-frontend.md](./4-frontend.md) for:
+- **User Journey Flows**: Step-by-step user navigation patterns
+- **Component State Diagrams**: Interactive behavior specifications
+- **Wireframe Layouts**: Screen designs and responsive patterns
+- **Implementation Guidelines**: Technical requirements for each use case
+
+**⚠️ GAIA Implementation Note**: When implementing any use case, ALWAYS reference [4-frontend.md](./4-frontend.md) for complete UI/UX specifications before beginning development.
+
 ## Detailed Use Cases
 
 ### UC-001: [Use Case Name]
@@ -75,6 +98,10 @@ graph TB
   - **E2**: [What happens if network fails]
 - **Postcondition**: [What is true after successful completion]
 - **Business Rules**: [Any business rules that apply]
+- **🎨 UI Implementation**: **MANDATORY** - See [4-frontend.md](./4-frontend.md) for complete UI specifications
+  - **User Flow**: [Reference specific wireframe section in frontend spec]
+  - **Component States**: [Reference component catalog entries in frontend spec]
+  - **Responsive Behavior**: [Mobile/tablet/desktop adaptations in frontend spec]
 
 ### UC-002: [Use Case Name]
 - **Actor**: [Primary Actor]
@@ -88,6 +115,9 @@ graph TB
 - **Exception Flows**: [Error handling]
 - **Postcondition**: [End state]
 - **Business Rules**: [Applicable rules]
+- **🎨 UI Implementation**: **MANDATORY** - See [4-frontend.md](./4-frontend.md) for complete UI specifications
+  - **User Flow**: [Reference specific wireframe section in frontend spec]
+  - **Component States**: [Reference component catalog entries in frontend spec]
 
 ## Use Case Prioritization
 
@@ -104,6 +134,20 @@ graph TB
 - **UC-006**: [Use Case Name] - [Justification]
 
 ## Cross-Cutting Concerns
+
+### UI/UX Cross-Cutting Patterns
+**🎨 COMPLETE SPECIFICATION**: All UI/UX patterns, component behaviors, and implementation details are documented in **[4-frontend.md](./4-frontend.md)**.
+
+**Reference the frontend design document for**:
+- **Component State Management**: Loading, error, success, disabled states
+- **Animation & Transition Patterns**: Page transitions, micro-interactions, state changes  
+- **User Flow Specifications**: Complete user journey wireframes and navigation patterns
+- **Responsive Design Requirements**: Mobile, tablet, desktop implementations
+- **Accessibility Compliance**: WCAG AA standards and keyboard navigation
+- **Error Handling Patterns**: Network errors, validation errors, recovery flows
+- **Performance Requirements**: Loading targets and optimization strategies
+
+**⚠️ GAIA MUST consult [4-frontend.md](./4-frontend.md) before implementing any UI-related functionality.**
 
 ### Security Use Cases
 - **Authentication**: How users prove their identity
