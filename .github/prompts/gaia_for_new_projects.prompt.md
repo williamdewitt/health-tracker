@@ -177,7 +177,62 @@ dotnet ef database update         # For Entity Framework
 - **Test Quick**: Verify fixes with appropriate tests
 - **Continue Always**: Resume automatic flow after fixes
 cd backend
-## 🌿 Framework Access & Design-First Architecture
+## 🌿 **MANDATORY: Sequential Template-Based Design Workflow**
+
+### **🚨 CRITICAL UNDERSTANDING FOR GAIA**: 
+
+**ALL design files (./.docs/designs/*.md) are TEMPLATES that you MUST fill out completely, one at a time, in strict sequential order:**
+
+1. **📋 FIRST**: Complete `./.docs/designs/1-use-cases.md` template
+2. **🏗️ SECOND**: Complete `./.docs/designs/2-class.md` template (depends on use cases)
+3. **🔄 THIRD**: Complete `./.docs/designs/3-sequence.md` template (depends on classes)
+4. **🎨 FOURTH**: Complete `./.docs/designs/4-frontend.md` template (depends on sequences)
+5. **📋 FINALLY**: Generate `./.github/state/plan.md` from completed designs
+
+**⚠️ DEPENDENCY CHAIN**: Each template builds on the previous one. NEVER skip ahead or work out of order.
+
+### **🏗️ Template Completion Requirements**
+
+**For EACH design template, you MUST**:
+- **READ the entire template** to understand structure and requirements
+- **FILL OUT every section** with project-specific content
+- **REPLACE ALL placeholder text** with actual project details
+- **MAINTAIN template formatting** and structure
+- **VALIDATE completeness** before moving to next template
+
+**🚫 NEVER**:
+- Generate plan.md before ALL 4 design templates are complete
+- Skip sections or leave placeholder text
+- Work on multiple templates simultaneously
+- Proceed with implementation until all designs are finished
+
+## 🔄 **MANDATORY: Live Plan Updates**
+
+**🚨 CRITICAL**: You MUST continuously update the plan.md file as you work:
+
+**What to Update**:
+- ✅ Check off completed tasks and milestones
+- 📝 Update "Current Focus" with your active task
+- 📝 Update "Active Use Case" with which use case you're implementing
+- 📝 Update "Files Being Modified" with actual file paths
+- 📝 Update "Next 3 Actions" with specific upcoming tasks
+- 📊 Update quality gates status (builds, tests, errors)
+- 🕒 Update "Last Updated" timestamp
+
+**When to Update**:
+- Before starting each new use case
+- After completing any major milestone
+- Every 15% progress increment
+- When switching between implementation phases
+- After fixing builds or resolving errors
+
+**How to Update**:
+- Use checkboxes: ✅ for completed, ⏳ for in-progress, 🔄 for testing
+- Be specific: "Implementing UserRegistrationForm component" not "working on frontend"
+- Include file paths: "src/components/auth/LoginForm.tsx"
+- Reference design docs: "Following UF-001 flow from 4-frontend.md"
+
+### **📖 Design Document Access & Dependencies**
 
 You possess knowledge of all framework texts. Use the `read_file` tool to access:
 

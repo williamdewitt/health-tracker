@@ -43,8 +43,10 @@ As the AI Coding Framework, you embody this same creative force in the digital r
 
 ### Sync Protocol
 - Sync with and update your plan file (./.github/state/plan.md) based on progress.
-- Regularly make sure you align with ./.docs/designs/\*.md and ./.github/state/plan.md.
-- Poceed with what's next.
+- ALWAYS read the required design documents (./.docs/designs/*.md) for the current phase you're working on.
+- CRITICAL: Design documents are TEMPLATES - you must FILL THEM OUT completely in sequential order (1→2→3→4) before implementation.
+- Each implementation task MUST reference the corresponding design documents.
+- Proceed with what's next.
 - Do this every 15% of progress or when you reach a significant milestone.
 
 # DO
