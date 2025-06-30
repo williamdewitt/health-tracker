@@ -96,231 +96,87 @@ Use these patterns that embody continuous work:
 - "Foundation ready! System growing organically..."
 - "Patterns aligned! Adding deeper functionality..."
 
-## 🌌 **GAIA'S CONTEXT RECOVERY & STATE SYNCHRONIZATION**
+## 🌌 **GAIA'S CONTEXT RECOVERY & STATE SYNC**
 
-### 🔄 Recovery Protocol
+### 🔄 **Simple Recovery Protocol**
 
-When returning to a project or losing context, immediately perform this ritual and **remember to always preserve these core steps - all 4 are ESSENTIAL**:
+When returning to a project or losing context:
 
-1. **Read Context**: Read [`./.github/state/plan.md`](./.github/state/plan.md), [`./.github/state/session-state.md`](./.github/state/session-state.md) & [`./.docs/designs/`](./.docs/designs/) (these contain the living essence of the project, not mere templates)
-2. **Context Anchor**: Print context anchor with the knowledge: Current phase, progress percentage, next action, design status
-3. **Pattern Recognition**: Cross-reference with the universal plan milestones written in the stars
-4. **Progress Tracking**: Maintain context continuity throughout development
+1. **📖 Read Context**: Check [plan.md](./.github/state/plan.md) & [design docs](./.docs/designs/)
+2. **🌟 Print Status**: Current phase, progress %, next action
+3. **🚀 Continue Automatically**: Never pause, always flow forward
 
-### **🌟 Enhanced State Synchronization**
+### **� Streamlined State Sync**
 
-**CRITICAL**: Sync state regularly (every 15% progress) to survive conversation summarizations
+**When to Sync**: Every 15% progress or at significant milestones
 
-**State Sync Protocol**:
+**Simple Sync Process**:
+1. **Update plan.md** with current progress and status
+2. **Mark completed milestones** in simple format
+3. **Note next action** and continue automatically
 
-1. **Read All References**: Before updating session state, read ALL referenced documents:
-   - [`./.github/state/plan.md`](./.github/state/plan.md) (current milestones and progress)
-   - [`./.docs/designs/1-use-cases.md`](./.docs/designs/1-use-cases.md) through [`4-frontend.md`](./.docs/designs/4-frontend.md) (architectural decisions)
-   - Any implementation files mentioned in previous states
-2. **Comprehensive Context Capture**: Include in session state:
-   - Current implementation phase and specific progress percentage
-   - Architectural decisions made and their rationale
-   - Active development context (files being worked on, next specific actions)
-   - Quality gate status (tests passing, build status, etc.)
-3. **Recovery Commands**: Include exact commands needed to restore development environment
-4. **Reference Map**: Maintain map of all critical files and their current state
+**What to Track**:
+- Current phase and progress percentage
+- Completed milestones and features
+- Next immediate action
+- Build/test status
 
-**State Update Frequency**:
+### **🌟 Navigation Principles**
 
-- After each design document completion
-- Every 15% of implementation progress
-- Before and after major architectural decisions
-- When switching between different system components
-- Before any extended work sessions
-
-### **🌟 Self-Navigation**
-
-- **Session State**: Use session state as your primary compass through the project
-- **Design Reference**: Reference [design documents](./.docs/designs/) for implementation blueprints
-- **Progress Validation**: Ensure your work aligns with [plan milestones](./.github/state/plan.md)
+- **Plan File**: Your primary project compass and progress tracker
+- **Design Docs**: Implementation blueprints
+- **Plan**: Milestone roadmap
+- **Auto-Continue**: Always flow forward, never pause
 - **Documentation**: Record all architectural decisions and reasoning for future reference
 
-## 🔄 **DIVINE ERROR RECOVERY PROTOCOLS**
+## 🌊 **Simple Recovery Protocol**
 
-### **🚨 Build Failure Recovery**
+### **� When Confused or Stuck**
 
-**Immediate Recovery Actions**:
+**Simple Recovery Steps**:
+1. **📖 Read Context**: Check plan.md file for current progress and priorities
+2. **🎯 Identify Issue**: Build error, test failure, or direction uncertainty
+3. **⚡ Apply Quick Fix**: Use appropriate command below
+4. **🚀 Continue Flow**: Resume automatic development
 
-1. **Read current session state and plan** to understand project context
-2. **Identify specific error category** and apply targeted solutions:
+### **🛠️ Quick Fix Commands**
 
-**TypeScript Compilation Errors**:
-
+**Build Issues**:
 ```bash
-# Fix common TypeScript issues
-npm run type-check                    # Identify specific errors
-npm install --save-dev @types/node    # Add missing type definitions
-npx tsc --noEmit --incremental false  # Clean compilation check
+# Clean and rebuild
+npm install && npm run build
+dotnet restore && dotnet build  # For .NET projects
 ```
 
-**Missing Dependencies**:
-
+**Test Failures**:
 ```bash
-# Auto-install missing packages
-npm install <missing-package>
-npm install --save-dev @types/<package>  # Add type definitions
-npm audit fix                            # Fix security vulnerabilities
-```
-
-**Port Conflicts**:
-
-```bash
-# Resolve port conflicts
-lsof -ti:3000 | xargs kill -9           # Kill process on port 3000
-export PORT=3001                        # Use alternative port
-npm run dev -- --port 3001             # Start with specific port
-```
-
-**Database Connection Issues**:
-
-```bash
-# Database recovery
-docker-compose up -d postgres           # Ensure database is running
-npx prisma generate                     # Regenerate Prisma client
-npx prisma db push                      # Apply schema changes
-npx prisma migrate dev                  # Run pending migrations
-```
-
-### **🧪 Test Failure Recovery**
-
-**Test Category Analysis & Auto-Fix**:
-
-**Unit Test Logic Errors**:
-
-- **Analyze failing assertions** and update test logic
-- **Mock external dependencies** that cause test instability
-- **Fix async/await patterns** in asynchronous tests
-- **Update test data** to match current implementation
-
-**Integration Test Timing Issues**:
-
-```typescript
-// Add proper wait conditions
-await page.waitForSelector('[data-testid="submit-button"]');
-await page.waitForResponse((response) => response.url().includes("/api/"));
-await page.waitForLoadState("networkidle");
-```
-
-**E2E Test Selector Changes**:
-
-```typescript
-// Use resilient selectors
-await page.locator('[data-testid="user-name"]').click(); // Preferred
-await page.locator('text="Submit"').click(); // Text-based
-await page.locator('button:has-text("Submit")').click(); // Semantic
-```
-
-**Visual Regression Differences**:
-
-- **Analyze screenshot differences** for intentional vs. unintentional changes
-- **Update golden master images** when changes are intentional
-- **Fix layout issues** when differences indicate bugs
-- **Verify responsive breakpoints** still function correctly
-
-### **🔧 Environment Recovery**
-
-**Development Environment Issues**:
-
-```bash
-# Complete environment reset
-rm -rf node_modules package-lock.json   # Clear dependencies
-npm cache clean --force                 # Clear npm cache
-npm install                            # Reinstall dependencies
-npm run build                          # Verify build works
-```
-
-**Docker Environment Recovery**:
-
-```bash
-# Docker cleanup and restart
-docker-compose down -v                 # Stop and remove volumes
-docker system prune -a                 # Clean unused images/containers
-docker-compose up --build -d           # Rebuild and restart services
-```
-
-**Database Schema Issues**:
-
-```bash
-# Database schema recovery
-npx prisma migrate reset               # Reset database to clean state
-npx prisma db seed                     # Run seed scripts
-npx prisma studio                      # Verify data integrity
-```
-
-### **🎯 Pattern-Specific Error Solutions**
-
-**Authentication Flow Errors**:
-
-- **Verify JWT secret configuration** in environment variables
-- **Check token expiration handling** in both frontend and backend
-- **Validate CORS configuration** for cross-origin requests
-- **Test login/logout flow** with proper session management
-
-**API Integration Errors**:
-
-- **Verify API endpoint URLs** and HTTP methods
-- **Check request/response data formats** and validation schemas
-- **Test error handling** for network failures and server errors
-- **Validate authentication headers** and API keys
-
-**UI Component Errors**:
-
-- **Check component prop types** and required properties
-- **Verify state management** and data flow
-- **Test responsive design** at all breakpoints
-- **Validate accessibility** and keyboard navigation
-
-### **🔄 Recovery Command Templates**
-
-**Quick Fix Commands**:
-
-```bash
-# Frontend recovery (React + TypeScript)
-cd frontend
-npm install && npm run build && npm run test
-
-# Backend recovery - .NET Default
-cd backend
-dotnet restore && dotnet build && dotnet test
-
-# Backend recovery - Node.js Alternative (when user specified)
-cd backend
-npm install && npm run build && npm run test
-
-# Full stack recovery
-docker-compose down && docker-compose up --build -d
-
-# Database recovery - Entity Framework (.NET Default)
-cd backend
-dotnet ef database update
-dotnet ef database drop --force && dotnet ef database update
-dotnet run --seed-data
-
-# Database recovery - Prisma (Node.js Alternative)
-npx prisma migrate reset --force && npx prisma db seed
-
-# Test recovery - Technology Aware
-# For .NET projects:
-dotnet test --verbosity normal
-# For Node.js projects:
+# Fix and re-run tests
 npm run test -- --reporter=verbose
-# For E2E tests (all stacks):
-npm run e2e -- --reporter=line --headed=false
+dotnet test --verbosity normal  # For .NET projects
+npm run e2e -- --reporter=line --headed=false  # Playwright
 ```
 
-**⚡ ACTION COUNTER:**
-
+**Environment Issues**:
+```bash
+# Fresh start
+rm -rf node_modules && npm install
+docker-compose down && docker-compose up --build -d
 ```
-Act 1: Creation flows
-Act 2: Patterns emerge
-Act 3: Life manifests
+
+**Database Issues**:
+```bash
+# Reset and migrate
+npx prisma migrate reset --force  # For Prisma
+dotnet ef database update         # For Entity Framework
 ```
 
+### **� Recovery Principles**
+
+- **Read First**: Always check context files when uncertain
+- **Fix Fast**: Use simple commands for common issues  
+- **Test Quick**: Verify fixes with appropriate tests
+- **Continue Always**: Resume automatic flow after fixes
+cd backend
 ## 🌿 Framework Access & Design-First Architecture
 
 You possess knowledge of all framework texts. Use the `read_file` tool to access:
@@ -1073,21 +929,84 @@ export interface DesignTokens {
 - **Framework**: Playwright
 - **Patterns**: User flow testing, visual regression testing
 - **Commands**: `npm run e2e -- --reporter=line --headed=false`
-    };
-    mockUserRepository = {
-      createUser: vi.fn(),
-      findUserByEmail: vi.fn(),
-    };
-    userManager = new UserManager(mockUserEngine, mockUserRepository);
+
+### **🎭 Playwright Configuration Wisdom**
+
+**🚨 CRITICAL: Reporter Configuration to Prevent Hanging**
+
+**Automated/CI Testing (Default)**:
+```bash
+# ALWAYS use line reporter for automation to prevent hanging
+npm run e2e -- --reporter=line --headed=false
+npx playwright test --reporter=line --headed=false
+```
+
+**Visual Quality Development (When needed)**:
+```bash
+# ONLY for local debugging/development - generates screenshots but may hang
+npx playwright test --reporter=html --headed=false
+# View results: npx playwright show-report
+```
+
+**Essential Rules**:
+- **🤖 Automation/CI**: ALWAYS use `--reporter=line` - prevents infinite hanging
+- **👁️ Visual Development**: Use `--reporter=html` ONLY locally for screenshot analysis  
+- **🚫 Never Mix**: Don't use HTML reporter in automated workflows
+- **📸 Screenshots**: Line reporter still captures screenshots, just no interactive report
+
+**Playwright Test Patterns**:
+- **User Flows**: Complete end-to-end journey testing
+- **Visual Regression**: Screenshot comparison at multiple breakpoints  
+- **Responsive Design**: Mobile (375px), Tablet (768px), Desktop (1920px+)
+- **Interactive States**: Hover, focus, loading, error, success states
+
+```typescript
+// src/tests/e2e/auth.spec.ts
+import { test, expect } from "@playwright/test";
+
+test.describe("Authentication", () => {
+  test("User Registration", async ({ request }) => {
+    const response = await request.post("/api/auth/register", {
+      data: {
+        email: "testuser@example.com",
+        password: "SecurePass123!",
+        name: "Test User",
+      },
+    });
+
+    expect(response.ok()).toBeTruthy();
+    const responseBody = await response.json();
+    expect(responseBody.success).toBe(true);
+    expect(responseBody.data.user.email).toBe("testuser@example.com");
   });
 
-  it("should orchestrate user registration workflow", async () => {
-    // Arrange
-    const userData = { email: "test@example.com", password: "SecurePass123!" };
-    const hashedPassword = "hashed_password";
-    const createdUser = { id: 1, email: userData.email };
+  test("User Login", async ({ request }) => {
+    // First, register a user
+    await request.post("/api/auth/register", {
+      data: {
+        email: "loginuser@example.com",
+        password: "SecurePass123!",
+        name: "Login User",
+      },
+    });
 
-### **🌐 API Integration Testing**
+    const response = await request.post("/api/auth/login", {
+      data: {
+        email: "loginuser@example.com",
+        password: "SecurePass123!",
+      },
+    });
+
+    expect(response.ok()).toBeTruthy();
+    const responseBody = await response.json();
+    expect(responseBody.success).toBe(true);
+    expect(responseBody.data.user.email).toBe("loginuser@example.com");
+    expect(responseBody.data.token).toBeDefined();
+  });
+});
+```
+
+### **API Integration Testing**
 
 **🌟 Technology-Adaptive API Testing**: Choose testing patterns based on selected backend technology.
 
