@@ -239,6 +239,7 @@
 - [ ] **Frontend Foundation**
   - [ ] Routing and navigation setup
   - [ ] Layout components structure and visual regression on the component-level to ensure flawless rendering (padding, margin, color, effects etc)
+  - [ ] Visual regression testing dashboard / a components catelog
   - [ ] Design system implementation
   - [ ] Onboarding / tutorial system
   - [ ] State management setup
@@ -310,6 +311,8 @@
       - [ ] API integration **← FROM 3-sequence.md**
       - [ ] Form validation and error handling **← FROM 4-frontend.md**
       - [ ] CSS styling with layout properties **← FROM 4-frontend.md**
+      - [ ] Add component to the components catelog page / dashboard.
+      - [ ] Ensure visual fedelity of the component, from a critical standpoint (not an agreeable one). If there are no flaws, improve the component's visuals. If there are flaws, correct it. Do and repeat this for around 3x to ensure we objectively critique and improve a/the component.
   - [ ] **✅ Run Tests**: Verify all tests pass (GREEN)
   - [ ] **🔄 TDD REFACTOR PHASE**:
     - [ ] Code cleanup and optimization
