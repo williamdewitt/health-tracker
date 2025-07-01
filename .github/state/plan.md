@@ -1,10 +1,16 @@
+<!-- reference @.docs/design.md -->
+<!-- reference @.docs/1-use-cases.md -->
+<!-- reference @.docs/2-class.md -->
+<!-- reference @.docs/3-sequence.md -->
+<!-- reference @.docs/4-frontend.md -->
+
 # 🌍 GAIA Comprehensive Project Plan & Progress Tracker
 
 ## 🌱 **Project Overview & Current Status**
 
 **Project Name**: [APPLICATION NAME]
 **Project Type**: [Web App/Mobile App/Desktop App/API/etc.]
-**Target Audience**: [Primary users and use cases]
+**Target Audience**: [Primary users and **use cases**]
 **Deployment Target**:  [Production environment and scale]
 
 **Current Phase**: ...
@@ -14,58 +20,47 @@
 
 ## 🌊 **Simple Sync Protocol**
 
-**🚨 CRITICAL FOR GAIA**: You MUST update this plan.md file as you progress through the project
+**🚨 CRITICAL FOR GAIA**: You MUST update the **plan** file as you progress through the project, ticking things off as we go.
 
 **When to Sync**: Every 15% progress or at significant milestones
 
 **Sync Steps**:
-1. **📖 Read this plan.md** - Check current phase and milestones
+1. **📖 Read the plan** - Check current phase and milestones
 2. **✨ Update progress** - Mark what's completed below (check off checkboxes ✅)
-3. **📝 Update status** - Modify "Current Focus", "Active Use Case", "Next 3 Actions"
+3. **📝 Update status** - Modify "Current Focus", "Active **Use Case**", "Next 3 Actions"
 4. **🌱 Continue automatically** - Never pause for approval
 
-**🔄 What to Update in This File**:
+**🔄 What to Update in the Plan**:
 - **Current Phase**: Update progress percentage and phase name
-- **Live Progress Tracking**: Check off ✅ completed use cases and tasks
-- **Current Focus**: Update which specific task/use case you're working on
+- **Live Progress Tracking**: Check off ✅ completed **use cases** and tasks
+- **Current Focus**: Update which specific task/**use case** you're working on
 - **Files Being Modified**: List the actual files you're currently editing
 - **Next 3 Actions**: Update with specific next steps
 - **Quality Gates Status**: Update build/test/code quality status
 - **Last Updated**: Update timestamp when you make changes
 
-## 🚀 **Auto-Continue Rules**
-
-**GAIA Always Flows Forward**:
-- ✅ **Report progress** and continue
-- ✅ **Show milestones** and continue  
-- ✅ **Display status** and continue
-- ❌ **Never pause** for acknowledgment
-- ❌ **Never wait** for user approval
-
-**Flow Pattern**: "Milestone X completed (Y%). Continuing to next phase..."
-
 ## 📋 **Live Use Case Progress Tracking**
 
-### **CRITICAL**: Every use case from [./.docs/designs/1-use-cases.md] MUST be implemented and tracked
+### **CRITICAL**: Every **use case** MUST be implemented and tracked
 
 **Use Case Completion Matrix**:
 - **UC-001: [Use Case Name]**: [Not Started/In Progress/Testing/Complete]
-  - Frontend: [Status]
+  - **Frontend**: [Status]
   - Backend: [Status] 
   - Database: [Status]
   - Playwright Testing: [Status]
 - **UC-002: [Use Case Name]**: [Not Started/In Progress/Testing/Complete]
-  - Frontend: [Status]
+  - **Frontend**: [Status]
   - Backend: [Status] 
   - Database: [Status]
   - Playwright Testing: [Status]
 
 ### **User Flow Implementation Status**
-**Reference**: `./.docs/designs/4-frontend.md` - User Flow Registry
+**Reference**: **frontend** - User Flow Registry
 
 - **UF-001-[FLOW-NAME]**: [Not Started/In Progress/Testing/Complete]
-  - Related Use Cases: [UC-001, UC-002]
-  - Frontend Components: [Status with specific component names]
+  - Related **Use Cases**: [UC-001, UC-002]
+  - **Frontend** Components: [Status with specific component names]
   - Backend Integration: [Status with API endpoints]
   - Playwright E2E Tests: [Status]
   - Responsive Testing: [Mobile/Tablet/Desktop status]
@@ -85,7 +80,7 @@
 
 **🔍 Visual Regression Testing Strategy**:
 
-**Test Structure**: `/tests/visual-regression/`
+**Test Structure**: `src/.../tests/visual-regression/`
 ```
 /tests/visual-regression/
 ├── components/
@@ -115,7 +110,7 @@
 - **Responsive**: Breakpoint-specific layout validations
 - **Animation**: CSS transitions and keyframe states
 
-**Test Structure**: `/tests/use-cases/uc-001-[name].spec.ts`
+**Test Structure**: `src/.../tests/use-cases/uc-001-[name].spec.ts`
 
 **Coverage Requirements**:
 - 🔴 **TDD Red Phase**: Tests written FIRST from design specifications
@@ -140,7 +135,7 @@
 - **Frontend**: React 18+ + TypeScript 5+ + Redux Toolkit 2+
 - **Backend**: .NET 8+ + ASP.NET Core + C# 12+ (Default)
 - **Database**: PostgreSQL 15+ + Entity Framework Core 8+ (Default)
-- **Testing**: xUnit + Moq (Backend) + Vitest + Playwright + React Testing Library (Frontend)
+- **Testing**: xUnit + Moq (Backend) + Vitest + Playwright + React Testing Library (**Frontend**)
 
 **🔄 Alternative Blessed Stacks** (when user requests or project needs suggest):
 
@@ -150,55 +145,59 @@
 - **Styling**: Tailwind CSS 3+ + Ant Design 5+
 - **DevOps**: Docker 24+ + Docker Compose
 
+## Phases
+
 ### **Phase 1: Architecture & Design Foundation** (0-20%)
 
-**🚨 CRITICAL FOR GAIA**: This phase REQUIRES completing ALL design templates in sequence before ANY implementation begins.
+**🚨 CRITICAL FOR GAIA**: This phase REQUIRES completing ALL design templates in **sequence** before ANY implementation begins.
+
+**🚨 CRITICAL FOR GAIA**: You should 1) create a copy of all design templates from '.github/templates/designs' to '.docs/designs' as base templates then 2) fill in those new templates in their permanent position, with the actual system design etc.
 
 **🏗️ Design Document Generation (Sequential) - TEMPLATES TO FILL OUT**:
 
-- [ ] **Use Cases Analysis** (`./.docs/designs/1-use-cases.md`) **← FILL OUT THIS TEMPLATE FIRST**
+- [ ] **Use Cases Analysis** Use the **use cases** as the reference to list and track these **← FILL OUT THIS TEMPLATE FIRST**
   - [ ] **READ TEMPLATE**: Understanding structure and requirements
   - [ ] **FILL OUT**: System requirements definition
   - [ ] **FILL OUT**: Actor identification and responsibilities
-  - [ ] **FILL OUT**: 5-15 focused use cases with success criteria
-  - [ ] **FILL OUT**: Use case prioritization matrix
+  - [ ] **FILL OUT**: 5-15 focused **use cases** with success criteria
+  - [ ] **FILL OUT**: **Use case** prioritization matrix
   - [ ] **VALIDATE**: Template is completely filled, no placeholders remain
 
-- [ ] **Class Design** (`./.docs/designs/2-class.md`) **← FILL OUT SECOND (depends on use cases)**
+- [ ] **Class Design** Use the **class diagrams** as the reference to list and track these **← FILL OUT SECOND (depends on use cases)**
   - [ ] **READ TEMPLATE**: Understanding iDesign architecture requirements
-  - [ ] **FILL OUT**: Manager/Engine/Data/Model class structure
+  - [ ] **FILL OUT**: Manager/Engine/Data/Model **class** structure
   - [ ] **FILL OUT**: Interface definitions and dependencies
   - [ ] **FILL OUT**: Color-coded component classification
-  - [ ] **REFERENCE**: Use cases from step 1 for class requirements
-  - [ ] **VALIDATE**: All classes map to use case requirements
+  - [ ] **REFERENCE**: **Use cases** from step 1 for **class requirements**
+  - [ ] **VALIDATE**: All **classes** map to **use case** requirements
 
-- [ ] **Sequence Diagrams** (`./.docs/designs/3-sequence.md`) **← FILL OUT THIRD (depends on classes)**
-  - [ ] **READ TEMPLATE**: Understanding sequence diagram format
-  - [ ] **FILL OUT**: Use case execution flows
-  - [ ] **FILL OUT**: Error handling sequences
+- [ ] **Sequence Diagrams** Use the **sequence diagrams** as the reference to list and track these **← FILL OUT THIRD (depends on classes)**
+  - [ ] **READ TEMPLATE**: Understanding **sequence diagram** format
+  - [ ] **FILL OUT**: **Use case** execution flows
+  - [ ] **FILL OUT**: Error handling **sequences**
   - [ ] **FILL OUT**: Authentication/authorization flows
   - [ ] **FILL OUT**: Inter-component communication patterns
-  - [ ] **REFERENCE**: Classes from step 2 for interaction design
-  - [ ] **VALIDATE**: All sequences match class design
+  - [ ] **REFERENCE**: **Classes** from step 2 for interaction design
+  - [ ] **VALIDATE**: All **sequences** match **class design**
 
-- [ ] **Frontend Design** (`./.docs/designs/4-frontend.md`) **← FILL OUT FOURTH (depends on sequences)**
-  - [ ] **READ TEMPLATE**: Understanding frontend specification format
+- [ ] **Frontend Design** Use the **frontend design** as the reference to list and track these **← FILL OUT FOURTH (depends on sequences)**
+  - [ ] **READ TEMPLATE**: Understanding **frontend** specification format
   - [ ] **FILL OUT**: Component hierarchy and routing
   - [ ] **FILL OUT**: UI/UX specifications and wireframes
   - [ ] **FILL OUT**: Responsive design breakpoint strategy
   - [ ] **FILL OUT**: State management patterns
-  - [ ] **FILL OUT**: User flow registry mapping to use cases
-  - [ ] **REFERENCE**: Use cases and sequences for UI requirements
-  - [ ] **VALIDATE**: All user flows traced to use cases
+  - [ ] **FILL OUT**: User flow registry mapping to **use cases**
+  - [ ] **REFERENCE**: **Use cases** and **sequences** for UI requirements
+  - [ ] **VALIDATE**: All user flows traced to **use cases**
 
 **📋 Project Planning (ONLY AFTER ALL DESIGNS COMPLETE)**:
 
 - [ ] **Implementation Plan Update** (this file)
   - [ ] **REFERENCE**: All completed design documents
   - [ ] **EXTRACT**: Technology stack from design decisions
-  - [ ] **EXTRACT**: Milestone breakdown from use cases and frontend flows
+  - [ ] **EXTRACT**: Milestone breakdown from **use cases** and **frontend** flows
   - [ ] **EXTRACT**: Quality gate definitions from design requirements
-  - [ ] **EXTRACT**: Testing strategy from frontend and sequence specifications
+  - [ ] **EXTRACT**: Testing strategy from **frontend** and **sequence** specifications
 
 ### **Phase 2: Project Scaffolding & Infrastructure** (20-35%)
 
@@ -239,8 +238,9 @@
   - [ ] Error handling middleware
 - [ ] **Frontend Foundation**
   - [ ] Routing and navigation setup
-  - [ ] Layout components and structure
+  - [ ] Layout components structure and visual regression on the component-level to ensure flawless rendering (padding, margin, color, effects etc)
   - [ ] Design system implementation
+  - [ ] Onboarding / tutorial system
   - [ ] State management setup
 
 ### **Phase 2B: User Flow Foundation** (25-35%)
@@ -265,14 +265,14 @@
 
 ### **Phase 3: Core Business Logic Implementation** (35-65%)
 
-**🚨 CRITICAL**: GAIA must REFERENCE completed design documents for every implementation decision
+**🚨 CRITICAL**: GAIA must REFERENCE completed **design documents** for every implementation decision
 
 **🎯 Live Implementation Status**
 
 **Current Focus**: [Specific current implementation task]
-**Active Use Case**: [Which use case from 1-use-cases.md currently being implemented]
-**Architecture Layer**: [Manager/Engine/Data/Model layer from 2-class.md being worked on]
-**User Flow**: [Which user flow from 4-frontend.md is being implemented]
+**Active Use Case**: [Which **use case** from **use cases** currently being implemented]
+**Architecture Layer**: [Manager/Engine/Data/Model layer from **class diagrams** being worked on]
+**User Flow**: [Which user flow from the **frontend** designs are being implemented]
 
 **Files Being Modified**:
 - [List specific files currently being worked on with paths]
@@ -284,18 +284,18 @@
 
 **🏗️ Use Case Implementation Protocol - TDD + Design-Driven**:
 
-- [ ] **UC-001**: [Use Case Name from 1-use-cases.md]
+- [ ] **UC-001**: [Use Case Name from **use cases**]
   - [ ] **📖 READ Design Documents**:
-    - [ ] **1-use-cases.md**: Review use case requirements and acceptance criteria
-    - [ ] **2-class.md**: Identify required classes (Manager/Engine/Data layers)  
-    - [ ] **3-sequence.md**: Follow interaction flows for this use case
+    - [ ] **1-use-cases.md**: Review **use case** requirements and acceptance criteria
+    - [ ] **2-class.md**: Identify required **classes** (Manager/Engine/Data layers)  
+    - [ ] **3-sequence.md**: Follow interaction flows for this **use case**
     - [ ] **4-frontend.md**: Review UI components and user flows specified
   - [ ] **� TDD RED PHASE - Write Tests FIRST**:
-    - [ ] **Unit Tests**: Manager/Engine/Data layer tests (based on 2-class.md)
-    - [ ] **Integration Tests**: API endpoint tests (based on 3-sequence.md)
-    - [ ] **Component Tests**: UI component tests (based on 4-frontend.md)
+    - [ ] **Unit Tests**: Manager/Engine/Data layer tests (based on the **class diagrams**)
+    - [ ] **Integration Tests**: API endpoint tests (based on the **sequence diagrams**)
+    - [ ] **Component Tests**: UI component tests (based on the **frontend** designs)
     - [ ] **Visual Regression Tests**: Focused element screenshots
-    - [ ] **E2E Tests**: User flow tests (based on 4-frontend.md flows)
+    - [ ] **E2E Tests**: User flow tests (based on the **frontend** flows)
     - [ ] **CSS Layout Tests**: Explicit layout property assertions
   - [ ] **🔴 Run Tests**: Verify all tests fail (RED)
   - [ ] **✅ TDD GREEN PHASE - Implementation**:
@@ -325,19 +325,19 @@
     - [ ] Interaction state coverage (hover, focus, active)
 ### **Phase 3: Primary User Flows** (35-65%)
 
-**🚨 MANDATORY**: All user flows MUST come from and reference 4-frontend.md design specifications
+**🚨 MANDATORY**: All user flows MUST come from and reference **frontend** design specifications
 
 **For Each User Flow FROM 4-frontend.md**:
 
-- [ ] **UF-001-[FLOW-NAME]**: [Brief Description FROM 4-frontend.md]
+- [ ] **UF-001-[FLOW-NAME]**: [Brief Description FROM the **frontend** designs]
   - **📖 REFERENCE 4-frontend.md**: Read complete user flow specification
-  - **📖 REFERENCE 1-use-cases.md**: Validate use cases covered [UC-001, UC-002]
+  - **📖 REFERENCE 1-use-cases.md**: Validate **use cases** covered [UC-001, UC-002]
   - **Implementation Checklist**:
     - [ ] Frontend Components implemented **← EXACTLY as specified in 4-frontend.md**
     - [ ] Backend Integration working **← Following API patterns from 3-sequence.md**
     - [ ] Playwright E2E Testing complete **← Testing user flows from 4-frontend.md**
     - [ ] Responsive Design validated **← Following breakpoints from 4-frontend.md**
-  - **Success Criteria**: [Measurable outcomes FROM 4-frontend.md design]
+  - **Success Criteria**: [Measurable outcomes from the **frontend** designs]
 
 ## 🛡️ **Live Quality Gates Status**
 
@@ -403,15 +403,15 @@
 **🧪 TDD-Driven Testing Implementation** (90%+ coverage target):
 
 - [ ] **🔴 TDD Red Phase**: Write tests FIRST from design documents
-  - [ ] Unit tests (Manager/Engine/Data layers from 2-class.md)
+  - [ ] Unit tests (Manager/Engine/Data layers from the **class diagrams**)
   - [ ] Integration tests (API endpoints from 3-sequence.md)  
-  - [ ] Component tests (UI components from 4-frontend.md)
+  - [ ] Component tests (UI components from the **frontend** designs)
   - [ ] **Visual regression tests**: Focused element screenshots + CSS assertions
-  - [ ] E2E tests (User flows from 1-use-cases.md + 4-frontend.md)
+  - [ ] E2E tests (User flows from the **use cases** + **frontend**)
 
 - [ ] **✅ TDD Green Phase**: Implementation to pass tests
   - [ ] Backend implementation (make unit/integration tests pass)
-  - [ ] Frontend implementation (make component/visual tests pass)
+  - [ ] **Frontend** implementation (make component/visual tests pass)
   - [ ] **CSS layout validation**: Box model, typography, colors, positioning
   - [ ] **Component states**: Default, hover, focus, loading, error, disabled
   - [ ] **Responsive design**: Mobile/tablet/desktop breakpoint testing
@@ -454,8 +454,8 @@
 
 **MANDATORY SEQUENCE** - Execute in this exact order:
 1. `read_file ./.github/state/plan.md` - **FIRST PRIORITY** - This file
-2. `read_file ./.docs/designs/1-use-cases.md` - All use cases for tracking
-3. `read_file ./.docs/designs/4-frontend.md` - User flow requirements
+2. `read_file ./.docs/designs/1-use-cases.md` - All **use cases** for tracking
+3. `read_file ./.docs/designs/4-frontend.md` - User flow and **frontend** requirements
 4. `list_dir src/` - Implementation status
 5. `get_errors ["src/"]` - Current issues
 
@@ -497,13 +497,13 @@ npm run dev                   # Start development servers
 **🚨 DESIGN DOCUMENT COMPLETION VERIFICATION**: 
 
 **BEFORE ANY IMPLEMENTATION** - Verify ALL design documents are complete:
-- ✅ **1-use-cases.md**: All use cases documented, no placeholder text
-- ✅ **2-class.md**: All classes designed following iDesign patterns
+- ✅ **1-use-cases.md**: All **use cases** documented, no placeholder text
+- ✅ **2-class.md**: All **classes** designed following iDesign patterns
 - ✅ **3-sequence.md**: All interaction flows documented 
 - ✅ **4-frontend.md**: All user flows and components specified
 
 **Technical Completeness**:
-- [ ] 100% use case implementation (frontend + backend + database) **← FROM 1-use-cases.md**
+- [ ] 100% **use case** implementation (**frontend** + backend + database) **← FROM 1-use-cases.md**
 - [ ] 100% Playwright test coverage for user flows **← FROM 4-frontend.md**
 - [ ] Cross-browser compatibility (Chrome, Firefox, Safari)
 - [ ] Responsive design validation (mobile, tablet, desktop) **← FROM 4-frontend.md**
@@ -522,7 +522,7 @@ npm run dev                   # Start development servers
 
 **🎯 COMPLETE DESIGN-TO-IMPLEMENTATION TRACEABILITY**:
 - Every implemented feature traces back to a specific design document section
-- Every user flow has corresponding use case backing
-- Every UI component has specification in frontend design
-- Every API endpoint has sequence diagram documentation
-- Every class follows the iDesign architecture patterns
+- Every user flow has corresponding **use case** backing
+- Every UI component has specification in **frontend** design
+- Every API endpoint has **sequence diagram** documentation
+- Every **class** follows the iDesign architecture patterns

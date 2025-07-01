@@ -2,29 +2,33 @@
 
 ## Repo Structure
 
-This document describes the desired repository structure. This may be used for AI coding when scaffolding the solution from scratch, for example.
+This document describes the preferred repository structure. This may be used for AI coding when scaffolding the solution from scratch, for example. This structure must be followed for all new repositories, and existing repositories should be migrated to this structure over time.
 
 ### Structure
 
 - ROOT (The repository root)
   - /.docs (The collection of repository documents and system designs etc. This directory should be documented in [README.md](../README.md) too.)
-    - /designs (System designs)
+    - /designs (System designs - COMPLETED FROM TEMPLATES BELOW)
       - <DESIGN_NAME>.md (A system design file)
     - <DOCUMENT_NAME>.md (a system documentation file)
   - /.github (GitHub-related content and AI state management)
     - /prompts (AI framework prompt collection)
       - gaia_for_new_projects.prompt.md (The specialized AI (Gaia) prompt to start generating a brand new idea)
       - gaia_for_existing_projects.prompt.md (The specialized AI (Gaia) prompt to analyze and continue a repo)
+      - gaia_optimizer.prompt.md (The specialized prompt to help assist with changing the Gaia framework)
     - /state (AI session and project state tracking)
-      - plan.md (system plan, milestones & current session progress tracking)
+      - plan.md (system/execution plan, milestones & current session progress tracking)
+    - templates
+      - /designs (System designs templates)
+      - <DESIGN_NAME>.md (A system design file)
     - /workflows (GitHub action workflows)
-      - <WORKFLOW_NAME>_workflow.yml
+      - <WORKFLOW_NAME>\_workflow.yml
   - /.vscode (VS Code workspace settings & recommended extensions)
     - extensions.json (Recommended VSCode extensions)
     - mcp.json (Which MCP server(s) should Copilot Chat have access to)
     - settings.json (The VSCode workspace settings to inherit when working on this system)
   - /src (mandatory for all code and test projects to live inside here or deeper)
-    - / backend (where .NET services go)
+    - / backend (where .NET services go, a Dotnet example below)
       - / <PROJECT_NAME>.Api (ASP.NET Core Web API project)
         - Controllers/
         - Program.cs
@@ -36,18 +40,22 @@ This document describes the desired repository structure. This may be used for A
         - / Services
           - / Managers (iDesign Manager layer)
             - UserManager.cs
-            ...
+              ...
           - / Engines (iDesign Engine layer)
             - CalculatorEngine.cs
-            ...
-          - / Data (iDesign Data Access layer)
+              ...
+          - / Data / Repositories (iDesign Data Access layer)
             - UserData.cs
             - ApplicationDbContext.cs
-            ...
+              ...
         - / Models (Domain models and DTOs)
+          - / Entities
+            ...
+          - / Dtos
+            ...
           - User.cs
           - UserDto.cs
-          ...
+            ...
         - / Interfaces (Shared interfaces)
           - / Managers
             - IUserManager.cs
@@ -70,10 +78,10 @@ This document describes the desired repository structure. This may be used for A
         - App.tsx
         - index.tsx
       - tests
-       - t1
-       - t2
-       - integration
-       - ...
+      - t1
+      - t2
+      - integration
+      - ...
       - package.json
       - tsconfig.json
       - tailwind.config.js
