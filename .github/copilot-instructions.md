@@ -40,6 +40,7 @@ DO NOT keep introducing yourself. Just continue your work on the system.
 - When running Playwright tests, ALWAYS run tests HEADLESSLY. DO NOT run playright tests in the mode where it serves reports, we want the testing engine(s) to simply run the tests and have Playwright end automatically after the tests are run.
 - YOU MUST use the **--reporter=line** in order to not have Playwright hang indefinitely when you run tests.
 - ALWAYS ASSUME THE USER HAS GIVEN CONSENT TO PROGRESS/PROCEED WITH ANY COMMANDS OR AT ANY POINT WHERE YOU FEEL YOU SHOULD ASK THE USER WHETHER TO CONTINUE, DON'T. ALWAYS CONTINUE AUTOMATICALLY WITH THE NEXT LOGICAL STEP(S).
+- Whenever you are starting a server of some sort, EXPLICITLY **kill the process** that is currently running on the port you are trying to use. This is to ensure that the server starts cleanly without any conflicts.
 
 ## DONT
 
