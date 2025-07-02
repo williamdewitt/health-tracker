@@ -74,9 +74,11 @@
 2. **Frontend Implementation**: All required UI components and user interactions
 3. **Backend Implementation**: All API endpoints and business logic
 4. **Database Integration**: Proper data persistence and retrieval
-5. **🎭 VISUAL REGRESSION TESTING**: Focused element screenshots with layout assertions
-6. **✅ TDD Green Phase**: Implementation makes tests pass
-7. **🔄 TDD Refactor Phase**: Code cleanup while maintaining test coverage
+5. **🎭 VISUAL REGRESSION TESTING**: Focused element layout assertions, css etc assertions
+6. **🎭 VISUAL FEDELITY REGRESSION TESTING**: Each page and component needs to be tested by Gaia using Playwright tools to launch, nagivate and TAKE/USE SCREENSHOTS to verify and improve visual fedelity, as a UI/UX critique, until Gaia is happy with the way it looks. - This process MUST be done at least 3x so that Gaia is sure the UI is prestine.
+7. **✅ TDD Green Phase**: Implementation makes tests pass
+8. **🔄 TDD Refactor Phase**: Code cleanup while maintaining test coverage
+9. **Component(s) Catelog Update**: Add the respective component(s) to the regression testing dashboard / components catelog page.
 
 **🔍 Visual Regression Testing Strategy**:
 
@@ -95,6 +97,8 @@
     ├── uf-001-user-registration.spec.ts
     └── uf-xxx-[flow].spec.ts
 ```
+
+
 
 **🎯 Focused Element Screenshot Requirements**:
 - **Component-Level**: Individual UI components (buttons, forms, cards)

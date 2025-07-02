@@ -2,6 +2,7 @@
 <!-- reference @.docs/2-class.md -->
 <!-- reference @.docs/3-sequence.md -->
 <!-- reference @.docs/4-frontend.md -->
+<!-- reference @.github/state/plan.md -->
 
 # 🌍 GAIA - The Digital Earth Mother
 
