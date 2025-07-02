@@ -4,7 +4,7 @@
 <!-- reference @.docs/3-sequence.md -->
 <!-- reference @.docs/4-frontend.md -->
 
-# 🌍 GAIA Comprehensive Project Plan & Progress Tracker
+# 🌍 Comprehensive Project Plan & Progress Tracker
 
 ## 🌱 **Project Overview & Current Status**
 
@@ -20,7 +20,7 @@
 
 ## 🌊 **Simple Sync Protocol**
 
-**🚨 CRITICAL FOR GAIA**: You MUST update the **plan** file as you progress through the project, ticking things off as we go.
+**🚨 CRITICAL**: You MUST update the **plan** file as you progress through the project, ticking things off as we go.
 
 **When to Sync**: Every 15% progress or at significant milestones
 
@@ -75,7 +75,20 @@
 3. **Backend Implementation**: All API endpoints and business logic
 4. **Database Integration**: Proper data persistence and retrieval
 5. **🎭 VISUAL REGRESSION TESTING**: Focused element layout assertions, css etc assertions
-6. **🎭 VISUAL FEDELITY REGRESSION TESTING**: Each page and component needs to be tested by Gaia using Playwright tools to launch, nagivate and TAKE/USE SCREENSHOTS to verify and improve visual fedelity, as a UI/UX critique, until Gaia is happy with the way it looks. - This process MUST be done at least 3x so that Gaia is sure the UI is prestine.
+6. **🎭 VISUAL FIDELITY REGRESSION TESTING**: 
+- **🚨 MANDATORY PLAYWRIGHT SCREENSHOT ANALYSIS**:
+  - You MUST use Playwright tools to launch, navigate and TAKE SCREENSHOTS
+  - **Critical UI/UX Analysis Required** (not agreeable stance):
+    - Layout precision: spacing, alignment, typography accuracy
+    - Visual hierarchy: element sizing, contrast, readability
+    - Interactive states: hover, focus, active, disabled visual feedback
+    - Theme consistency: light/dark mode visual parity
+    - Responsive design: mobile/tablet/desktop layout integrity
+  - **3x Improvement Cycle MANDATORY**:
+    - Cycle 1: Take screenshots, identify flaws, implement fixes
+    - Cycle 2: Re-screenshot, critique improvements, implement refinements  
+    - Cycle 3: Final screenshots, validate visual perfection achieved
+  - Screenshots stored in `/tests/visual-regression/screenshots/[component-name]/`
 7. **✅ TDD Green Phase**: Implementation makes tests pass
 8. **🔄 TDD Refactor Phase**: Code cleanup while maintaining test coverage
 9. **Component(s) Catelog Update**: Add the respective component(s) to the regression testing dashboard / components catelog page.
@@ -93,69 +106,85 @@
 │   ├── navigation-header.spec.ts
 │   ├── dashboard-layout.spec.ts
 │   └── responsive-breakpoints.spec.ts
+├── themes/
+│   ├── light-mode-components.spec.ts
+│   ├── dark-mode-components.spec.ts
+│   └── theme-switching.spec.ts
 └── user-flows/
     ├── uf-001-user-registration.spec.ts
     └── uf-xxx-[flow].spec.ts
 ```
 
-
-
-**🎯 Focused Element Screenshot Requirements**:
-- **Component-Level**: Individual UI components (buttons, forms, cards)
+**🎯 MANDATORY PLAYWRIGHT SCREENSHOT REQUIREMENTS**:
+- **Component-Level**: Individual UI components (buttons, forms, cards) in both themes
 - **Layout-Level**: Specific page sections (header, sidebar, content area)
 - **State-Level**: Different component states (loading, error, success, disabled)
 - **Interaction-Level**: Before/after user interactions (hover, focus, active)
+- **Theme-Level**: All components in light AND dark mode
+- **Responsive-Level**: Mobile (375px), Tablet (768px), Desktop (1920px) breakpoints
 
 **📐 CSS Layout Assertions Required**:
-- **Box Model**: Width, height, padding, margin measurements
+- **Box Model**: Width, height, padding, margin measurements (exact px/rem values)
 - **Positioning**: Flexbox/Grid alignment, absolute/relative positioning
-- **Typography**: Font size, line height, letter spacing, font weight
-- **Colors**: Background colors, text colors, border colors (hex/rgb values)
-- **Responsive**: Breakpoint-specific layout validations
+- **Typography**: Font size, line height, letter spacing, font weight (exact values)
+- **Colors**: Background colors, text colors, border colors (exact hex/rgb values)
+- **Theme Variables**: CSS custom properties for light/dark mode consistency
+- **Responsive**: Breakpoint-specific layout validations (375px, 768px, 1920px)
 - **Animation**: CSS transitions and keyframe states
+- **Semantic HTML**: Validation of proper element usage (no unnecessary divs)
 
 **Test Structure**: `src/.../tests/use-cases/uc-001-[name].spec.ts`
 
 **Coverage Requirements**:
 - 🔴 **TDD Red Phase**: Tests written FIRST from design specifications
+- 🔴 **Backend Unit Tests**: 90%+ coverage for Manager/Engine/Data layers
 - ✅ **Happy Path**: Complete successful user journey
 - ✅ **Error Scenarios**: Validation failures and edge cases  
 - ✅ **Integration Points**: Frontend-backend-database connectivity
-- ✅ **Responsive Design**: All breakpoints (mobile/tablet/desktop)
-- 🎯 **Focused Visual Tests**: Component-level element screenshots
-- 📐 **CSS Layout Assertions**: Explicit layout property validations
+- ✅ **Responsive Design**: All breakpoints (mobile 375px/tablet 768px/desktop 1920px)
+- 🎯 **Focused Visual Tests**: Component-level element screenshots (light + dark themes)
+- 📐 **CSS Layout Assertions**: Explicit layout property validations with exact values
 - 🔄 **Visual State Coverage**: All component states (loading, error, success, disabled)
 - 🖱️ **Interaction States**: Hover, focus, active, visited states
-- ✅ **TDD Green/Refactor**: Implementation and cleanup phases
+- 🌓 **Theme Coverage**: Light and dark mode visual regression testing
+- 🎨 **Semantic HTML Validation**: Proper element usage, no unnecessary divs
+- ✅ **TDD Green/Refactor**: Implementation and cleanup phases with maintained coverage
 
 ## 🏗️ Implementation Milestones
 
 ### **🎯 TECHNOLOGY STACK DECISION**
 
-**🌟 GAIA's Divine Guidance**: Always honor the user's explicit technology preferences. If the user specifies technologies (e.g., "build with Node.js" or "use Python Django"), prioritize their vision over defaults.
+**🌟 Divine Guidance**: Always honor the user's explicit technology preferences. If the user specifies technologies (e.g., "build with Node.js" or "use Python Django"), prioritize their vision over defaults.
 
-**🌱 Default Sacred Stack** (when user doesn't specify):
+**🌱 MANDATORY LTS STACK** (when user doesn't specify):
 
-- **Frontend**: React 18+ + TypeScript 5+ + Redux Toolkit 2+
-- **Backend**: .NET 8+ + ASP.NET Core + C# 12+ (Default)
-- **Database**: PostgreSQL 15+ + Entity Framework Core 8+ (Default)
+- **Frontend**: React 18.3+ LTS + TypeScript 5.4+ LTS + Redux Toolkit 2.2+ LTS
+- **Backend**: .NET 8.0 LTS + ASP.NET Core 8.0 + C# 12.0 (Default)
+- **Database**: PostgreSQL 16.x LTS + Entity Framework Core 8.0 LTS (Default)
 - **Testing**: xUnit + Moq (Backend) + Vitest + Playwright + React Testing Library (**Frontend**)
+- **Node.js**: 20.x LTS (if using Node stack)
 
 **🔄 Alternative Blessed Stacks** (when user requests or project needs suggest):
 
-- **Node.js Stack**: Express.js + TypeScript + Prisma ORM + Jest/Vitest
+- **Node.js Stack**: Express.js + TypeScript 5.4+ + Prisma ORM + Jest/Vitest
 - **Python Stack**: FastAPI/Django + SQLAlchemy + pytest
-- **Full JavaScript**: Next.js + tRPC + Prisma + TypeScript
-- **Styling**: Tailwind CSS 3+ + Ant Design 5+
+- **Full JavaScript**: Next.js 14.x + tRPC + Prisma + TypeScript 5.4+
+- **Styling**: Tailwind CSS 3.4+ + Ant Design 5.x+
 - **DevOps**: Docker 24+ + Docker Compose
+
+**📁 MANDATORY FILE STRUCTURE**:
+- **One class per file**: UserManager.cs, IUserRepository.cs
+- **One interface per file**: IEmailService.cs, IAuthProvider.cs  
+- **One DTO per file**: UserDto.cs, LoginRequestDto.cs
+- **One component per file**: LoginForm.tsx, UserProfile.tsx
 
 ## Phases
 
 ### **Phase 1: Architecture & Design Foundation** (0-20%)
 
-**🚨 CRITICAL FOR GAIA**: This phase REQUIRES completing ALL design templates in **sequence** before ANY implementation begins.
+**🚨 CRITICAL**: This phase REQUIRES completing ALL design templates in **sequence** before ANY implementation begins.
 
-**🚨 CRITICAL FOR GAIA**: You should 1) create a copy of all design templates from '.github/templates/designs' to '.docs/designs' as base templates then 2) fill in those new templates in their permanent position, with the actual system design etc.
+**🚨 CRITICAL**: You should 1) create a copy of all design templates from '.github/templates/designs' to '.docs/designs' as base templates then 2) fill in those new templates in their permanent position, with the actual system design etc.
 
 **🏗️ Design Document Generation (Sequential) - TEMPLATES TO FILL OUT**:
 
@@ -208,18 +237,21 @@
 **🚀 Development Environment Setup**:
 
 - [ ] **Frontend Framework Setup**
+  - [ ] **Step 1**: Implement reset.css/normalize.css foundation
+  - [ ] **Step 2**: Setup CSS custom properties for light/dark theming
+  - [ ] **Step 3**: Configure hash-based routing (createHashRouter)
   - [ ] Next.js/React project initialization
-  - [ ] TypeScript configuration
-  - [ ] Tailwind CSS + Ant Design setup
+  - [ ] TypeScript 5.4+ LTS configuration
+  - [ ] Tailwind CSS 3.4+ + Ant Design 5.x+ setup
   - [ ] ESLint + Prettier configuration
 - [ ] **Backend API Setup**
-  - [ ] Express.js/Fastify server initialization
-  - [ ] TypeScript configuration
+  - [ ] .NET 8.0 LTS / Express.js server initialization
+  - [ ] TypeScript 5.4+ configuration (if Node.js)
   - [ ] Authentication middleware setup
   - [ ] API routing structure
 - [ ] **Database Infrastructure**
-  - [ ] PostgreSQL Docker container setup
-  - [ ] Prisma ORM configuration
+  - [ ] PostgreSQL 16.x LTS Docker container setup
+  - [ ] Entity Framework Core 8.0 / Prisma ORM configuration
   - [ ] Database connection and testing
   - [ ] Initial schema definition
 - [ ] **Development Tooling**
@@ -241,12 +273,28 @@
   - [ ] Request validation middleware
   - [ ] Error handling middleware
 - [ ] **Frontend Foundation**
-  - [ ] Routing and navigation setup
+  - [ ] **CSS Foundation**: reset.css implementation as Step 1
+  - [ ] **Theme System**: Light/dark mode with CSS custom properties
+  - [ ] **Routing**: Hash-based routing setup (#/home, #/profile)
   - [ ] Layout components structure and visual regression on the component-level to ensure flawless rendering (padding, margin, color, effects etc)
   - [ ] Visual regression testing dashboard / a components catelog
   - [ ] Design system implementation
   - [ ] Onboarding / tutorial system
   - [ ] State management setup
+
+**🎨 MANDATORY UX STANDARDS**:
+- [ ] **Semantic HTML**: Use <main>, <section>, <article>, <header>, <nav>
+- [ ] **Element Hierarchy**: Use <div> ONLY as last resort for layout containers
+- [ ] **Interactive Elements**: <button> for actions, <a> for navigation
+- [ ] **Accessibility**: ARIA labels, roles, keyboard navigation support
+- [ ] **WCAG 2.1 AA Compliance**: Color contrast, focus indicators, screen reader support
+
+**🌓 DUAL THEME MANDATORY**:
+- [ ] **CSS Variables**: All colors/spacing as custom properties
+- [ ] **Theme Toggle**: Dark mode toggle in navigation
+- [ ] **System Detection**: Auto-detect user's system preference
+- [ ] **Persistence**: Theme choice saved in localStorage
+- [ ] **Component Support**: All components work in both themes
 
 ### **Phase 2B: User Flow Foundation** (25-35%)
 
@@ -270,7 +318,7 @@
 
 ### **Phase 3: Core Business Logic Implementation** (35-65%)
 
-**🚨 CRITICAL**: GAIA must REFERENCE completed **design documents** for every implementation decision
+**🚨 CRITICAL**: You must REFERENCE completed **design documents** for every implementation decision
 
 **🎯 Live Implementation Status**
 
@@ -295,28 +343,48 @@
     - [ ] **2-class.md**: Identify required **classes** (Manager/Engine/Data layers)  
     - [ ] **3-sequence.md**: Follow interaction flows for this **use case**
     - [ ] **4-frontend.md**: Review UI components and user flows specified
-  - [ ] **� TDD RED PHASE - Write Tests FIRST**:
-    - [ ] **Unit Tests**: Manager/Engine/Data layer tests (based on the **class diagrams**)
+  - [ ] **🔴 TDD RED PHASE - Write Tests FIRST**:
+    - [ ] **🚨 BACKEND UNIT TESTS MANDATORY**: 
+      - [ ] Manager layer unit tests (orchestration logic) **← FROM 2-class.md**
+      - [ ] Engine layer unit tests (business logic) **← FROM 2-class.md**
+      - [ ] Data layer unit tests (repository patterns) **← FROM 2-class.md**
+      - [ ] Service interface unit tests **← FROM 2-class.md**
+      - [ ] **90% code coverage minimum** for backend layers
     - [ ] **Integration Tests**: API endpoint tests (based on the **sequence diagrams**)
     - [ ] **Component Tests**: UI component tests (based on the **frontend** designs)
-    - [ ] **Visual Regression Tests**: Focused element screenshots
+    - [ ] **🎭 PLAYWRIGHT VISUAL REGRESSION TESTS**: 
+      - [ ] Component-level focused screenshots
+      - [ ] **CRITICAL ANALYSIS**: Take screenshots and analyze for:
+        - Layout precision (spacing, alignment, typography)
+        - Visual hierarchy and design consistency  
+        - Interactive states (hover, focus, active, disabled)
+      - [ ] **3x IMPROVEMENT CYCLE**: Repeat analysis and improvements 3 times minimum
+      - [ ] Screenshots stored in `/tests/visual-regression/screenshots/`
     - [ ] **E2E Tests**: User flow tests (based on the **frontend** flows)
     - [ ] **CSS Layout Tests**: Explicit layout property assertions
   - [ ] **🔴 Run Tests**: Verify all tests fail (RED)
   - [ ] **✅ TDD GREEN PHASE - Implementation**:
-    - [ ] **Backend Implementation**:
-      - [ ] Manager layer (orchestration) **← FROM 2-class.md**
-      - [ ] Engine layer (business logic) **← FROM 2-class.md**
-      - [ ] Data layer (repository) **← FROM 2-class.md**
-      - [ ] API routes and validation **← FROM 3-sequence.md**
+    - [ ] **🔴 STRICT TDD BACKEND IMPLEMENTATION**:
+      - [ ] **Manager layer** (orchestration) **← FROM 2-class.md** - One file per class
+      - [ ] **Engine layer** (business logic) **← FROM 2-class.md** - One file per class  
+      - [ ] **Data layer** (repository) **← FROM 2-class.md** - One file per interface/class
+      - [ ] **API routes and validation** **← FROM 3-sequence.md**
+      - [ ] **DTOs and Models** - One file each (UserDto.cs, LoginDto.cs)
+      - [ ] **Verify 90% unit test coverage** after implementation
     - [ ] **Frontend Implementation**:
-      - [ ] Component creation **← FROM 4-frontend.md**
-      - [ ] State management integration **← FROM 4-frontend.md**
-      - [ ] API integration **← FROM 3-sequence.md**
-      - [ ] Form validation and error handling **← FROM 4-frontend.md**
-      - [ ] CSS styling with layout properties **← FROM 4-frontend.md**
+      - [ ] **Component creation** **← FROM 4-frontend.md** - One component per file
+      - [ ] **State management integration** **← FROM 4-frontend.md**
+      - [ ] **API integration** **← FROM 3-sequence.md**
+      - [ ] **Form validation and error handling** **← FROM 4-frontend.md**
+      - [ ] **CSS styling with layout properties** **← FROM 4-frontend.md**
+      - [ ] **Semantic HTML implementation** (avoid divs, use proper elements)
+      - [ ] **Light/dark theme support** for all components
       - [ ] Add component to the components catelog page / dashboard.
-      - [ ] Ensure visual fedelity of the component, from a critical standpoint (not an agreeable one). If there are no flaws, improve the component's visuals. If there are flaws, correct it. Do and repeat this for around 3x to ensure we objectively critique and improve a/the component.
+      - [ ] **🎭 PLAYWRIGHT VISUAL FIDELITY TESTING**:
+        - [ ] **Screenshot Analysis Cycle 1**: Take component screenshots, critique layout/design
+        - [ ] **Screenshot Analysis Cycle 2**: Implement fixes, re-screenshot, critique again  
+        - [ ] **Screenshot Analysis Cycle 3**: Final improvements, validate visual perfection
+        - [ ] **CRITICAL STANCE**: No agreeable feedback - objective critique only
   - [ ] **✅ Run Tests**: Verify all tests pass (GREEN)
   - [ ] **🔄 TDD REFACTOR PHASE**:
     - [ ] Code cleanup and optimization
@@ -354,13 +422,14 @@
 - [ ] ✅ Database: Connected / ❌ Connection Issues - [Details if issues]
 
 **Tests Status**:
-- [ ] ✅ Unit Tests: XX/XX Passing / ❌ XX Failing
+- [ ] ✅ Backend Unit Tests: XX/XX Passing / ❌ XX Failing (90%+ coverage required)
 - [ ] ✅ Integration Tests: XX/XX Passing / ❌ XX Failing
 - [ ] ✅ E2E Tests: XX/XX Passing / ❌ XX Failing
 - [ ] ✅ Visual Regression Tests: XX/XX Passing / ❌ XX Failing
 - [ ] ✅ CSS Layout Assertions: XX/XX Passing / ❌ XX Failing
 - [ ] ✅ Component Screenshot Tests: XX/XX Passing / ❌ XX Failing
-- [ ] ✅ TDD Cycle Completion: [Red→Green→Refactor] Status
+- [ ] ✅ Theme Coverage Tests: Light/Dark mode visual parity validated
+- [ ] ✅ TDD Cycle Completion: [Red→Green→Refactor] Status per use case
 
 **Code Quality**:
 - [ ] ✅ TypeScript: No Errors / ❌ XX Errors
@@ -369,11 +438,14 @@
 - [ ] ✅ Visual Test Coverage: XX components tested / ❌ Missing visual tests
 
 **Visual Regression Metrics**:
-- [ ] ✅ Component Screenshots: All UI components have focused element tests
-- [ ] ✅ Layout Assertions: Width/height/positioning validated for key elements
-- [ ] ✅ Responsive Screenshots: Mobile/tablet/desktop breakpoint coverage
+- [ ] ✅ Component Screenshots: All UI components have focused element tests (light + dark)
+- [ ] ✅ Layout Assertions: Width/height/positioning validated with exact values
+- [ ] ✅ Responsive Screenshots: Mobile (375px)/tablet (768px)/desktop (1920px) coverage
 - [ ] ✅ Interaction States: Hover/focus/active states visually tested
 - [ ] ✅ Color/Typography: CSS property assertions for design consistency
+- [ ] ✅ Theme Consistency: Light/dark mode visual parity validated
+- [ ] ✅ Semantic HTML: Proper element usage validated (minimal div usage)
+- [ ] ✅ Critical Analysis: 3x improvement cycles completed per component
 
 **Performance Metrics**:
 - [ ] ✅ Core Web Vitals: Passing / ❌ Issues
@@ -410,24 +482,42 @@
 **🧪 TDD-Driven Testing Implementation** (90%+ coverage target):
 
 - [ ] **🔴 TDD Red Phase**: Write tests FIRST from design documents
-  - [ ] Unit tests (Manager/Engine/Data layers from the **class diagrams**)
+  - [ ] **🚨 BACKEND UNIT TESTS MANDATORY (90%+ coverage)**:
+    - [ ] Manager layer unit tests (Manager/Engine/Data layers from the **class diagrams**)
+    - [ ] Engine layer business logic unit tests
+    - [ ] Data layer repository pattern unit tests  
+    - [ ] Service interface unit tests
+    - [ ] DTO validation unit tests
   - [ ] Integration tests (API endpoints from 3-sequence.md)  
   - [ ] Component tests (UI components from the **frontend** designs)
-  - [ ] **Visual regression tests**: Focused element screenshots + CSS assertions
+  - [ ] **🎭 PLAYWRIGHT VISUAL REGRESSION TESTS**: 
+    - [ ] Focused element screenshots + CSS assertions (light + dark themes)
+    - [ ] **CRITICAL ANALYSIS**: Screenshot analysis with 3x improvement cycles
   - [ ] E2E tests (User flows from the **use cases** + **frontend**)
 
 - [ ] **✅ TDD Green Phase**: Implementation to pass tests
-  - [ ] Backend implementation (make unit/integration tests pass)
+  - [ ] **🔴 STRICT TDD BACKEND** implementation (make unit/integration tests pass)
+    - [ ] One class per file implementation (Manager/Engine/Data layers)
+    - [ ] One interface per file (IUserService.cs, IEmailProvider.cs)
+    - [ ] One DTO per file (UserDto.cs, LoginRequestDto.cs)
+    - [ ] Verify 90%+ unit test coverage achieved
   - [ ] **Frontend** implementation (make component/visual tests pass)
-  - [ ] **CSS layout validation**: Box model, typography, colors, positioning
+    - [ ] One component per file (LoginForm.tsx, UserProfile.tsx)
+    - [ ] Semantic HTML implementation (proper elements, minimal divs)
+    - [ ] Hash-based routing implementation
+  - [ ] **CSS layout validation**: Box model, typography, colors, positioning (exact values)
   - [ ] **Component states**: Default, hover, focus, loading, error, disabled
-  - [ ] **Responsive design**: Mobile/tablet/desktop breakpoint testing
+  - [ ] **Dual theme implementation**: Light/dark mode for all components
+  - [ ] **Responsive design**: Mobile (375px)/tablet (768px)/desktop (1920px) breakpoint testing
+  - [ ] **🎭 PLAYWRIGHT VISUAL FIDELITY**: 3x critical analysis cycles per component
 
 - [ ] **🔄 TDD Refactor Phase**: Code optimization while maintaining coverage
-  - [ ] Performance improvements
+  - [ ] Performance improvements (maintain 90%+ backend test coverage)
   - [ ] Accessibility enhancements (WCAG 2.1 AA)
-  - [ ] Code organization and patterns
+  - [ ] Code organization and patterns (one-class-per-file maintained)
   - [ ] Cross-browser compatibility (Chrome, Firefox, Safari)
+  - [ ] Theme consistency validation (light/dark mode parity)
+  - [ ] Semantic HTML refinement (minimize div usage)
 
 ### **Phase 6: Production Deployment & Monitoring** (95-100%)
 
