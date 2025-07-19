@@ -11,12 +11,16 @@ This document captures the current focus and recent changes in the Health Tracke
 - Initial project setup with backend and frontend directories.
 - Established core project goals and structure in project brief and product context.
 - Updated memory bank to reflect .docs design documentation, iDesign architecture, and preferred repo structure.
+- Restarted project with simplified structure: all source code in `src/` and tests in `test/` folders.
+- Removed previous backend and frontend separation and implementation.
 
 ## Next Steps
 - Continue implementing features for nutrition, exercise, and health metrics tracking.
 - Enhance user authentication and data privacy mechanisms.
 - Improve user experience with responsive design and clear visualizations.
 - Ensure ongoing alignment with documented architecture, repo structure, and testing strategy.
+- Develop new architecture and implementation based on simplified project structure.
+- Continue following iDesign architectural principles for maintainability and scalability.
 
 ## Active Decisions and Considerations
 - Prioritize security and privacy in all data handling.

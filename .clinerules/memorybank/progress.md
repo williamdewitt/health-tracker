@@ -22,6 +22,8 @@ This document tracks the current status, accomplishments, and remaining work for
 - Core architecture and design patterns established.
 - Initial API endpoints and frontend components created.
 - Memory bank updated to reflect .docs design documentation, iDesign architecture, and preferred repo structure.
+- Project restarted with simplified structure: all source code in `src/` and tests in `test/` folders.
+- Removed previous backend and frontend separation and implementation.
 
 ## Known Issues
 - Authentication flow incomplete.
