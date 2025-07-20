@@ -29,28 +29,12 @@ Health Tracker is a full-stack web application designed to empower users to moni
    git clone https://github.com/williamdewitt/health-tracker.git
    cd health-tracker
    ```
-2. Install frontend dependencies:
-   ```bash
-   cd src/frontend
-   npm install
-   ```
-3. Build and run the backend:
-   ```bash
-   cd ../backend
-   dotnet build
-   dotnet run
-   ```
-4. Start the frontend development server:
-   ```bash
-   cd ../frontend
-   npm start
-   ```
 
 ## Project Structure
 
 - `src/` - All source code for backend and frontend
 - `test/` - All test code
-- `.docs/` - Project documentation and design specifications
+- `docs/` - Project documentation and design specifications
 - `docker-compose.yml` - Docker orchestration file for local development
 
 ## Testing

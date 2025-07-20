@@ -7,3 +7,5 @@ Users can track nutrition, exercise, and personal health metrics in one place, g
 The user experience is designed to be intuitive and responsive, ensuring users of all technical levels can benefit. Privacy and security are paramount, with robust authentication and data protection measures in place.
 
 The product supports extensibility to incorporate new health tracking features and integrations as user needs evolve.
+
+The frontend will use Blazor to build interactive web UI components with C# instead of JavaScript frameworks, enabling seamless integration with the .NET backend and improved developer productivity.

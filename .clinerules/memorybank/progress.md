@@ -4,7 +4,7 @@ This document tracks the current status, accomplishments, and remaining work for
 
 ## What Works
 - Basic backend API setup with .NET, including initial controllers and models.
-- Frontend React application scaffolded with core components.
+- Frontend Blazor application scaffolded with core components.
 - User authentication flow started in backend and frontend.
 - Basic data models for nutrition and health metrics defined.
 

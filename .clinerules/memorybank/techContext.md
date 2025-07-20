@@ -4,14 +4,14 @@ This document outlines the technologies, development setup, technical constraint
 
 ## Technologies Used
 - Backend: .NET (C#) for API development.
-- Frontend: React with TypeScript for building the user interface.
+- Frontend: Blazor with C# for building the user interface.
 - Database: (Not explicitly stated, but likely used in backend for data persistence).
 - API Communication: RESTful API design.
 
 ## Development Setup
 - Backend and frontend are separated into distinct directories.
 - Backend uses .NET project structure with controllers, models, and data context.
-- Frontend uses React with modular components and API service modules.
+- Frontend uses Blazor with modular components and API service modules.
 - Docker is used for containerization (Dockerfile present in both backend and frontend).
 - docker-compose.yml at the repo root orchestrates multi-service local development.
 - Automated Docker Hub builds are supported for deployment.

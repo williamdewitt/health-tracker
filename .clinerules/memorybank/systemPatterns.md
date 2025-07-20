@@ -5,7 +5,7 @@ This document outlines the system architecture, key technical decisions, and des
 ## System Architecture
 - The system is a full-stack web application with a clear separation between backend and frontend.
 - Backend API is built with .NET, exposing RESTful endpoints for data management and authentication.
-- Frontend is a React-based single-page application consuming the backend API.
+- Frontend is a Blazor-based single-page application consuming the backend API.
 - The architecture follows iDesign principles, emphasizing separation of concerns, strict dependency direction, and maintainability.
 
 ### iDesign 3-Layer Hierarchical Structure
@@ -26,7 +26,7 @@ This document outlines the system architecture, key technical decisions, and des
 ## Key Technical Decisions
 - Use of RESTful API design to ensure scalability and maintainability.
 - Secure authentication mechanisms implemented in the backend.
-- Modular React components for frontend to promote reusability and ease of maintenance.
+- Modular Blazor components for frontend to promote reusability and ease of maintenance.
 - Data models designed to support nutrition, exercise, and health metrics tracking.
 - Strict adherence to iDesign dependency rules for testability and scalability.
 
