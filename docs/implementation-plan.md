@@ -40,6 +40,7 @@ This document outlines a detailed implementation plan for the Health Tracker app
   - FoodSuggestionRepository: Manage FoodSuggestion data.
 - **Database Context**
   - Centralized DbContext for Entity Framework Core or equivalent ORM.
+  - Use PostgreSQL as the primary database technology, leveraging its robustness and container-friendly official Docker image.
 - **External Integrations**
   - Interfaces and adapters for external APIs (e.g., food databases).
 
