@@ -4,9 +4,10 @@ This document captures the current focus and recent changes in the Health Tracke
 
 ## Current Work Focus
 - Developing and maintaining the full-stack Health Tracker application.
-- Backend API development using .NET, focusing on secure authentication and data management.
+- Backend API development using .NET with Aspire framework, focusing on secure authentication, service orchestration, and observability.
 - Frontend Blazor application development for intuitive user interfaces to log and track health data.
 - Implementing personalized food suggestions and blood type diet assistance features.
+- Utilizing Redis caching, service discovery, health checks, and OpenTelemetry for resilience and monitoring.
 
 ## Recent Changes
 - Initial project setup with backend and frontend directories.

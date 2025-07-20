@@ -5,8 +5,9 @@ This document outlines the technologies, development setup, technical constraint
 ## Technologies Used
 - Backend: .NET (C#) for API development.
 - Frontend: Blazor with C# for building the user interface.
-- Database: (Not explicitly stated, but likely used in backend for data persistence).
+- Database: PostgreSQL for data persistence, chosen for its robustness, extensibility, and container-friendly deployment.
 - API Communication: RESTful API design.
+
 
 ## Development Setup
 - Backend and frontend are separated into distinct directories.
